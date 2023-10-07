@@ -11,6 +11,6 @@ enum UsersType: int
     use Options, Values, InvokableCases;
 
     case SUPERADMIN = 1;
-    case ADMIN = 2;
+    case THERAPIST = 2;
     case CLIENT = 3;
 }

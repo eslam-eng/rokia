@@ -16,16 +16,16 @@ return new class extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password');
-            $table->string('phone')->nullable();
+            $table->string('phone')->nullable()->unique();
             $table->string('device_token')->nullable();
             $table->string('address')->nullable();
             $table->foreignIdFor(\App\Models\Location::class,'city_id')->nullable()->constrained('locations')->nullOnDelete()->cascadeOnUpdate();
             $table->foreignIdFor(\App\Models\Location::class,'area_id')->nullable()->constrained('locations')->nullOnDelete()->cascadeOnUpdate();
-            $table->string('notes')->nullable();
             $table->string('gender')->default(\App\Enums\GenderTypeEnum::MALE->value);
             $table->smallInteger('type')->default(\App\Enums\UsersType::CLIENT->value);
             $table->tinyInteger('status')->default(\App\Enums\ActivationStatus::ACTIVE->value);
-            $table->softDeletes();
+            $table->decimal('therapist_commission')->nullable();
+//            $table->softDeletes();
             $table->timestamps();
         });
     }

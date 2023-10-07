@@ -98,40 +98,40 @@
 
                         <div class="row row-sm mb-4">
                             <div class="col-lg">
-                                @livewire('company', ['selected_company'=>$user->company_id])
-                                @error('company_id')
-                                <div class="text-danger"> {{$message}}</div>
-                                @enderror
+{{--                                @livewire('company', ['selected_company'=>$user->company_id])--}}
+{{--                                @error('company_id')--}}
+{{--                                <div class="text-danger"> {{$message}}</div>--}}
+{{--                                @enderror--}}
                             </div>
 
                             <div class="col-lg">
-                               @livewire('branch', ['branches_for_company_id'=>$user->company_id, 'selected_branch'=>$user->branch_id])
-                                @error('branch_id')
-                                    <div class="text-danger"> {{$message}}</div>
-                                @enderror
+{{--                               @livewire('branch', ['branches_for_company_id'=>$user->company_id, 'selected_branch'=>$user->branch_id])--}}
+{{--                                @error('branch_id')--}}
+{{--                                    <div class="text-danger"> {{$message}}</div>--}}
+{{--                                @enderror--}}
                             </div>
                             <div class="col-lg">
-                               @livewire('department', ['departments_for_company_id'=>$user->company_id])
-                                @error('department_id')
-                                    <div class="text-danger"> {{$message}}</div>
-                                @enderror
+{{--                               @livewire('department', ['departments_for_company_id'=>$user->company_id])--}}
+{{--                                @error('department_id')--}}
+{{--                                    <div class="text-danger"> {{$message}}</div>--}}
+{{--                                @enderror--}}
                             </div>
                         </div>
                         <div class="row row-sm mb-4">
                             <div class="col-lg">
                                 <div class="col-lg">
-                                    @livewire('location.cities', ['selected_city'=>$user->city_id])
-                                    @error('city_id')
-                                        <div class="text-danger"> {{$message}}</div>
-                                    @enderror
+{{--                                    @livewire('location.cities', ['selected_city'=>$user->city_id])--}}
+{{--                                    @error('city_id')--}}
+{{--                                        <div class="text-danger"> {{$message}}</div>--}}
+{{--                                    @enderror--}}
                                 </div>
                             </div>
                             <div class="col-lg mg-t-10 mg-lg-t-0">
                                 <div class="col-lg">
-                                    @livewire('location.areas', ['areas_for_city_id'=>$user->city_id, 'selected_area'=>$user->area_id])
-                                    @error('area_id')
-                                        <div class="text-danger"> {{$message}}</div>
-                                    @enderror
+{{--                                    @livewire('location.areas', ['areas_for_city_id'=>$user->city_id, 'selected_area'=>$user->area_id])--}}
+{{--                                    @error('area_id')--}}
+{{--                                        <div class="text-danger"> {{$message}}</div>--}}
+{{--                                    @enderror--}}
                                 </div>
                             </div>
                         </div>

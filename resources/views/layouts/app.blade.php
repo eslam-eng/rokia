@@ -10,11 +10,9 @@
     <meta name="Keywords"
           content="admin dashboard, admin dashboard laravel, admin panel template, blade template, blade template laravel, bootstrap template, dashboard laravel, laravel admin, laravel admin dashboard, laravel admin panel, laravel admin template, laravel bootstrap admin template, laravel bootstrap template, laravel template"/>
     <!-- Title -->
-    <title>UFS - Control Panel </title>
+    <title>@yield('title')</title>
 
     @include('layouts.components.styles')
-
-    <livewire:styles />
     @yield('after_styles')
 </head>
 
@@ -52,8 +50,6 @@
 
     @include('layouts.components.sidebar-right')
 
-    @include('layouts.components.modal')
-
     @yield('modal')
 
     @include('layouts.components.footer')
@@ -66,14 +62,17 @@
 
 
 <script>
-    function destroy(url) {
-        swal({
-            title: "{{__('app.are_you_sure')}}",
-            icon: "warning",
-            buttons: true,
-            dangerMode: true,
-        }).then((confirmed) => {
-            if (confirmed) {
+    function destroy(url,reload=0) {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
                 $.ajax({
                     method: 'DELETE',
                     url: url,
@@ -83,12 +82,13 @@
                     },
                     success: function(result) {
                         if (result.status)
-                        {
                             toastr.success(result.message);
-                            $('.dataTable').DataTable().ajax.reload(null, false);
-                        }
                         else
                             toastr.error(result.message);
+                        if(reload==0)
+                            $('.dataTable').DataTable().ajax.reload(null, false);
+                        else
+                            window.location.reload();
                     } ,
                     error: function(jqXHR, textStatus, errorThrown) {
 
@@ -97,10 +97,9 @@
                     }
                 });
             }
-        });
+        })
     }
 </script>
-<livewire:scripts />
 @yield('script_footer')
 </body>
 </html>

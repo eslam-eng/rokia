@@ -2,14 +2,15 @@
 
 namespace App\Services;
 
-use App\DTO\User\UserDTO;
+use App\DataTransferObjects\User\UserDTO;
 use App\Enums\AttachmentsType;
 use App\Models\User;
-use App\QueryFilters\UsersFilters;
-use App\Services\BaseService;
+use App\Filters\UsersFilters;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\ValidationException;
 
 class UserService extends BaseService
 {
@@ -24,21 +25,15 @@ class UserService extends BaseService
         return $this->model;
     }
 
-     //method for api with pagination
-     public function listing(array $filters = [], array $withRelations = [], $perPage = 10): \Illuminate\Contracts\Pagination\CursorPaginator
-     {
-         return $this->queryGet(filters: $filters, withRelations: $withRelations)->cursorPaginate($perPage);
-     }
-
-     public function queryGet(array $filters = [], array $withRelations = []): builder
-     {
-         $users = $this->getQuery()->with($withRelations);
-         return $users->filter(new UsersFilters($filters));
-     }
+    public function getQuery(?array $filters = []): ?Builder
+    {
+        return parent::getQuery($filters)
+            ->when(!empty($filters), fn(Builder $builder) => $builder->filter(new UsersFilters($filters)));
+    }
 
      public function datatable(array $filters = [] , array $withRelations = []): Builder
     {
-        return $this->queryGet(filters: $filters , withRelations: $withRelations);
+        return $this->getQuery(filters: $filters)->with($withRelations);
     }
 
     /**
@@ -49,17 +44,17 @@ class UserService extends BaseService
      */
     public function store(UserDTO $userDTO)
     {
-        $data = $userDTO->toArray();
-        $user = $this->getModel()->create(Arr::except($data, 'profile_image'));
-        if (isset($data['profile_image']))
+        $userData = $userDTO->toArray();
+        $userDTO->validate();
+        $validator = Validator::make($userData,['email'=>'unique:users,email','phone'=>'unique:users,phone']);
+        if ($validator->fails())
+            throw new ValidationException($validator);
+        $user = $this->getQuery()->create($userData);
+        if (isset($userDTO->profile_image))
         {
-            $fileData = FileService::saveImage(file: $data['profile_image'],path: 'uploads/users', field_name: 'profile_image');
-            $fileData['type'] = AttachmentsType::PRIMARYIMAGE;
-            $user->storeAttachment($fileData);
+            $user->addMediaFromRequest('profile_image')->toMediaCollection();
         }
-        if($user)
-            $user->givePermissionTo(Arr::get($data, 'permissions'));
-
+        return  $user;
     }
 
     /**
@@ -113,13 +108,17 @@ class UserService extends BaseService
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return bool
      */
     public function destroy($id)
     {
         $user = $this->findById($id);
-        $user->deleteAttachments();
-        $user->delete();
-        return true;
+        return $user->delete();
+    }
+
+    public function setUserFcmToken($fcm_token)
+    {
+        $user = auth('sanctum')->user();
+        $user->update(['device_token' => $fcm_token]);
     }
 }

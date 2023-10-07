@@ -14,37 +14,12 @@
                         <div class="mt-4">
                             <form class="datatables_parameters">
                                 <div class="col-md-12 col-xl-12 col-xs-12 col-sm-12"> <!--div-->
-                                    <div class="row row-sm">
-                                        <div class="col-lg">
-                                            <livewire:location.cities/>
-                                        </div>
-                                        <div class="col-lg">
-                                            <livewire:location.areas/>
-                                        </div>
-                                    </div>
-                                    <div class="row row-sm">
-                                        <div class="col-lg">
-                                            <livewire:company/>
-                                        </div>
-                                        <div class="col-lg">
-                                            <livewire:branch/>
-                                        </div>
-                                        
-                                    </div>
-
                                     <div class="row row-sm mb-4">
                                         <div class="col-lg mb-4">
                                             <div class="main-content-label mg-b-5">@lang('app.status')</div>
                                             <select class="form-control" name="status">
-                                                <option value="1">{{ trans('app.yes') }}</option>
-                                                <option value="0">{{ trans('app.no') }}</option>
-                                            </select>
-                                        </div>
-                                        <div class="col-lg">
-                                            <div class="main-content-label mg-b-5">@lang('app.type')</div>
-                                            <select class="form-control" name="type">
-                                                @foreach (App\Enums\UsersType::options() as $name=>$value)
-                                                <option value="{{ $value }}">{{ $name }}</option>
+                                                @foreach(\App\Enums\ActivationStatus::cases() as $status)
+                                                    <option value="{{$status->value}}">{{ trans('app.'.$status->name) }}</option>
                                                 @endforeach
                                             </select>
                                         </div>

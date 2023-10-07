@@ -63,7 +63,7 @@
 														</div>
 													</div>
 												</div>
-												<a class="dropdown-item" href="{{route('profile.index')}}"><i class="far fa-user-circle"></i>Profile</a>
+												<a class="dropdown-item" href="#"><i class="far fa-user-circle"></i>Profile</a>
 												<a class="dropdown-item" href="{{route('logout')}}"><i class="far fa-arrow-alt-circle-left"></i> Sign Out</a>
 											</div>
 										</li>

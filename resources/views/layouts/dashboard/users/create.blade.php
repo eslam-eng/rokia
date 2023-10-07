@@ -90,10 +90,10 @@
 
                         <div class="row row-sm mb-4">
                             <div class="col-lg">
-                                @livewire('company', ['selected_company'=>old('company_id')])
-                                @error('company_id')
-                                <div class="text-danger"> {{$message}}</div>
-                                @enderror
+{{--                                @livewire('company', ['selected_company'=>old('company_id')])--}}
+{{--                                @error('company_id')--}}
+{{--                                <div class="text-danger"> {{$message}}</div>--}}
+{{--                                @enderror--}}
                             </div>
 
                             <div class="col-lg">
@@ -125,10 +125,10 @@
 
                             <div class="col-lg">
                                 <div class="col-lg">
-                                    @livewire('location.cities', ['selected_city'=>old('city_id')])
-                                    @error('city_id')
-                                        <div class="text-danger"> {{$message}}</div>
-                                    @enderror
+{{--                                    @livewire('location.cities', ['selected_city'=>old('city_id')])--}}
+{{--                                    @error('city_id')--}}
+{{--                                        <div class="text-danger"> {{$message}}</div>--}}
+{{--                                    @enderror--}}
                                 </div>
                             </div>
                             <div class="col-lg mg-t-10 mg-lg-t-0">

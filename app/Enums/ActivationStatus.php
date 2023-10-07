@@ -8,8 +8,10 @@ use ArchTech\Enums\Values;
 
 enum ActivationStatus: int
 {
-    use Options, Values,InvokableCases;
+    use Options, Values, InvokableCases;
 
+    case PENDING = 0;
     case ACTIVE = 1;
-    case INACTIVE = 0;
+    case INACTIVE = 2;
+
 }

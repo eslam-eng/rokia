@@ -77,9 +77,9 @@
                                             </ul>
                                         </div>
                                     @endif
-                                    <form class="form-horizontal" method="post" action="{{ route('profile.update', Auth::user()->id) }}"> 
+                                    <form class="form-horizontal" method="post" action="{{ route('profile.update', Auth::user()->id) }}">
                                         @csrf
-                                        @method('put')                                      
+                                        @method('put')
                                         <div class="form-group ">
                                             <div class="row row-sm">
                                                 <div class="col-md-3">
@@ -161,10 +161,10 @@
                                                     <label class="form-label">City</label>
                                                 </div>
                                                 <div class="col-md-9">
-                                                    @livewire('location.cities', ['selected_city'=> Auth::user()->city_id])
-                                                    @error('city_id')
-                                                        <div class="text-danger"> {{$message}}</div>
-                                                    @enderror
+{{--                                                    @livewire('location.cities', ['selected_city'=> Auth::user()->city_id])--}}
+{{--                                                    @error('city_id')--}}
+{{--                                                        <div class="text-danger"> {{$message}}</div>--}}
+{{--                                                    @enderror--}}
                                                 </div>
                                             </div>
                                         </div>
@@ -174,10 +174,10 @@
                                                     <label class="form-label">Area</label>
                                                 </div>
                                                 <div class="col-md-9">
-                                                    @livewire('location.areas', ['selected_area'=> Auth::user()->area_id])
-                                                    @error('area_id')
-                                                        <div class="text-danger"> {{$message}}</div>
-                                                    @enderror
+{{--                                                    @livewire('location.areas', ['selected_area'=> Auth::user()->area_id])--}}
+{{--                                                    @error('area_id')--}}
+{{--                                                        <div class="text-danger"> {{$message}}</div>--}}
+{{--                                                    @enderror--}}
                                                 </div>
                                             </div>
                                         </div>
@@ -197,5 +197,5 @@
         </div>
         <!-- row closed -->
     </div>
-    <!-- Container closed --> 
+    <!-- Container closed -->
 @endsection

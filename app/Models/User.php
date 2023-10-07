@@ -14,7 +14,7 @@ use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable implements HasMedia
 {
-    use SoftDeletes, Filterable,HasApiTokens,
+    use Filterable,HasApiTokens,
         HasFactory, Notifiable,HasRoles,InteractsWithMedia;
 
     /**
@@ -59,5 +59,11 @@ class User extends Authenticatable implements HasMedia
     public function area()
     {
         return $this->belongsTo(Location::class,'area_id');
+    }
+
+    public function registerMediaCollections(): void
+    {
+        $this->addMediaCollection('users');
+        // Add more collections as needed
     }
 }

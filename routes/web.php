@@ -11,6 +11,7 @@ use App\Http\Controllers\ImportLogsController;
 use App\Http\Controllers\LocationsController;
 use App\Http\Controllers\PriceTableController;
 use App\Http\Controllers\ReceiverController;
+use App\Http\Controllers\Therapist\TherapistController;
 use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Route;
 
@@ -43,11 +44,9 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function () {
     Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 
     Route::resource('users', UsersController::class);
-    Route::get('users-download-template/form', [UsersController::class, 'importForm'])->name('users-download-template.form');
-    Route::get('users-download-template', [UsersController::class, 'downloadUsersTemplate'])->name('users-download-template');
-    Route::post('users-import', [UsersController::class, 'import'])->name('users-import');
-
-    // Route::get('switcherpage', Switcherpage::class)->name('switcherpage');
+    Route::resource('therapists', TherapistController::class);
+    Route::post('therapist/{id}/status',[TherapistController::class,'status'])->name('therapist.status');
+      // Route::get('switcherpage', Switcherpage::class)->name('switcherpage');
 
 });
 

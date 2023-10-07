@@ -7,7 +7,7 @@ use App\Enums\ImportTypeEnum;
 use App\Enums\UsersType;
 use App\Exceptions\NotFoundException;
 use App\Http\Requests\FileUploadRequest;
-use App\Http\Requests\Users\UserRequest;
+use App\Http\Requests\Users\ClientRequest;
 use App\Http\Requests\Users\UserUpdateProfileRequest;
 use App\Http\Requests\Users\UserUpdateRequest;
 use App\Imports\Users\UsersImport;
@@ -82,7 +82,7 @@ class UsersController extends Controller
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(UserRequest $request)
+    public function store(ClientRequest $request)
     {
         try {
             $this->userService->store($request->toUserDTO());
