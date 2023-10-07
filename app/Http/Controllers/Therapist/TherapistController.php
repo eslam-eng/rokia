@@ -7,6 +7,7 @@ use App\DataTransferObjects\Therapist\TherapistDTO;
 use App\Enums\UsersType;
 use App\Exceptions\GeneralException;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Therapist\ThereapistUpdateRequest;
 use App\Http\Requests\Users\ThereapistRequest;
 use App\Services\TherapistService;
 use App\Services\UserService;
@@ -64,10 +65,6 @@ class TherapistController extends Controller
     {
         try {
             $therapist = $this->therapistService->findById($id);
-            $url = 'https://nabadat.app/images/icons/5.png';
-            $therapist
-                ->addMediaFromUrl($url)
-                ->toMediaCollection('users');
             return view('layouts.dashboard.therapist.edit', compact('therapist'));
         } catch (NotFoundHttpException|\Exception $exception) {
             $toast = [
@@ -80,9 +77,38 @@ class TherapistController extends Controller
 
     }
 
-    public function update(ThereapistRequest $request,$therapist)
+    public function update(ThereapistUpdateRequest $request,$therapist)
     {
-        dd($therapist);
+        try {
+            DB::beginTransaction();
+            $therapistDTO = TherapistDTO::fromRequest($request);
+            $this->therapistService->update($therapistDTO,$therapist);
+            DB::commit();
+            $toast = [
+                'type' => 'success',
+                'title' => 'Success',
+                'message' => 'updated successfully'
+            ];
+            return redirect(route('therapists.index'))->with('toast', $toast);
+        }catch (\Exception $exception)
+        {
+            DB::rollBack();
+            $toast = [
+                'type' => 'error',
+                'title' => 'error',
+                'message' => $exception->getMessage()
+            ];
+            return back()->with('toast', $toast);
+        }
+    }
+
+    public function deleteMedia(int $id,int $media_id)
+    {
+        $therapist = $this->therapistService->findById($id);
+        $media =  $therapist->getMedia('*')->where('id',$media_id)->first();
+        if ($media->delete())
+            return apiResponse(message: 'deleted successfully');
+
     }
 
     /**

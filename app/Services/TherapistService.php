@@ -68,26 +68,21 @@ class TherapistService extends BaseService
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return true
+     * @return \Illuminate\Database\Eloquent\Collection|Model
      */
-    public function update(UserDTO $userDTO, $id)
+    public function update(TherapistDTO $therapistDTO, $id)
     {
-        $user = $this->findById($id);
-        $data = $userDTO->toArray();
-        if(!isset($data['password']))
-            $user->update(Arr::except($data, ['profile_image', 'password']));
-        else
-            $user->update(Arr::except($data, 'profile_image'));
-
-        if (isset($data['profile_image']))
+        $therapist = $this->findById($id);
+        $data = array_filter( $therapistDTO->toArray());
+        $therapist->update($data);
+        if (isset($therapistDTO->documents))
         {
-            $user->deleteAttachmentsLogo();
-            $fileData = FileService::saveImage(file: $data['profile_image'],path: 'uploads/users', field_name: 'profile_image');
-            $fileData['type'] = AttachmentsType::PRIMARYIMAGE;
-            $user->storeAttachment($fileData);
+           foreach ($therapistDTO->documents as $document)
+           {
+               $therapist->addMedia($document)->toMediaCollection();
+           }
         }
-        $user->syncPermissions(Arr::get($data, 'permissions'));
-        return true;
+        return $therapist;
     }
 
     public function updateProfile(array $data = [], $id)

@@ -46,6 +46,7 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function () {
     Route::resource('users', UsersController::class);
     Route::resource('therapists', TherapistController::class);
     Route::post('therapist/{id}/status',[TherapistController::class,'status'])->name('therapist.status');
+    Route::delete('therapist/{id}/media/{media_id}',[TherapistController::class,'deleteMedia'])->name('therapist.delete-media');
       // Route::get('switcherpage', Switcherpage::class)->name('switcherpage');
 
 });

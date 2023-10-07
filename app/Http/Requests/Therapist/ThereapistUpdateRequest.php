@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Users;
+namespace App\Http\Requests\Therapist;
 
 use App\Enums\ActivationStatus;
 use App\Enums\GenderTypeEnum;
@@ -8,7 +8,7 @@ use App\Enums\UsersType;
 use App\Http\Requests\BaseRequest;
 use Illuminate\Validation\Rule;
 
-class ThereapistRequest extends BaseRequest
+class ThereapistUpdateRequest extends BaseRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,10 +25,9 @@ class ThereapistRequest extends BaseRequest
     {
         return [
             'name' => 'required|string',
-            'phone' => 'required|string',
             'email' => 'required|string',
-            'password' => 'required|string',
-            'profile_image' => 'nullable|file|mimes:png,jpg,jpeg,svg',
+            'therapist_commission' => 'required|numeric',
+            'phone' => 'required|string',
             'documents' => 'nullable|array|min:1',
             'documents.*' => 'file|mimes:png,jpg,jpeg,svg',
             'type' => ['required',Rule::in(UsersType::values())],
@@ -41,7 +40,6 @@ class ThereapistRequest extends BaseRequest
     {
         $this->merge([
             'type'=>UsersType::THERAPIST->value,
-            'status'=>ActivationStatus::PENDING->value
         ]);
     }
 }

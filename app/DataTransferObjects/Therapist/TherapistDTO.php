@@ -20,7 +20,7 @@ class TherapistDTO extends BaseDTO
         public string $name,
         public ?string $phone,
         public string $email,
-        public string $password,
+        public ?string $password = null,
         public ?string $gender,
         public ?int $status,
         public ?int $type,
@@ -30,6 +30,7 @@ class TherapistDTO extends BaseDTO
         public ?int $area_id = null,
         public $profile_image = null,
         public array $documents = [],
+        public ?string $therapist_commission = null,
 
     )
     {
@@ -51,6 +52,8 @@ class TherapistDTO extends BaseDTO
             city_id: $request->city_id,
             area_id: $request->area_id,
             profile_image: $request->profile_image,
+            documents: $request->documents ?? [],
+            therapist_commission: $request->therapist_commission,
         );
     }
 
@@ -73,6 +76,8 @@ class TherapistDTO extends BaseDTO
             city_id: Arr::get($data,'city_id'),
             area_id: Arr::get($data,'area_id'),
             profile_image: Arr::get($data,'profile_image'),
+            documents: Arr::get($data,'documents',[]),
+            therapist_commission: Arr::get($data,'therapist_commission',[]),
         );
     }
 
@@ -97,14 +102,15 @@ class TherapistDTO extends BaseDTO
             "name" => $this->name,
             "phone" => $this->phone,
             "email" => $this->email,
-            "password" => bcrypt($this->password),
+            "password" =>isset($this->password) ? bcrypt($this->password) : null,
             "gender" => $this->gender,
             "status" => $this->status,
-            "device_token" => $this->device_token,
             "address" => $this->address,
             "city_id" => $this->city_id,
             "area_id" => $this->area_id,
             "type" => $this->type,
+            "documents" => $this->documents,
+            "therapist_commission" => $this->therapist_commission,
         ];
     }
 }
