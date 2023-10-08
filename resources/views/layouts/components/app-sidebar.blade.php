@@ -3,8 +3,8 @@
     <aside class="app-sidebar">
         <div class="main-sidebar-header active">
             <a class="header-logo active" href="{{url('/')}}">
-                <img style="max-height: 40px !important" src="{{asset('assets/images/brand/logo.png')}}"
-                     class="main-logo" alt="logo">
+                <img style="max-height: 40px !important" src=""
+                     class="main-logo" alt="Rokia">
             </a>
         </div>
         <div class="main-sidemenu">
@@ -17,14 +17,14 @@
                 <li class="side-item side-item-category">@lang('app.menu')</li>
                 <li class="slide">
                     <a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0);">
-                        <i class="fa fa-truck pe-3"></i>
-                        <span class="side-menu__label">@lang('app.therapist')</span><i class="angle fe fe-chevron-right"></i></a>
+                        <i class="fa fa-users ide-menu__icon pe-2"></i>
+                        <span class="side-menu__label">@lang('app.therapists')</span>
+                        <i class="angle fe fe-chevron-right"></i>
+                    </a>
                     <ul class="slide-menu">
                         <li class="side-menu__label1"><a href="javascript:void(0);">Utilities</a></li>
-                        <li><a class="slide-item" data-is_active="{{request()->fullUrlIs(route('therapists.create'))}}"
-                               href="{{route('therapists.create')}}">@lang('app.new_shipment')</a></li>
                         <li><a class="slide-item" data-is_active="{{request()->fullUrlIs(route('therapists.index'))}}"
-                               href="{{route('therapists.index')}}">@lang('app.prepare_shipment')</a></li>
+                               href="{{route('therapists.index')}}">@lang('app.therapists')</a></li>
                     </ul>
                 </li>
 

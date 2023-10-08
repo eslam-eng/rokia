@@ -53,18 +53,5 @@ class AuthService extends BaseService
         return $user;
     }
 
-    public function changePassword(User $user, array $data): bool
-    {
-        if(!Hash::check($data['old_password'], $user->password))
-            throw new Exception(trans('app.not_match'));
-        $user->update([
-            'password'=> bcrypt($data['new_password']),
-        ]);
-        return true;
-    }
 
-    public function setUserFcmToken(User $user, $fcm_token): void
-    {
-        $user->update(['fcm_token' => $fcm_token]);
-    }
 }

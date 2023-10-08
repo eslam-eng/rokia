@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class AuthUserResource extends JsonResource
+class ClientResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -20,7 +20,7 @@ class AuthUserResource extends JsonResource
             'address'=>$this->address,
             'email'=>$this->email,
             'gender'=>$this->gender,
-            'profile_img' => $this->profile_img_url
+            'profile_img' => $this->getFirstMediaUrl()
         ];
     }
 }

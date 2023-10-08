@@ -4,7 +4,7 @@ use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\NotificationController;
 use App\Http\Controllers\Api\PhoneVerifyController;
 use App\Http\Controllers\Api\RestPasswordController;
-use App\Http\Controllers\Api\TherapistController;
+use App\Http\Controllers\Api\Therapist\TherapistController;
 use App\Http\Controllers\Api\UsersController;
 use Illuminate\Support\Facades\Route;
 
@@ -24,6 +24,7 @@ Route::fallback(function () {
 });
 
 Route::group(['prefix' => 'auth'], function () {
+
     Route::post('user/register', [UsersController::class, 'store']);
 
     Route::post('therapist/register', [TherapistController::class, 'store']);
@@ -36,23 +37,27 @@ Route::group(['prefix' => 'auth'], function () {
 
     Route::post('password/reset', RestPasswordController::class);
 
-    Route::group(['middleware' => 'auth:sanctum'], function () {
-        Route::post('user/set-fcm-token', [AuthController::class, 'setFcmToken']);
-
-        Route::get('user', [AuthController::class, 'authUser']);
-
-        Route::patch('user', [AuthController::class, 'update']);
-    });
 });
 
 
 Route::group(['middleware' => 'auth:sanctum'], function () {
 
     Route::group(['prefix' => 'user'], function () {
+
+        Route::post('set-fcm-token', [AuthController::class, 'setFcmToken']);
+
+        Route::get('user', [AuthController::class, 'authUser']);
+
+        Route::patch('user', [AuthController::class, 'update']);
+
         Route::get('profile', [AuthController::class, 'getProfileDetails']);
-        Route::get('/destroy', [AuthController::class, 'destroy']);
+
         Route::post('/change-password', [AuthController::class, 'changePassword']);
 
+    });
+
+    Route::group(['prefix' => 'therapist'],function (){
+//        Route::apiResource('lectures');
     });
 
     Route::post('update-device-token', [UsersController::class, 'updateDeviceToken']);

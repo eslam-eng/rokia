@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\Api\Therapist;
 
 use App\DataTables\TherapistsDataTable;
 use App\DataTransferObjects\Therapist\TherapistDTO;
@@ -19,15 +19,6 @@ class TherapistController extends Controller
     public function __construct(protected TherapistService $therapistService, public UserService $service)
     {
     }
-
-    public function index(TherapistsDataTable $dataTable, Request $request)
-    {
-        $filters = array_filter($request->get('filters', []), function ($value) {
-            return ($value !== null && $value !== false && $value !== '');
-        });
-        $filters['type'] = UsersType::THERAPIST->value;
-    }
-
     public function store(ThereapistRequest $request)
     {
         try {

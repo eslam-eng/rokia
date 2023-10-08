@@ -29,8 +29,6 @@ class AuthController extends Controller
                 'title' => 'success',
                 'message' => trans('app.login_successfully')
             ];
-            if (isset($request->fcm_token))
-                $this->authService->setUserFcmToken($user,$request->fcm_token);
             return to_route('home')->with('toast', $toast);
         } catch (NotFoundException $e) {
             return back()->with('error', "email or password incorrect please try again");
@@ -43,12 +41,5 @@ class AuthController extends Controller
     {
         Auth::logout();
         return to_route('login');
-    }
-
-    public function setFcmToken(StoreFcmTokenRequest $request): \Illuminate\Http\Response|\Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Routing\ResponseFactory
-    {
-        $user = auth()->user();
-        $this->authService->setUserFcmToken($user, $request->fcm_token);
-        return apiResponse(message: trans('lang.success_operation'));
     }
 }
