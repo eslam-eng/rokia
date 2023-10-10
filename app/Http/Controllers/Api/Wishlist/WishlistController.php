@@ -29,6 +29,7 @@ class WishlistController extends Controller
             $wishlist = $this->wishlistService->paginateLectures($filters, $withRelations);
             return WishlistResource::collection($wishlist);
         } catch (\Exception $exception) {
+            dd($exception);
             return apiResponse(message: 'something went wrong', code: 500);
         }
     }
@@ -43,7 +44,7 @@ class WishlistController extends Controller
     {
         try {
             $wishlistDTO = WishListDTO::fromRequest($request);
-            $this->wishlistService->store($wishlistDTO);
+            $this->wishlistService->updateOrCreate($wishlistDTO);
             return apiResponse(message: 'added to wishlist successfully');
         } catch (\Exception $exception) {
             return apiResponse(message: 'something went wrong', code: 500);

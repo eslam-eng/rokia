@@ -24,7 +24,7 @@ class WishlistRequest extends BaseRequest
     {
         return [
             'relatable_id' => 'required|string',
-            'relatable_type' => 'required|integer',
+            'relatable_type' => 'required|string',
             'notes' => 'nullable|string',
         ];
     }

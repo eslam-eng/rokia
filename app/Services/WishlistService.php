@@ -47,11 +47,11 @@ class WishlistService extends BaseService
      * @param TherapistDTO $therapistDTO
      * @return Builder|Model|null
      */
-    public function store(WishListDTO $wishListDTO)
+    public function updateOrCreate(WishListDTO $wishListDTO): Model|Builder|null
     {
         $wishListDTO->validate();
         $wishlistData = $wishListDTO->toArray();
-        return $this->getQuery()->create($wishlistData);
+        return $this->getQuery()->updateOrCreate($wishlistData);
     }
 
 
