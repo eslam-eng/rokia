@@ -11,6 +11,7 @@ use App\Http\Requests\Therapist\ThereapistUpdateRequest;
 use App\Http\Requests\Users\ThereapistRequest;
 use App\Services\TherapistService;
 use App\Services\UserService;
+use App\Traits\HasMedia;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
@@ -77,12 +78,12 @@ class TherapistController extends Controller
 
     }
 
-    public function update(ThereapistUpdateRequest $request,$therapist)
+    public function update(ThereapistUpdateRequest $request, $therapist)
     {
         try {
             DB::beginTransaction();
             $therapistDTO = TherapistDTO::fromRequest($request);
-            $this->therapistService->update($therapistDTO,$therapist);
+            $this->therapistService->update($therapistDTO, $therapist);
             DB::commit();
             $toast = [
                 'type' => 'success',
@@ -90,8 +91,7 @@ class TherapistController extends Controller
                 'message' => 'updated successfully'
             ];
             return redirect(route('therapists.index'))->with('toast', $toast);
-        }catch (\Exception $exception)
-        {
+        } catch (\Exception $exception) {
             DB::rollBack();
             $toast = [
                 'type' => 'error',
@@ -100,15 +100,6 @@ class TherapistController extends Controller
             ];
             return back()->with('toast', $toast);
         }
-    }
-
-    public function deleteMedia(int $id,int $media_id)
-    {
-        $therapist = $this->therapistService->findById($id);
-        $media =  $therapist->getMedia('*')->where('id',$media_id)->first();
-        if ($media->delete())
-            return apiResponse(message: 'deleted successfully');
-
     }
 
     /**

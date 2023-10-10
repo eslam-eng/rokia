@@ -15,6 +15,7 @@ class LecturesResource extends JsonResource
     public function toArray($request)
     {
         return [
+            'id'=>$this->id,
             'title'=>$this->title,
             'description'=>$this->phone,
             'duration'=>$this->duration,

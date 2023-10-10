@@ -29,4 +29,9 @@ class Lecture extends Model implements HasMedia
     {
         return $this->belongsTo(User::class,'therapist_id');
     }
+
+    public function wishlist()
+    {
+        return $this->morphMany(Wishlist::class, 'relatable');
+    }
 }

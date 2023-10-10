@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('user_lectures', function (Blueprint $table) {
             $table->id();
-            $table->foreignId(\App\Models\User::class)->constrained('users');
+            $table->foreignIdFor(\App\Models\User::class)->constrained('users');
             $table->morphs('relatable');
             $table->timestamps();
         });

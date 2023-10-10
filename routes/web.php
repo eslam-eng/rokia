@@ -9,6 +9,7 @@ use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\ImportLogsController;
 use App\Http\Controllers\LocationsController;
+use App\Http\Controllers\Media\MediaController;
 use App\Http\Controllers\PriceTableController;
 use App\Http\Controllers\ReceiverController;
 use App\Http\Controllers\Therapist\TherapistController;
@@ -46,7 +47,10 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function () {
     Route::resource('users', UsersController::class);
     Route::resource('therapists', TherapistController::class)->except(['create']);
     Route::post('therapist/{id}/status',[TherapistController::class,'status'])->name('therapist.status');
-    Route::delete('therapist/{id}/media/{media_id}',[TherapistController::class,'deleteMedia'])->name('therapist.delete-media');
+
+    Route::group(['prefix' => 'media'],function (){
+        Route::delete('id',[MediaController::class,'deleteMedia'])->name('delete-media');
+    });
       // Route::get('switcherpage', Switcherpage::class)->name('switcherpage');
 
 });

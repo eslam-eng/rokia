@@ -7,6 +7,8 @@ use App\Http\Controllers\Api\PhoneVerifyController;
 use App\Http\Controllers\Api\RestPasswordController;
 use App\Http\Controllers\Api\Therapist\TherapistController;
 use App\Http\Controllers\Api\UsersController;
+use App\Http\Controllers\Api\Wishlist\WishlistController;
+use App\Http\Controllers\Media\MediaController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -59,6 +61,11 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
 
     Route::group(['prefix' => 'therapist'],function (){
         Route::apiResource('lectures', LectureController::class);
+        Route::post('lectures/{id}/media', [LectureController::class,'updateImageCover']);
+    });
+
+    Route::group(['prefix' => 'client'],function (){
+        Route::apiResource('wishlist', WishlistController::class);
     });
 
     Route::post('update-device-token', [UsersController::class, 'updateDeviceToken']);
@@ -67,6 +74,10 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
         Route::post('/send', [NotificationController::class, 'sendFcmNotification']);
         Route::get('/', [NotificationController::class, 'getNotifications']);
         Route::get('/{notification_id}/mark-as-read', [NotificationController::class, 'markAsRead']);
+    });
+
+    Route::group(['prefix' => 'media'],function (){
+        Route::delete('{id}',[MediaController::class,'deleteMedia']);
     });
 
 });

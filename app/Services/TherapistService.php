@@ -105,7 +105,6 @@ class TherapistService extends BaseService
         return true;
     }
 
-
     /**
      * @throws NotFoundException
      * @throws GeneralException

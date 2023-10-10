@@ -147,7 +147,7 @@
                                     <div class="col-md-3 col-lg-3 col-sm-12">
                                         <div class="container">
                                             <img src="{{$media->getUrl()}}" alt="Snow" style="width:100%">
-                                            <a class="btn" href="javascript:void(0);"  onclick="destroy('{{route('therapist.delete-media',['id'=>$therapist->id,'media_id'=>$media->id])}}','1')"><i class="fa fa-trash"></i></a>
+                                            <a class="btn" href="javascript:void(0);"  onclick="destroy('{{route('delete-media',['media_id'=>$media->id])}}','1')"><i class="fa fa-trash"></i></a>
                                         </div>
                                     </div>
                                 @endforeach

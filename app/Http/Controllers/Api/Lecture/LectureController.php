@@ -3,10 +3,15 @@
 namespace App\Http\Controllers\Api\Lecture;
 
 use App\DataTransferObjects\Lecture\LectureDTO;
+use App\DataTransferObjects\Lecture\UpdateLectureDTO;
 use App\Enums\ActivationStatus;
 use App\Enums\UsersType;
+use App\Exceptions\GeneralException;
+use App\Exceptions\NotFoundException;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ImageUploadRequest;
 use App\Http\Requests\Lecture\LectureRequest;
+use App\Http\Requests\Lecture\LectureUpdateRequest;
 use App\Http\Resources\LecturesResource;
 use App\Services\LectureService;
 use Illuminate\Http\Request;
@@ -16,10 +21,8 @@ use Illuminate\Validation\ValidationException;
 
 class LectureController extends Controller
 {
-
     public function __construct(public LectureService $lectureService)
     {
-        $this->middleware('auth:sanctum');
     }
 
     /**
@@ -97,9 +100,25 @@ class LectureController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(LectureUpdateRequest $request, $id)
     {
-        //
+        try {
+            $lectureDTO = UpdateLectureDTO::fromRequest($request);
+            $this->lectureService->update($lectureDTO, $id);
+            return apiResponse(message: 'Lecture uploaded successfully');
+        } catch (ValidationException $exception) {
+            DB::rollBack();
+            $mappedErrors = collect($exception->errors())->map(function ($error, $key) {
+                return [
+                    "key" => $key,
+                    "error" => Arr::first($error),
+                ];
+            })->values()->toArray();
+            return response(['message' => __('lang.invalid inputs'), 'errors' => $mappedErrors], 422);
+        } catch (\Exception $exception) {
+            DB::rollBack();
+            return apiResponse(message: $exception->getMessage(), code: 500);
+        }
     }
 
     /**
@@ -110,6 +129,29 @@ class LectureController extends Controller
      */
     public function destroy($id)
     {
+        try {
+            $this->lectureService->destroy($id);
+            return apiResponse(message: 'deleted successfully');
+        } catch (GeneralException $exception) {
+            return apiResponse(message: $exception->getMessage(), code: 422);
+        } catch (\Exception $exception) {
+            return apiResponse(message: $exception->getMessage(), code: 500);
+        }
+    }
 
+    public function updateImageCover(ImageUploadRequest $request, $id)
+    {
+        try {
+            $lecture = $this->lectureService->findById($id);
+            $media = $lecture->getMedia('*', ['type', 'image'])->first();
+            $media?->delete();
+            $lecture->addMediaFromRequest('file')->withCustomProperties(['type' => 'image'])
+                ->toMediaCollection();
+            return apiResponse(message: 'updated successfully');
+        } catch (NotFoundException $exception) {
+            return apiResponse(message: $exception->getMessage(), code: 404);
+        } catch (\Exception $exception) {
+            return apiResponse(message: $exception->getMessage(), code: 500);
+        }
     }
 }

@@ -3,12 +3,14 @@
 namespace App\Services;
 
 use App\DataTransferObjects\Lecture\LectureDTO;
+use App\DataTransferObjects\Lecture\UpdateLectureDTO;
 use App\DataTransferObjects\Therapist\TherapistDTO;
 use App\Enums\AttachmentsType;
 use App\Exceptions\GeneralException;
 use App\Exceptions\NotFoundException;
 use App\Filters\LecturesFilter;
 use App\Models\Lecture;
+use App\Models\UserLecture;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
@@ -79,26 +81,23 @@ class LectureService extends BaseService
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @param int $id
+     * @param UpdateLectureDTO $lectureDTO
+     * @param $id
      * @return \Illuminate\Database\Eloquent\Collection|Model
+     * @throws NotFoundException
      */
-    public function update(TherapistDTO $therapistDTO, $id)
+    public function update(UpdateLectureDTO $lectureDTO, $id)
     {
-        $therapist = $this->findById($id);
-        $data = array_filter($therapistDTO->toArray());
-        $therapist->update($data);
-        if (isset($therapistDTO->documents)) {
-            foreach ($therapistDTO->documents as $document) {
-                $therapist->addMedia($document)->toMediaCollection();
-            }
-        }
-        return $therapist;
+        $lectureDTO->validate();
+        $lectureData = $lectureDTO->toArray();
+        $lecture = $this->findById($id);
+        if (!$lecture)
+            throw new NotFoundException('lecture not found');
+        $lecture->update($lectureData);
+        return $lecture;
     }
 
-    public function updateProfile(array $data = [], $id)
+    public function changeCoverImage(array $data = [], $id)
     {
         $user = $this->findById($id);
         if (!isset($data['password']))
@@ -122,13 +121,12 @@ class LectureService extends BaseService
      * @throws NotFoundException
      * @throws GeneralException
      */
-    public function changeStatus($id, $status): bool
+    public function destroy($id): ?bool
     {
-        $therapist = $this->findById($id);
-        if (!$therapist)
-            throw new NotFoundException('therapist not found');
-        if (!isset($status))
-            throw new GeneralException('invalied inputs please provide status to update');
-        return $therapist->update(['status' => $status]);
+        $count_users_for_lecture = UserLecture::query()->where('relatable_id',$id)->where('relatable_type',get_class(new Lecture()))->count();
+        if ($count_users_for_lecture)
+            throw new GeneralException('cannot delete lecture there is users already buy it');
+        $lecture = $this->findById($id);
+        return $lecture->delete();
     }
 }
