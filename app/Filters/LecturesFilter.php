@@ -20,4 +20,9 @@ class LecturesFilter extends QueryFilter
         return $this->builder->where('type',$term);
     }
 
+    public function therapist_id($term)
+    {
+        return $this->builder->where('therapist_id',$term);
+    }
+
 }

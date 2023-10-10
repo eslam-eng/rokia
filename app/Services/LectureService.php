@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\DataTransferObjects\Lecture\LectureDTO;
 use App\DataTransferObjects\Therapist\TherapistDTO;
 use App\Enums\AttachmentsType;
 use App\Exceptions\GeneralException;
@@ -11,8 +12,8 @@ use App\Models\Lecture;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Validation\ValidationException;
+use getID3;
+use getid3_lib;
 
 class LectureService extends BaseService
 {
@@ -35,7 +36,7 @@ class LectureService extends BaseService
 
     public function paginateLectures(array $filters = [], array $withRelations = []): \Illuminate\Contracts\Pagination\Paginator
     {
-        return $this->getQuery(filters: $filters)->with($withRelations)->orderByDesc('id')->simplePaginate(10);
+        return $this->getQuery(filters: $filters)->with($withRelations)->simplePaginate();
     }
 
     public function datatable(array $filters = [], array $withRelations = []): Builder
@@ -47,22 +48,34 @@ class LectureService extends BaseService
      * @param TherapistDTO $therapistDTO
      * @return Builder|Model|null
      */
-    public function store(TherapistDTO $therapistDTO)
+    public function store(LectureDTO $lectureDTO)
     {
-        $therapistData = $therapistDTO->toArray();
-        $therapistDTO->validate();
-        $validator = Validator::make($therapistData, ['email' => 'unique:users,email', 'phone' => 'unique:users,phone']);
-        if ($validator->fails())
-            throw new ValidationException($validator);
-        $user = $this->getQuery()->create($therapistData);
-        if (isset($therapistDTO->profile_image)) {
-            $user->addMediaFromRequest('profile_image')->toMediaCollection();
+        $lectureDTO->validate();
+        $lectureData = $lectureDTO->toArray();
+        $lecture = $this->getQuery()->create($lectureData);
+        if (isset($lectureDTO->image_cover)) {
+            $lecture->addMediaFromRequest('image_cover')->withCustomProperties(['type' => 'image'])->toMediaCollection();
         }
-        if (isset($therapistDTO->documents)) {
-            foreach ($therapistDTO->documents as $document)
-                $user->addMediaFromRequest('profile_image')->toMediaCollection();
+        if (isset($lectureDTO->audio_file)){
+            // Initialize getID3
+            $getID3 = new getID3;
+
+            $filePath = $lectureDTO->audio_file->getPathname();
+            // Analyze the audio file
+            $audioInfo = $getID3->analyze($filePath);
+
+            // Get the audio duration in seconds
+            $duration = $audioInfo['playtime_seconds'];
+
+            // Format the duration as needed (e.g., convert to minutes and seconds)
+            $formattedDuration = getid3_lib::PlaytimeString($duration);
+
+            //save duration in lecture
+            $lecture->duration = $formattedDuration;
+            $lecture->save();
+            $lecture->addMediaFromRequest('audio_file')->withCustomProperties(['type' => 'mp3'])->toMediaCollection();
         }
-        return $user;
+        return $lecture;
     }
 
     /**

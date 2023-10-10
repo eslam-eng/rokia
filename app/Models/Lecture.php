@@ -2,14 +2,18 @@
 
 namespace App\Models;
 
+use App\Traits\EscapeUnicodeJson;
+use App\Traits\Filterable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 
-class Lecture extends Model
+class Lecture extends Model implements HasMedia
 {
-    use HasFactory;
+    use Filterable,EscapeUnicodeJson,InteractsWithMedia;
 
-    protected $fillable = ['title', 'user_id', 'price', 'status', 'duration', 'description', 'type'];
+    protected $fillable = ['title', 'therapist_id', 'price', 'status', 'duration', 'description', 'type'];
 
     public function getImageCoverAttribute()
     {
@@ -23,6 +27,6 @@ class Lecture extends Model
 
     public function therapist(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class,'therapist_id');
     }
 }

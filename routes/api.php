@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\Lecture\LectureController;
 use App\Http\Controllers\Api\NotificationController;
 use App\Http\Controllers\Api\PhoneVerifyController;
 use App\Http\Controllers\Api\RestPasswordController;
@@ -57,7 +58,7 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     });
 
     Route::group(['prefix' => 'therapist'],function (){
-//        Route::apiResource('lectures');
+        Route::apiResource('lectures', LectureController::class);
     });
 
     Route::post('update-device-token', [UsersController::class, 'updateDeviceToken']);

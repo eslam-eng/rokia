@@ -15,13 +15,13 @@ class LecturesResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'title'=>$this->name,
+            'title'=>$this->title,
             'description'=>$this->phone,
-            'duration'=>$this->address,
+            'duration'=>$this->duration,
             'price'=>$this->when($this->type == 'paid',$this->price),
             'type'=>$this->type,
             'image_cover' =>$this->image_cover,
-            'content' =>$this->lecture_content,
+            'audio_file' =>$this->lecture_content,
         ];
     }
 }

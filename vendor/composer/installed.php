@@ -3,7 +3,7 @@
         'name' => 'laravel/laravel',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => 'e806f83ac45c17b4214f45e38376d839a6e1329a',
+        'reference' => 'd159ac6c6a648c07eb601f44cba00602bda61169',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -427,6 +427,15 @@
             'aliases' => array(),
             'dev_requirement' => false,
         ),
+        'james-heinrich/getid3' => array(
+            'pretty_version' => 'v1.9.22',
+            'version' => '1.9.22.0',
+            'reference' => '45f20faa0f0a24489740392c5b512ddcc36deccd',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../james-heinrich/getid3',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
         'kalnoy/nestedset' => array(
             'pretty_version' => 'v6.0.2',
             'version' => '6.0.2.0',
@@ -454,7 +463,7 @@
         'laravel/laravel' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => 'e806f83ac45c17b4214f45e38376d839a6e1329a',
+            'reference' => 'd159ac6c6a648c07eb601f44cba00602bda61169',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

@@ -18,14 +18,15 @@ class UsersTableSeeder extends Seeder
      */
     public function run(): void
     {
-        User::create([
-            'name' => "admin",
-            'email' => "admin@admin.com",
-            'password' => bcrypt('Qwe@1234'),
-            'phone' => '01113622098',
-            'address' => Str::random(10),
-            'type' => UsersType::SUPERADMIN->value,
-        ],
+        User::query()->insert([
+            [
+                'name' => "admin",
+                'email' => "admin@admin.com",
+                'password' => bcrypt('Qwe@1234'),
+                'phone' => '01113622098',
+                'address' => Str::random(10),
+                'type' => UsersType::SUPERADMIN->value,
+            ],
             [
                 'name' => "client",
                 'email' => "client@admin.com",
@@ -33,6 +34,16 @@ class UsersTableSeeder extends Seeder
                 'phone' => '01022843293',
                 'address' => Str::random(10),
                 'type' => UsersType::CLIENT->value,
-            ]);
+            ],
+            [
+                'name' => "therapist test",
+                'email' => "therapist@admin.com",
+                'password' => bcrypt('123456789'),
+                'phone' => '01113175575',
+                'address' => Str::random(10),
+                'type' => UsersType::THERAPIST->value,
+            ]
+
+        ]);
     }
 }
