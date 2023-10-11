@@ -31,7 +31,7 @@ class LiveLectureRequest extends BaseRequest
             'status' => ['required', Rule::in(ActivationStatus::values())],
             'description' => 'nullable|string',
             'type' => ['required', Rule::in(LecturesTypeEnum::values())],
-            'publish_date' => 'date|after_or_equal:today',
+            'publish_date' => 'date|date_format:Y-m-d H:i:s|after_or_equal:today',
             'image_cover' => 'nullable|file|mimes:png,jpg,jpeg',
         ];
     }

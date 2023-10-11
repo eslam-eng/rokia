@@ -80,9 +80,12 @@ class LectureController extends Controller
             $lecture = $this->lectureService->store($lectureDTO);
             DB::commit();
             $usersTokens = User::query()->pluck('device_token')->toArray();
-            $title = "$user->name تم رفع محاضرة للشيخ ";
-            $content = " $lecture->title عنوان المحاضره ";
-            $this->pushNotificationService->sendToTokens($title,$content,$usersTokens);
+            $usersTokens = array_filter($usersTokens);
+            if (count($usersTokens)){
+                $title = "$user->name تم رفع محاضرة للشيخ ";
+                $content = "$lecture->publish_date تاريخ بدء المحاضره يوم  $lecture->title عنوان المحاضره ";
+                $this->pushNotificationService->sendToTokens($title,$content,$usersTokens);
+            }
             return apiResponse(message: 'Lecture uploaded successfully');
         } catch (ValidationException $exception) {
             DB::rollBack();

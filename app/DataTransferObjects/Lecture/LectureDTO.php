@@ -73,7 +73,7 @@ class LectureDTO extends BaseDTO
 
     public static function rules(): array
     {
-        return [
+        $rules= [
             'title' => 'required|string',
             'therapist_id' => 'required|integer',
             'price' => 'required_if:is_paid,1',
@@ -81,11 +81,13 @@ class LectureDTO extends BaseDTO
             'status' => ['required',Rule::in(ActivationStatus::values())],
             'duration' => 'nullable|string',
             'description' => 'nullable|string',
-            'publish_date' => 'date|after_or_equal:today',
+            'publish_date' => 'date|date_format:Y-m-d H:i:s|after_or_equal:today',
             'type' => ['required', Rule::in(LecturesTypeEnum::values())],
             'image_cover' => 'nullable|file|mimes:png,jpg,jpeg',
-            'audio_file' => ['file','mimetypes:audio/*','max:307200',Rule::requiredIf(request()->url() == route('lectures.store'))], // 300 MB
         ];
+        if (request()->url() == route('lectures.store'))
+            $rules['audio_file'] = 'required|file|mimetypes:audio/*|max:307200';
+        return $rules;
     }
 
     /**
@@ -97,12 +99,12 @@ class LectureDTO extends BaseDTO
             "title" => $this->title,
             "therapist_id" => $this->therapist_id,
             "price" => $this->price,
-            "is_paid" => $this->price,
+            "is_paid" => $this->is_paid,
             "status" => $this->status,
             "duration" => $this->duration,
             "description" => $this->description,
             "type" => $this->type,
-            "publish_date" => $this->audio_file,
+            "publish_date" => $this->publish_date,
             "audio_file" => $this->audio_file,
         ];
     }
