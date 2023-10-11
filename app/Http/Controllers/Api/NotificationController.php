@@ -34,13 +34,4 @@ class NotificationController extends Controller
             return apiResponse(message: 'there is an error', code: 400);
         }
     }
-
-    public function sendFcmNotification(Request $request)
-    {
-        $tokens = [$request->fcm_token];
-        app()->make(PushNotificationService::class)->sendToTokens('test', 'test',$tokens);
-    }
-
-
-//    send fcm to token
 }

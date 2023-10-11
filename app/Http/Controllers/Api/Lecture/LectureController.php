@@ -12,8 +12,11 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\ImageUploadRequest;
 use App\Http\Requests\Lecture\LectureRequest;
 use App\Http\Requests\Lecture\LectureUpdateRequest;
+use App\Http\Requests\Lecture\LiveLectureRequest;
 use App\Http\Resources\LecturesResource;
+use App\Models\User;
 use App\Services\LectureService;
+use App\Services\PushNotificationService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
@@ -21,7 +24,7 @@ use Illuminate\Validation\ValidationException;
 
 class LectureController extends Controller
 {
-    public function __construct(public LectureService $lectureService)
+    public function __construct(public LectureService $lectureService,public PushNotificationService $pushNotificationService)
     {
     }
 
@@ -60,11 +63,26 @@ class LectureController extends Controller
      */
     public function store(LectureRequest $request)
     {
+       return  $this->storeLecture($request);
+    }
+
+    public function storeLiveLecture(LiveLectureRequest $request)
+    {
+        return $this->storeLecture($request);
+    }
+
+    private function storeLecture(LiveLectureRequest|LectureRequest $request)
+    {
         try {
+            $user = auth()->user();
             DB::beginTransaction();
             $lectureDTO = LectureDTO::fromRequest($request);
-            $this->lectureService->store($lectureDTO);
+            $lecture = $this->lectureService->store($lectureDTO);
             DB::commit();
+            $usersTokens = User::query()->pluck('device_token')->toArray();
+            $title = "$user->name تم رفع محاضرة للشيخ ";
+            $content = " $lecture->title عنوان المحاضره ";
+            $this->pushNotificationService->sendToTokens($title,$content,$usersTokens);
             return apiResponse(message: 'Lecture uploaded successfully');
         } catch (ValidationException $exception) {
             DB::rollBack();
@@ -75,7 +93,6 @@ class LectureController extends Controller
                 ];
             })->values()->toArray();
             return response(['message' => __('lang.invalid inputs'), 'errors' => $mappedErrors], 422);
-
         } catch (\Exception $exception) {
             DB::rollBack();
             return apiResponse(message: $exception->getMessage(), code: 500);

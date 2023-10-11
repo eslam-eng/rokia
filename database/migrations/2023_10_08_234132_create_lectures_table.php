@@ -22,7 +22,9 @@ return new class extends Migration
             $table->string('description')->nullable();
             $table->decimal('price')->default(0);
             $table->enum('status', ActivationStatus::values());
-            $table->enum('type',['free','paid'])->default('free');
+            $table->enum('is_paid',[0,1])->default(0);
+            $table->smallInteger('type');
+            $table->timestamp('publish_date');
             $table->timestamps();
         });
     }

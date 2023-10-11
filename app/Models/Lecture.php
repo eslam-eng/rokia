@@ -13,7 +13,9 @@ class Lecture extends Model implements HasMedia
 {
     use Filterable,EscapeUnicodeJson,InteractsWithMedia;
 
-    protected $fillable = ['title', 'therapist_id', 'price', 'status', 'duration', 'description', 'type'];
+    protected $fillable = [
+        'title', 'therapist_id', 'price', 'status', 'duration', 'description', 'type','is_paid','pub;ish_date'
+    ];
 
     public function getImageCoverAttribute()
     {

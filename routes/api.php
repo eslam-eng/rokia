@@ -61,6 +61,7 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
 
     Route::group(['prefix' => 'therapist'],function (){
         Route::apiResource('lectures', LectureController::class);
+        Route::post('live-lectures', [LectureController::class,'storeLiveLecture'])->name('live-lectures');
         Route::post('lectures/{id}/media', [LectureController::class,'updateImageCover']);
     });
 

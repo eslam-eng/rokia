@@ -53,7 +53,7 @@ class LectureService extends BaseService
     public function store(LectureDTO $lectureDTO)
     {
         $lectureDTO->validate();
-        $lectureData = $lectureDTO->toArray();
+        $lectureData = $lectureDTO->toArrayExcept(['audio_file']);
         $lecture = $this->getQuery()->create($lectureData);
         if (isset($lectureDTO->image_cover)) {
             $lecture->addMediaFromRequest('image_cover')->withCustomProperties(['type' => 'image'])->toMediaCollection();

@@ -8,7 +8,7 @@ use App\Http\Requests\BaseRequest;
 use Carbon\Carbon;
 use Illuminate\Validation\Rule;
 
-class LectureRequest extends BaseRequest
+class LiveLectureRequest extends BaseRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -33,7 +33,6 @@ class LectureRequest extends BaseRequest
             'type' => ['required', Rule::in(LecturesTypeEnum::values())],
             'publish_date' => 'date|after_or_equal:today',
             'image_cover' => 'nullable|file|mimes:png,jpg,jpeg',
-            'audio_file' => 'required|file|mimetypes:audio/*|max:307200', // 300 MB
         ];
     }
 
@@ -41,8 +40,7 @@ class LectureRequest extends BaseRequest
     {
         $this->merge([
             'therapist_id' => auth()->id(),
-            'type' => LecturesTypeEnum::RECORDED->value,
-            'publish_date' => Carbon::now(),
+            'type' => LecturesTypeEnum::LIVE->value,
 
         ]);
     }
