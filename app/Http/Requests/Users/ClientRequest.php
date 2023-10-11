@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Users;
 
 use App\Enums\ActivationStatus;
+use App\Enums\GenderTypeEnum;
 use App\Enums\UsersType;
 use App\Http\Requests\BaseRequest;
 use Illuminate\Validation\Rule;
@@ -29,13 +30,16 @@ class ClientRequest extends BaseRequest
             'password' => 'required|string',
             'profile_image' => 'nullable|file|mimes:png,jpg,jpeg,svg',
             'type' => ['required',Rule::in(UsersType::values())],
-            'status' => ['required',Rule::in(UsersType::values())],
-            'gender' => ['required',Rule::in(UsersType::values())],
+            'status' => ['required',Rule::in(ActivationStatus::values())],
+            'gender' => ['required',Rule::in(GenderTypeEnum::values())],
         ];
     }
 
     public function prepareForValidation()
     {
-        $this->merge(['type'=>UsersType::CLIENT->value,'status'=>ActivationStatus::ACTIVE->value]);
+        $this->merge([
+            'type'=>UsersType::CLIENT->value,
+            'status'=>ActivationStatus::ACTIVE->value]
+        );
     }
 }
