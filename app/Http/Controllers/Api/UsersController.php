@@ -39,9 +39,15 @@ class UsersController extends Controller
         try {
             DB::beginTransaction();
             $userDTO = UserDTO::fromRequest($request);
-            $this->userService->store($userDTO);
+            $user = $this->userService->store($userDTO);
             DB::commit();
-            return apiResponse(message: 'user registered successfully');
+            $token = $user->getToken();
+            $data = [
+                'access_token' => $token,
+                'token_type' => 'Bearer',
+                'user'=>new ClientResource($user)
+            ];
+            return apiResponse(data: $data);
         } catch (ValidationException $exception) {
             DB::rollBack();
             $mappedErrors = collect($exception->errors())->map(function ($error, $key) {

@@ -7,6 +7,7 @@ use App\DataTransferObjects\Therapist\TherapistDTO;
 use App\Enums\UsersType;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Users\ThereapistRequest;
+use App\Http\Resources\ClientResource;
 use App\Services\TherapistService;
 use App\Services\UserService;
 use Illuminate\Http\Request;
@@ -24,9 +25,15 @@ class TherapistController extends Controller
         try {
             DB::beginTransaction();
             $therapistDTO = TherapistDTO::fromRequest($request);
-            $this->therapistService->store($therapistDTO);
+            $user = $this->therapistService->store($therapistDTO);
             DB::commit();
-            return apiResponse(message: 'therapist registered successfully');
+            $token = $user->getToken();
+            $data = [
+                'access_token' => $token,
+                'token_type' => 'Bearer',
+                'user'=>new ClientResource($user)
+            ];
+            return apiResponse(data: $data);
         } catch (ValidationException $exception) {
             DB::rollBack();
             $mappedErrors = collect($exception->errors())->map(function ($error, $key) {
