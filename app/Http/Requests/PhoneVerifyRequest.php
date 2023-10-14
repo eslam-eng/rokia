@@ -25,7 +25,7 @@ class PhoneVerifyRequest extends BaseRequest
     public function rules()
     {
         return [
-            'identifier' => ['required',Rule::exists('users','email')->where(fn($query) => $query->where('email', $this->identifier)->orWhere('phone', $this->identifier))]
+            'phone' => ['required',Rule::exists('users','phone')]
         ];
     }
 
@@ -37,7 +37,7 @@ class PhoneVerifyRequest extends BaseRequest
     public function data()
     {
         return [
-            'identifier' => request()->identifier,
+            'phone' => request()->phone,
             'code' => mt_rand(100000, 999999),
             'created_at' => now(),
             'updated_at' => now()

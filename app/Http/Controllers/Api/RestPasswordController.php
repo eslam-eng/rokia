@@ -22,7 +22,7 @@ class RestPasswordController extends Controller
         if ($passwordReset->isExpire())
             return apiResponse(message:__('lang.code_is_expire'),code: 422);
 
-        $user = User::where('phone', $passwordReset->identifier)->orWhere('email',$passwordReset->identifier)->first();
+        $user = User::where('phone', $passwordReset->phone)->first();
 
         $user->update(['password'=>bcrypt($request->password)]);
 

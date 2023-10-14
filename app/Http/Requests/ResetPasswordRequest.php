@@ -23,7 +23,7 @@ class ResetPasswordRequest extends BaseRequest
     {
         return [
             'code' => 'required|string|exists:password_reset_codes',
-            'password' => 'required|string|min:6|confirmed',
+            'password' => 'required|string|min:8|confirmed',
         ];
     }
 

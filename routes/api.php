@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\Lecture\LectureController;
+use App\Http\Controllers\Api\Lecture\UserLectureController;
 use App\Http\Controllers\Api\NotificationController;
 use App\Http\Controllers\Api\PhoneVerifyController;
 use App\Http\Controllers\Api\RestPasswordController;
@@ -36,7 +37,7 @@ Route::group(['prefix' => 'auth'], function () {
 
     Route::post('phone/verify', PhoneVerifyController::class);
 
-    Route::post('password/forget', PhoneVerifyController::class);
+//    Route::post('password/forget', PhoneVerifyController::class);
 
     Route::post('password/reset', RestPasswordController::class);
 
@@ -63,9 +64,11 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
         Route::apiResource('lectures', LectureController::class);
         Route::post('live-lectures', [LectureController::class,'storeLiveLecture'])->name('live-lectures');
         Route::post('lectures/{id}/media', [LectureController::class,'updateImageCover']);
+        Route::post('send-notifications',[NotificationController::class,'sendTherapistFcmNotification']);
     });
 
     Route::group(['prefix' => 'client'],function (){
+        Route::get('lectures', UserLectureController::class);
         Route::apiResource('wishlist', WishlistController::class);
     });
 

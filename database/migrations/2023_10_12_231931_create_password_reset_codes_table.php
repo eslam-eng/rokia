@@ -13,11 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('user_lectures', function (Blueprint $table) {
+        Schema::dropIfExists('password_reset_codes');
+        Schema::create('password_reset_codes', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(\App\Models\User::class)->constrained('users');
-            $table->foreignIdFor(\App\Models\Lecture::class)->constrained('lectures');
-            $table->unique(['user_id','lecture_id'],'user_lecture_unique');
+            $table->string('phone')->index();
+            $table->string('code');
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_lectures');
+        Schema::dropIfExists('password_reset_codes');
     }
 };

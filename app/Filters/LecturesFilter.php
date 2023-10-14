@@ -3,6 +3,8 @@
 namespace App\Filters;
 
 use App\Abstracts\QueryFilter;
+use App\Enums\LecturesTypeEnum;
+use Carbon\Carbon;
 
 class LecturesFilter extends QueryFilter
 {
@@ -15,9 +17,9 @@ class LecturesFilter extends QueryFilter
     {
         return $this->builder->where('status',$term);
     }
-    public function type($term)
+    public function is_paid($term)
     {
-        return $this->builder->where('type',$term);
+        return $this->builder->where('is_paid',$term);
     }
 
     public function therapist_id($term)
@@ -25,4 +27,8 @@ class LecturesFilter extends QueryFilter
         return $this->builder->where('therapist_id',$term);
     }
 
+    public function upcomming()
+    {
+        return $this->builder->where('type',LecturesTypeEnum::LIVE->value)->where('publish_date','>=',Carbon::now()->format('Y-m-d H:i:s'));
+    }
 }

@@ -37,9 +37,10 @@ class LectureController extends Controller
         try {
             $user = auth()->user();
             $withRelations = [];
-            $filters = $request->all();
+            $filters =[];
 
             if ($user->type == UsersType::CLIENT->value) {
+                $filters = $request->all();
                 $filters['status'] = ActivationStatus::ACTIVE->value;
                 $withRelations = ['therapist:id,name'];
             }

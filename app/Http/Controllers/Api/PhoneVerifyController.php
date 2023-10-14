@@ -15,19 +15,20 @@ class PhoneVerifyController extends Controller
     public function __invoke(PhoneVerifyRequest $request, PasswordResetCode $passwordResetCode)
     {
         try {
-            $passwordResetCode->where('identifier', $request->identifier)->delete();
+            $passwordResetCode->where('phone', $request->identifier)->delete();
             // Create a new code
             $codeData = $passwordResetCode->create($request->data());
-            $token = User::query()->where('email',$request->identifier)->orWhere('phone',$request->identifier)->pluck('device_token')->toArray();
+            $token = User::query()->where('phone',$request->phone)->pluck('device_token')->toArray();
             if($codeData)
             {
                 $title = 'Your OTP Code';
                 $body = $codeData->code;
                 app()->make(PushNotificationService::class)->sendToTokens(title: $title,body: $body,tokens: $token);
-            }
                 return apiResponse(message: __('lang.code_send_successfully'));
+            }
+            return apiResponse(message: 'there is an error please try again later',code: 422);
         } catch (\Exception $exception) {
-            return apiResponse(message: $exception->getMessage(), code: 422);
+            return apiResponse(message: $exception->getMessage(), code: 500);
         }
 
     }

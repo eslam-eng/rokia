@@ -42,7 +42,7 @@ class LectureRequest extends BaseRequest
         $this->merge([
             'therapist_id' => auth()->id(),
             'type' => LecturesTypeEnum::RECORDED->value,
-            'publish_date' => Carbon::now(),
+            'publish_date' => Carbon::now()->format('Y-m-d H:i:s'),
 
         ]);
     }

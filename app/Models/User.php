@@ -61,9 +61,8 @@ class User extends Authenticatable implements HasMedia
         return $this->belongsTo(Location::class,'area_id');
     }
 
-    public function registerMediaCollections(): void
+    public function lecture(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
-        $this->addMediaCollection('users');
-        // Add more collections as needed
+        return $this->belongsToMany(Lecture::class,'user_lectures');
     }
 }

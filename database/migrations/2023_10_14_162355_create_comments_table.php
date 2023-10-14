@@ -13,11 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('user_lectures', function (Blueprint $table) {
+        Schema::create('comments', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(\App\Models\User::class)->constrained('users');
-            $table->foreignIdFor(\App\Models\Lecture::class)->constrained('lectures');
-            $table->unique(['user_id','lecture_id'],'user_lecture_unique');
+            $table->foreignIdFor(\App\Models\Lecture::class,'lecture_id')->constrained('lectures');
+            $table->string('content');
+            $table->foreignIdFor(\App\Models\User::class,'client_id')->constrained('users');
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_lectures');
+        Schema::dropIfExists('comments');
     }
 };

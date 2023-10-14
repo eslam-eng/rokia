@@ -13,11 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('user_lectures', function (Blueprint $table) {
+        Schema::create('invoices', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(\App\Models\User::class)->constrained('users');
-            $table->foreignIdFor(\App\Models\Lecture::class)->constrained('lectures');
-            $table->unique(['user_id','lecture_id'],'user_lecture_unique');
+            $table->foreignIdFor(\App\Models\User::class,'therapist_id')->constrained('users');
+            $table->decimal('sub_total')->default(0);
+            $table->decimal('therapist_commission');
+            $table->decimal('grand_total');
+            $table->tinyInteger('status')->default(\App\Enums\ActivationStatus::PENDING->value);
             $table->timestamps();
         });
     }
@@ -29,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_lectures');
+        Schema::dropIfExists('invoices');
     }
 };
