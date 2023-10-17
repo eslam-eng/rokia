@@ -24,8 +24,8 @@ class PasswordChangeDTO extends BaseDTO
     public static function fromRequest($request): BaseDTO
     {
         return new self(
-            old_password: $request->name,
-            new_password: $request->phone,
+            old_password: $request->old_password,
+            new_password: $request->new_password,
         );
     }
 
@@ -44,7 +44,7 @@ class PasswordChangeDTO extends BaseDTO
     public static function rules(): array
     {
        return [
-           'old_password'=>'required|string|min:8',
+           'old_password'=>'required|string',
            'new_password'=>'required|string|min:8',
        ];
     }

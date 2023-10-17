@@ -19,8 +19,8 @@ class ChangePasswordRequest extends BaseRequest
     public function rules(): array
     {
         return [
-            'old_password' => 'required|string|min:6',
-            'new_password'   => 'required|string|confirmed|min:6',
+            'old_password' => 'required|string',
+            'new_password'   => 'required|string|confirmed|min:8',
         ];
     }
 }

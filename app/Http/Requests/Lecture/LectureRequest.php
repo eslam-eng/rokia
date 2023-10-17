@@ -27,7 +27,7 @@ class LectureRequest extends BaseRequest
             'title' => 'required|string',
             'therapist_id' => 'required|integer',
             'is_paid' => ['required',Rule::in([0,1])],
-            'price' => 'required_if:is_paid,1',
+            'price' => 'required_if:is_paid,1|min:0',
             'status' => ['required', Rule::in(ActivationStatus::values())],
             'description' => 'nullable|string',
             'type' => ['required', Rule::in(LecturesTypeEnum::values())],

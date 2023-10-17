@@ -80,7 +80,7 @@ class UsersController extends Controller
             $passwordChangeDTO = PasswordChangeDTO::fromRequest($request);
             $is_changed = $this->userService->changePassword($user, $passwordChangeDTO);
             if ($is_changed)
-                return apiResponse(message: trans('app.success_operation'));
+                return apiResponse(message: trans('app.password_updated_successfully'));
         } catch (NotFoundException $e) {
             return apiResponse(message: $e->getMessage(), code: 422);
         } catch (\Exception $e) {

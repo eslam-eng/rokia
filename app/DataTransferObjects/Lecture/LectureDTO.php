@@ -18,10 +18,10 @@ class LectureDTO extends BaseDTO
     public function __construct(
         public string  $title,
         public int     $therapist_id,
-        public float   $price,
         public int     $status,
         public ?string $duration,
         public mixed $publish_date,
+        public float   $price = 0,
         public ?string $description = null,
         public ?string $type = null,
         public int $is_paid = 0, // 0 or 1
@@ -37,10 +37,10 @@ class LectureDTO extends BaseDTO
         return new self(
             title: $request->title,
             therapist_id: $request->therapist_id,
-            price: $request->price,
             status: $request->status,
             duration: $request->duration,
             publish_date: $request->publish_date,
+            price: $request->price ?? 0,
             description: $request->description,
             type: $request->type,
             is_paid: $request->is_paid,
@@ -58,10 +58,10 @@ class LectureDTO extends BaseDTO
         return new self(
             title: Arr::get($data, 'title'),
             therapist_id: Arr::get($data, 'therapist_id'),
-            price: Arr::get($data, 'price'),
             status: Arr::get($data, 'status'),
             duration: Arr::get($data, 'duration'),
             publish_date: Arr::get($data, 'publish_date'),
+            price: Arr::get($data, 'price',0),
             description: Arr::get($data, 'description'),
             type: Arr::get($data, 'type'),
             is_paid: Arr::get($data, 'is_paid'),
@@ -76,7 +76,7 @@ class LectureDTO extends BaseDTO
         $rules= [
             'title' => 'required|string',
             'therapist_id' => 'required|integer',
-            'price' => 'required_if:is_paid,1',
+            'price' => 'required_if:is_paid,1|min:0',
             'is_paid' => 'required|numeric',
             'status' => ['required',Rule::in(ActivationStatus::values())],
             'duration' => 'nullable|string',
