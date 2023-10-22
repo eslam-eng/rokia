@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Lecture;
 
 use App\Enums\ActivationStatus;
+use App\Enums\PaymentStatusEnum;
 use App\Http\Requests\BaseRequest;
 use Illuminate\Validation\Rule;
 
@@ -23,10 +24,18 @@ class LectureUpdateRequest extends BaseRequest
     {
         return [
             'title' => 'required|string',
-            'price' => 'required_if:type,paid',
+            'price' => 'required_if:type,'.PaymentStatusEnum::PAID->value,
             'status' => ['required', Rule::in(ActivationStatus::values())],
             'description' => 'nullable|string',
-            'type' => ['required', Rule::in(['free', 'paid'])],
+            'is_paid' => ['nullable', Rule::in(PaymentStatusEnum::values())],
         ];
+    }
+
+    public function prepareForValidation()
+    {
+        $this->merge([
+            'price' => $this->price ?? 0,
+            'is_paid' =>isset($this->is_paid) ? 1 : 0
+        ]);
     }
 }

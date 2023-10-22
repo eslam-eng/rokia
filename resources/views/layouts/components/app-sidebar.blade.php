@@ -37,6 +37,26 @@
                     </ul>
                 </li>
 
+                <li class="side-item side-item-category">@lang('app.users')</li>
+
+                <li class="slide">
+                    <a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0);">
+                        <i class="fa fa-users pe-3"></i>
+                        <span class="side-menu__label">@lang('app.users')</span><i
+                            class="angle fe fe-chevron-right"></i></a>
+                    <ul class="slide-menu">
+                        <li class="side-menu__label1"><a href="javascript:void(0);">Utilities</a></li>
+                        @can('create_users')
+                            <li><a class="slide-item" data-is_active="{{request()->fullUrlIs(route('users.create'))}}"
+                                   href="{{route('users.create')}}">@lang('app.new_user')</a></li>
+                        @endcan
+                        <li><a class="slide-item" data-is_active="{{request()->fullUrlIs(route('users.index'))}}"
+                               href="{{route('users.index')}}">@lang('app.users')</a></li>
+                    </ul>
+                </li>
+
+
+
                 <li class="side-item side-item-category">@lang('app.companies_receivers')</li>
 
                 <li class="slide">
@@ -76,25 +96,6 @@
                                href="#">@lang('app.new_price_table')</a></li>
                         <li><a class="slide-item" data-is_active="{{request()->fullUrlIs("#")}}"
                                href="#">@lang('app.price_tables')</a></li>
-                    </ul>
-                </li>
-
-
-                <li class="side-item side-item-category">@lang('app.users')</li>
-
-                <li class="slide">
-                    <a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0);">
-                        <i class="fa fa-users pe-3"></i>
-                        <span class="side-menu__label">@lang('app.users')</span><i
-                            class="angle fe fe-chevron-right"></i></a>
-                    <ul class="slide-menu">
-                        <li class="side-menu__label1"><a href="javascript:void(0);">Utilities</a></li>
-                        @can('create_users')
-                            <li><a class="slide-item" data-is_active="{{request()->fullUrlIs(route('users.create'))}}"
-                                   href="{{route('users.create')}}">@lang('app.new_user')</a></li>
-                        @endcan
-                        <li><a class="slide-item" data-is_active="{{request()->fullUrlIs(route('users.index'))}}"
-                               href="{{route('users.index')}}">@lang('app.users')</a></li>
                     </ul>
                 </li>
 

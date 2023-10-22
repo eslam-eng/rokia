@@ -90,11 +90,12 @@ class LectureService extends BaseService
      */
     public function update(UpdateLectureDTO $lectureDTO, $id)
     {
-        $lectureDTO->validate();
-        $lectureData = $lectureDTO->toArray();
         $lecture = $this->findById($id);
         if (!$lecture)
             throw new NotFoundException('lecture not found');
+        $lectureDTO->type = $lecture->type;
+        $lectureDTO->validate();
+        $lectureData = $lectureDTO->toArray();
         $lecture->update($lectureData);
         return $lecture;
     }

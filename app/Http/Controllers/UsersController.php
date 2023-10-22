@@ -2,15 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\DataTables\UsersDatatable;
-use App\Enums\ImportTypeEnum;
+
+use App\DataTables\clients\UsersDataTable;
 use App\Enums\UsersType;
 use App\Exceptions\NotFoundException;
 use App\Http\Requests\FileUploadRequest;
 use App\Http\Requests\Users\ClientRequest;
-use App\Http\Requests\Users\UserUpdateProfileRequest;
-use App\Http\Requests\Users\UserUpdateRequest;
-use App\Imports\Users\UsersImport;
 use App\Services\UserService;
 use Exception;
 use Illuminate\Http\Request;
@@ -26,23 +23,20 @@ class UsersController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     * @param UsersDataTable $usersDatatable
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse|mixed
      */
-    public function index(UsersDatatable $usersDatatable, Request $request)
+    public function index(UsersDataTable $usersDatatable, Request $request)
     {
         try {
-            $user = getAuthUser();
             $filters = array_filter($request->get('filters', []), function ($value) {
                 return ($value !== null && $value !== false && $value !== '');
             });
-            if ($user->type != UsersType::SUPERADMIN())
-                $filters['company_id'] = $user->company_id;
-            if ($user->type == UsersType::EMPLOYEE())
-                $filters['branch_id'] = $user->branch_id;
-            $withRelations = ['city', 'area', 'branch', 'company'];
-            return $usersDatatable->with(['filters' => $filters, 'withRelations' => $withRelations])->render('layouts.dashboard.users.index');
+
+            $filters['type'] = UsersType::CLIENT->value;
+
+            return $usersDatatable->with(['filters' => $filters])->render('layouts.dashboard.users.index');
         } catch (Exception $e) {
             $toast = [
                 'type' => 'error',

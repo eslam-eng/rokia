@@ -30,92 +30,130 @@
 
     <!-- row -->
     <div class="row">
-        <div class="col-xl-9 col-lg-12 col-md-12 col-sm-12">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 px-0">
                 <div class="card px-3 ps-4">
                     <div class="row index1">
-                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xxl-3">
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xxl-2">
                             <div class="row border-end bd-xs-e-0 p-3">
                                 <div class="col-3 d-flex align-items-center justify-content-center">
                                     <div class="circle-icon bg-primary text-center align-self-center overflow-hidden shadow">
-                                        <i class="fe fe-shopping-bag tx-15 text-white"></i>
+                                        <i class="fe fe-users tx-15 text-white"></i>
                                     </div>
                                 </div>
                                 <div class="col-9 py-0">
                                     <div class="pt-4 pb-3">
                                         <div class="d-flex">
-                                            <h6 class="mb-2 tx-12">Today Orders</h6>
-                                            <span class="badge bg-success-transparent text-success font-weight-semibold ms-auto rounded-pill lh-maincard px-2 my-auto"><i class="fa fa-caret-up me-1"></i>0.11%</span>
+                                            <h6 class="mb-2 tx-12">@lang('app.users_count')</h6>
                                         </div>
                                         <div class="pb-0 mt-0">
                                             <div class="d-flex">
-                                                <h4 class="tx-18 font-weight-semibold mb-0">5,472</h4>
+                                                <h4 class="tx-18 font-weight-semibold mb-0">{{$data['users_count']}}</h4>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xxl-3">
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xxl-2">
                             <div class="row border-end bd-md-e-0 bd-xs-e-0 bd-lg-e-0 bd-xl-e-0  p-3">
                                 <div class="col-3 d-flex align-items-center justify-content-center">
                                     <div class="circle-icon bg-warning text-center align-self-center overflow-hidden shadow">
-                                        <i class="fe fe-dollar-sign tx-15 text-white"></i>
+                                        <i class="fe fe-file-text tx-15 text-white"></i>
                                     </div>
                                 </div>
                                 <div class="col-9">
                                     <div class="pt-4 pb-3">
                                         <div class="d-flex">
-                                            <h6 class="mb-2 tx-12">Today Earnings</h6>
-                                            <span class="badge bg-danger-transparent text-danger font-weight-semibold ms-auto rounded-pill lh-maincard px-2 my-auto"><i class="fa fa-caret-up me-1"></i>0.23%</span>
+                                            <h6 class="mb-2 tx-12">@lang('app.lectures_count')</h6>
                                         </div>
                                         <div class="pb-0 mt-0">
                                             <div class="d-flex">
-                                                <h4 class="tx-18 font-weight-semibold mb-0">$47,589</h4>
+                                                <h4 class="tx-18 font-weight-semibold mb-0">{{$data['lectures_count']}}</h4>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xxl-3">
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xxl-2">
                             <div class="row border-end bd-xs-e-0  p-3">
                                 <div class="col-3 d-flex align-items-center justify-content-center">
                                     <div class="circle-icon bg-secondary text-center align-self-center overflow-hidden shadow">
-                                        <i class="fe fe-external-link tx-15 text-white"></i>
+                                        <i class="fe fe-file-text tx-15 text-white"></i>
                                     </div>
                                 </div>
                                 <div class="col-9">
                                     <div class="pt-4 pb-3">
                                         <div class="d-flex">
-                                            <h6 class="mb-2 tx-12">Profit Gain</h6>
-                                            <span class="badge bg-success-transparent text-success font-weight-semibold ms-auto rounded-pill lh-maincard px-2 my-auto"><i class="fa fa-caret-up me-1"></i>1.57%</span>
+                                            <h6 class="mb-2 tx-12">@lang('app.active_lectures')</h6>
                                         </div>
                                         <div class="pb-0 mt-0">
                                             <div class="d-flex">
-                                                <h4 class="tx-18 font-weight-semibold mb-0">$8,943</h4>
+                                                <h4 class="tx-18 font-weight-semibold mb-0">{{$data['active_lectures_count']}}</h4>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xxl-3">
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xxl-2">
+                            <div class="row border-end bd-xs-e-0  p-3">
+                                <div class="col-3 d-flex align-items-center justify-content-center">
+                                    <div class="circle-icon bg-secondary text-center align-self-center overflow-hidden shadow">
+                                        <i class="fe fe-file-text tx-15 text-white"></i>
+                                    </div>
+                                </div>
+                                <div class="col-9">
+                                    <div class="pt-4 pb-3">
+                                        <div class="d-flex">
+                                            <h6 class="mb-2 tx-12">@lang('app.active_lectures')</h6>
+                                        </div>
+                                        <div class="pb-0 mt-0">
+                                            <div class="d-flex">
+                                                <h4 class="tx-18 font-weight-semibold mb-0">{{$data['active_lectures_count']}}</h4>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xxl-2">
+                            <div class="row border-end bd-xs-e-0  p-3">
+                                <div class="col-3 d-flex align-items-center justify-content-center">
+                                    <div class="circle-icon bg-secondary text-center align-self-center overflow-hidden shadow">
+                                        <i class="fe fe-file-text tx-15 text-white"></i>
+                                    </div>
+                                </div>
+                                <div class="col-9">
+                                    <div class="pt-4 pb-3">
+                                        <div class="d-flex">
+                                            <h6 class="mb-2 tx-12">@lang('app.paid_lectures')</h6>
+                                        </div>
+                                        <div class="pb-0 mt-0">
+                                            <div class="d-flex">
+                                                <h4 class="tx-18 font-weight-semibold mb-0">{{$data['paid_lectures_count']}}</h4>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xxl-2">
                             <div class="row  p-3">
                                 <div class="col-3 d-flex align-items-center justify-content-center">
                                     <div class="circle-icon bg-info text-center align-self-center overflow-hidden shadow">
-                                        <i class="fe fe-credit-card tx-15 text-white"></i>
+                                        <i class="fe fe-file-text tx-15 text-white"></i>
                                     </div>
                                 </div>
                                 <div class="col-9">
                                     <div class="pt-4 pb-3">
                                         <div class="d-flex	">
-                                            <h6 class="mb-2 tx-12">Total Earnings</h6>
-                                            <span class="badge bg-success-transparent text-success font-weight-semibold ms-auto rounded-pill lh-maincard px-2 my-auto"><i class="fa fa-caret-up me-1"></i>0.45%</span>
+                                            <h6 class="mb-2 tx-12">@lang('app.free_lectures')</h6>
                                         </div>
                                         <div class="pb-0 mt-0">
                                             <div class="d-flex">
-                                                <h4 class="tx-18 font-weight-semibold mb-0">$57.12M</h4>
+                                                <h4 class="tx-18 font-weight-semibold mb-0">{{$data['free_lectures_count']}}</h4>
                                             </div>
                                         </div>
                                     </div>
@@ -411,221 +449,6 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-xl-3 col-lg-12 col-md-12 col-xs-12">
-            <div class="card overflow-hidden">
-                <div class="card-header pb-1">
-                    <h3 class="card-title mb-2">Recent Transactions</h3>
-                </div>
-                <div class="card-body p-0 customers mt-1">
-                    <div class="list-group list-lg-group list-group-flush">
-                        <a href="javascript:void(0);" class="border-0">
-                            <div class="list-group-item list-group-item-action border-0">
-                                <div class="media mt-0">
-                                    <span class="me-3 bg-primary-transparent text-primary transaction-icon"><i class="fe fe-chevrons-right"></i></span>
-                                    <div class="media-body">
-                                        <div class="d-flex align-items-center">
-                                            <div class="mt-0">
-                                                <h5 class="mb-1 tx-13 font-weight-sembold text-dark"><span class="me-3">montha.K</span>
-
-                                                </h5>
-                                                <p class="mb-0 tx-12 text-muted">24-08-2021</p>
-                                            </div>
-                                            <span class="ms-auto wd-25p tx-12">
-															<span class="text-primary tx-11 text-end d-block">Processing</span>
-															<span class="float-end text-success font-weight-semibold">
-																$256,347
-															</span>
-														</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="javascript:void(0);" class="border-0">
-                            <div class="list-group-item list-group-item-action border-0">
-                                <div class="media mt-0">
-                                    <span class="me-3 bg-secondary-transparent text-secondary transaction-icon"><i class="fe fe-bookmark"></i></span>
-                                    <div class="media-body">
-                                        <div class="d-flex align-items-center">
-                                            <div class="mt-1">
-                                                <h5 class="mb-1 tx-13 font-weight-sembold text-dark">Allie Grater</h5>
-                                                <p class="mb-0 tx-12 text-muted">31-12-2021</p>
-                                            </div>
-                                            <span class="ms-auto wd-45p tx-12">
-																<span class="float-end text-danger font-weight-semibold">
-																	$12,345
-																</span>
-															</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="javascript:void(0);" class="border-0">
-                            <div class="list-group-item list-group-item-action border-0" >
-                                <div class="media mt-0">
-                                    <span class="me-3 bg-info-transparent text-info transaction-icon"><i class="fe fe-more-horizontal"></i></span>
-                                    <div class="media-body">
-                                        <div class="d-flex align-items-center">
-                                            <div class="mt-1">
-                                                <h5 class="mb-1 tx-13 font-weight-sembold text-dark"><span class="me-3">Gabel</span></h5>
-                                                <p class="mb-0 tx-12 text-muted">15-09-2021</p>
-                                            </div>
-                                            <span class="ms-auto wd-45p  tx-12">
-																<span class="text-primary tx-11 text-end d-block">Processing</span>
-																<span class="float-end text-success font-weight-semibold">
-																	$34,567
-																</span>
-															</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="javascript:void(0);" class="border-0">
-                            <div class="list-group-item list-group-item-action border-0" >
-                                <div class="media mt-0">
-                                    <span class="me-3 bg-success-transparent text-success transaction-icon"><i class="fe fe-chevrons-right"></i></span>
-                                    <div class="media-body">
-                                        <div class="d-flex align-items-center">
-                                            <div class="mt-1">
-                                                <h5 class="mb-1 tx-13 font-weight-sembold text-dark"><span class="me-3">Emmanuel</span></h5>
-                                                <p class="mb-0 tx-12 text-muted">30-11-2021</p>
-                                            </div>
-                                            <span class="ms-auto wd-45p tx-12">
-																<span class="text-primary tx-11 text-end d-block">Processing</span>
-																<span class="float-end text-danger font-weight-semibold">
-																	$16,746
-																</span>
-															</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="javascript:void(0);" class="border-0">
-                            <div class="list-group-item list-group-item-action border-0" >
-                                <div class="media mt-0">
-                                    <span class="me-3 bg-warning-transparent text-warning transaction-icon"><i class="fe fe-file-text"></i></span>
-                                    <div class="media-body">
-                                        <div class="d-flex align-items-center">
-                                            <div class="mt-1">
-                                                <h5 class="mb-1 tx-13 font-weight-sembold text-dark">Manuel Labor</h5>
-                                                <p class="mb-0 tx-12 text-muted">20-10-2021</p>
-                                            </div>
-                                            <span class="ms-auto wd-45p tx-12">
-																<span class="float-end text-success font-weight-semibold">
-																	$45,900
-																</span>
-															</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="card custom-card overflow-hidden">
-                <div class="card-header border-bottom-0">
-                    <div>
-                        <h3 class="card-title mb-0">Weekly Budget</h3> <span class="d-block tx-12 mb-0 text-muted"></span>
-                    </div>
-                </div>
-                <div class="card-body p-0">
-                    <div id="budget"></div>
-                </div>
-            </div>
-            <div class="card overflow-hidden">
-                <div class="card-header pb-1">
-                    <h3 class="card-title mb-2">Recent Customers</h3>
-                </div>
-                <div class="card-body p-0 customers mt-1">
-                    <div class="list-group list-lg-group list-group-flush">
-                        <a href="javascript:void(0);" class="border-0">
-                            <div class="list-group-item list-group-item-action border-0">
-                                <div class="media mt-0">
-                                    <img class="avatar-lg rounded-circle me-3 my-auto shadow" src="{{asset('assets/img/faces/2.jpg')}}" alt="Image description">
-                                    <div class="media-body">
-                                        <div class="d-flex align-items-center">
-                                            <div class="mt-0">
-                                                <h5 class="mb-1 tx-13 font-weight-sembold text-dark">Samantha Melon</h5>
-                                                <p class="mb-0 tx-12 text-muted">User ID: #1234</p>
-                                            </div>
-                                            <span class="ms-auto wd-45p tx-14">
-															<span class="float-end badge bg-success">
-															<span class="font-weight-semibold">paid </span>
-														</span>
-														</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="javascript:void(0);" class="border-0">
-                            <div class="list-group-item list-group-item-action border-0" >
-                                <div class="media mt-0">
-                                    <img class="avatar-lg rounded-circle me-3 my-auto shadow" src="{{asset('assets/img/faces/1.jpg')}}" alt="Image description">
-                                    <div class="media-body">
-                                        <div class="d-flex align-items-center">
-                                            <div class="mt-1">
-                                                <h5 class="mb-1 tx-13 font-weight-sembold text-dark">Allie Grater</h5>
-                                                <p class="mb-0 tx-12 text-muted">User ID: #1234</p>
-                                            </div>
-                                            <span class="ms-auto wd-45p tx-14">
-																<span class="float-end badge bg-danger">
-																<span class="font-weight-semibold">Pending</span>
-															</span>
-															</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="javascript:void(0);" class="border-0">
-                            <div class="list-group-item list-group-item-action border-0" >
-                                <div class="media mt-0">
-                                    <img class="avatar-lg rounded-circle me-3 my-auto shadow" src="{{asset('assets/img/faces/5.jpg')}}" alt="Image description">
-                                    <div class="media-body">
-                                        <div class="d-flex align-items-center">
-                                            <div class="mt-1">
-                                                <h5 class="mb-1 tx-13 font-weight-sembold text-dark">Gabe Lackmen</h5>
-                                                <p class="mb-0 tx-12 text-muted">User ID: #1234</p>
-                                            </div>
-                                            <span class="ms-auto wd-45p  tx-14">
-																<span class="float-end badge bg-danger">
-																<span class="font-weight-semibold">Pending</span>
-															</span>
-															</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="javascript:void(0);" class="border-0 mb-3">
-                            <div class="list-group-item list-group-item-action border-0" >
-                                <div class="media mt-0">
-                                    <img class="avatar-lg rounded-circle me-3 my-auto shadow" src="{{asset('assets/img/faces/7.jpg')}}" alt="Image description">
-                                    <div class="media-body">
-                                        <div class="d-flex align-items-center">
-                                            <div class="mt-1">
-                                                <h5 class="mb-1 tx-13 font-weight-sembold text-dark">Manuel Labor</h5>
-                                                <p class="mb-0 tx-12 text-muted">User ID: #1234</p>
-                                            </div>
-                                            <span class="ms-auto wd-45p tx-14">
-															<span class="float-end badge bg-success">
-															<span class="font-weight-semibold">Paid</span>
-															</span>
-															</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
                     </div>
                 </div>
             </div>

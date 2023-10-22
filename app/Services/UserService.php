@@ -33,9 +33,10 @@ class UserService extends BaseService
             ->when(!empty($filters), fn(Builder $builder) => $builder->filter(new UsersFilters($filters)));
     }
 
-    public function datatable(array $filters = [], array $withRelations = []): Builder
+    public function datatable(array $filters = []): Builder
     {
-        return $this->getQuery(filters: $filters)->with($withRelations);
+        return $this->getQuery(filters: $filters)
+            ->withCount('lecture');
     }
 
     /**

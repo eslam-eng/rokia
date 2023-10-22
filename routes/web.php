@@ -6,6 +6,7 @@ use App\Http\Controllers\AwbHistoryController;
 use App\Http\Controllers\AwbStatusController;
 use App\Http\Controllers\BranchController;
 use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\ImportLogsController;
 use App\Http\Controllers\LocationsController;
@@ -34,19 +35,16 @@ Route::group(['prefix' => 'authentication', 'middleware' => 'guest'], function (
     Route::get('login', [AuthController::class, 'loginForm'])->name('login');
     Route::post('login', [AuthController::class, 'login'])->name('signin');
 });
-Route::get('/', function () {
-    return view('layouts.dashboard.home');
-})->name('/')->middleware('auth');
+Route::get('/', DashboardController::class)->name('/')->middleware('auth');
 //auth routes
 Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function () {
 
-    Route::get('/', function () {
-        return view('layouts.dashboard.home');
-    })->name('home');
+    Route::get('/', DashboardController::class)->name('home');
 
     Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 
     Route::resource('users', UsersController::class);
+
     Route::resource('therapists', TherapistController::class)->except(['create']);
     Route::post('therapist/{id}/status',[TherapistController::class,'status'])->name('therapist.status');
 
