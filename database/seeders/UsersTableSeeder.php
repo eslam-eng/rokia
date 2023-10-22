@@ -26,6 +26,8 @@ class UsersTableSeeder extends Seeder
                 'phone' => '01113622098',
                 'address' => Str::random(10),
                 'type' => UsersType::SUPERADMIN->value,
+                'created_at'=>now(),
+                'updated_at'=>now()
             ],
             [
                 'name' => "client",
@@ -34,6 +36,8 @@ class UsersTableSeeder extends Seeder
                 'phone' => '01022843293',
                 'address' => Str::random(10),
                 'type' => UsersType::CLIENT->value,
+                'created_at'=>now(),
+                'updated_at'=>now()
             ],
             [
                 'name' => "therapist test",
@@ -42,6 +46,8 @@ class UsersTableSeeder extends Seeder
                 'phone' => '01113175575',
                 'address' => Str::random(10),
                 'type' => UsersType::THERAPIST->value,
+                'created_at'=>now(),
+                'updated_at'=>now()
             ]
 
         ]);

@@ -4,7 +4,7 @@ namespace App\Services;
 
 use App\DataTransferObjects\Lecture\LectureDTO;
 use App\DataTransferObjects\Lecture\UpdateLectureDTO;
-use App\DataTransferObjects\Therapist\TherapistDTO;
+use App\DataTransferObjects\Therapist\CreateTherapistDTO;
 use App\DataTransferObjects\Wishlist\WishListDTO;
 use App\Enums\AttachmentsType;
 use App\Exceptions\GeneralException;
@@ -44,7 +44,7 @@ class WishlistService extends BaseService
     }
 
     /**
-     * @param TherapistDTO $therapistDTO
+     * @param CreateTherapistDTO $therapistDTO
      * @return Builder|Model|null
      */
     public function updateOrCreate(WishListDTO $wishListDTO): Model|Builder|null

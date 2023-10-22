@@ -31,7 +31,6 @@ class LectureRequest extends BaseRequest
             'status' => ['required', Rule::in(ActivationStatus::values())],
             'description' => 'nullable|string',
             'type' => ['required', Rule::in(LecturesTypeEnum::values())],
-            'publish_date' => 'date|after_or_equal:today',
             'image_cover' => 'nullable|file|mimes:png,jpg,jpeg',
             'audio_file' => 'required|file|mimetypes:audio/*|max:307200', // 300 MB
         ];
@@ -42,8 +41,6 @@ class LectureRequest extends BaseRequest
         $this->merge([
             'therapist_id' => auth()->id(),
             'type' => LecturesTypeEnum::RECORDED->value,
-            'publish_date' => Carbon::now()->format('Y-m-d H:i:s'),
-
         ]);
     }
 }

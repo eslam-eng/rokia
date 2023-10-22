@@ -2,19 +2,19 @@
 
 namespace App\Models;
 
+use App\Enums\UsersType;
 use App\Traits\EscapeUnicodeJson;
 use App\Traits\Filterable;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 
 class Lecture extends Model implements HasMedia
 {
-    use Filterable,EscapeUnicodeJson,InteractsWithMedia;
+    use Filterable, EscapeUnicodeJson, InteractsWithMedia;
 
     protected $fillable = [
-        'title', 'therapist_id', 'price', 'status', 'duration', 'description', 'type','is_paid','publish_date'
+        'title', 'therapist_id', 'duration', 'description', 'price', 'status', 'is_paid', 'type', 'publish_date',
     ];
 
     public function getImageCoverAttribute()
@@ -29,7 +29,7 @@ class Lecture extends Model implements HasMedia
 
     public function therapist(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
-        return $this->belongsTo(User::class,'therapist_id');
+        return $this->belongsTo(User::class, 'therapist_id')->where('type', UsersType::THERAPIST->value);
     }
 
     public function wishlist(): \Illuminate\Database\Eloquent\Relations\MorphMany
@@ -39,6 +39,6 @@ class Lecture extends Model implements HasMedia
 
     public function users(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
-        return $this->belongsToMany(User::class,'user_lectures');
+        return $this->belongsToMany(User::class, 'user_lectures');
     }
 }

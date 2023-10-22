@@ -21,10 +21,10 @@ return new class extends Migration
             $table->string('duration')->nullable();
             $table->string('description')->nullable();
             $table->decimal('price')->default(0);
-            $table->enum('status', ActivationStatus::values());
-            $table->enum('is_paid',[0,1])->default(0);
-            $table->smallInteger('type');
-            $table->timestamp('publish_date');
+            $table->tinyInteger('status')->default(ActivationStatus::ACTIVE->value);
+            $table->tinyInteger('is_paid')->default(0);
+            $table->tinyInteger('type');
+            $table->timestamp('publish_date')->nullable();
             $table->timestamps();
         });
     }

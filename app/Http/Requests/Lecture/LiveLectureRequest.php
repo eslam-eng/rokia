@@ -41,7 +41,6 @@ class LiveLectureRequest extends BaseRequest
         $this->merge([
             'therapist_id' => auth()->id(),
             'type' => LecturesTypeEnum::LIVE->value,
-
         ]);
     }
 }

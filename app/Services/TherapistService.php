@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-use App\DataTransferObjects\Therapist\TherapistDTO;
+use App\DataTransferObjects\Therapist\CreateTherapistDTO;
 use App\DataTransferObjects\User\UserDTO;
 use App\Enums\AttachmentsType;
 use App\Exceptions\GeneralException;
@@ -40,10 +40,10 @@ class TherapistService extends BaseService
     }
 
     /**
-     * @param TherapistDTO $therapistDTO
+     * @param CreateTherapistDTO $therapistDTO
      * @return Builder|Model|null
      */
-    public function store(TherapistDTO $therapistDTO)
+    public function store(CreateTherapistDTO $therapistDTO)
     {
         $therapistData = $therapistDTO->toArray();
         $therapistDTO->validate();
@@ -70,7 +70,7 @@ class TherapistService extends BaseService
      * @param  int  $id
      * @return \Illuminate\Database\Eloquent\Collection|Model
      */
-    public function update(TherapistDTO $therapistDTO, $id)
+    public function update(CreateTherapistDTO $therapistDTO, $id)
     {
         $therapist = $this->findById($id);
         $data = array_filter( $therapistDTO->toArray());

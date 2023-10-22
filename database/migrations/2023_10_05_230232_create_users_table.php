@@ -24,7 +24,7 @@ return new class extends Migration
             $table->string('gender')->default(\App\Enums\GenderTypeEnum::MALE->value);
             $table->smallInteger('type')->default(\App\Enums\UsersType::CLIENT->value);
             $table->tinyInteger('status')->default(\App\Enums\ActivationStatus::ACTIVE->value);
-            $table->decimal('therapist_commission')->nullable();
+            $table->decimal('therapist_commission')->default(0);
 //            $table->softDeletes();
             $table->timestamps();
         });

@@ -4,7 +4,7 @@ namespace App\Services;
 
 use App\DataTransferObjects\Lecture\LectureDTO;
 use App\DataTransferObjects\Lecture\UpdateLectureDTO;
-use App\DataTransferObjects\Therapist\TherapistDTO;
+use App\DataTransferObjects\Therapist\CreateTherapistDTO;
 use App\Enums\AttachmentsType;
 use App\Exceptions\GeneralException;
 use App\Exceptions\NotFoundException;
@@ -43,11 +43,13 @@ class LectureService extends BaseService
 
     public function datatable(array $filters = [], array $withRelations = []): Builder
     {
-        return $this->getQuery(filters: $filters)->with($withRelations);
+        $withRelations = array_merge($withRelations,['therapist']);
+        return $this->getQuery(filters: $filters)
+            ->with($withRelations);
     }
 
     /**
-     * @param TherapistDTO $therapistDTO
+     * @param CreateTherapistDTO $therapistDTO
      * @return Builder|Model|null
      */
     public function store(LectureDTO $lectureDTO)
@@ -128,5 +130,16 @@ class LectureService extends BaseService
             throw new GeneralException('cannot delete lecture there is users already buy it');
         $lecture = $this->findById($id);
         return $lecture->delete();
+    }
+
+
+    public function changeStatus($id , $status): bool
+    {
+        $lecture = $this->findById($id);
+        if (!$lecture)
+            throw new NotFoundException('therapist not found');
+        if (!isset($status))
+            throw new GeneralException('invalied inputs please provide status to update');
+        return $lecture->update(['status'=>$status]);
     }
 }

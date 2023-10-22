@@ -1,11 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Api\Lecture;
+namespace App\Http\Controllers\Therapist\Lecture;
 
+use App\DataTables\Lecture\LecturesDatatable;
 use App\DataTransferObjects\Lecture\LectureDTO;
 use App\DataTransferObjects\Lecture\UpdateLectureDTO;
-use App\Enums\ActivationStatus;
-use App\Enums\UsersType;
 use App\Exceptions\GeneralException;
 use App\Exceptions\NotFoundException;
 use App\Http\Controllers\Controller;
@@ -13,13 +12,14 @@ use App\Http\Requests\ImageUploadRequest;
 use App\Http\Requests\Lecture\LectureRequest;
 use App\Http\Requests\Lecture\LectureUpdateRequest;
 use App\Http\Requests\Lecture\LiveLectureRequest;
-use App\Http\Resources\LecturesResource;
 use App\Services\LectureService;
 use App\Traits\NotifyUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
+use Mockery\Exception;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class LectureController extends Controller
 {
@@ -29,29 +29,23 @@ class LectureController extends Controller
     }
 
     /**
+     * @param LecturesDatatable $lecturesDatatable
      * @param Request $request
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Resources\Json\AnonymousResourceCollection|\Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse|mixed
      */
-    public function index(Request $request)
+    public function index(LecturesDatatable $lecturesDatatable , Request $request)
     {
         try {
-            $user = auth()->user();
-            $withRelations = [];
             $filters = array_filter($request->get('filters', []), function ($value) {
                 return ($value !== null && $value !== false && $value !== '');
             });
-            if ($user->type == UsersType::CLIENT->value) {
-                $filters = $request->all();
-                $filters['status'] = ActivationStatus::ACTIVE->value;
-                $withRelations = ['therapist:id,name'];
-            }
-            if ($user->type == UsersType::THERAPIST->value) {
-                $filters['therapist_id'] = $user->id;
-            }
-            $lectures = $this->lectureService->paginateLectures($filters, $withRelations);
-            return LecturesResource::collection($lectures);
+
+            if (isset($request->upcoming))
+                $filters['upcoming'] = 1 ;
+            return $lecturesDatatable->with(['filters' => $filters])->render('layouts.dashboard.lecture.index');
         } catch (\Exception $exception) {
-            return apiResponse(message: 'something went wrong', code: 500);
+            $toast = ['type' => 'error', 'title' => 'error', 'message' => $exception->getMessage()];
+            return back()->with('toast', $toast);
         }
 
 
@@ -81,9 +75,12 @@ class LectureController extends Controller
             $lectureDTO = LectureDTO::fromRequest($request);
             $lecture = $this->lectureService->store($lectureDTO);
             DB::commit();
+
             $title = "$user->name تم رفع محاضرة للشيخ ";
-            $content = "$lecture->publish_date تاريخ بدء المحاضره يوم  $lecture->title عنوان المحاضره ";
-            $this->notifyUsers(title: $title , content: $content);
+            $content = "$lecture->publish_date تاريخ بدء المحاضرة يوم  $lecture->title عنوان المحاضرة ";
+
+            $this->notifyUsers(title: $title,content: $content);
+
             return apiResponse(message: 'Lecture uploaded successfully');
         } catch (ValidationException $exception) {
             DB::rollBack();
@@ -169,6 +166,18 @@ class LectureController extends Controller
         } catch (NotFoundException $exception) {
             return apiResponse(message: $exception->getMessage(), code: 404);
         } catch (\Exception $exception) {
+            return apiResponse(message: $exception->getMessage(), code: 500);
+        }
+    }
+
+    public function status(Request $request, $id)
+    {
+        try {
+            $this->lectureService->changeStatus(id: $id, status: $request->get('status'));
+            return apiResponse(message: __('app.lecture_status_changed_successfully'));
+        } catch (NotFoundHttpException $exception) {
+            return apiResponse(message: __('app.lecture_not_found'), code: 404);
+        } catch (Exception $exception) {
             return apiResponse(message: $exception->getMessage(), code: 500);
         }
     }

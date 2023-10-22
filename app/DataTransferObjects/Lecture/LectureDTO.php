@@ -20,7 +20,7 @@ class LectureDTO extends BaseDTO
         public int     $therapist_id,
         public int     $status,
         public ?string $duration,
-        public mixed $publish_date,
+        public mixed $publish_date=null,
         public float   $price = 0,
         public ?string $description = null,
         public ?string $type = null,
@@ -81,7 +81,7 @@ class LectureDTO extends BaseDTO
             'status' => ['required',Rule::in(ActivationStatus::values())],
             'duration' => 'nullable|string',
             'description' => 'nullable|string',
-            'publish_date' => 'date|date_format:Y-m-d H:i:s|after_or_equal:today',
+            'publish_date' => 'nullable|date|date_format:Y-m-d H:i:s|after_or_equal:today',
             'type' => ['required', Rule::in(LecturesTypeEnum::values())],
             'image_cover' => 'nullable|file|mimes:png,jpg,jpeg',
         ];
@@ -98,7 +98,7 @@ class LectureDTO extends BaseDTO
         return [
             "title" => $this->title,
             "therapist_id" => $this->therapist_id,
-            "price" => $this->price,
+            "price" => $this->is_paid ? $this->price : 0,
             "is_paid" => $this->is_paid,
             "status" => $this->status,
             "duration" => $this->duration,

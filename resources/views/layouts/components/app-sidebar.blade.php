@@ -22,9 +22,18 @@
                         <i class="angle fe fe-chevron-right"></i>
                     </a>
                     <ul class="slide-menu">
-                        <li class="side-menu__label1"><a href="javascript:void(0);">Utilities</a></li>
-                        <li><a class="slide-item" data-is_active="{{request()->fullUrlIs(route('therapists.index'))}}"
-                               href="{{route('therapists.index')}}">@lang('app.therapists')</a></li>
+                        <li>
+                            <a class="slide-item" data-is_active="{{request()->fullUrlIs(route('therapists.index'))}}" href="{{route('therapists.index')}}">@lang('app.therapists')</a>
+                        </li>
+
+                        <li>
+                            <a class="slide-item" data-is_active="{{request()->fullUrlIs(route('therapist-lectures.index'))}}" href="{{route('therapist-lectures.index')}}">@lang('app.lectures')</a>
+                        </li>
+
+                        <li>
+                            <a class="slide-item" data-is_active="{{request()->fullUrlIs(route('therapist-lectures.index'))}}" href="{{route('therapist-lectures.index').'?upcoming=1'}}">@lang('app.upcoming_lectures')</a>
+                        </li>
+
                     </ul>
                 </li>
 

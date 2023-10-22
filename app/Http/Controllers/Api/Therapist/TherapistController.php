@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Api\Therapist;
 
 use App\DataTables\TherapistsDataTable;
-use App\DataTransferObjects\Therapist\TherapistDTO;
+use App\DataTransferObjects\Therapist\CreateTherapistDTO;
 use App\Enums\UsersType;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Users\ThereapistRequest;
@@ -24,7 +24,7 @@ class TherapistController extends Controller
     {
         try {
             DB::beginTransaction();
-            $therapistDTO = TherapistDTO::fromRequest($request);
+            $therapistDTO = CreateTherapistDTO::fromRequest($request);
             $user = $this->therapistService->store($therapistDTO);
             DB::commit();
             $token = $user->getToken();

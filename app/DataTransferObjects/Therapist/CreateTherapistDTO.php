@@ -9,7 +9,7 @@ use App\Enums\UsersType;
 use Illuminate\Support\Arr;
 use Illuminate\Validation\Rule;
 
-class TherapistDTO extends BaseDTO
+class CreateTherapistDTO extends BaseDTO
 {
 
     /**

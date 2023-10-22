@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Therapist;
 
 use App\DataTables\TherapistsDataTable;
-use App\DataTransferObjects\Therapist\TherapistDTO;
+use App\DataTransferObjects\Therapist\CreateTherapistDTO;
 use App\Enums\UsersType;
 use App\Exceptions\GeneralException;
 use App\Http\Controllers\Controller;
@@ -43,7 +43,7 @@ class TherapistController extends Controller
     {
         try {
             DB::beginTransaction();
-            $therapistDTO = TherapistDTO::fromRequest($request);
+            $therapistDTO = CreateTherapistDTO::fromRequest($request);
             $this->therapistService->store($therapistDTO);
             DB::commit();
             return apiResponse(message: 'therapist registered successfully');
@@ -82,7 +82,7 @@ class TherapistController extends Controller
     {
         try {
             DB::beginTransaction();
-            $therapistDTO = TherapistDTO::fromRequest($request);
+            $therapistDTO = CreateTherapistDTO::fromRequest($request);
             $this->therapistService->update($therapistDTO, $therapist);
             DB::commit();
             $toast = [

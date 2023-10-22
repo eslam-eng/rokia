@@ -24,7 +24,7 @@ class TherapistsDataTable extends DataTable
         return (new EloquentDataTable($query))
             ->setRowId('id')
             ->editColumn('status', function (User $user) {
-                $classes = $user->status == ActivationStatus::ACTIVE->value ? 'badge badge-success' : 'badge badge-danger';
+                $classes = $user->status == ActivationStatus::ACTIVE->value ? 'badge-success' : 'badge-danger';
                 return view('components._datatable-badge', ['class' => $classes, 'text' => ActivationStatus::from($user->status)->name]);
             })->editColumn('gender', fn(User $user) => __('app.' . $user->gender))
             ->editColumn('created_at',fn(User $user)=>$user->created_at->format('Y-m-d'))
