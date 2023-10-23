@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Enums\PaymentStatusEnum;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class LecturesResource extends JsonResource
@@ -17,10 +18,10 @@ class LecturesResource extends JsonResource
         return [
             'id'=>$this->id,
             'title'=>$this->title,
-            'description'=>$this->phone,
+            'description'=>$this->description,
             'duration'=>$this->duration,
-            'price'=>$this->when($this->type == 'paid',$this->price),
-            'type'=>$this->type,
+            'price'=>$this->when($this->is_paid == PaymentStatusEnum::PAID->value,$this->price),
+            'is_paid'=>$this->is_paid,
             'image_cover' =>$this->image_cover,
             'audio_file' =>$this->lecture_content,
         ];

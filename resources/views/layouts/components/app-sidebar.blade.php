@@ -15,6 +15,11 @@
             </div>
             <ul class="side-menu">
                 <li class="side-item side-item-category">@lang('app.menu')</li>
+                <li>
+                    <a class="slide-item" data-is_active="{{request()->fullUrlIs(route('home'))}}"
+                       href="{{route('home')}}">@lang('app.Dashboard')</a>
+                </li>
+                <li class="side-item side-item-category">@lang('app.therapists')</li>
                 <li class="slide">
                     <a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0);">
                         <i class="fa fa-users ide-menu__icon pe-2"></i>

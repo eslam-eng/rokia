@@ -45,8 +45,6 @@ class LectureController extends Controller
             $toast = ['type' => 'error', 'title' => 'error', 'message' => $exception->getMessage()];
             return back()->with('toast', $toast);
         }
-
-
     }
 
     public function create()

@@ -77,7 +77,8 @@ class UsersDataTable extends DataTable
                 ->title("#"),
             Column::make('name')
                 ->title(__('app.name'))
-                ->orderable(false),
+                ->orderable(false)
+                ->searchable(false),
             Column::make('phone')
                 ->title(__('app.phone'))
                 ->orderable(false),
@@ -116,6 +117,6 @@ class UsersDataTable extends DataTable
      */
     protected function filename(): string
     {
-        return 'Therapists_' . date('YmdHis');
+        return 'users' . date('YmdHis');
     }
 }
