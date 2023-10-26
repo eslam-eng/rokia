@@ -17,7 +17,6 @@ return new class extends Migration
             $table->id();
             $table->foreignIdFor(\App\Models\User::class)->constrained('users');
             $table->morphs('relatable');
-            $table->string('notes')->nullable();
             $table->timestamps();
         });
     }

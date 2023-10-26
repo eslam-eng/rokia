@@ -15,6 +15,9 @@ return new class extends Migration
     {
         Schema::create('rates', function (Blueprint $table) {
             $table->id();
+            $table->foreignIdFor(\App\Models\User::class)->constrained('users');
+            $table->morphs('relatable');
+            $table->integer('rate_number');
             $table->timestamps();
         });
     }
