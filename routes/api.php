@@ -50,11 +50,9 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
 
         Route::post('set-fcm-token', [AuthController::class, 'setFcmToken']);
 
-        Route::get('user', [AuthController::class, 'authUser']);
-
         Route::patch('user', [AuthController::class, 'update']);
 
-        Route::get('profile', [AuthController::class, 'getProfileDetails']);
+        Route::get('profile', [UsersController::class, 'getProfileDetails']);
 
         Route::post('/change-password', [UsersController::class, 'changePassword']);
 
@@ -70,6 +68,7 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::group(['prefix' => 'client'],function (){
         Route::get('lectures', UserLectureController::class);
         Route::apiResource('wishlist', WishlistController::class);
+        Route::delete('wishlist/lecture/{id}/remove',[WishlistController::class,'removeLectureFormFavorite']);
     });
 
     Route::post('update-device-token', [UsersController::class, 'updateDeviceToken']);

@@ -1,20 +1,10 @@
 <?php
 
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\AwbController;
-use App\Http\Controllers\AwbHistoryController;
-use App\Http\Controllers\AwbStatusController;
-use App\Http\Controllers\BranchController;
-use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\Dashboard\DashboardController;
-use App\Http\Controllers\DepartmentController;
-use App\Http\Controllers\ImportLogsController;
-use App\Http\Controllers\LocationsController;
+use App\Http\Controllers\Invoice\InvoicesController;
 use App\Http\Controllers\Media\MediaController;
-use App\Http\Controllers\PriceTableController;
-use App\Http\Controllers\ReceiverController;
 use App\Http\Controllers\Therapist\Lecture\LectureController;
-use App\Http\Controllers\Therapist\Lecture\UpcomingLectureController;
 use App\Http\Controllers\Therapist\TherapistController;
 use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Route;
@@ -46,15 +36,17 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function () {
     Route::resource('users', UsersController::class);
 
     Route::resource('therapists', TherapistController::class)->except(['create']);
-    Route::post('therapist/{id}/status',[TherapistController::class,'status'])->name('therapist.status');
+    Route::post('therapist/{id}/status', [TherapistController::class, 'status'])->name('therapist.status');
 
     Route::resource('therapist-lectures', LectureController::class);
-    Route::post('therapist-lectures/{id}/status',[LectureController::class,'status'])->name('therapist-lectures.status');
+    Route::post('therapist-lectures/{id}/status', [LectureController::class, 'status'])->name('therapist-lectures.status');
 
-    Route::group(['prefix' => 'media'],function (){
-        Route::delete('id',[MediaController::class,'deleteMedia'])->name('delete-media');
+    Route::get('invoices', [InvoicesController::class,'index']);
+
+    Route::group(['prefix' => 'media'], function () {
+        Route::delete('id', [MediaController::class, 'deleteMedia'])->name('delete-media');
     });
-      // Route::get('switcherpage', Switcherpage::class)->name('switcherpage');
+    // Route::get('switcherpage', Switcherpage::class)->name('switcherpage');
 
 });
 

@@ -28,15 +28,20 @@
                     </a>
                     <ul class="slide-menu">
                         <li>
-                            <a class="slide-item" data-is_active="{{request()->fullUrlIs(route('therapists.index'))}}" href="{{route('therapists.index')}}">@lang('app.therapists')</a>
+                            <a class="slide-item" data-is_active="{{request()->fullUrlIs(route('therapists.index'))}}"
+                               href="{{route('therapists.index')}}">@lang('app.therapists')</a>
                         </li>
 
                         <li>
-                            <a class="slide-item" data-is_active="{{request()->fullUrlIs(route('therapist-lectures.index'))}}" href="{{route('therapist-lectures.index')}}">@lang('app.lectures')</a>
+                            <a class="slide-item"
+                               data-is_active="{{request()->fullUrlIs(route('therapist-lectures.index'))}}"
+                               href="{{route('therapist-lectures.index')}}">@lang('app.lectures')</a>
                         </li>
 
                         <li>
-                            <a class="slide-item" data-is_active="{{request()->fullUrlIs(route('therapist-lectures.index'))}}" href="{{route('therapist-lectures.index').'?upcoming=1'}}">@lang('app.upcoming_lectures')</a>
+                            <a class="slide-item"
+                               data-is_active="{{request()->fullUrlIs(route('therapist-lectures.index'))}}"
+                               href="{{route('therapist-lectures.index').'?upcoming=1'}}">@lang('app.upcoming_lectures')</a>
                         </li>
 
                     </ul>
@@ -60,26 +65,18 @@
                     </ul>
                 </li>
 
-
-
-                <li class="side-item side-item-category">@lang('app.companies_receivers')</li>
+                <li class="side-item side-item-category">@lang('app.therapist_accounting')</li>
 
                 <li class="slide">
                     <a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0);">
                         <i class="fa fa-building pe-3"></i>
-                        <span class="side-menu__label">@lang('app.companies_receivers')</span><i
+                        <span class="side-menu__label">@lang('app.invoices')</span><i
                             class="angle fe fe-chevron-right"></i></a>
-{{--                    <ul class="slide-menu">--}}
-{{--                        <li><a class="slide-item" data-is_active="{{request()->fullUrlIs(route('receivers.index'))}}"--}}
-{{--                               href="{{route('receivers.index')}}">@lang('app.receivers')</a></li>--}}
-{{--                        <li><a class="slide-item" data-is_active="{{request()->fullUrlIs(route('companies.index'))}}"--}}
-{{--                               href="{{route('companies.index')}}">@lang('app.companies')</a></li>--}}
-{{--                    </ul>--}}
                     <ul class="slide-menu">
-                        <li><a class="slide-item" data-is_active="{{request()->fullUrlIs("#")}}"
-                               href="#">@lang('app.receivers')</a></li>
-                        <li><a class="slide-item" data-is_active="{{request()->fullUrlIs('#')}}"
-                               href="#">@lang('app.companies')</a></li>
+                        <li>
+                            <a class="slide-item" data-is_active="{{request()->fullUrlIs("#")}}"
+                               href="#">@lang('app.all_invoices')</a>
+                        </li>
                     </ul>
                 </li>
 
@@ -89,12 +86,12 @@
                         <i class="fa fa-money-bill-alt pe-3"></i>
                         <span class="side-menu__label">@lang('app.price_table')</span><i
                             class="angle fe fe-chevron-right"></i></a>
-{{--                    <ul class="slide-menu">--}}
-{{--                        <li><a class="slide-item" data-is_active="{{request()->fullUrlIs(route('prices.create'))}}"--}}
-{{--                               href="{{route('prices.create')}}">@lang('app.new_price_table')</a></li>--}}
-{{--                        <li><a class="slide-item" data-is_active="{{request()->fullUrlIs(route('prices.index'))}}"--}}
-{{--                               href="{{route('prices.index')}}">@lang('app.price_tables')</a></li>--}}
-{{--                    </ul> --}}
+                    {{--                    <ul class="slide-menu">--}}
+                    {{--                        <li><a class="slide-item" data-is_active="{{request()->fullUrlIs(route('prices.create'))}}"--}}
+                    {{--                               href="{{route('prices.create')}}">@lang('app.new_price_table')</a></li>--}}
+                    {{--                        <li><a class="slide-item" data-is_active="{{request()->fullUrlIs(route('prices.index'))}}"--}}
+                    {{--                               href="{{route('prices.index')}}">@lang('app.price_tables')</a></li>--}}
+                    {{--                    </ul> --}}
 
                     <ul class="slide-menu">
                         <li><a class="slide-item" data-is_active="{{request()->fullUrlIs('#')}}"

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Therapist;
 
-use App\DataTables\TherapistsDataTable;
+use App\DataTables\Therapist\TherapistsDataTable;
 use App\DataTransferObjects\Therapist\CreateTherapistDTO;
 use App\Enums\UsersType;
 use App\Exceptions\GeneralException;
@@ -11,7 +11,6 @@ use App\Http\Requests\Therapist\ThereapistUpdateRequest;
 use App\Http\Requests\Users\ThereapistRequest;
 use App\Services\TherapistService;
 use App\Services\UserService;
-use App\Traits\HasMedia;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;

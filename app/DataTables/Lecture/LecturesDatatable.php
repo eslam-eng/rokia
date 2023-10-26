@@ -3,11 +3,8 @@
 namespace App\DataTables\Lecture;
 
 use App\Enums\ActivationStatus;
-use App\Enums\PaymentTypesEnum;
 use App\Models\Lecture;
-use App\Models\User;
 use App\Services\LectureService;
-use App\Services\TherapistService;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
@@ -35,11 +32,8 @@ class LecturesDatatable extends DataTable
                 $text = $lecture->is_paid == 1 ? __('app.paid') : __('app.free');
                 return view('components._datatable-badge', ['class' => $classes, 'text' => $text]);
             })
-
-            ->editColumn('therapist_id',fn(Lecture $lecture)=>$lecture->therapist->name)
-
-            ->editColumn('created_at',fn(Lecture $lecture)=>$lecture->created_at->format('Y-m-d'))
-
+            ->editColumn('therapist_id', fn(Lecture $lecture) => $lecture->therapist->name)
+            ->editColumn('created_at', fn(Lecture $lecture) => $lecture->created_at->format('Y-m-d'))
             ->addColumn('action', function (Lecture $lecture) {
                 return view(
                     'layouts.dashboard.lecture.components._actions',
@@ -89,6 +83,7 @@ class LecturesDatatable extends DataTable
             Column::make('price')->title(__('app.price'))->searchable(false),
             Column::make('is_paid')->title(__('app.is_paid'))->orderable(false)->searchable(false),
             Column::make('therapist_id')->title(__('app.therapist'))->orderable(false)->searchable(false),
+            Column::make('users_count')->title(__('app.users_subscription'))->orderable(false)->searchable(false),
             Column::make('status')->title(__('app.status'))->orderable(false)->searchable(false),
             Column::make('created_at')->searchable(false),
             Column::computed('action')

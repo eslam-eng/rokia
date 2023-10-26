@@ -24,6 +24,8 @@ class LecturesResource extends JsonResource
             'is_paid'=>$this->is_paid,
             'image_cover' =>$this->image_cover,
             'audio_file' =>$this->lecture_content,
+            'is_subscribed'=>$this->is_subscribed,
+            'is_favorite'=>$this->is_favorite
         ];
     }
 }

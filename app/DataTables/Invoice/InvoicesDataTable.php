@@ -1,6 +1,6 @@
 <?php
 
-namespace App\DataTables;
+namespace App\DataTables\Invoice;
 
 use App\Enums\ActivationStatus;
 use App\Models\User;
@@ -11,7 +11,7 @@ use Yajra\DataTables\Html\Builder as HtmlBuilder;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Services\DataTable;
 
-class TherapistsDataTable extends DataTable
+class InvoicesDataTable extends DataTable
 {
     /**
      * Build DataTable class.

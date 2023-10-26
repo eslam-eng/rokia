@@ -7,6 +7,7 @@ use App\Exceptions\GeneralException;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Wishlist\WishlistRequest;
 use App\Http\Resources\WishlistResource;
+use App\Models\Lecture;
 use App\Services\WishlistService;
 use Illuminate\Http\Request;
 
@@ -29,7 +30,6 @@ class WishlistController extends Controller
             $wishlist = $this->wishlistService->paginateLectures($filters, $withRelations);
             return WishlistResource::collection($wishlist);
         } catch (\Exception $exception) {
-            dd($exception);
             return apiResponse(message: 'something went wrong', code: 500);
         }
     }
@@ -66,6 +66,21 @@ class WishlistController extends Controller
         } catch (GeneralException $exception) {
             return apiResponse(message: $exception->getMessage(), code: 422);
         } catch (\Exception $exception) {
+            return apiResponse(message: $exception->getMessage(), code: 500);
+        }
+    }
+
+    public function removeLectureFormFavorite(int $lecture_id)
+    {
+        try {
+            $this->wishlistService->getQuery()
+                ->where('relatable_id',$lecture_id)
+                ->where('relatable_type',get_class(new Lecture()))
+                ->where('user_id',auth()->id())
+                ->delete();
+            return apiResponse(message: 'removed from favorites successfully');
+        }catch (\Exception $exception)
+        {
             return apiResponse(message: $exception->getMessage(), code: 500);
         }
     }

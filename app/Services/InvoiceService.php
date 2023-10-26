@@ -9,18 +9,19 @@ use App\Enums\AttachmentsType;
 use App\Exceptions\GeneralException;
 use App\Exceptions\NotFoundException;
 use App\Filters\LecturesFilter;
+use App\Models\Invoice;
 use App\Models\Lecture;
 use App\Models\UserLecture;
+use getID3;
+use getid3_lib;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
-use getID3;
-use getid3_lib;
 
-class LectureService extends BaseService
+class InvoiceService extends BaseService
 {
 
-    public function __construct(protected Lecture $model)
+    public function __construct(protected Invoice $model)
     {
 
     }
@@ -42,7 +43,6 @@ class LectureService extends BaseService
             ->select('lectures.*')
             ->with($withRelations)
             ->subscribeUsers()
-            ->favorites()
             ->simplePaginate();
     }
 
