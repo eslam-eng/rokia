@@ -40,6 +40,7 @@ class LectureService extends BaseService
     {
         return $this->getQuery(filters: $filters)
             ->select('lectures.*')
+            ->orderByDesc('id')
             ->with($withRelations)
             ->subscribeUsers()
             ->favorites()
