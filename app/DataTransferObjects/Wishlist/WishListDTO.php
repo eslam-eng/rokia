@@ -16,7 +16,6 @@ class WishListDTO extends BaseDTO
         public int  $user_id,
         public int  $relatable_id,
         public string     $relatable_type,
-        public ?string $notes = null
     )
     {
     }
@@ -27,7 +26,6 @@ class WishListDTO extends BaseDTO
             user_id: $request->user_id,
             relatable_id: $request->relatable_id,
             relatable_type: $request->relatable_type,
-            notes: $request->notes,
         );
     }
 
@@ -41,7 +39,6 @@ class WishListDTO extends BaseDTO
             user_id: Arr::get($data, 'user_id'),
             relatable_id: Arr::get($data, 'relatable_id'),
             relatable_type: Arr::get($data, 'relatable_type'),
-            notes: Arr::get($data, 'notes'),
         );
     }
 
@@ -51,7 +48,6 @@ class WishListDTO extends BaseDTO
             'user_id' => 'required|integer',
             'relatable_id' => 'required|integer',
             'relatable_type' => 'required|string',
-            'notes' => 'nullable|string',
         ];
     }
 
@@ -64,7 +60,6 @@ class WishListDTO extends BaseDTO
             "user_id" => $this->user_id,
             "relatable_id" => $this->relatable_id,
             "relatable_type" => $this->relatable_type,
-            "notes" => $this->notes,
         ];
     }
 }

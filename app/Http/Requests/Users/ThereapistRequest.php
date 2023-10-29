@@ -41,7 +41,8 @@ class ThereapistRequest extends BaseRequest
     {
         $this->merge([
             'type'=>UsersType::THERAPIST->value,
-            'status'=>ActivationStatus::PENDING->value
+            'status'=>ActivationStatus::PENDING->value,
+            'therapist_commission'=>0
         ]);
     }
 }
