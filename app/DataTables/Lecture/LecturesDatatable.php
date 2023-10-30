@@ -29,7 +29,7 @@ class LecturesDatatable extends DataTable
             })
             ->editColumn('is_paid', function (Lecture $lecture) {
                 $classes = $lecture->is_paid == 1 ? 'badge-danger' : 'badge-success';
-                $text = $lecture->is_paid == 1 ? __('app.paid') : __('app.free');
+                $text = $lecture->is_paid == 1 ? __('app.lectures.paid') : __('app.lectures.free');
                 return view('components._datatable-badge', ['class' => $classes, 'text' => $text]);
             })
             ->editColumn('therapist_id', fn(Lecture $lecture) => $lecture->therapist->name)
@@ -78,15 +78,15 @@ class LecturesDatatable extends DataTable
     {
         return [
             Column::make('id')->title("#"),
-            Column::make('title')->title(__('app.title'))->orderable(false),
-            Column::make('description')->title(__('app.description'))->orderable(false),
-            Column::make('price')->title(__('app.price'))->searchable(false),
-            Column::make('is_paid')->title(__('app.is_paid'))->orderable(false)->searchable(false),
-            Column::make('therapist_id')->title(__('app.therapist'))->orderable(false)->searchable(false),
-            Column::make('users_count')->title(__('app.users_subscription'))->orderable(false)->searchable(false),
-            Column::make('status')->title(__('app.status'))->orderable(false)->searchable(false),
-            Column::make('created_at')->searchable(false),
-            Column::computed('action')
+            Column::make('title')->title(__('app.lectures.title'))->orderable(false),
+            Column::make('description')->title(__('app.lectures.description'))->orderable(false),
+            Column::make('price')->title(__('app.lectures.price'))->searchable(false),
+            Column::make('is_paid')->title(__('app.lectures.is_paid'))->orderable(false)->searchable(false),
+            Column::make('therapist_id')->title(__('app.lectures.therapist'))->orderable(false)->searchable(false),
+            Column::make('users_count')->title(__('app.lectures.users_subscription'))->orderable(false)->searchable(false),
+            Column::make('status')->title(__('app.lectures.status'))->orderable(false)->searchable(false),
+            Column::make('created_at')->title(__('app.general.created_at'))->searchable(false),
+            Column::computed('action')->title(__('app.general.action'))
                 ->exportable(false)
                 ->printable(false)
                 ->addClass('text-center'),

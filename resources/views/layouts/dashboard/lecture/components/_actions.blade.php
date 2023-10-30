@@ -2,23 +2,22 @@
     <div class="row">
         <div>
             <button
-                class="btn btn-sm change_therapist_lecture_status
+                class="btn btn-sm change_status
             @if($model->status == \App\Enums\ActivationStatus::ACTIVE->value)
             btn-danger
             @else
             btn-success
             @endif row-action"
                 data-action="{{route('therapist-lectures.status',$model->id)}}"
-                data-toggle="tooltip"
                 data-reload="0"
                 data-status="{{in_array($model->status,[\App\Enums\ActivationStatus::PENDING->value,\App\Enums\ActivationStatus::INACTIVE->value]) ?  \App\Enums\ActivationStatus::ACTIVE->value :  \App\Enums\ActivationStatus::PENDING->value}}"
                 title="{{in_array($model->status,[\App\Enums\ActivationStatus::PENDING->value,\App\Enums\ActivationStatus::INACTIVE->value]) ? __(key: 'app.active'):__('app.blocked')}}"
                 data-method="POST"
             >
                 @if($model->status == \App\Enums\ActivationStatus::ACTIVE->value)
-                    {{\App\Enums\ActivationStatus::PENDING->name}}
+                    <i class="fa fa-pause"></i>
                 @else
-                    {{\App\Enums\ActivationStatus::ACTIVE->name}}
+                    <i class="fa fa-check"></i>
                 @endif
             </button>
         </div>

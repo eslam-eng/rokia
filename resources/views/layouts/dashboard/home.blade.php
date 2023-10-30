@@ -55,7 +55,7 @@
                                 <div class="col-9">
                                     <div class="pt-4 pb-3">
                                         <div class="d-flex">
-                                            <h6 class="mb-2 tx-12">@lang('app.lectures_count')</h6>
+                                            <h6 class="mb-2 tx-12">@lang('app.lectures.lectures_count')</h6>
                                         </div>
                                         <div class="pb-0 mt-0">
                                             <div class="d-flex">

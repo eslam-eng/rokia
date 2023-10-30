@@ -26,7 +26,7 @@ class TherapistsDataTable extends DataTable
             ->editColumn('status', function (User $user) {
                 $classes = $user->status == ActivationStatus::ACTIVE->value ? 'badge-success' : 'badge-danger';
                 return view('components._datatable-badge', ['class' => $classes, 'text' => ActivationStatus::from($user->status)->name]);
-            })->editColumn('gender', fn(User $user) => __('app.' . $user->gender))
+            })->editColumn('gender', fn(User $user) => __('app.general.' . $user->gender))
             ->editColumn('created_at',fn(User $user)=>$user->created_at->format('Y-m-d'))
             ->addColumn('action', function (User $user) {
                 return view(
@@ -72,15 +72,15 @@ class TherapistsDataTable extends DataTable
     {
         return [
             Column::make('id')->title("#"),
-            Column::make('name')->title(__('app.name')),
-            Column::make('phone')->title(__('app.phone'))->orderable(false),
-            Column::make('address')->title(__('app.address'))->orderable(false),
-            Column::make('email')->title(__('app.email'))->orderable(false),
-            Column::make('gender')->title(__('app.gender'))->orderable(false),
-            Column::make('status')->title(__('app.status'))->orderable(false),
-            Column::make('therapist_commission')->title(__('app.therapist_commission'))->orderable(false),
-            Column::make('created_at'),
-            Column::computed('action')
+            Column::make('name')->title(__('app.therapists.name')),
+            Column::make('phone')->title(__('app.therapists.phone'))->orderable(false),
+            Column::make('address')->title(__('app.therapists.address'))->orderable(false)->searchable(false),
+            Column::make('email')->title(__('app.therapists.email'))->orderable(false),
+            Column::make('gender')->title(__('app.therapists.gender'))->orderable(false)->searchable(false),
+            Column::make('status')->title(__('app.therapists.status'))->orderable(false)->searchable(false),
+            Column::make('therapist_commission')->title(__('app.therapists.therapist_commission'))->orderable(false)->searchable(false),
+            Column::make('created_at')->title(__('app.general.created_at')),
+            Column::computed('action')->title(__('app.general.action'))
                 ->exportable(false)
                 ->printable(false)
                 ->addClass('text-center'),

@@ -19,29 +19,29 @@
                     <a class="slide-item" data-is_active="{{request()->fullUrlIs(route('home'))}}"
                        href="{{route('home')}}">@lang('app.Dashboard')</a>
                 </li>
-                <li class="side-item side-item-category">@lang('app.therapists')</li>
+                <li class="side-item side-item-category">@lang('app.therapists.therapists')</li>
                 <li class="slide">
                     <a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0);">
                         <i class="fa fa-users ide-menu__icon pe-2"></i>
-                        <span class="side-menu__label">@lang('app.therapists')</span>
+                        <span class="side-menu__label">@lang('app.therapists.therapists')</span>
                         <i class="angle fe fe-chevron-right"></i>
                     </a>
                     <ul class="slide-menu">
                         <li>
                             <a class="slide-item" data-is_active="{{request()->fullUrlIs(route('therapists.index'))}}"
-                               href="{{route('therapists.index')}}">@lang('app.therapists')</a>
+                               href="{{route('therapists.index')}}">@lang('app.therapists.therapists')</a>
                         </li>
 
                         <li>
                             <a class="slide-item"
                                data-is_active="{{request()->fullUrlIs(route('therapist-lectures.index'))}}"
-                               href="{{route('therapist-lectures.index')}}">@lang('app.lectures')</a>
+                               href="{{route('therapist-lectures.index')}}">@lang('app.lectures.lectures')</a>
                         </li>
 
                         <li>
                             <a class="slide-item"
                                data-is_active="{{request()->fullUrlIs(route('therapist-lectures.index'))}}"
-                               href="{{route('therapist-lectures.index').'?upcoming=1'}}">@lang('app.upcoming_lectures')</a>
+                               href="{{route('therapist-lectures.index').'?upcoming=1'}}">@lang('app.lectures.upcoming_lectures')</a>
                         </li>
 
                     </ul>

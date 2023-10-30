@@ -99,6 +99,46 @@
             }
         })
     }
+
+    $(document).on('click','.change_status',function () {
+        let status = $(this).data('status');
+        let reload = $(this).data('reload');
+        let url = $(this).data('action');
+        Swal.fire({
+            title: '{{trans('app.general.are_u_sure')}}',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: '{{trans('app.general.swal_confirm_btn')}}'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    method: 'post',
+                    url: url,
+                    dataType: 'json',
+                    data:{
+                        '_token': '{{ csrf_token() }}',
+                        'status':status,
+                    },
+                    success: function(result) {
+                        if (result.status)
+                            toastr.success(result.message);
+                        else
+                            toastr.error(result.message);
+                        if(reload==0)
+                            $('.dataTable').DataTable().ajax.reload(null, false);
+                        else
+                            window.location.reload();
+                    } ,
+                    error: function(jqXHR, textStatus, errorThrown) {
+                        var errorMessage = jqXHR.responseJSON.message;
+                        toastr.error(errorMessage);
+                    }
+                });
+            }
+        })
+    });
 </script>
 @yield('script_footer')
 </body>

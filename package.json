@@ -18,5 +18,9 @@
         "postcss": "^8.1.14",
         "sass": "^1.49.7",
         "sass-loader": "^12.1.0"
+    },
+    "dependencies": {
+        "laravel-echo": "^1.15.3",
+        "pusher-js": "^8.3.0"
     }
 }
