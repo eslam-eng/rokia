@@ -3,11 +3,11 @@
 @section('styles')
     <link href="{{asset('assets/plugins/datatable/css/dataTables.bootstrap5.css')}}" rel="stylesheet"/>
 @endsection
-
+@section('title',__('app.clients.clients'))
 @section('content')
 
     {{--    breadcrumb --}}
-    @include('layouts.components.breadcrumb',['title' => trans('app.users_page_title'),'first_list_item' => trans('app.users'),'last_list_item' => trans('app.all_users')])
+    @include('layouts.components.breadcrumb',['title' => trans('app.clients.users_page_title'),'first_list_item' => trans('app.clients.clients'),'last_list_item' => trans('app.clients.all_clients')])
     {{--    end breadcrumb --}}
 
     <!--start filters section -->

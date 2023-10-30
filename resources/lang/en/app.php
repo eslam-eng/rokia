@@ -35,6 +35,7 @@ return [
         'search' => 'Search',
         'save' => 'Save',
         'back' => 'Back',
+        'filters' => 'Filters',
     ],
 
 
@@ -74,6 +75,33 @@ return [
         'add_therapist' => 'Add Therapists',
         'status' => 'Status',
 
+    ],
+
+    'clients' => [
+        'users_page_title' => 'Clients',
+        'all_clients' => 'All Clients',
+        'clients' => 'Clients',
+        'name' => 'Name',
+        'phone' => 'Phone',
+        'address' => 'Address',
+        'email' => 'Email',
+        'gender' => 'Gender',
+        'lecture_count' => 'Lecture Count',
+        'status' => 'status',
+    ],
+
+    'invoices' => [
+        'invoices' => 'Invoices',
+        'all_invoices' => 'All Invoices',
+        'all_clients' => 'All Clients',
+        'clients' => 'Clients',
+        'name' => 'Name',
+        'phone' => 'Phone',
+        'address' => 'Address',
+        'email' => 'Email',
+        'gender' => 'Gender',
+        'lecture_count' => 'Lecture Count',
+        'status' => 'status',
     ],
 
 ];

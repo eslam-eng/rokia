@@ -27,7 +27,7 @@ class UsersDataTable extends DataTable
                 $classes = $user->status == ActivationStatus::ACTIVE->value ? 'badge-success' : 'badge-danger';
                 return view('components._datatable-badge', ['class' => $classes, 'text' => ActivationStatus::from($user->status)->name]);
             })
-            ->editColumn('gender', fn(User $user) => __('app.' . $user->gender))
+            ->editColumn('gender', fn(User $user) => __('app.general.' . $user->gender))
             ->editColumn('lecture_count', fn(User $user) => $user->lecture_count)
             ->editColumn('created_at', fn(User $user) => $user->created_at->format('Y-m-d'))
             ->addColumn('action', function (User $user) {
@@ -76,34 +76,35 @@ class UsersDataTable extends DataTable
             Column::make('id')
                 ->title("#"),
             Column::make('name')
-                ->title(__('app.name'))
+                ->title(__('app.clients.name'))
                 ->orderable(false)
                 ->searchable(false),
             Column::make('phone')
-                ->title(__('app.phone'))
+                ->title(__('app.clients.phone'))
                 ->orderable(false),
             Column::make('address')
-                ->title(__('app.address'))
+                ->title(__('app.clients.address'))
                 ->orderable(false),
             Column::make('email')
-                ->title(__('app.email'))
+                ->title(__('app.clients.email'))
                 ->orderable(false),
             Column::make('gender')
-                ->title(__('app.gender'))
+                ->title(__('app.clients.gender'))
                 ->orderable(false)
                 ->searchable(false),
             Column::make('lecture_count')
-                ->title(__('app.lecture_count'))
+                ->title(__('app.clients.lecture_count'))
                 ->orderable(false)
                 ->searchable(false),
             Column::make('status')
-                ->title(__('app.status'))
+                ->title(__('app.clients.status'))
                 ->orderable(false)
                 ->searchable(false),
             Column::make('created_at')
-                ->title(__('app.created_at'))
+                ->title(__('app.general.created_at'))
                 ->searchable(false),
             Column::computed('action')
+                ->title(__('app.general.action'))
                 ->exportable(false)
                 ->printable(false)
                 ->addClass('text-center'),

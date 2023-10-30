@@ -47,12 +47,12 @@
                     </ul>
                 </li>
 
-                <li class="side-item side-item-category">@lang('app.users')</li>
+                <li class="side-item side-item-category">@lang('app.clients.clients')</li>
 
                 <li class="slide">
                     <a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0);">
                         <i class="fa fa-users pe-3"></i>
-                        <span class="side-menu__label">@lang('app.users')</span><i
+                        <span class="side-menu__label">@lang('app.clients.clients')</span><i
                             class="angle fe fe-chevron-right"></i></a>
                     <ul class="slide-menu">
                         <li class="side-menu__label1"><a href="javascript:void(0);">Utilities</a></li>
@@ -61,7 +61,7 @@
                                    href="{{route('users.create')}}">@lang('app.new_user')</a></li>
                         @endcan
                         <li><a class="slide-item" data-is_active="{{request()->fullUrlIs(route('users.index'))}}"
-                               href="{{route('users.index')}}">@lang('app.users')</a></li>
+                               href="{{route('users.index')}}">@lang('app.clients.clients')</a></li>
                     </ul>
                 </li>
 
@@ -70,7 +70,7 @@
                 <li class="slide">
                     <a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0);">
                         <i class="fa fa-building pe-3"></i>
-                        <span class="side-menu__label">@lang('app.invoices')</span><i
+                        <span class="side-menu__label">@lang('app.invoices.invoices')</span><i
                             class="angle fe fe-chevron-right"></i></a>
                     <ul class="slide-menu">
                         <li>
