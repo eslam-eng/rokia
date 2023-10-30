@@ -17,8 +17,8 @@ return new class extends Migration
             $table->id();
             $table->foreignIdFor(\App\Models\User::class,'therapist_id')->constrained('users');
             $table->decimal('sub_total')->default(0);
-            $table->decimal('therapist_commission');
             $table->decimal('grand_total');
+            $table->decimal('therapist_due');
             $table->tinyInteger('status')->default(\App\Enums\ActivationStatus::PENDING->value);
             $table->timestamps();
         });

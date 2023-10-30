@@ -1,5 +1,8 @@
 <?php
 
+use App\Models\Invoice;
+use App\Models\Lecture;
+use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -13,11 +16,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('invoice_details', function (Blueprint $table) {
+        Schema::create('invoice_items', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(\App\Models\Lecture::class,'lecture_id')->constrained('lectures');
+            $table->foreignIdFor(Invoice::class)->constrained('invoices');
+            $table->foreignIdFor(Lecture::class,'lecture_id')->constrained('lectures');
             $table->decimal('price');
-            $table->foreignIdFor(\App\Models\User::class,'client_id')->constrained('users');
+            $table->decimal('discount')->default(0);
+            $table->decimal('therapist_commission');
+            $table->foreignIdFor(User::class,'client_id')->constrained('users');
             $table->string('notes')->nullable();
             $table->timestamps();
         });
@@ -30,6 +36,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('invoice_details');
+        Schema::dropIfExists('invoice_items');
     }
 };

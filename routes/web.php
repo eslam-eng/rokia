@@ -41,7 +41,8 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function () {
     Route::resource('therapist-lectures', LectureController::class);
     Route::post('therapist-lectures/{id}/status', [LectureController::class, 'status'])->name('therapist-lectures.status');
 
-    Route::get('invoices', [InvoicesController::class,'index']);
+    Route::get('invoices', [InvoicesController::class,'index'])->name('invoices.index');
+    Route::get('invoices/{id}', [InvoicesController::class,'show'])->name('invoices.show');
 
     Route::group(['prefix' => 'media'], function () {
         Route::delete('id', [MediaController::class, 'deleteMedia'])->name('delete-media');

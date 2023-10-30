@@ -3,8 +3,8 @@
 namespace App\DataTables\Invoice;
 
 use App\Enums\ActivationStatus;
-use App\Models\User;
-use App\Services\TherapistService;
+use App\Models\Invoice;
+use App\Services\InvoiceService;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
@@ -23,15 +23,16 @@ class InvoicesDataTable extends DataTable
     {
         return (new EloquentDataTable($query))
             ->setRowId('id')
-            ->editColumn('status', function (User $user) {
-                $classes = $user->status == ActivationStatus::ACTIVE->value ? 'badge-success' : 'badge-danger';
-                return view('components._datatable-badge', ['class' => $classes, 'text' => ActivationStatus::from($user->status)->name]);
-            })->editColumn('gender', fn(User $user) => __('app.' . $user->gender))
-            ->editColumn('created_at',fn(User $user)=>$user->created_at->format('Y-m-d'))
-            ->addColumn('action', function (User $user) {
+            ->setRowClass(fn(Invoice $invoice)=>$invoice->status != ActivationStatus::ACTIVE->value ? 'bg-danger-transparent' : '' )
+            ->editColumn('status', function (Invoice $invoice) {
+                $classes = $invoice->status == ActivationStatus::ACTIVE->value ? 'badge-success' : 'badge-danger';
+                return view('components._datatable-badge', ['class' => $classes, 'text' => __('app.general.' . ActivationStatus::from($invoice->status)->name)]);
+            })
+            ->editColumn('created_at', fn(Invoice $invoice) => $invoice->created_at->format('Y-m-d'))
+            ->addColumn('action', function (Invoice $invoice) {
                 return view(
-                    'layouts.dashboard.therapist.components._actions',
-                    ['model' => $user, 'url' => route('users.destroy', $user->id)]
+                    'layouts.dashboard.invoice.components._actions',
+                    ['model' => $invoice]
                 );
             });
     }
@@ -42,7 +43,7 @@ class InvoicesDataTable extends DataTable
      * @param \App\Models\User $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(TherapistService $model): QueryBuilder
+    public function query(InvoiceService $model): QueryBuilder
     {
         return $model->datatable($this->filters);
     }
@@ -55,7 +56,7 @@ class InvoicesDataTable extends DataTable
     public function html(): HtmlBuilder
     {
         return $this->builder()
-            ->setTableId('therapists-table')
+            ->setTableId('invoice-table')
             ->columns($this->getColumns())
             ->minifiedAjax()
             ->dom('Bfrtip')
@@ -72,15 +73,15 @@ class InvoicesDataTable extends DataTable
     {
         return [
             Column::make('id')->title("#"),
-            Column::make('name')->title(__('app.name')),
-            Column::make('phone')->title(__('app.phone'))->orderable(false),
-            Column::make('address')->title(__('app.address'))->orderable(false),
-            Column::make('email')->title(__('app.email'))->orderable(false),
-            Column::make('gender')->title(__('app.gender'))->orderable(false),
-            Column::make('status')->title(__('app.status'))->orderable(false),
-            Column::make('therapist_commission')->title(__('app.therapist_commission'))->orderable(false),
-            Column::make('created_at'),
-            Column::computed('action')
+            Column::make('therapist.name')->title(__('app.therapists.name')),
+            Column::make('therapist.phone')->title(__('app.therapists.phone'))->orderable(false),
+            Column::make('items_count')->title(__('app.invoices.items_count'))->searchable(false),
+            Column::make('status')->title(__('app.invoices.status'))->searchable(false),
+            Column::make('sub_total')->title(__('app.invoices.sub_total'))->orderable(false)->searchable(false),
+            Column::make('therapist_due')->title(__('app.invoices.therapist_due'))->orderable(false)->searchable(false),
+            Column::make('grand_total')->title(__('app.invoices.grand_total'))->orderable(false),
+            Column::make('created_at')->title(__('app.general.created_at')),
+            Column::computed('action')->title(__('app.general.action'))
                 ->exportable(false)
                 ->printable(false)
                 ->addClass('text-center'),

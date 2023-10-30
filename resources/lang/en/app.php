@@ -14,6 +14,9 @@ return [
         'dashboard_title' => 'Dashboard',
     ],
 
+    'auth'=>[
+      'login_failed'=>'invalid credential'
+    ],
     'general' => [
         'PENDING' => 'Pending',
         'ACTIVE' => 'Active',
@@ -92,16 +95,13 @@ return [
 
     'invoices' => [
         'invoices' => 'Invoices',
+        'invoice_page_title' => 'Invoices',
         'all_invoices' => 'All Invoices',
-        'all_clients' => 'All Clients',
-        'clients' => 'Clients',
-        'name' => 'Name',
-        'phone' => 'Phone',
-        'address' => 'Address',
-        'email' => 'Email',
-        'gender' => 'Gender',
-        'lecture_count' => 'Lecture Count',
         'status' => 'status',
+        'sub_total'=>'Subtotal',
+        'therapist_due'=>'Therapist Due',
+        'grand_total'=>'Grand total',
+        'items_count'=>'Items Count',
     ],
 
 ];

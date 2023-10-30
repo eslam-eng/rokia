@@ -75,7 +75,7 @@
                     <ul class="slide-menu">
                         <li>
                             <a class="slide-item" data-is_active="{{request()->fullUrlIs("#")}}"
-                               href="#">@lang('app.all_invoices')</a>
+                               href="{{route('invoices.index')}}">@lang('app.invoices.all_invoices')</a>
                         </li>
                     </ul>
                 </li>

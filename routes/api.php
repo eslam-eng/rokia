@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\UsersType;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\Lecture\LectureController;
 use App\Http\Controllers\Api\Lecture\UserLectureController;
@@ -58,17 +59,20 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
 
     });
 
-    Route::group(['prefix' => 'therapist'],function (){
+    Route::group(['prefix' => 'therapist'], function () {
         Route::apiResource('lectures', LectureController::class);
-        Route::post('live-lectures', [LectureController::class,'storeLiveLecture'])->name('live-lectures');
-        Route::post('lectures/{id}/media', [LectureController::class,'updateImageCover']);
-        Route::post('send-notifications',[NotificationController::class,'sendTherapistFcmNotification']);
+        Route::middleware('user.type:' . UsersType::THERAPIST->value)->group(function () {
+            Route::post('live-lectures', [LectureController::class, 'storeLiveLecture'])->name('live-lectures');
+            Route::post('lectures/{id}/media', [LectureController::class, 'updateImageCover']);
+            Route::post('send-notifications', [NotificationController::class, 'sendTherapistFcmNotification']);
+
+        });
     });
 
-    Route::group(['prefix' => 'client'],function (){
+    Route::group(['prefix' => 'client', 'middleware' => 'user.type:' . UsersType::CLIENT->value], function () {
         Route::get('lectures', UserLectureController::class);
         Route::apiResource('wishlist', WishlistController::class);
-        Route::delete('wishlist/lecture/{id}/remove',[WishlistController::class,'removeLectureFormFavorite']);
+        Route::delete('wishlist/lecture/{id}/remove', [WishlistController::class, 'removeLectureFormFavorite']);
     });
 
     Route::post('update-device-token', [UsersController::class, 'updateDeviceToken']);
@@ -79,8 +83,8 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
         Route::get('/{notification_id}/mark-as-read', [NotificationController::class, 'markAsRead']);
     });
 
-    Route::group(['prefix' => 'media'],function (){
-        Route::delete('{id}',[MediaController::class,'deleteMedia']);
+    Route::group(['prefix' => 'media'], function () {
+        Route::delete('{id}', [MediaController::class, 'deleteMedia']);
     });
 
 });
