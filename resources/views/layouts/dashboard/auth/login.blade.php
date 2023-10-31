@@ -21,8 +21,8 @@
                                     <div class="wd-100p">
                                         <div class="">
                                             <div class="main-signup-header">
-                                                <h2>Welcome back!</h2>
-                                                <h6 class="font-weight-semibold mb-4">Please sign in to continue.</h6>
+                                                <h2>@lang('app.auth.welcome_back')</h2>
+                                                <h6 class="font-weight-semibold mb-4">@lang('app.auth.please_login_to_continue')</h6>
                                                 <div class="panel panel-primary">
                                                     @if(session()->has('error'))
                                                         <div class="alert alert-danger">{{session('error')}}</div>
@@ -33,16 +33,16 @@
                                                                 <form action="{{route('signin')}}" method="post">
                                                                     <input type="hidden" name="_token" value="{{csrf_token()}}">
                                                                     <div class="form-group">
-                                                                        <label>@lang('app.email_or_phone')</label>
+                                                                        <label>@lang('app.auth.email_or_phone')</label>
                                                                         <input class="form-control" name="identifier"
-                                                                               placeholder="@lang('app.email_or_phone')"
+                                                                               placeholder="@lang('app.auth.email_or_phone')"
                                                                                type="text">
                                                                         @error('identifier')
                                                                         <div class="text-danger fw-bold">{{$message}}</div>
                                                                         @enderror
                                                                     </div>
                                                                     <div class="form-group">
-                                                                        <label>@lang('app.password')</label> <input
+                                                                        <label>@lang('app.auth.password')</label> <input
                                                                             name="password" class="form-control"
                                                                             placeholder="********" type="password">
 
@@ -51,7 +51,7 @@
                                                                         @enderror
                                                                     </div>
                                                                     <button type="submit"
-                                                                            class="btn btn-primary btn-block">@lang('app.sign_in')</button>
+                                                                            class="btn btn-primary btn-block">@lang('app.auth.sign_in')</button>
                                                                 </form>
                                                             </div>
                                                         </div>

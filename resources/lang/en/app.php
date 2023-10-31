@@ -15,7 +15,12 @@ return [
     ],
 
     'auth'=>[
-      'login_failed'=>'invalid credential'
+      'login_failed'=>'invalid credential',
+      'email_or_phone'=>'Email/Phone',
+      'password'=>'Password',
+      'please_login_to_continue'=>'Please sign in to continue.',
+      'sign_in'=>'Sign in',
+      'welcome_back'=>'Welcome Back',
     ],
     'general' => [
         'PENDING' => 'Pending',
