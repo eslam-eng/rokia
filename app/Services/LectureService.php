@@ -133,7 +133,7 @@ class LectureService extends BaseService
      */
     public function destroy($id): ?bool
     {
-        $count_users_for_lecture = UserLecture::query()->where('relatable_id',$id)->where('relatable_type',get_class(new Lecture()))->count();
+        $count_users_for_lecture = UserLecture::query()->where('lecture_id',$id)->count();
         if ($count_users_for_lecture)
             throw new GeneralException('cannot delete lecture there is users already buy it');
         $lecture = $this->findById($id);
