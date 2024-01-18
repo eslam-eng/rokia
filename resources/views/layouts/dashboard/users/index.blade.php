@@ -18,14 +18,6 @@
     <div class="row row-sm">
         <div class="col-lg-12">
             <div class="card custom-card">
-                <div class="card-header">
-                    <div class="breadcrumb-header justify-content-between">
-                        <div class="left-content">
-                            <a class="btn ripple btn-primary" href="{{route('users.create')}}"><i
-                                    class="fe fe-plus me-2"></i>{{ trans('app.new') }}</a>
-                        </div>
-                    </div>
-                </div>
                 <div class="card-body">
                     <div class="table-responsive">
                         {!! $dataTable->table(['class' => 'table-data table table-bordered text-nowrap border-bottom']) !!}

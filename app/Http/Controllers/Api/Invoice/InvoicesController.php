@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Invoice;
+namespace App\Http\Controllers\Api\Invoice;
 
 use App\DataTables\Invoice\InvoicesDataTable;
 use App\Http\Controllers\Controller;
