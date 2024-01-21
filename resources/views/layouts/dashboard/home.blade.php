@@ -5,12 +5,11 @@
     <!-- breadcrumb -->
     <div class="breadcrumb-header justify-content-between">
         <div class="left-content">
-            <span class="main-content-title mg-b-0 mg-b-lg-1">DASHBOARD</span>
+            <span class="main-content-title mg-b-0 mg-b-lg-1">@lang('app.dashboard.dashboard_title')</span>
         </div>
         <div class="justify-content-center mt-2">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item tx-15"><a href="javascript:void(0);">Dashboard</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Sales</li>
+                <li class="breadcrumb-item tx-15"><a href="javascript:void(0);">@lang('app.dashboard.dashboard_title')</a></li>
             </ol>
         </div>
     </div>
@@ -33,7 +32,7 @@
                                 <div class="col-9 py-0">
                                     <div class="pt-4 pb-3">
                                         <div class="d-flex">
-                                            <h6 class="mb-2 tx-12">@lang('app.users_count')</h6>
+                                            <h6 class="mb-2 tx-12">@lang('app.dashboard.users_count')</h6>
                                         </div>
                                         <div class="pb-0 mt-0">
                                             <div class="d-flex">
@@ -77,7 +76,7 @@
                                 <div class="col-9">
                                     <div class="pt-4 pb-3">
                                         <div class="d-flex">
-                                            <h6 class="mb-2 tx-12">@lang('app.active_lectures')</h6>
+                                            <h6 class="mb-2 tx-12">@lang('app.dashboard.active_lectures')</h6>
                                         </div>
                                         <div class="pb-0 mt-0">
                                             <div class="d-flex">
@@ -99,7 +98,7 @@
                                 <div class="col-9">
                                     <div class="pt-4 pb-3">
                                         <div class="d-flex">
-                                            <h6 class="mb-2 tx-12">@lang('app.not_active_lectures')</h6>
+                                            <h6 class="mb-2 tx-12">@lang('app.dashboard.not_active_lectures')</h6>
                                         </div>
                                         <div class="pb-0 mt-0">
                                             <div class="d-flex">
@@ -121,7 +120,7 @@
                                 <div class="col-9">
                                     <div class="pt-4 pb-3">
                                         <div class="d-flex">
-                                            <h6 class="mb-2 tx-12">@lang('app.paid_lectures')</h6>
+                                            <h6 class="mb-2 tx-12">@lang('app.dashboard.paid_lectures')</h6>
                                         </div>
                                         <div class="pb-0 mt-0">
                                             <div class="d-flex">
@@ -143,7 +142,7 @@
                                 <div class="col-9">
                                     <div class="pt-4 pb-3">
                                         <div class="d-flex	">
-                                            <h6 class="mb-2 tx-12">@lang('app.free_lectures')</h6>
+                                            <h6 class="mb-2 tx-12">@lang('app.dashboard.free_lectures')</h6>
                                         </div>
                                         <div class="pb-0 mt-0">
                                             <div class="d-flex">
@@ -165,18 +164,18 @@
         <div class="col-xl-6">
             <div class="card custom-card">
                 <div class="card-header justify-content-between">
-                    <div class="card-title"> recently lectures</div>
+                    <div class="card-title"> @lang('app.dashboard.recently_lectures')</div>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
                         <table class="table text-nowrap table-bordered">
                             <thead>
                             <tr>
-                                <th scope="col">title</th>
-                                <th scope="col">is_paid</th>
-                                <th scope="col">price</th>
-                                <th scope="col">therapist</th>
-                                <th scope="col">status</th>
+                                <th scope="col">@lang('app.lectures.lecture_title')</th>
+                                <th scope="col">@lang('app.lectures.is_paid')</th>
+                                <th scope="col">@lang('app.lectures.price')</th>
+                                <th scope="col">@lang('app.lectures.therapist')</th>
+                                <th scope="col">@lang('app.lectures.status')</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -202,18 +201,18 @@
         <div class="col-xl-6">
             <div class="card custom-card">
                 <div class="card-header justify-content-between">
-                    <div class="card-title"> upcoming lectures</div>
+                    <div class="card-title"> @lang('app.dashboard.upcoming_lectures')</div>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
                         <table class="table text-nowrap table-bordered">
                             <thead>
                             <tr>
-                                <th scope="col">title</th>
-                                <th scope="col">is_paid</th>
-                                <th scope="col">price</th>
-                                <th scope="col">therapist</th>
-                                <th scope="col">status</th>
+                                <th scope="col">@lang('app.lectures.lecture_title')</th>
+                                <th scope="col">@lang('app.lectures.is_paid')</th>
+                                <th scope="col">@lang('app.lectures.price')</th>
+                                <th scope="col">@lang('app.lectures.therapist')</th>
+                                <th scope="col">@lang('app.lectures.status')</th>
                             </tr>
                             </thead>
                             <tbody>

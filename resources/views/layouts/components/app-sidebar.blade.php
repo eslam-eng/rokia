@@ -14,10 +14,10 @@
                 </svg>
             </div>
             <ul class="side-menu">
-                <li class="side-item side-item-category">@lang('app.menu')</li>
+                <li class="side-item side-item-category">@lang('app.dashboard.dashboard_title')</li>
                 <li>
                     <a class="slide-item" data-is_active="{{request()->fullUrlIs(route('home'))}}"
-                       href="{{route('home')}}">@lang('app.Dashboard')</a>
+                       href="{{route('home')}}">@lang('app.dashboard.dashboard_title')</a>
                 </li>
                 <li class="side-item side-item-category">@lang('app.therapists.therapists')</li>
                 <li class="slide">

@@ -25,6 +25,7 @@ return new class extends Migration
             $table->smallInteger('type')->default(\App\Enums\UsersType::CLIENT->value);
             $table->tinyInteger('status')->default(\App\Enums\ActivationStatus::ACTIVE->value);
             $table->decimal('therapist_commission')->default(0);
+            $table->string('locale')->default(config('app.locale'));
 //            $table->softDeletes();
             $table->timestamps();
         });

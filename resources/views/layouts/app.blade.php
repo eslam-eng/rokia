@@ -16,7 +16,7 @@
     @yield('after_styles')
 </head>
 
-<body class="ltr main-body app sidebar-mini">
+<body class="{{auth()->user()->locale=='en' ? 'ltr' : 'rtl'}} main-body app sidebar-mini">
 
 <!-- Loader -->
 <div id="global-loader">

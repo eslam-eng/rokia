@@ -12,6 +12,14 @@ return [
 
     'dashboard' => [
         'dashboard_title' => 'Dashboard',
+        'users_count' => 'Users Count',
+        'active_lectures' => 'Active Lectures',
+        'not_active_lectures' => 'Not Active Lectures',
+        'paid_lectures' => 'Paid Lectures',
+        'free_lectures' => 'Free Lectures',
+        'recently_lectures' => 'Recently Lectures',
+        'upcoming_lectures' => 'Upcoming Lectures',
+
     ],
 
     'auth'=>[
@@ -44,6 +52,7 @@ return [
         'save' => 'Save',
         'back' => 'Back',
         'filters' => 'Filters',
+        'no_data_available' => 'No data available',
     ],
 
 
