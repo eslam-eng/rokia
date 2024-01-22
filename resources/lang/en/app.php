@@ -22,13 +22,14 @@ return [
 
     ],
 
-    'auth'=>[
-      'login_failed'=>'invalid credential',
-      'email_or_phone'=>'Email/Phone',
-      'password'=>'Password',
-      'please_login_to_continue'=>'Please sign in to continue.',
-      'sign_in'=>'Sign in',
-      'welcome_back'=>'Welcome Back',
+    'auth' => [
+        'login_failed' => 'invalid credential',
+        'auth_in_review' => 'Your data is being reviewed. You can try again later',
+        'email_or_phone' => 'Email/Phone',
+        'password' => 'Password',
+        'please_login_to_continue' => 'Please sign in to continue.',
+        'sign_in' => 'Sign in',
+        'welcome_back' => 'Welcome Back',
     ],
     'general' => [
         'PENDING' => 'Pending',
@@ -112,10 +113,18 @@ return [
         'invoice_page_title' => 'Invoices',
         'all_invoices' => 'All Invoices',
         'status' => 'status',
-        'sub_total'=>'Subtotal',
-        'therapist_due'=>'Therapist Due',
-        'grand_total'=>'Grand total',
-        'items_count'=>'Items Count',
+        'sub_total' => 'Subtotal',
+        'therapist_due' => 'Therapist Due',
+        'grand_total' => 'Grand total',
+        'items_count' => 'Items Count',
+    ],
+    'sliders' => [
+        'title' => 'Sliders',
+        'add_slider' => 'Add Slider',
+        'image' => 'image',
+        'caption' => 'caption',
+        'order' => 'order',
+        'status' => 'caption',
     ],
 
 ];

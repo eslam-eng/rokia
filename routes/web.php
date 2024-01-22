@@ -5,6 +5,7 @@ use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Invoice\InvoicesController;
 use App\Http\Controllers\Language\SetLanguageController;
 use App\Http\Controllers\Media\MediaController;
+use App\Http\Controllers\Slider\SliderController;
 use App\Http\Controllers\Therapist\Lecture\LectureController;
 use App\Http\Controllers\Therapist\TherapistController;
 use App\Http\Controllers\UsersController;
@@ -40,6 +41,9 @@ Route::group(['prefix' => 'dashboard', 'middleware' =>['auth','locale']], functi
 
     Route::resource('therapists', TherapistController::class)->except(['create']);
     Route::post('therapist/{id}/status', [TherapistController::class, 'status'])->name('therapist.status');
+
+    Route::resource('sliders', SliderController::class);
+    Route::post('sliders/{id}/status', [SliderController::class, 'status'])->name('sliders.status');
 
     Route::resource('therapist-lectures', LectureController::class);
     Route::post('therapist-lectures/{id}/status', [LectureController::class, 'status'])->name('therapist-lectures.status');

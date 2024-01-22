@@ -14,4 +14,13 @@ enum ActivationStatus: int
     case ACTIVE = 1;
     case INACTIVE = 2;
 
+    public function getLabel(): string
+    {
+        return match ($this) {
+            self::PENDING => __('app.general.ACTIVE'),
+            self::ACTIVE => __('app.general.PENDING'),
+            self::INACTIVE => __('app.general.INACTIVE'),
+        };
+    }
+
 }

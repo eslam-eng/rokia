@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Enums\ActivationStatus;
+use App\Enums\UsersType;
 use App\Exceptions\NotFoundException;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\Notification\StoreFcmTokenRequest;
 use App\Http\Resources\ClientResource;
+use App\Models\User;
 use App\Services\AuthService;
 use App\Services\UserService;
 use Exception;
@@ -24,6 +27,10 @@ class AuthController extends Controller
             $user = $this->authService->loginWithEmailOrPhone(identifier: $request->identifier, password: $request->password);
             if (isset($request->fcm_token))
                 $this->userService->setUserFcmToken($user, $request->fcm_token);
+
+            if ($user->status == ActivationStatus::PENDING->value)
+                return apiResponse(message: __('app.auth.auth_in_review'),code: 422);
+
             $token = $user->getToken();
             $data = [
                 'access_token' => $token,
@@ -50,6 +57,4 @@ class AuthController extends Controller
         $this->userService->setUserFcmToken($user, $request->fcm_token);
         return apiResponse(message: trans('lang.success_operation'));
     }
-
-
 }
