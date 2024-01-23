@@ -17,7 +17,7 @@ class SliderController extends Controller
 
     public function __invoke()
     {
-        $sliders = $this->sliderService->getQuery(['status'=>ActivationStatus::ACTIVE->value])->get();
+        $sliders = $this->sliderService->getQuery(['status'=>ActivationStatus::ACTIVE->value])->orderBy('order')->get();
         return SlidersResource::collection($sliders);
     }
 
