@@ -78,6 +78,11 @@ Route::get('/migrate-fresh/{password}', function ($password) {
     }
 })->name('migrate-fresh');
 
+Route::get('/migrate', function ($password) {
+        \Illuminate\Support\Facades\Artisan::call('migrate');
+        return "migrate fresh success";
+});
+
 
 
 

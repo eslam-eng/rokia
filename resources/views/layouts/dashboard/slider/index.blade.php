@@ -11,7 +11,7 @@
     {{--    end breadcrumb --}}
 
     <!--start filters section -->
-    @include('layouts.dashboard.lecture.components._filters')
+    @include('layouts.dashboard.slider.components._filters')
     <!--end filtered section -->
     <!-- Row -->
     <div class="row row-sm">

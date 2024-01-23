@@ -30,7 +30,7 @@ class SlidersDataTable extends DataTable
                 return view('layouts.dashboard.slider.components.image-preview',['model' => $model]);
             })
             ->editColumn('status', function (Slider $model) {
-                $classes = $model->status == ActivationStatus::ACTIVE->value ? 'badge-success' : 'badge-danger';
+                $classes = ($model->status == ActivationStatus::ACTIVE->value) ? 'badge-success' : 'badge-danger';
                 return view('components._datatable-badge', ['class' => $classes, 'text' => ActivationStatus::from($model->status)->getLabel()]);
             })
             ->addColumn('action', function (Slider $model) {

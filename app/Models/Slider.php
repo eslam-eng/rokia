@@ -15,11 +15,4 @@ class Slider extends Model implements HasMedia
 
     protected $fillable = ['caption','order', 'status'];
 
-    protected function mediaUrl() :Attribute
-    {
-        return Attribute::make(
-            get: fn () => $this->getFirstMediaUrl()
-        );
-    }
-
 }

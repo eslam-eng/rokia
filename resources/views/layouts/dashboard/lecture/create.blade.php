@@ -117,8 +117,8 @@
                                     <button type="submit" class="btn btn-primary"><i
                                             class="fa fa-save pe-2"></i>@lang('app.save')</button>
 
-                                    <a role="button" href="{{ URL::previous() }}" class="btn btn-primary"><i
-                                            class="fa fa-backward pe-2"></i>@lang('app.back')</a>
+                                    <a role="button" href="{{ URL::previous() }}" class="btn btn-danger"><i
+                                            class="fa fa-backward pe-2"></i>@lang('app.general.back')</a>
                                 </div>
                             </div>
                         </div>

@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\Lecture\UserLectureController;
 use App\Http\Controllers\Api\NotificationController;
 use App\Http\Controllers\Api\PhoneVerifyController;
 use App\Http\Controllers\Api\RestPasswordController;
+use App\Http\Controllers\Api\Slider\SliderController;
 use App\Http\Controllers\Api\Therapist\TherapistController;
 use App\Http\Controllers\Api\UsersController;
 use App\Http\Controllers\Api\Wishlist\WishlistController;
@@ -86,6 +87,8 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::group(['prefix' => 'media'], function () {
         Route::delete('{id}', [MediaController::class, 'deleteMedia']);
     });
+
+    Route::get('sliders', SliderController::class);
 
 });
 

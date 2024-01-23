@@ -52,50 +52,36 @@ class SliderService extends BaseService
     public function store(SliderDTO $sliderDTO)
     {
         $sliderDTO->validate();
-        $sliderData = $sliderDTO->toArrayExcept(['audio_file']);
+        $sliderData = $sliderDTO->toArray();
         $slider = $this->getQuery()->create($sliderData);
         if (isset($sliderDTO->image)) {
-            $slider->addMediaFromRequest('image')->toMediaCollection();
+            $slider->addMediaFromRequest('image')->toMediaCollection('sliders');
+
         }
 
         return $slider;
     }
 
     /**
-     * @param UpdateLectureDTO $lectureDTO
-     * @param $id
-     * @return \Illuminate\Database\Eloquent\Collection|Model
+     * @param SliderDTO $sliderDTO
+     * @param int|Slider $slider
+     * @return mixed
      * @throws NotFoundException
      */
-    public function update(UpdateLectureDTO $lectureDTO, $id)
+    public function update(SliderDTO $sliderDTO, int|Slider $slider)
     {
-        $lecture = $this->findById($id);
-        if (!$lecture)
-            throw new NotFoundException('lecture not found');
-        $lectureDTO->type = $lecture->type;
-        $lectureDTO->validate();
-        $lectureData = $lectureDTO->toArray();
-        $lecture->update($lectureData);
-        return $lecture;
-    }
+        if (is_int($slider))
+            $slider = $this->findById($slider);
 
-    public function changeCoverImage(array $data = [], $id)
-    {
-        $user = $this->findById($id);
-        if (!isset($data['password']))
-            $user->update(Arr::except($data, ['profile_image', 'password']));
-        else {
-            $data['password'] = bcrypt($data['password']);
-            $user->update(Arr::except($data, 'profile_image'));
-        }
+        $sliderData = $sliderDTO->toFilteredArray();
 
-        if (isset($data['profile_image'])) {
-            $user->deleteAttachmentsLogo();
-            $fileData = FileService::saveImage(file: $data['profile_image'], path: 'uploads/users', field_name: 'profile_image');
-            $fileData['type'] = AttachmentsType::PRIMARYIMAGE;
-            $user->storeAttachment($fileData);
+        if (isset($sliderData['image'])) {
+            //first remove the old
+            $slider->clearMediaCollection('sliders');
+            //second add new image
+            $slider->addMediaFromRequest('image')->toMediaCollection('sliders');
         }
-        return true;
+        return $slider->update($sliderData);
     }
 
 
@@ -103,13 +89,11 @@ class SliderService extends BaseService
      * @throws NotFoundException
      * @throws GeneralException
      */
-    public function destroy($id): ?bool
+    public function destroy(Slider|int $slider): ?bool
     {
-        $count_users_for_lecture = UserLecture::query()->where('lecture_id',$id)->count();
-        if ($count_users_for_lecture)
-            throw new GeneralException('cannot delete lecture there is users already buy it');
-        $lecture = $this->findById($id);
-        return $lecture->delete();
+        if (is_int($slider))
+            $slider = $this->findById($slider);
+        return $slider->delete();
     }
 
 

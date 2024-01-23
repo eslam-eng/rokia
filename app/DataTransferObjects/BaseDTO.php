@@ -36,7 +36,10 @@ abstract class BaseDTO implements DTOInterface
      */
     public function toFilteredArray(): array
     {
-        return array_filter($this->toArray());
+        return array_filter($this->toArray(),function ($value){
+            return ($value !== null && $value !== false && $value !== '');
+
+        });
     }
 
     /**

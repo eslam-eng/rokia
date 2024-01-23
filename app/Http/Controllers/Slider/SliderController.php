@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Slider;
 
 use App\DataTables\Slider\SlidersDataTable;
 use App\DataTransferObjects\Slider\SliderDTO;
-use App\Exceptions\GeneralException;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Slider\SliderRequest;
+use App\Models\Slider;
 use App\Services\SliderService;
 use Illuminate\Http\Request;
 use Mockery\Exception;
@@ -46,12 +46,10 @@ class SliderController extends Controller
             $this->sliderService->store($sliderDTO);
             $toast = ['type' => 'success', 'title' => 'Success', 'message' => 'slider created successfully'];
             return redirect(route('sliders.index'))->with('toast', $toast);
-        }catch (\Exception $exception){
+        } catch (\Exception $exception) {
             $toast = ['type' => 'success', 'title' => 'Success', 'message' => $exception->getMessage()];
             return back()->with('toast', $toast);
         }
-
-
     }
 
     public function show($id)
@@ -59,23 +57,30 @@ class SliderController extends Controller
         //
     }
 
-    public function edit($id)
+    public function edit(Slider $slider)
     {
-
+        return view('layouts.dashboard.slider.edit', compact('slider'));
     }
 
-    public function update(SliderRequest $request, $id)
-    {
-    }
-
-
-    public function destroy($id)
+    public function update(SliderRequest $request, Slider $slider)
     {
         try {
-            $this->sliderService->destroy($id);
+            $sliderDTO = SliderDTO::fromRequest($request);
+            $this->sliderService->update($sliderDTO,$slider);
+            $toast = ['type' => 'success', 'title' => 'Success', 'message' => 'slider created successfully'];
+            return redirect(route('sliders.index'))->with('toast', $toast);
+        } catch (\Exception $exception) {
+            $toast = ['type' => 'success', 'title' => 'Success', 'message' => $exception->getMessage()];
+            return back()->with('toast', $toast);
+        }
+    }
+
+
+    public function destroy(Slider $slider)
+    {
+        try {
+            $this->sliderService->destroy($slider);
             return apiResponse(message: 'deleted successfully');
-        } catch (GeneralException $exception) {
-            return apiResponse(message: $exception->getMessage(), code: 422);
         } catch (\Exception $exception) {
             return apiResponse(message: $exception->getMessage(), code: 500);
         }
