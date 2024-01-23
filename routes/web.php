@@ -83,10 +83,6 @@ Route::get('/migrate', function () {
     $output = Artisan::call('migrate');
     return '<pre>' . $output . '</pre>';
 });
-Route::get('/link-storage', function () {
-    $output = Artisan::call('storage:link');
-    return '<pre>' . $output . '</pre>';
-});
 
 
 
