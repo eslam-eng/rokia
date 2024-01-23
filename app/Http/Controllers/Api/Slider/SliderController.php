@@ -4,9 +4,7 @@ namespace App\Http\Controllers\Api\Slider;
 
 use App\Enums\ActivationStatus;
 use App\Http\Controllers\Controller;
-use App\Http\Resources\LocationsResource;
 use App\Http\Resources\SlidersResource;
-use App\Services\LocationsService;
 use App\Services\SliderService;
 
 class SliderController extends Controller
