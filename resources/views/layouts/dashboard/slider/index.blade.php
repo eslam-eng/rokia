@@ -7,7 +7,7 @@
 @section('title',__('app.sliders.title'))
 @section('content')
     {{--    breadcrumb --}}
-    @include('layouts.components.breadcrumb',['title' => trans('app.app.sliders.title'),'first_list_item' => '','last_list_item' => ''])
+    @include('layouts.components.breadcrumb',['title' => trans('app.sliders.title'),'first_list_item' => '','last_list_item' => ''])
     {{--    end breadcrumb --}}
 
     <!--start filters section -->
