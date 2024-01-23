@@ -9,6 +9,7 @@ use App\Http\Controllers\Slider\SliderController;
 use App\Http\Controllers\Therapist\Lecture\LectureController;
 use App\Http\Controllers\Therapist\TherapistController;
 use App\Http\Controllers\UsersController;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,9 +28,9 @@ Route::group(['prefix' => 'authentication', 'middleware' => 'guest'], function (
     Route::get('login', [AuthController::class, 'loginForm'])->name('login');
     Route::post('login', [AuthController::class, 'login'])->name('signin');
 });
-Route::get('/', DashboardController::class)->name('/')->middleware(['auth','locale']);
+Route::get('/', DashboardController::class)->name('/')->middleware(['auth', 'locale']);
 //auth routes
-Route::group(['prefix' => 'dashboard', 'middleware' =>['auth','locale']], function () {
+Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'locale']], function () {
 
     Route::get('local/{locale}', SetLanguageController::class)->name('language.change');
 
@@ -48,8 +49,8 @@ Route::group(['prefix' => 'dashboard', 'middleware' =>['auth','locale']], functi
     Route::resource('therapist-lectures', LectureController::class);
     Route::post('therapist-lectures/{id}/status', [LectureController::class, 'status'])->name('therapist-lectures.status');
 
-    Route::get('invoices', [InvoicesController::class,'index'])->name('invoices.index');
-    Route::get('invoices/{id}', [InvoicesController::class,'show'])->name('invoices.show');
+    Route::get('invoices', [InvoicesController::class, 'index'])->name('invoices.index');
+    Route::get('invoices/{id}', [InvoicesController::class, 'show'])->name('invoices.show');
 
     Route::group(['prefix' => 'media'], function () {
         Route::delete('id', [MediaController::class, 'deleteMedia'])->name('delete-media');
@@ -62,25 +63,25 @@ Route::fallback(function () {
     return view('layouts.dashboard.error-pages.error404');
 });
 Route::get('/clear-cache', function () {
-    \Illuminate\Support\Facades\Artisan::call('config:cache');
-    \Illuminate\Support\Facades\Artisan::call('cache:clear');
-    \Illuminate\Support\Facades\Artisan::call('config:clear');
-    \Illuminate\Support\Facades\Artisan::call('view:clear');
-    \Illuminate\Support\Facades\Artisan::call('route:clear');
+    Artisan::call('config:cache');
+    Artisan::call('cache:clear');
+    Artisan::call('config:clear');
+    Artisan::call('view:clear');
+    Artisan::call('route:clear');
     return "Cache is cleared";
 })->name('clear.cache');
 
 Route::get('/migrate-fresh/{password}', function ($password) {
     if ($password == 150024) {
 
-        \Illuminate\Support\Facades\Artisan::call('migrate:fresh --seed');
+        Artisan::call('migrate:fresh --seed');
         return "migrate fresh success";
     }
 })->name('migrate-fresh');
 
-Route::get('/migrate', function ($password) {
-        \Illuminate\Support\Facades\Artisan::call('migrate');
-        return "migrate fresh success";
+Route::get('/migrate', function () {
+    $output = Artisan::call('migrate');
+    return '<pre>' . $output . '</pre>';
 });
 
 
