@@ -5,6 +5,7 @@ use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Invoice\InvoicesController;
 use App\Http\Controllers\Language\SetLanguageController;
 use App\Http\Controllers\Media\MediaController;
+use App\Http\Controllers\Rozmana\RozmanaController;
 use App\Http\Controllers\Slider\SliderController;
 use App\Http\Controllers\Therapist\Lecture\LectureController;
 use App\Http\Controllers\Therapist\TherapistController;
@@ -55,6 +56,7 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'locale']], func
     Route::group(['prefix' => 'media'], function () {
         Route::delete('id', [MediaController::class, 'deleteMedia'])->name('delete-media');
     });
+    Route::get('rozmana', RozmanaController::class)->name('rozmana.datatable');
     // Route::get('switcherpage', Switcherpage::class)->name('switcherpage');
 
 });

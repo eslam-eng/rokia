@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\Lecture\UserLectureController;
 use App\Http\Controllers\Api\NotificationController;
 use App\Http\Controllers\Api\PhoneVerifyController;
 use App\Http\Controllers\Api\RestPasswordController;
+use App\Http\Controllers\Api\RozmanaController;
 use App\Http\Controllers\Api\Slider\SliderController;
 use App\Http\Controllers\Api\Therapist\TherapistController;
 use App\Http\Controllers\Api\UsersController;
@@ -89,6 +90,14 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     });
 
     Route::get('sliders', SliderController::class);
+
+    Route::apiResource('rozmana',RozmanaController::class);
+//    Route::group(['prefix' => 'rozmana'],function (){
+//        Route::get('/',[RozmanaController::class,'index'])->name('api.rozmana.index');
+//        Route::post('/store',[RozmanaController::class,'store'])->name('api.rozmana.store');
+//        Route::post('/{rozmana}',[RozmanaController::class,'update'])->name('api.rozmana.update');
+//        Route::delete('/{rozmana}',[RozmanaController::class,'destroy'])->name('api.rozmana.update');
+//    });
 
 });
 

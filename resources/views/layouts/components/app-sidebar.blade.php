@@ -70,6 +70,22 @@
                     </ul>
                 </li>
 
+                <li class="side-item side-item-category">@lang('app.rozmana.rozmana_title')</li>
+                <li class="slide">
+                    <a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0);">
+                        <i class="fa fa-users ide-menu__icon pe-2"></i>
+                        <span class="side-menu__label">@lang('app.rozmana.rozmana_title')</span>
+                        <i class="angle fe fe-chevron-right"></i>
+                    </a>
+                    <ul class="slide-menu">
+                        <li>
+                            <a class="slide-item" data-is_active="{{request()->fullUrlIs(route('rozmana.datatable'))}}"
+                               href="{{route('rozmana.datatable')}}">@lang('app.rozmana.rozmana_title')</a>
+                        </li>
+
+                    </ul>
+                </li>
+
                 <li class="side-item side-item-category">@lang('app.clients.clients')</li>
 
                 <li class="slide">

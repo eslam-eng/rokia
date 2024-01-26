@@ -126,5 +126,17 @@ return [
         'order' => 'order',
         'status' => 'caption',
     ],
+    'rozmana' => [
+        'title' => 'title',
+        'rozmana_title' => 'Rozmana',
+        'rozmana_created_successfully' => 'Rozmana Created Successfully',
+        'rozmana_updated_successfully' => 'Rozmana Updated Successfully',
+        'rozmana_not_fount' => 'Rozmana Not Found',
+        'rozmana_deleted_successfully' => 'Rozmana Deleted Successfully',
+        'status' => 'status',
+        'date' => 'date',
+        'description' => 'Description',
+        'thereapist' => 'Therapist',
+    ],
 
 ];
