@@ -7,9 +7,12 @@ use App\Exceptions\NotFoundException;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Rozmana\RozmanaRequest;
 use App\Http\Requests\Rozmana\RozmanaRequest as RozmanaUpdateRequest;
+use App\Http\Requests\Rozmana\RozmanaUploadTemplateRequest;
 use App\Http\Resources\RozmanaResource;
+use App\Imports\RozmanaImport;
 use App\Services\RozmanaService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 
 class RozmanaController extends Controller
 {
@@ -47,7 +50,7 @@ class RozmanaController extends Controller
             $this->rozmanaService->create(dto: $rozamnaDTO);
             return apiResponse(message: __('app.rozmana.rozmana_created_successfully'));
         } catch (\Exception $exception) {
-            return apiResponse(message: $exception->getMessage(),code: 500);
+            return apiResponse(message: $exception->getMessage(), code: 500);
         }
     }
 
@@ -62,10 +65,10 @@ class RozmanaController extends Controller
     {
         try {
             $rozamnaDTO = RozmanaDTO::fromRequest($request);
-            $this->rozmanaService->update(dto: $rozamnaDTO,rozmana: $rozmana);
+            $this->rozmanaService->update(dto: $rozamnaDTO, rozmana: $rozmana);
             return apiResponse(message: __('app.rozmana.rozmana_updated_successfully'));
         } catch (\Exception $exception) {
-            return apiResponse(message: $exception,code: 500);
+            return apiResponse(message: $exception, code: 500);
         }
     }
 
@@ -79,9 +82,30 @@ class RozmanaController extends Controller
     {
         try {
             $this->rozmanaService->destroy(rozmana: $id);
-            return apiResponse(message:  __('app.rozmana.rozmana_deleted_successfully'));
-        }catch (NotFoundException|\Exception $exception){
-            return apiResponse(message:$exception->getMessage());
+            return apiResponse(message: __('app.rozmana.rozmana_deleted_successfully'));
+        } catch (NotFoundException|\Exception $exception) {
+            return apiResponse(message: $exception->getMessage());
+        }
+    }
+
+    public function uploadExceltemplate(RozmanaUploadTemplateRequest $request)
+    {
+        $errors = [];
+        try {
+            $file = $request->file('file');
+            $therapist_id = auth()->id();
+            (new RozmanaImport(therapist_id: $therapist_id))->import($file);
+            return apiResponse(message: __('app.rozmana.imported_suceesfully'));
+        } catch (\Maatwebsite\Excel\Validators\ValidationException $e) {
+            $failures = $e->failures();
+            foreach ($failures as $failure) {
+                $errors[] =  [
+                    "key" =>  $failure->attribute(),
+                    "error" => "row " . $failure->row() . " | " . Arr::first($failure->errors()),
+                ];
+            }
+
+            return apiResponse(data: $errors,message: __('app.rozmana.there_is_errors_in_file'),code: 422);
         }
 
     }

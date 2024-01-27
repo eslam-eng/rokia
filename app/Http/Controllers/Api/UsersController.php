@@ -23,17 +23,6 @@ class UsersController extends Controller
     {
     }
 
-    public function updateDeviceToken(StoreFcmTokenRequest $tokenRequest)
-    {
-        try {
-            $user = getAuthUser();
-            $this->userService->setUserFcmToken($tokenRequest->fcm_token, $user);
-            return apiResponse(message: 'token updated_successfully');
-        } catch (\Exception $exception) {
-            return apiResponse(message: 'there is an error');
-        }
-    }
-
     public function store(ClientRequest $request)
     {
         try {

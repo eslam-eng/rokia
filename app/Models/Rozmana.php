@@ -16,7 +16,7 @@ class Rozmana extends Model
 
     public function therapist()
     {
-        return $this->belongsTo(User::class,'therapist_id')->therapist();
+        return $this->belongsTo(User::class,'therapist_id');
     }
 
     public function scopeTherapist(Builder $builder)

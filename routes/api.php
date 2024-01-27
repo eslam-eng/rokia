@@ -77,7 +77,6 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
         Route::delete('wishlist/lecture/{id}/remove', [WishlistController::class, 'removeLectureFormFavorite']);
     });
 
-    Route::post('update-device-token', [UsersController::class, 'updateDeviceToken']);
 
     Route::group(['prefix' => 'notifications'], function () {
         Route::post('/send', [NotificationController::class, 'sendFcmNotification']);
@@ -92,6 +91,7 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::get('sliders', SliderController::class);
 
     Route::apiResource('rozmana',RozmanaController::class);
+    Route::post('rozmana/upload-template',[RozmanaController::class,'uploadExceltemplate']);
 //    Route::group(['prefix' => 'rozmana'],function (){
 //        Route::get('/',[RozmanaController::class,'index'])->name('api.rozmana.index');
 //        Route::post('/store',[RozmanaController::class,'store'])->name('api.rozmana.store');

@@ -53,8 +53,8 @@ class AuthController extends Controller
 
     public function setFcmToken(StoreFcmTokenRequest $request): \Illuminate\Http\Response|\Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Routing\ResponseFactory
     {
-        $user = auth()->user();
-        $this->userService->setUserFcmToken($user, $request->fcm_token);
+        $user = getAuthUser();
+        $this->userService->setUserFcmToken(fcm_token: $request->fcm_token, user: $user);
         return apiResponse(message: trans('lang.success_operation'));
     }
 }
