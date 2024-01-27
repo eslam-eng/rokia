@@ -26,7 +26,7 @@ class AuthController extends Controller
         try {
             $user = $this->authService->loginWithEmailOrPhone(identifier: $request->identifier, password: $request->password);
             if (isset($request->fcm_token))
-                $this->userService->setUserFcmToken($user, $request->fcm_token);
+                $this->userService->setUserFcmToken(fcm_token: $request->fcm_token, user: $user);
 
             if ($user->status == ActivationStatus::PENDING->value)
                 return apiResponse(message: __('app.auth.auth_in_review'),code: 422);
