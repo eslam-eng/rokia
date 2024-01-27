@@ -5,15 +5,14 @@ namespace App\Services;
 use App\DataTransferObjects\Lecture\LectureDTO;
 use App\DataTransferObjects\Lecture\UpdateLectureDTO;
 use App\DataTransferObjects\Therapist\CreateTherapistDTO;
-use App\Enums\AttachmentsType;
 use App\Exceptions\GeneralException;
 use App\Exceptions\NotFoundException;
 use App\Filters\LecturesFilter;
 use App\Models\Lecture;
+use App\Models\User;
 use App\Models\UserLecture;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Arr;
 use getID3;
 use getid3_lib;
 
@@ -107,26 +106,6 @@ class LectureService extends BaseService
         return $lecture;
     }
 
-    public function changeCoverImage(array $data = [], $id)
-    {
-        $user = $this->findById($id);
-        if (!isset($data['password']))
-            $user->update(Arr::except($data, ['profile_image', 'password']));
-        else {
-            $data['password'] = bcrypt($data['password']);
-            $user->update(Arr::except($data, 'profile_image'));
-        }
-
-        if (isset($data['profile_image'])) {
-            $user->deleteAttachmentsLogo();
-            $fileData = FileService::saveImage(file: $data['profile_image'], path: 'uploads/users', field_name: 'profile_image');
-            $fileData['type'] = AttachmentsType::PRIMARYIMAGE;
-            $user->storeAttachment($fileData);
-        }
-        return true;
-    }
-
-
     /**
      * @throws NotFoundException
      * @throws GeneralException
@@ -149,5 +128,10 @@ class LectureService extends BaseService
         if (!isset($status))
             throw new GeneralException('invalied inputs please provide status to update');
         return $lecture->update(['status'=>$status]);
+    }
+
+    public function getLecturesForUser(User $user): \Illuminate\Database\Eloquent\Collection
+    {
+        return  $user->lecture()->get();
     }
 }

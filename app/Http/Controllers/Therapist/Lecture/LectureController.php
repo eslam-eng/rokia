@@ -33,18 +33,14 @@ class LectureController extends Controller
      */
     public function index(LecturesDatatable $lecturesDatatable, Request $request)
     {
-        try {
-            $filters = array_filter($request->get('filters', []), function ($value) {
-                return ($value !== null && $value !== false && $value !== '');
-            });
+        $filters = array_filter($request->get('filters', []), function ($value) {
+            return ($value !== null && $value !== false && $value !== '');
+        });
 
-            if (isset($request->upcoming))
-                $filters['upcoming'] = 1;
-            return $lecturesDatatable->with(['filters' => $filters])->render('layouts.dashboard.lecture.index');
-        } catch (\Exception $exception) {
-            $toast = ['type' => 'error', 'title' => 'error', 'message' => $exception->getMessage()];
-            return back()->with('toast', $toast);
-        }
+        if (isset($request->upcoming))
+            $filters['upcoming'] = 1;
+        return $lecturesDatatable->with(['filters' => $filters])->render('layouts.dashboard.lecture.index');
+
     }
 
     public function create()

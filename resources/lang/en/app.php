@@ -106,6 +106,8 @@ return [
         'gender' => 'Gender',
         'lecture_count' => 'Lecture Count',
         'status' => 'status',
+        'status_changed_successfully'=>'Status Changed Successfully',
+        'not_found'=>'User Not Found'
     ],
 
     'invoices' => [
@@ -117,6 +119,10 @@ return [
         'therapist_due' => 'Therapist Due',
         'grand_total' => 'Grand total',
         'items_count' => 'Items Count',
+        'PENDING' => 'Pending',
+        'Completed' => 'Completed',
+        'complete' => 'Complete',
+
     ],
     'sliders' => [
         'title' => 'Sliders',

@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\DataTransferObjects\ChangePassword\PasswordChangeDTO;
 use App\DataTransferObjects\User\UserDTO;
+use App\Exceptions\NotFoundException;
 use App\Exceptions\NotFoundException as NotMatchException;
 use App\Filters\UsersFilters;
 use App\Models\User;
@@ -114,5 +115,14 @@ class UserService extends BaseService
         return $user->update([
             'password' => bcrypt($passwordChangeDTO->new_password),
         ]);
+    }
+
+    public function changeStatus($id): bool
+    {
+        $slider = $this->findById($id);
+        if (!$slider)
+            throw new NotFoundException('user not found');
+        $slider->status = !$slider->status ;
+        return $slider->save();
     }
 }

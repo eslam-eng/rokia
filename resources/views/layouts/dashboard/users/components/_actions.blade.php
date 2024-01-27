@@ -1,21 +1,32 @@
 <td class="text-end">
-    <div>
-        <button data-bs-toggle="dropdown" class="btn btn-primary btn-block" aria-expanded="false">@lang('app.actions')
-            <i class="icon ion-ios-arrow-down tx-11 mg-l-3"></i>
-        </button>
-        <div class="dropdown-menu" style="">
-            @can('view_users_details')
-                <a href="{{route('users.show',$model->id)}}" class="dropdown-item">@lang('app.show')</a>
-            @endcan
-            @can('edit_users')
-                <a href="{{route('users.edit',$model->id)}}" class="dropdown-item">@lang('app.edit')</a>
-            @endcan
-
-            @can('delete_users')
-                <button role="button" onclick="destroy('{{$url}}')" class="dropdown-item">@lang('app.delete')</button>
-                @endcan
-
+    <div class="row">
+        <div>
+            <button
+                class="btn btn-sm change_status
+            @if($model->status == \App\Enums\ActivationStatus::ACTIVE->value)
+            btn-danger
+            @else
+            btn-success
+            @endif row-action"
+                data-action="{{route('users.status',$model->id)}}"
+                data-reload="0"
+                data-status=""
+                title="{{in_array($model->status,[\App\Enums\ActivationStatus::PENDING->value,\App\Enums\ActivationStatus::INACTIVE->value]) ? __(key: 'app.active'):__('app.blocked')}}"
+                data-method="POST"
+            >
+                @if($model->status == \App\Enums\ActivationStatus::ACTIVE->value)
+                    <i class="fa fa-pause"></i>
+                @else
+                    <i class="fa fa-check"></i>
+                @endif
+            </button>
         </div>
-        <!-- dropdown-menu -->
+        <div>
+            <a href="#" class="btn btn-sm btn-warning"><i class="fa fa-edit"></i></a>
+        </div>
+        <div>
+{{--            <button role="button" onclick="destroy('{{$url}}')" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button>--}}
+            <button role="button" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button>
+        </div>
     </div>
 </td>

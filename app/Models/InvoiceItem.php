@@ -10,7 +10,8 @@ class InvoiceItem extends Model
 {
     use HasFactory, Filterable;
 
-    protected $fillable = ['invoice_id', 'lecture_id', 'client_id', 'price',
+    protected $fillable = [
+        'invoice_id', 'lecture_id', 'client_id', 'price',
         'discount', 'therapist_commission', 'notes'
     ];
 

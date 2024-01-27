@@ -40,6 +40,7 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'locale']], func
     Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 
     Route::resource('users', UsersController::class);
+    Route::post('users/{id}/status', [UsersController::class, 'status'])->name('users.status');
 
     Route::resource('therapists', TherapistController::class)->except(['create']);
     Route::post('therapist/{id}/status', [TherapistController::class, 'status'])->name('therapist.status');
@@ -50,12 +51,16 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'locale']], func
     Route::resource('therapist-lectures', LectureController::class);
     Route::post('therapist-lectures/{id}/status', [LectureController::class, 'status'])->name('therapist-lectures.status');
 
-    Route::get('invoices', [InvoicesController::class, 'index'])->name('invoices.index');
-    Route::get('invoices/{id}', [InvoicesController::class, 'show'])->name('invoices.show');
+    Route::group(['prefix' => 'invoices'],function (){
+        Route::get('/', [InvoicesController::class, 'index'])->name('invoices.index');
+        Route::get('/{invoice}', [InvoicesController::class, 'show'])->name('invoices.show');
+        Route::post('/{id}/status', [InvoicesController::class, 'completeInvoice'])->name('invoices.status');
+    });
 
     Route::group(['prefix' => 'media'], function () {
         Route::delete('id', [MediaController::class, 'deleteMedia'])->name('delete-media');
     });
+    Route::get('therapist-invoice/{invoice_number}',[InvoicesController::class,'therapistInvoice']);
     Route::get('rozmana', RozmanaController::class)->name('rozmana.datatable');
     // Route::get('switcherpage', Switcherpage::class)->name('switcherpage');
 

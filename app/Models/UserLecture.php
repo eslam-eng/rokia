@@ -7,7 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class UserLecture extends Model
 {
+
+    //this for paid lectures when user buy paid lecture store it here
     use HasFactory;
-    protected $fillable = ['user_id','relatable_id','relatable_type'];
+    protected $fillable = ['user_id','lecture_id'];
 
 }

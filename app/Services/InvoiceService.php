@@ -2,6 +2,9 @@
 
 namespace App\Services;
 
+use App\Enums\InvoiceStatus;
+use App\Exceptions\GeneralException;
+use App\Exceptions\NotFoundException;
 use App\Filters\InvoicesFilter;
 use App\Models\Invoice;
 use Illuminate\Database\Eloquent\Builder;
@@ -39,5 +42,29 @@ class InvoiceService extends BaseService
         return $this->getQuery(filters: $filters)
             ->withCount('items')
             ->with('therapist');
+    }
+
+    /**
+     * @throws NotFoundException
+     */
+    public function findForView(int|Invoice $invoice)
+    {
+        if (is_int($invoice))
+            return $this->findById(id: $invoice, withRelations: ['items', 'therapist']);
+        return $invoice->load(['items', 'therapist']);
+    }
+
+    /**
+     * @throws NotFoundException
+     * @throws GeneralException
+     */
+    public function completeInvoice($id): bool
+    {
+        $invoice = $this->findById($id);
+        if (!$invoice)
+            throw new NotFoundException('invoice not found');
+        if ($invoice->status == InvoiceStatus::COMPLETED->value)
+            throw new GeneralException('invoice already completed');
+        return $invoice->update(['status' => InvoiceStatus::COMPLETED->value]);
     }
 }

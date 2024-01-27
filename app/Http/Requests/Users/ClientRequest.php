@@ -29,17 +29,18 @@ class ClientRequest extends BaseRequest
             'email' => 'required|string',
             'password' => 'required|string',
             'profile_image' => 'nullable|file|mimes:png,jpg,jpeg,svg',
-            'type' => ['required',Rule::in(UsersType::values())],
-            'status' => ['required',Rule::in(ActivationStatus::values())],
-            'gender' => ['required',Rule::in(GenderTypeEnum::values())],
+            'type' => ['required', Rule::in(UsersType::values())],
+            'status' => ['required', Rule::in(ActivationStatus::values())],
+            'gender' => ['required', Rule::in(GenderTypeEnum::values())],
         ];
     }
 
     public function prepareForValidation()
     {
         $this->merge([
-            'type'=>UsersType::CLIENT->value,
-            'status'=>ActivationStatus::ACTIVE->value]
+                'type' => UsersType::CLIENT->value,
+                'status' => ActivationStatus::ACTIVE->value
+            ]
         );
     }
 }
