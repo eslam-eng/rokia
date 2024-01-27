@@ -107,6 +107,6 @@ class RozmanaDataTable extends DataTable
      */
     protected function filename(): string
     {
-        return 'Therapists_' . date('YmdHis');
+        return 'rozmana_' . date('YmdHis');
     }
 }
