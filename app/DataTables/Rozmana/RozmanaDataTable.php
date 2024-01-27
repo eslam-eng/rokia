@@ -73,7 +73,7 @@ class RozmanaDataTable extends DataTable
                 ->orderable(false),
 
             Column::make('therapist.name','therapist_id')
-                ->title(__('app.therapists.name'))
+                ->title(__('app.therapists.therapist'))
                 ->orderable(false),
 
             Column::make('title')
