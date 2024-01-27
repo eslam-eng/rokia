@@ -73,7 +73,7 @@
                 <li class="side-item side-item-category">@lang('app.rozmana.rozmana_title')</li>
                 <li class="slide">
                     <a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0);">
-                        <i class="fa fa-users ide-menu__icon pe-2"></i>
+                        <i class="fa fa-file ide-menu__icon pe-2"></i>
                         <span class="side-menu__label">@lang('app.rozmana.rozmana_title')</span>
                         <i class="angle fe fe-chevron-right"></i>
                     </a>
