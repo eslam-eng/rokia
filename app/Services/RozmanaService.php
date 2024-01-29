@@ -32,9 +32,7 @@ class RozmanaService extends BaseService
     public function paginate(array $filters = []): \Illuminate\Contracts\Pagination\Paginator
     {
         return $this->getQuery(filters: $filters)
-            ->select('*', DB::raw('COUNT(*) as total_count'))
-            ->groupBy('id')
-            ->simplePaginate();
+            ->paginate();
     }
 
     public function datatable(array $filters = []): Builder

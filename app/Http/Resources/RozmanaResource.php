@@ -20,7 +20,6 @@ class RozmanaResource extends JsonResource
             'description'=>$this->description,
             'date'=>$this->date,
             'status'=>$this->status,
-            'total'=>$this->total_count
         ];
     }
 

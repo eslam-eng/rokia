@@ -10,9 +10,11 @@ use App\Http\Requests\Rozmana\RozmanaRequest as RozmanaUpdateRequest;
 use App\Http\Requests\Rozmana\RozmanaUploadTemplateRequest;
 use App\Http\Resources\RozmanaResource;
 use App\Imports\RozmanaImport;
+use App\Models\Rozmana;
 use App\Services\RozmanaService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
 
 class RozmanaController extends Controller
 {
