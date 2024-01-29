@@ -10,11 +10,9 @@ use App\Http\Requests\Rozmana\RozmanaRequest as RozmanaUpdateRequest;
 use App\Http\Requests\Rozmana\RozmanaUploadTemplateRequest;
 use App\Http\Resources\RozmanaResource;
 use App\Imports\RozmanaImport;
-use App\Models\Rozmana;
 use App\Services\RozmanaService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
-use Illuminate\Support\Str;
 
 class RozmanaController extends Controller
 {
@@ -34,9 +32,11 @@ class RozmanaController extends Controller
         $filters = array_filter($request->get('filters', []), function ($value) {
             return ($value !== null && $value !== false && $value !== '');
         });
-        $filters['therapist_id'] = auth()->id();
+        $auth_id = auth()->id();
+        $filters['therapist_id'] = $auth_id;
         $allRozmana = $this->rozmanaService->paginate(filters: $filters);
-        return RozmanaResource::collection($allRozmana);
+        $rozmanCount = $this->rozmanaService->getQuery(['therapist_id'=>$auth_id])->count();
+        return RozmanaResource::collection($allRozmana)->additional(['total_rozmana' => $rozmanCount]);;
     }
 
     /**
@@ -101,13 +101,13 @@ class RozmanaController extends Controller
         } catch (\Maatwebsite\Excel\Validators\ValidationException $e) {
             $failures = $e->failures();
             foreach ($failures as $failure) {
-                $errors[] =  [
-                    "key" =>  $failure->attribute(),
+                $errors[] = [
+                    "key" => $failure->attribute(),
                     "error" => "row " . $failure->row() . " | " . Arr::first($failure->errors()),
                 ];
             }
 
-            return apiResponse(data: $errors,message: __('app.rozmana.there_is_errors_in_file'),code: 422);
+            return apiResponse(data: $errors, message: __('app.rozmana.there_is_errors_in_file'), code: 422);
         }
 
     }
