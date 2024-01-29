@@ -118,6 +118,12 @@
                         </li>
                     </ul>
                 </li>
+
+                <li class="side-item side-item-category">@lang('app.lecture_report.title')</li>
+                <li>
+                    <a class="slide-item" data-is_active="{{request()->fullUrlIs(route('lecture-report'))}}"
+                       href="{{route('lecture-report')}}"><i class="fa fa-archive pe-3"></i>@lang('app.lecture_report.title')</a>
+                </li>
             </ul>
             <div class="slide-right" id="slide-right">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="#7b8191" width="24" height="24" viewBox="0 0 24 24">

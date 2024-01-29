@@ -5,6 +5,7 @@ use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Invoice\InvoicesController;
 use App\Http\Controllers\Language\SetLanguageController;
 use App\Http\Controllers\Media\MediaController;
+use App\Http\Controllers\Report\LectureReportController;
 use App\Http\Controllers\Rozmana\RozmanaController;
 use App\Http\Controllers\Slider\SliderController;
 use App\Http\Controllers\Therapist\Lecture\LectureController;
@@ -62,6 +63,14 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'locale']], func
     });
     Route::get('therapist-invoice/{invoice_number}',[InvoicesController::class,'therapistInvoice']);
     Route::get('rozmana', RozmanaController::class)->name('rozmana.datatable');
+
+    Route::group(['prefix' => 'search'],function (){
+        Route::get('users',[UsersController::class,'search'])->name('users.search');
+    });
+
+    Route::group(['prefix' => 'report'],function (){
+        Route::get('lecture', LectureReportController::class)->name('lecture-report');
+    });
     // Route::get('switcherpage', Switcherpage::class)->name('switcherpage');
 
 });

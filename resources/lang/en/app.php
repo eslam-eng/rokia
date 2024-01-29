@@ -145,4 +145,18 @@ return [
         'thereapist' => 'Therapist',
     ],
 
+    'lecture_report' => [
+        'title' => 'Lecture Report',
+        'start_date' => 'Start Date',
+        'end_date' => 'End Date',
+    ],
+    'select2'=>[
+        'no_results'=>'No Results found',
+        'searching'=>'Searching...',
+        'input_too_short'=>'please Write more than 2 characters',
+    ],
+    'users'=>[
+      'title'=>'Users'
+    ],
+
 ];

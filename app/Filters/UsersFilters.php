@@ -29,16 +29,11 @@ class UsersFilters extends QueryFilter
         return $this->builder->where('type',$term);
     }
 
-    public function city_id($term)
-    {
-        return $this->builder->where('city_id',$term);
-    }
 
-    public function area_id($term){
-        return $this->builder->where('area_id',$term);
-    }
     public function keyword($term)
     {
-        return $this->builder->search($term);
+        return $this->builder->where(function ($query) use ($term){
+            $query->where('name','LIKE',"%$term%")->orWhere('phone',"$term");
+        });
     }
 }

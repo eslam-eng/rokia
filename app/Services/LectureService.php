@@ -134,4 +134,9 @@ class LectureService extends BaseService
     {
         return  $user->lecture()->get();
     }
+
+    public function getReportForTherapist(array $filters = []): \Illuminate\Contracts\Pagination\LengthAwarePaginator
+    {
+        return $this->getQuery($filters)->withCount('users')->paginate(20);
+    }
 }

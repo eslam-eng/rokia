@@ -8,6 +8,7 @@ use App\Exceptions\NotFoundException;
 use App\Exceptions\NotFoundException as NotMatchException;
 use App\Filters\UsersFilters;
 use App\Models\User;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
@@ -124,5 +125,10 @@ class UserService extends BaseService
             throw new NotFoundException('user not found');
         $slider->status = !$slider->status ;
         return $slider->save();
+    }
+
+    public function search(?array $filters = []): LengthAwarePaginator
+    {
+        return $this->getQuery($filters)->select(['id', 'name'])->paginate();
     }
 }

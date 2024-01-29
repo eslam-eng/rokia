@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 
 use App\DataTables\clients\UsersDataTable;
+use App\Enum\Status;
 use App\Enums\UsersType;
 use App\Exceptions\NotFoundException;
 use App\Http\Requests\FileUploadRequest;
@@ -49,5 +50,15 @@ class UsersController extends Controller
         } catch (\Mockery\Exception $exception) {
             return apiResponse(message: $exception->getMessage(), code: 500);
         }
+    }
+    public function search(Request $request)
+    {
+        $keyword = $request->keyword;
+        $filters = [
+            'keyword' => $keyword,
+            'type' => $request->get('type',UsersType::CLIENT->value),
+        ];
+
+        return $this->userService->search(filters: $filters);
     }
 }

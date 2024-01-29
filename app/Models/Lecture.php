@@ -7,6 +7,7 @@ use App\Traits\EscapeUnicodeJson;
 use App\Traits\Filterable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Support\Facades\DB;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
@@ -29,6 +30,11 @@ class Lecture extends Model implements HasMedia
         return $this->getMedia('*', ['type' => 'mp3'])->first()->getUrl();
     }
 
+    public function users(): BelongsToMany
+    {
+        return $this->belongsToMany(User::class,'user_lectures','lecture_id');
+    }
+
     public function therapist(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(User::class, 'therapist_id')->where('type', UsersType::THERAPIST->value);
@@ -39,10 +45,6 @@ class Lecture extends Model implements HasMedia
         return $this->morphMany(Wishlist::class, 'relatable');
     }
 
-    public function users(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
-    {
-        return $this->belongsToMany(User::class, 'user_lectures');
-    }
 
     public function scopeSubscribeUsers(Builder $builder)
     {

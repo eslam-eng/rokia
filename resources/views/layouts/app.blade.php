@@ -14,6 +14,7 @@
 
     @include('layouts.components.styles')
     @yield('after_styles')
+    @livewireStyles
 </head>
 
 <body class="{{auth()->user()->locale=='en' ? 'ltr' : 'rtl'}} main-body app sidebar-mini">
@@ -157,5 +158,6 @@
     }
 </script>
 @yield('script_footer')
+@livewireScripts
 </body>
 </html>

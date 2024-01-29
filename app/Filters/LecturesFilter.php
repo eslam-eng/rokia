@@ -4,6 +4,7 @@ namespace App\Filters;
 
 use App\Abstracts\QueryFilter;
 use App\Enums\LecturesTypeEnum;
+use App\Models\Lecture;
 use Carbon\Carbon;
 
 class LecturesFilter extends QueryFilter
@@ -25,6 +26,13 @@ class LecturesFilter extends QueryFilter
     public function therapist_id($term)
     {
         return $this->builder->where('therapist_id',$term);
+    }
+
+    public function date_between($term)
+    {
+        $date = explode('-',$term);
+        return $this->builder->whereDate('created_at', '>=', $date[0])
+            ->whereDate('created_at', '<=', $date[1]);
     }
 
     public function upcoming()
