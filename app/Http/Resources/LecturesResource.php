@@ -25,7 +25,8 @@ class LecturesResource extends JsonResource
             'image_cover' =>$this->image_cover,
             'audio_file' =>$this->lecture_content,
             'is_subscribed'=>$this->is_subscribed,
-            'is_favorite'=>$this->is_favorite
+            'is_favorite'=>$this->is_favorite,
+            'is_available'=>$this->is_available
         ];
     }
 }

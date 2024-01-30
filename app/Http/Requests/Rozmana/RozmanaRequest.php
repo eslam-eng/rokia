@@ -20,18 +20,13 @@ class RozmanaRequest extends BaseRequest
      */
     public function rules(): array
     {
-        $rules = [
+        return [
             'title' => 'required|string',
             'description' => 'required|string',
             'status' => 'boolean|required',
-            'therapist_id' => 'required|exists:users,id'
+            'therapist_id' => 'required|exists:users,id',
+            'date'=>'required|date_format:d-m'
         ];
-        if ($this->isMethod('PUT') || $this->isMethod('PATCH')) {
-            $rules['date'] = ['required', 'date_format:d-m', Rule::unique('rozmanas')->where('therapist_id', auth()->id())->ignore($this->rozmana)]; // Assuming the route parameter name is 'id'
-        } else {
-            $rules['date'] = ['required','date_format:d-m', Rule::unique('rozmanas')->where('therapist_id', auth()->id())];
-        }
-        return $rules;
     }
 
     public function prepareForValidation()

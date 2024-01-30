@@ -11,10 +11,10 @@ use App\Filters\LecturesFilter;
 use App\Models\Lecture;
 use App\Models\User;
 use App\Models\UserLecture;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Model;
 use getID3;
 use getid3_lib;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
 
 class LectureService extends BaseService
 {
@@ -35,20 +35,20 @@ class LectureService extends BaseService
             ->when(!empty($filters), fn(Builder $builder) => $builder->filter(new LecturesFilter($filters)));
     }
 
-    public function paginateLectures(array $filters = [], array $withRelations = []): \Illuminate\Contracts\Pagination\Paginator
+    public function paginateLectures(array $filters = [], array $withRelations = [], bool $load_scope_date = false): \Illuminate\Contracts\Pagination\Paginator
     {
-        return $this->getQuery(filters: $filters)
+        $query = $this->getQuery(filters: $filters)
             ->select('lectures.*')
             ->orderByDesc('id')
-            ->with($withRelations)
-            ->subscribeUsers()
-            ->favorites()
-            ->simplePaginate();
+            ->with($withRelations);
+        if ($load_scope_date)
+            $query->subscribeUsers()->favorites();
+        return $query->simplePaginate();
     }
 
     public function datatable(array $filters = [], array $withRelations = []): Builder
     {
-        $withRelations = array_merge($withRelations,['therapist']);
+        $withRelations = array_merge($withRelations, ['therapist']);
         return $this->getQuery(filters: $filters)
             ->withCount('users')
             ->with($withRelations);
@@ -66,7 +66,7 @@ class LectureService extends BaseService
         if (isset($lectureDTO->image_cover)) {
             $lecture->addMediaFromRequest('image_cover')->withCustomProperties(['type' => 'image'])->toMediaCollection();
         }
-        if (isset($lectureDTO->audio_file)){
+        if (isset($lectureDTO->audio_file)) {
             // Initialize getID3
             $getID3 = new getID3;
 
@@ -112,7 +112,7 @@ class LectureService extends BaseService
      */
     public function destroy($id): ?bool
     {
-        $count_users_for_lecture = UserLecture::query()->where('lecture_id',$id)->count();
+        $count_users_for_lecture = UserLecture::query()->where('lecture_id', $id)->count();
         if ($count_users_for_lecture)
             throw new GeneralException('cannot delete lecture there is users already buy it');
         $lecture = $this->findById($id);
@@ -120,19 +120,19 @@ class LectureService extends BaseService
     }
 
 
-    public function changeStatus($id , $status): bool
+    public function changeStatus($id, $status): bool
     {
         $lecture = $this->findById($id);
         if (!$lecture)
             throw new NotFoundException('therapist not found');
         if (!isset($status))
             throw new GeneralException('invalied inputs please provide status to update');
-        return $lecture->update(['status'=>$status]);
+        return $lecture->update(['status' => $status]);
     }
 
     public function getLecturesForUser(User $user): \Illuminate\Database\Eloquent\Collection
     {
-        return  $user->lecture()->get();
+        return $user->lecture()->get();
     }
 
     public function getReportForTherapist(array $filters = []): \Illuminate\Contracts\Pagination\LengthAwarePaginator

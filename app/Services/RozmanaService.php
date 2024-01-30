@@ -9,6 +9,8 @@ use App\Models\Rozmana;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 
 class RozmanaService extends BaseService
 {
@@ -43,7 +45,7 @@ class RozmanaService extends BaseService
 
     public function create(RozmanaDTO $dto)
     {
-        $dto->validate();
+        $this->validateBeforeCreate($dto);
         return $this->getQuery()->create($dto->toArray());
     }
 
@@ -52,11 +54,9 @@ class RozmanaService extends BaseService
      */
     public function update(RozmanaDTO $dto, Rozmana|int $rozmana)
     {
-        $dto->validate();
         if (is_int($rozmana))
             $rozmana = $this->findById($rozmana);
-        if (!$rozmana)
-            throw new NotFoundException(message: __('app.rozmana.rozmana_not_fount'));
+        $this->validateBeforeUpdate(dto: $dto,rozmana_id: $rozmana->id);
         return $rozmana->update($dto->toArray());
     }
 
@@ -64,8 +64,23 @@ class RozmanaService extends BaseService
     {
         if (is_int($rozmana))
             $rozmana = $this->findById($rozmana);
-        if (!$rozmana)
-            throw new NotFoundException(message:  __('app.rozmana.rozmana_not_fount'));
         return $rozmana->delete();
+    }
+
+    private function validateBeforeCreate(RozmanaDTO $dto): void
+    {
+        $dto->validate();
+        Validator::validate($dto->toArray(), [
+            'date' => Rule::unique('rozmanas')->where('therapist_id', auth()->id()),
+        ]);
+    }
+
+    private function validateBeforeUpdate(RozmanaDTO $dto,int $rozmana_id): void
+    {
+        $dto->validate();
+        Validator::validate($dto->toArray(), [
+            'date' => Rule::unique('rozmanas')->where('therapist_id', auth()->id())->ignore($rozmana_id),
+        ]);
+
     }
 }

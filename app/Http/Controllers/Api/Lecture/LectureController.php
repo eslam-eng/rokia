@@ -37,6 +37,7 @@ class LectureController extends Controller
         try {
             $user = auth()->user();
             $withRelations = [];
+            $load_scope_date = false;
             $filters = array_filter($request->get('filters', []), function ($value) {
                 return ($value !== null && $value !== false && $value !== '');
             });
@@ -47,8 +48,9 @@ class LectureController extends Controller
             }
             if ($user->type == UsersType::THERAPIST->value) {
                 $filters['therapist_id'] = $user->id;
+                $load_scope_date = true;
             }
-            $lectures = $this->lectureService->paginateLectures($filters, $withRelations);
+            $lectures = $this->lectureService->paginateLectures(filters: $filters, withRelations: $withRelations,load_scope_date: $load_scope_date);
             return LecturesResource::collection($lectures);
         } catch (\Exception $exception) {
             return apiResponse(message: 'something went wrong', code: 500);

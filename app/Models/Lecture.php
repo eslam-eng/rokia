@@ -5,7 +5,9 @@ namespace App\Models;
 use App\Enums\UsersType;
 use App\Traits\EscapeUnicodeJson;
 use App\Traits\Filterable;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Support\Facades\DB;
@@ -67,5 +69,13 @@ class Lecture extends Model implements HasMedia
                 ->where('wishlists.relatable_type', '=', get_class(new Lecture()))
                 ->where('wishlists.user_id', '=', $user_id);
         })->addSelect(DB::raw('IF(wishlists.user_id IS NOT NULL, 1, 0) as is_favorite'));
+    }
+
+    protected function isAvailable(): Attribute
+    {
+        $date = Carbon::parse($this->publish_date);
+        return Attribute::make(
+            get: fn () => $date->lte(Carbon::now()),
+        );
     }
 }
