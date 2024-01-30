@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Http\Resources\Lecture\LecturesResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class WishlistResource extends JsonResource

@@ -61,21 +61,23 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
 
     });
 
-    Route::group(['prefix' => 'therapist'], function () {
+    Route::group(['prefix' => 'therapist','middleware' => 'user.type:' . UsersType::THERAPIST->value], function () {
         Route::apiResource('lectures', LectureController::class);
-        Route::middleware('user.type:' . UsersType::THERAPIST->value)->group(function () {
-            Route::post('live-lectures', [LectureController::class, 'storeLiveLecture'])->name('live-lectures');
-            Route::post('lectures/{id}/media', [LectureController::class, 'updateImageCover']);
-            Route::post('send-notifications', [NotificationController::class, 'sendTherapistFcmNotification']);
+        Route::post('live-lectures', [LectureController::class, 'storeLiveLecture'])->name('live-lectures');
+        Route::post('lectures/{id}/media', [LectureController::class, 'updateImageCover']);
+        Route::post('send-notifications', [NotificationController::class, 'sendTherapistFcmNotification']);
 
+    });
+
+    Route::group(['middleware' =>  'user.type:' . UsersType::CLIENT->value],function (){
+        Route::get('lectures',[LectureController::class,'getLecturesForUser']);
+        Route::group(['prefix' => 'client'], function () {
+            Route::get('lectures', UserLectureController::class);
+            Route::apiResource('wishlist', WishlistController::class);
+            Route::delete('wishlist/lecture/{id}/remove', [WishlistController::class, 'removeLectureFormFavorite']);
         });
     });
 
-    Route::group(['prefix' => 'client', 'middleware' => 'user.type:' . UsersType::CLIENT->value], function () {
-        Route::get('lectures', UserLectureController::class);
-        Route::apiResource('wishlist', WishlistController::class);
-        Route::delete('wishlist/lecture/{id}/remove', [WishlistController::class, 'removeLectureFormFavorite']);
-    });
 
 
     Route::group(['prefix' => 'notifications'], function () {
@@ -90,8 +92,7 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
 
     Route::get('sliders', SliderController::class);
 
-    Route::apiResource('rozmana',RozmanaController::class);
-    Route::post('rozmana/upload-template',[RozmanaController::class,'uploadExceltemplate']);
+
 //    Route::group(['prefix' => 'rozmana'],function (){
 //        Route::get('/',[RozmanaController::class,'index'])->name('api.rozmana.index');
 //        Route::post('/store',[RozmanaController::class,'store'])->name('api.rozmana.store');

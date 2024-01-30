@@ -75,6 +75,7 @@ return [
         'upcoming_lectures' => 'UpComing Lectures',
         'edit_lecture' => 'Lecture Edit',
         'lecture_title' => 'Lecture Title',
+        'lecture_upload_success' => 'Lecture Uploaded Successfully',
 
     ],
 

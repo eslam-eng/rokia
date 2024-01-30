@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Api\Lecture;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\LecturesResource;
+use App\Http\Resources\Lecture\LecturesResource;
 use App\Services\LectureService;
 
 class UserLectureController extends Controller

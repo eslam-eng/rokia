@@ -35,15 +35,23 @@ class LectureService extends BaseService
             ->when(!empty($filters), fn(Builder $builder) => $builder->filter(new LecturesFilter($filters)));
     }
 
-    public function paginateLectures(array $filters = [], array $withRelations = [], bool $load_scope_date = false): \Illuminate\Contracts\Pagination\Paginator
+    public function getTherapistLectures(array $filters = [], array $withRelations = [], bool $load_scope_date = false): \Illuminate\Contracts\Pagination\Paginator
     {
-        $query = $this->getQuery(filters: $filters)
+        return $this->getQuery(filters: $filters)
+            ->orderByDesc('id')
+            ->simplePaginate();
+    }
+
+    //this for users type
+    public function getAllLectureForUser($filters)
+    {
+        return $this->getQuery(filters: $filters)
             ->select('lectures.*')
             ->orderByDesc('id')
-            ->with($withRelations);
-        if ($load_scope_date)
-            $query->subscribeUsers()->favorites();
-        return $query->simplePaginate();
+            ->with('therapist:id,name')
+            ->subscribeUsers()
+            ->favorites()
+            ->simplePaginate();
     }
 
     public function datatable(array $filters = [], array $withRelations = []): Builder

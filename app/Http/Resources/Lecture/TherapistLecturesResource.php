@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Resources;
+namespace App\Http\Resources\Lecture;
 
 use App\Enums\PaymentStatusEnum;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class LecturesResource extends JsonResource
+class TherapistLecturesResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -24,9 +24,6 @@ class LecturesResource extends JsonResource
             'is_paid'=>$this->is_paid,
             'image_cover' =>$this->image_cover,
             'audio_file' =>$this->lecture_content,
-            'is_subscribed'=>$this->is_subscribed,
-            'is_favorite'=>$this->is_favorite,
-            'is_available'=>$this->is_available
         ];
     }
 }

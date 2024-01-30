@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Api\Lecture;
 use App\DataTransferObjects\Lecture\LectureDTO;
 use App\DataTransferObjects\Lecture\UpdateLectureDTO;
 use App\Enums\ActivationStatus;
-use App\Enums\UsersType;
 use App\Exceptions\GeneralException;
 use App\Exceptions\NotFoundException;
 use App\Http\Controllers\Controller;
@@ -13,7 +12,8 @@ use App\Http\Requests\ImageUploadRequest;
 use App\Http\Requests\Lecture\LectureRequest;
 use App\Http\Requests\Lecture\LectureUpdateRequest;
 use App\Http\Requests\Lecture\LiveLectureRequest;
-use App\Http\Resources\LecturesResource;
+use App\Http\Resources\Lecture\LecturesResource;
+use App\Http\Resources\Lecture\TherapistLecturesResource;
 use App\Services\LectureService;
 use App\Traits\NotifyUsers;
 use Illuminate\Http\Request;
@@ -35,28 +35,31 @@ class LectureController extends Controller
     public function index(Request $request)
     {
         try {
-            $user = auth()->user();
-            $withRelations = [];
-            $load_scope_date = false;
+            $user_id = auth()->id();
             $filters = array_filter($request->get('filters', []), function ($value) {
                 return ($value !== null && $value !== false && $value !== '');
             });
-            if ($user->type == UsersType::CLIENT->value) {
-                $filters = $request->all();
-                $filters['status'] = ActivationStatus::ACTIVE->value;
-                $withRelations = ['therapist:id,name'];
-            }
-            if ($user->type == UsersType::THERAPIST->value) {
-                $filters['therapist_id'] = $user->id;
-                $load_scope_date = true;
-            }
-            $lectures = $this->lectureService->paginateLectures(filters: $filters, withRelations: $withRelations,load_scope_date: $load_scope_date);
+
+            $filters['therapist_id'] = $user_id;
+            $lectures = $this->lectureService->getTherapistLectures(filters: $filters);
+            return TherapistLecturesResource::collection($lectures);
+        } catch (\Exception $exception) {
+            return apiResponse(message: 'something went wrong', code: 500);
+        }
+    }
+
+    public function getLecturesForUser(Request $request)
+    {
+        try {
+            $filters = array_filter($request->get('filters', []), function ($value) {
+                return ($value !== null && $value !== false && $value !== '');
+            });
+            $filters['status'] = ActivationStatus::ACTIVE->value;
+            $lectures = $this->lectureService->getAllLectureForUser(filters: $filters);
             return LecturesResource::collection($lectures);
         } catch (\Exception $exception) {
             return apiResponse(message: 'something went wrong', code: 500);
         }
-
-
     }
 
     /**
@@ -83,10 +86,13 @@ class LectureController extends Controller
             $lectureDTO = LectureDTO::fromRequest($request);
             $lecture = $this->lectureService->store($lectureDTO);
             DB::commit();
+
             $title = "$user->name تم رفع محاضرة للشيخ ";
-            $content = "$lecture->publish_date تاريخ بدء المحاضره يوم  $lecture->title عنوان المحاضره ";
+            $content = "$lecture->publish_date تاريخ بدء المحاضرة يوم  $lecture->title عنوان المحاضرة ";
+
             $this->notifyUsers(title: $title , content: $content);
-            return apiResponse(message: 'Lecture uploaded successfully');
+            return apiResponse(message: __('app.lectures.lecture_upload_success'));
+
         } catch (ValidationException $exception) {
             DB::rollBack();
             $mappedErrors = collect($exception->errors())->map(function ($error, $key) {
