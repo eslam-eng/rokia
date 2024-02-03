@@ -70,6 +70,28 @@
                     </ul>
                 </li>
 
+                <li class="side-item side-item-category">@lang('app.categories.title')</li>
+                <li class="slide">
+                    <a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0);">
+                        <i class="fa fa-users ide-menu__icon pe-2"></i>
+                        <span class="side-menu__label">@lang('app.categories.title')</span>
+                        <i class="angle fe fe-chevron-right"></i>
+                    </a>
+                    <ul class="slide-menu">
+                        <li>
+                            <a class="slide-item" data-is_active="{{request()->fullUrlIs(route('categories.index'))}}"
+                               href="{{route('categories.index')}}">@lang('app.categories.title')</a>
+                        </li>
+
+                        <li>
+                            <a class="slide-item"
+                               data-is_active="{{request()->fullUrlIs(route('categories.index'))}}"
+                               href="{{route('categories.create')}}">@lang('app.categories.add_category')</a>
+                        </li>
+
+                    </ul>
+                </li>
+
                 <li class="side-item side-item-category">@lang('app.rozmana.rozmana_title')</li>
                 <li class="slide">
                     <a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0);">

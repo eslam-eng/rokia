@@ -131,7 +131,16 @@ return [
         'image' => 'image',
         'caption' => 'caption',
         'order' => 'order',
-        'status' => 'caption',
+        'status' => 'status',
+    ],
+    'categories' => [
+        'title' => 'Categories',
+        'name' => 'name',
+        'add_category' => 'Add Category',
+        'edit_category' => 'edit Category',
+        'status' => 'status',
+        'status_changed_successfully' => 'Status Changed Successfully' ,
+        'category_not_found' => 'Category Not Found' ,
     ],
     'rozmana' => [
         'title' => 'title',

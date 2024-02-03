@@ -903,6 +903,7 @@ class ComposerStaticInit4a8dbe6aa0a289738d3108132ba531d0
         'App\\Livewire\\LectureReport' => __DIR__ . '/../..' . '/app/Livewire/LectureReport.php',
         'App\\Livewire\\UsersSearch' => __DIR__ . '/../..' . '/app/Livewire/UsersSearch.php',
         'App\\Mail\\ResetPasswordMail' => __DIR__ . '/../..' . '/app/Mail/ResetPasswordMail.php',
+        'App\\Models\\Category' => __DIR__ . '/../..' . '/app/Models/Category.php',
         'App\\Models\\Comment' => __DIR__ . '/../..' . '/app/Models/Comment.php',
         'App\\Models\\DiscountSection' => __DIR__ . '/../..' . '/app/Models/DiscountSection.php',
         'App\\Models\\Invoice' => __DIR__ . '/../..' . '/app/Models/Invoice.php',

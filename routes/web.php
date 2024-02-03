@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\Category\CategoryController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Invoice\InvoicesController;
 use App\Http\Controllers\Language\SetLanguageController;
@@ -71,6 +72,10 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'locale']], func
     Route::group(['prefix' => 'report'],function (){
         Route::get('lecture', LectureReportController::class)->name('lecture-report');
     });
+
+    Route::resource('categories', CategoryController::class);
+    Route::post('categories/{id}/status', [CategoryController::class, 'status'])->name('categories.status');
+
     // Route::get('switcherpage', Switcherpage::class)->name('switcherpage');
 
 });

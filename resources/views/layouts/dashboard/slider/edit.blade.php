@@ -5,7 +5,7 @@
 @section('content')
 
     {{--    breadcrumb --}}
-    @include('layouts.components.breadcrumb',['title' => __('app.sliders.title'),'first_list_item' => __('app.app.sliders.title'),'last_list_item' => __('app.app.sliders.add_slider')])
+    @include('layouts.components.breadcrumb',['title' => __('app.sliders.title'),'first_list_item' => __('app.sliders.title'),'last_list_item' => __('app.sliders.add_slider')])
     {{--    end breadcrumb --}}
 
     <!-- Row -->

@@ -47,7 +47,7 @@ class SliderController extends Controller
             $toast = ['type' => 'success', 'title' => 'Success', 'message' => 'slider created successfully'];
             return redirect(route('sliders.index'))->with('toast', $toast);
         } catch (\Exception $exception) {
-            $toast = ['type' => 'success', 'title' => 'Success', 'message' => $exception->getMessage()];
+            $toast = ['type' => 'error', 'title' => 'Success', 'message' => $exception->getMessage()];
             return back()->with('toast', $toast);
         }
     }
@@ -70,7 +70,7 @@ class SliderController extends Controller
             $toast = ['type' => 'success', 'title' => 'Success', 'message' => 'slider created successfully'];
             return redirect(route('sliders.index'))->with('toast', $toast);
         } catch (\Exception $exception) {
-            $toast = ['type' => 'success', 'title' => 'Success', 'message' => $exception->getMessage()];
+            $toast = ['type' => 'error', 'title' => 'Success', 'message' => $exception->getMessage()];
             return back()->with('toast', $toast);
         }
     }

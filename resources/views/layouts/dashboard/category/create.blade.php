@@ -1,11 +1,11 @@
 @extends('layouts.app')
 
-@section('title',__('app.sliders.title'))
+@section('title',__('app.categories.title'))
 
 @section('content')
 
     {{--    breadcrumb --}}
-    @include('layouts.components.breadcrumb',['title' => __('app.sliders.title'),'first_list_item' => __('app.sliders.title'),'last_list_item' => __('app.sliders.add_slider')])
+    @include('layouts.components.breadcrumb',['title' => __('app.categories.title'),'first_list_item' => __('app.categories.title'),'last_list_item' => __('app.app.categories.add_category')])
     {{--    end breadcrumb --}}
 
     <!-- Row -->
@@ -14,48 +14,20 @@
         <div class="col-md-12 col-xl-12 col-xs-12 col-sm-12"> <!--div-->
             <div class="card">
                 <div class="card-body">
-                    <form action="{{route('sliders.store')}}" method="post" enctype="multipart/form-data">
+                    <form action="{{route('categories.store')}}" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="row row-sm mb-4">
 
                             <div class="col-lg-6 col-md-6 col-sm-12 mb-2">
-                                <div class="main-content-label mg-b-5">@lang('app.sliders.order') <span class="text-danger"*></span></div>
-                                <input class="form-control" value="{{old('order',1)}}" name="order"
-                                       type="number" required>
-                                @error('order')
+                                <div class="main-content-label mg-b-5">@lang('app.categories.name') <span class="text-danger"*></span></div>
+                                <input class="form-control" value="{{old('name')}}" name="name"
+                                       type="text" required>
+                                @error('name')
                                 <div class="text-danger"> {{$message}}</div>
                                 @enderror
                             </div>
 
-                            <div class="col-lg-6 col-md-6 col-sm-12 mb-2">
-                                <div class="main-content-label mg-b-5">@lang('app.sliders.caption')</div>
-
-                                <input class="form-control" name="caption" value="{{old('caption')}}"
-                                       type="text">
-                            </div>
-
-
                         </div>
-
-
-                        <div class="row row-sm mb-4">
-                            <div class="col-lg">
-                                <div class="main-content-label mg-b-5">@lang('app.sliders.image')</div>
-                                <input class="form-control"
-                                       accept="image/*"
-                                       onchange="previewImage(event)"
-                                       name="image"
-                                       type="file" required>
-
-                                <br>
-                                <img id="imagePreview" src="#" alt="Image Preview" style="display: none; max-width: 300px;">
-
-                                @error('image')
-                                <div class="text-danger"> {{$message}}</div>
-                                @enderror
-                            </div>
-                        </div>
-
                         <div class="row row-sm mb-4">
                                 <div class="col-lg mt-2 mb-4">
                                     <label class="custom-control custom-checkbox custom-control-lg">

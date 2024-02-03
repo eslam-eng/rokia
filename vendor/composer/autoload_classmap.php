@@ -111,6 +111,7 @@ return array(
     'App\\Livewire\\LectureReport' => $baseDir . '/app/Livewire/LectureReport.php',
     'App\\Livewire\\UsersSearch' => $baseDir . '/app/Livewire/UsersSearch.php',
     'App\\Mail\\ResetPasswordMail' => $baseDir . '/app/Mail/ResetPasswordMail.php',
+    'App\\Models\\Category' => $baseDir . '/app/Models/Category.php',
     'App\\Models\\Comment' => $baseDir . '/app/Models/Comment.php',
     'App\\Models\\DiscountSection' => $baseDir . '/app/Models/DiscountSection.php',
     'App\\Models\\Invoice' => $baseDir . '/app/Models/Invoice.php',
