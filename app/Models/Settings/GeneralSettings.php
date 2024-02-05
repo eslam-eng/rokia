@@ -6,14 +6,11 @@ use Spatie\LaravelSettings\Settings;
 
 class GeneralSettings extends Settings
 {
-    public mixed $app_logo;
-    public string $about_us;
+    public mixed $app_logo = null;
+    public ?string $about_us = null;
 
-    public string $privacy;
-
-
-
-    public int $invoice_printing_count;
+    public ?string $privacy_condition = null;
+    public ?string $support_phone = null;
 
     public static function group(): string
     {

@@ -8,6 +8,7 @@ use App\Http\Controllers\Language\SetLanguageController;
 use App\Http\Controllers\Media\MediaController;
 use App\Http\Controllers\Report\LectureReportController;
 use App\Http\Controllers\Rozmana\RozmanaController;
+use App\Http\Controllers\Settings\SettingsController;
 use App\Http\Controllers\Slider\SliderController;
 use App\Http\Controllers\Therapist\Lecture\LectureController;
 use App\Http\Controllers\Therapist\TherapistController;
@@ -75,6 +76,8 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'locale']], func
 
     Route::resource('categories', CategoryController::class);
     Route::post('categories/{id}/status', [CategoryController::class, 'status'])->name('categories.status');
+
+    Route::get('settings', SettingsController::class)->name('settings.index');
 
     // Route::get('switcherpage', Switcherpage::class)->name('switcherpage');
 
