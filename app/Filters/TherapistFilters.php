@@ -3,19 +3,13 @@
 namespace App\Filters;
 
 use App\Abstracts\QueryFilter;
-use Illuminate\Support\Arr;
 
-class UsersFilters extends QueryFilter
+class TherapistFilters extends QueryFilter
 {
 
     public function __construct($params = array())
     {
         parent::__construct($params);
-    }
-
-    public function ids($term)
-    {
-        return $this->builder->whereIntegerInRaw('id',Arr::wrap($term));
     }
 
     public function email($term)
@@ -30,11 +24,6 @@ class UsersFilters extends QueryFilter
     {
         return $this->builder->where('status',$term);
     }
-    public function type($term)
-    {
-        return $this->builder->where('type',$term);
-    }
-
 
     public function keyword($term)
     {

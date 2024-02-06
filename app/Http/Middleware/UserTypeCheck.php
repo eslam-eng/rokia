@@ -19,6 +19,6 @@ class UserTypeCheck
         if (auth()->check() && auth()->user()->type === (int) $userType) {
             return $next($request);
         }
-        return apiResponse( message: 'Unauthorized', code: 403);
+        return apiResponse( message: 'Unauthorized', code: 401);
     }
 }

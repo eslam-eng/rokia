@@ -28,19 +28,16 @@ class ThereapistRequest extends BaseRequest
             'phone' => 'required|string',
             'email' => 'required|string',
             'password' => 'required|string',
-            'profile_image' => 'nullable|file|mimes:png,jpg,jpeg,svg',
-            'documents' => 'nullable|array|min:1',
-            'documents.*' => 'file|mimes:png,jpg,jpeg,svg',
-            'type' => ['required',Rule::in(UsersType::values())],
             'status' => ['required',Rule::in(ActivationStatus::values())],
             'gender' => ['required',Rule::in(GenderTypeEnum::values())],
+            'categories'=>'required|array|min:1',
+            'categories.*'=>'exists:categories,id',
         ];
     }
 
-    public function prepareForValidation()
+    public function prepareForValidation(): void
     {
         $this->merge([
-            'type'=>UsersType::THERAPIST->value,
             'status'=>ActivationStatus::PENDING->value,
             'therapist_commission'=>0
         ]);

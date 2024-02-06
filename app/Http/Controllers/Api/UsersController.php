@@ -3,19 +3,13 @@
 namespace App\Http\Controllers\Api;
 
 use App\DataTransferObjects\ChangePassword\PasswordChangeDTO;
-use App\DataTransferObjects\User\UserDTO;
 use App\Exceptions\NotFoundException;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ChangePasswordRequest;
 use App\Http\Requests\ImageUploadRequest;
-use App\Http\Requests\Notification\StoreFcmTokenRequest;
-use App\Http\Requests\Users\ClientRequest;
 use App\Http\Resources\ClientResource;
 use App\Services\UserService;
-use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Validation\ValidationException;
 
 class UsersController extends Controller
 {
@@ -23,49 +17,14 @@ class UsersController extends Controller
     {
     }
 
-    public function store(ClientRequest $request)
-    {
-        try {
-            DB::beginTransaction();
-            $userDTO = UserDTO::fromRequest($request);
-            $user = $this->userService->store($userDTO);
-            DB::commit();
-            $token = $user->getToken();
-            $data = [
-                'access_token' => $token,
-                'token_type' => 'Bearer',
-                'user'=>new ClientResource($user)
-            ];
-            return apiResponse(data: $data);
-        } catch (ValidationException $exception) {
-            DB::rollBack();
-            $mappedErrors = collect($exception->errors())->map(function ($error, $key) {
-                return [
-                    "key" => $key,
-                    "error" => Arr::first($error),
-                ];
-            })->values()->toArray();
-            return response(['message' => __('lang.invalid inputs'), 'errors' => $mappedErrors], 422);
-        } catch (\Exception $exception) {
-            DB::rollBack();
-            return apiResponse(message: 'Something Went Wrong', code: 500);
-        }
-    }
-
-    public function getProfileDetails()
-    {
-        try {
-            $user = getAuthUser();
-            return apiResponse(data: ClientResource::make($user), message: trans('app.success_operation'));
-        } catch (\Exception $e) {
-            return apiResponse(message: $e->getMessage(), code: 500);
-        }
-    }
 
     public function changePassword(ChangePasswordRequest $request)
     {
         try {
-            $user = getAuthUser();
+            if (Auth::guard('therapist')->check())
+                $user = Auth::guard('therapist')->user();
+            else
+                $user = Auth::user();
             $passwordChangeDTO = PasswordChangeDTO::fromRequest($request);
             $is_changed = $this->userService->changePassword($user, $passwordChangeDTO);
             if ($is_changed)
@@ -77,11 +36,13 @@ class UsersController extends Controller
         }
     }
 
-
     public function changeImage(ImageUploadRequest $request)
     {
         try {
-            $user = getAuthUser();
+            if (Auth::guard('therapist')->check())
+                $user = Auth::guard('therapist')->user();
+            else
+                $user = Auth::user();
             $user = $this->userService->changeImage($user, $request->file);
             return apiResponse(data: ClientResource::make($user), message: trans('app.success_operation'));
         } catch (\Exception $e) {
@@ -89,17 +50,15 @@ class UsersController extends Controller
         }
     }
 
-    public function deactivateAccount()
+    public function updateFcmToken(string $fcm_token)
     {
-        try {
-            $user = getAuthUser();
-            $user->status = !$user->status ;
-            $user->save();
-            Auth::user()->tokens()->delete();
-            return apiResponse(data: ClientResource::make($user), message: trans('app.success_operation'));
-        } catch (\Exception $e) {
-            return apiResponse(message: 'something went wrong', code: 500);
-        }
+        if (Auth::guard('therapist')->check())
+            $user = Auth::guard('therapist')->user();
+        else
+            $user = Auth::user();
+        $this->userService->setUserFcmToken(user: $user, fcm_token: $fcm_token);
+        return apiResponse(message: trans('lang.success_operation'));
+
     }
 
 }

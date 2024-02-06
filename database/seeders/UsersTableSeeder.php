@@ -25,7 +25,6 @@ class UsersTableSeeder extends Seeder
                 'password' => bcrypt('Qwe@1234'),
                 'phone' => '01113622098',
                 'address' => Str::random(10),
-                'type' => UsersType::SUPERADMIN->value,
                 'created_at'=>now(),
                 'updated_at'=>now()
             ],
@@ -35,21 +34,9 @@ class UsersTableSeeder extends Seeder
                 'password' => bcrypt('123456789'),
                 'phone' => '01022843293',
                 'address' => Str::random(10),
-                'type' => UsersType::CLIENT->value,
                 'created_at'=>now(),
                 'updated_at'=>now()
             ],
-            [
-                'name' => "therapist test",
-                'email' => "therapist@admin.com",
-                'password' => bcrypt('123456789'),
-                'phone' => '01113175575',
-                'address' => Str::random(10),
-                'type' => UsersType::THERAPIST->value,
-                'created_at'=>now(),
-                'updated_at'=>now()
-            ]
-
         ]);
     }
 }

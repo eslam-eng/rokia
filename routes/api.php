@@ -1,15 +1,11 @@
 <?php
 
 use App\Enums\UsersType;
-use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\Auth\AuthClientController;
 use App\Http\Controllers\Api\Lecture\LectureController;
 use App\Http\Controllers\Api\Lecture\UserLectureController;
 use App\Http\Controllers\Api\NotificationController;
-use App\Http\Controllers\Api\PhoneVerifyController;
-use App\Http\Controllers\Api\RestPasswordController;
-use App\Http\Controllers\Api\RozmanaController;
 use App\Http\Controllers\Api\Slider\SliderController;
-use App\Http\Controllers\Api\Therapist\TherapistController;
 use App\Http\Controllers\Api\UsersController;
 use App\Http\Controllers\Api\Wishlist\WishlistController;
 use App\Http\Controllers\Media\MediaController;
@@ -30,47 +26,30 @@ Route::fallback(function () {
     return apiResponse(message: 'Invalid Route', code: 404);
 });
 
-Route::group(['prefix' => 'auth'], function () {
+Route::group(['prefix' => 'auth/client'], function () {
 
-    Route::post('user/register', [UsersController::class, 'store']);
+    Route::post('register', [AuthClientController::class, 'register']);
 
-    Route::post('therapist/register', [TherapistController::class, 'store']);
+    Route::post('login', [AuthClientController::class, 'signIn']);
 
-    Route::post('login', [AuthController::class, 'login']);
+    Route::post('phone/verify', [AuthClientController::class, 'phoneVerify']);
 
-    Route::post('phone/verify', PhoneVerifyController::class);
-
-//    Route::post('password/forget', PhoneVerifyController::class);
-
-    Route::post('password/reset', RestPasswordController::class);
+    Route::post('password/reset', [AuthClientController::class, 'resetPassword']);
 
 });
 
 
 Route::group(['middleware' => 'auth:sanctum'], function () {
 
-    Route::group(['prefix' => 'user'], function () {
-
-        Route::post('set-fcm-token', [AuthController::class, 'setFcmToken']);
-
-        Route::patch('user', [AuthController::class, 'update']);
-
-        Route::get('profile', [UsersController::class, 'getProfileDetails']);
-
+    Route::group(['prefix' => 'client'], function () {
+        Route::get('profile', [AuthClientController::class, 'getProfileDetails']);
+        Route::post('update-fcm-token', [UsersController::class, 'updateFcmToken']);
         Route::post('/change-password', [UsersController::class, 'changePassword']);
-
+        Route::post('/change-image', [UsersController::class, 'changeImage']);
     });
 
-    Route::group(['prefix' => 'therapist','middleware' => 'user.type:' . UsersType::THERAPIST->value], function () {
-        Route::apiResource('lectures', LectureController::class);
-        Route::post('live-lectures', [LectureController::class, 'storeLiveLecture'])->name('live-lectures');
-        Route::post('lectures/{id}/media', [LectureController::class, 'updateImageCover']);
-        Route::post('send-notifications', [NotificationController::class, 'sendTherapistFcmNotification']);
-
-    });
-
-    Route::group(['middleware' =>  'user.type:' . UsersType::CLIENT->value],function (){
-        Route::get('lectures',[LectureController::class,'getLecturesForUser']);
+    Route::group(['middleware' => 'user.type:' . UsersType::CLIENT->value], function () {
+        Route::get('lectures', [LectureController::class, 'getLecturesForUser']);
         Route::group(['prefix' => 'client'], function () {
             Route::get('lectures', UserLectureController::class);
             Route::apiResource('wishlist', WishlistController::class);
@@ -79,9 +58,7 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     });
 
 
-
     Route::group(['prefix' => 'notifications'], function () {
-        Route::post('/send', [NotificationController::class, 'sendFcmNotification']);
         Route::get('/', [NotificationController::class, 'getNotifications']);
         Route::get('/{notification_id}/mark-as-read', [NotificationController::class, 'markAsRead']);
     });
@@ -91,14 +68,6 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     });
 
     Route::get('sliders', SliderController::class);
-
-
-//    Route::group(['prefix' => 'rozmana'],function (){
-//        Route::get('/',[RozmanaController::class,'index'])->name('api.rozmana.index');
-//        Route::post('/store',[RozmanaController::class,'store'])->name('api.rozmana.store');
-//        Route::post('/{rozmana}',[RozmanaController::class,'update'])->name('api.rozmana.update');
-//        Route::delete('/{rozmana}',[RozmanaController::class,'destroy'])->name('api.rozmana.update');
-//    });
 
 });
 

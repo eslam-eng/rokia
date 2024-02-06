@@ -147,4 +147,12 @@ class LectureService extends BaseService
     {
         return $this->getQuery($filters)->withCount('users')->paginate(20);
     }
+
+    public function getSubscribedUsersForTherapist(int $therapist_id)
+    {
+       return $this->getQuery(['therapist_id'=>$therapist_id])
+            ->join('user_lectures', 'user_lectures.lecture_id', '=', 'lectures.id')
+            ->pluck('user_lectures.user_id')->toArray();
+
+    }
 }

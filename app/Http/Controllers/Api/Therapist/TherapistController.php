@@ -17,32 +17,4 @@ class TherapistController extends Controller
     public function __construct(protected TherapistService $therapistService, public UserService $service)
     {
     }
-    public function store(ThereapistRequest $request)
-    {
-        try {
-            DB::beginTransaction();
-            $therapistDTO = CreateTherapistDTO::fromRequest($request);
-            $user = $this->therapistService->store($therapistDTO);
-            DB::commit();
-            $token = $user->getToken();
-            $data = [
-                'access_token' => $token,
-                'token_type' => 'Bearer',
-                'user'=>new ClientResource($user)
-            ];
-            return apiResponse(data: $data);
-        } catch (ValidationException $exception) {
-            DB::rollBack();
-            $mappedErrors = collect($exception->errors())->map(function ($error, $key) {
-                return [
-                    "key" => $key,
-                    "error" => Arr::first($error),
-                ];
-            })->values()->toArray();
-            return response(['message' => __('lang.invalid inputs'), 'errors' => $mappedErrors], 422);
-        } catch (\Exception $exception) {
-            DB::rollBack();
-            return apiResponse(message: 'Something Went Wrong', code: 500);
-        }
-    }
 }

@@ -4,9 +4,12 @@ namespace App\Services;
 
 use App\DataTransferObjects\ChangePassword\PasswordChangeDTO;
 use App\DataTransferObjects\User\UserDTO;
+use App\Enums\UsersType;
 use App\Exceptions\NotFoundException;
 use App\Exceptions\NotFoundException as NotMatchException;
 use App\Filters\UsersFilters;
+use App\Models\PasswordResetCode;
+use App\Models\Therapist;
 use App\Models\User;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Builder;
@@ -19,7 +22,7 @@ use Illuminate\Validation\ValidationException;
 class UserService extends BaseService
 {
 
-    public function __construct(private User $model)
+    public function __construct(private User $model, protected PushNotificationService $pushNotificationService)
     {
 
     }
@@ -93,23 +96,23 @@ class UserService extends BaseService
         return $user->delete();
     }
 
-    public function setUserFcmToken($fcm_token, User $user)
+    public function setUserFcmToken(User|Therapist $user, string $fcm_token)
     {
         $user->update(['device_token' => $fcm_token]);
     }
 
-    public function changeImage(User $user,$image_file): User
+    public function changeImage(User|Therapist $user, $image_file): Model
     {
-            $user->clearMediaCollection(); // all media in the "default" collection will be deleted
-            $user->addMedia($image_file)->toMediaCollection();
-            return $user;
+        $user->clearMediaCollection(); // all media in the "default" collection will be deleted
+        $user->addMedia($image_file)->toMediaCollection();
+        return $user;
     }
 
 
     /**
      * @throws \Exception
      */
-    public function changePassword(User $user, PasswordChangeDTO $passwordChangeDTO): bool
+    public function changePassword(User|Therapist $user, PasswordChangeDTO $passwordChangeDTO): bool
     {
         if (!Hash::check($passwordChangeDTO->old_password, $user->password))
             throw new NotMatchException(trans('app.password_not_match'));
@@ -118,17 +121,78 @@ class UserService extends BaseService
         ]);
     }
 
+    /**
+     * @throws NotMatchException
+     */
     public function changeStatus($id): bool
     {
-        $slider = $this->findById($id);
-        if (!$slider)
-            throw new NotFoundException('user not found');
-        $slider->status = !$slider->status ;
-        return $slider->save();
+        $user = $this->findById($id);
+        $user->status = !$user->status;
+        return $user->save();
     }
 
     public function search(?array $filters = []): LengthAwarePaginator
     {
         return $this->getQuery($filters)->select(['id', 'name'])->paginate();
+    }
+
+    /**
+     * @throws NotMatchException
+     */
+    public function loginWithEmailOrPhone(string $identifier, string $password): User|Model
+    {
+
+        $identifierField = is_numeric($identifier) ? 'phone' : 'email';
+        $credential = [$identifierField => $identifier, 'password' => $password,];
+        if (!auth()->attempt($credential))
+            throw new NotFoundException(__('app.auth.login_failed'));
+        return $this->model->where($identifierField, $identifier)->first();
+    }
+
+    /**
+     * @throws NotMatchException
+     */
+    public function phoneVerifyAndSendFcm(string $phone, int $user_type)
+    {
+        $code = mt_rand(100000, 999999);
+        $token = [];
+        PasswordResetCode::query()->where('phone', $phone)->delete();
+        $codeData = PasswordResetCode::create(['phone' => $phone, 'code' => $code]);
+        if ($user_type == UsersType::CLIENT->value)
+            $token = User::query()->where('phone', $phone)
+                ->pluck('device_token')->toArray();
+        elseif ($user_type == UsersType::THERAPIST->value)
+            $token = Therapist::query()->where('phone', $phone)
+                ->pluck('device_token')->toArray();
+
+        if (empty($token))
+            throw new NotFoundException('device token not provided');
+
+        $title = 'Your OTP Code';
+        $body = $codeData->code;
+        $this->pushNotificationService->sendToTokens(title: $title, body: $body, tokens: $token);
+    }
+
+    public function resetPassword(string $code, string $password, int $user_type)
+    {
+        $passwordReset = PasswordResetCode::firstWhere('code', $code);
+        if ($passwordReset->isExpire())
+            return apiResponse(message: __('lang.code_is_expire'), code: 422);
+
+        if ($user_type == UsersType::CLIENT->value)
+            $user = User::where('phone', $passwordReset->phone)->first();
+        else
+            $user = Therapist::where('phone', $passwordReset->phone)->first();
+
+        $is_updated =  $user->update(['password' => $password]);
+
+        $passwordReset->delete();
+
+        return $is_updated;
+    }
+
+    public function getDeviceTokenForUsers(array $users_id = []): array
+    {
+        return $this->getQuery(['ids'=>$users_id])->pluck('device_token')->toArray();
     }
 }
