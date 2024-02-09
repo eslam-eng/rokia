@@ -31,7 +31,6 @@ class ThereapistRequest extends BaseRequest
             'status' => ['required',Rule::in(ActivationStatus::values())],
             'gender' => ['required',Rule::in(GenderTypeEnum::values())],
             'categories'=>'required|array|min:1',
-            'categories.*'=>'exists:categories,id',
         ];
     }
 

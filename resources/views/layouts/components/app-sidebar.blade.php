@@ -47,8 +47,6 @@
                     </ul>
                 </li>
 
-
-                <li class="side-item side-item-category">@lang('app.sliders.title')</li>
                 <li class="slide">
                     <a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0);">
                         <i class="fa fa-users ide-menu__icon pe-2"></i>
@@ -69,11 +67,9 @@
 
                     </ul>
                 </li>
-
-                <li class="side-item side-item-category">@lang('app.categories.title')</li>
                 <li class="slide">
                     <a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0);">
-                        <i class="fa fa-users ide-menu__icon pe-2"></i>
+                        <i class="fa fa-cubes ide-menu__icon pe-2"></i>
                         <span class="side-menu__label">@lang('app.categories.title')</span>
                         <i class="angle fe fe-chevron-right"></i>
                     </a>
@@ -91,8 +87,6 @@
 
                     </ul>
                 </li>
-
-                <li class="side-item side-item-category">@lang('app.rozmana.rozmana_title')</li>
                 <li class="slide">
                     <a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0);">
                         <i class="fa fa-file ide-menu__icon pe-2"></i>
@@ -116,13 +110,13 @@
                         <span class="side-menu__label">@lang('app.clients.clients')</span><i
                             class="angle fe fe-chevron-right"></i></a>
                     <ul class="slide-menu">
-                        <li class="side-menu__label1"><a href="javascript:void(0);">Utilities</a></li>
+                        <li class="side-menu__label1"><a href="javascript:void(0);">Clients</a></li>
                         @can('create_users')
-                            <li><a class="slide-item" data-is_active="{{request()->fullUrlIs(route('users.create'))}}"
-                                   href="{{route('users.create')}}">@lang('app.new_user')</a></li>
+                            <li><a class="slide-item" data-is_active="{{request()->fullUrlIs(route('clients.create'))}}"
+                                   href="{{route('clients.create')}}">@lang('app.new_user')</a></li>
                         @endcan
-                        <li><a class="slide-item" data-is_active="{{request()->fullUrlIs(route('users.index'))}}"
-                               href="{{route('users.index')}}">@lang('app.clients.clients')</a></li>
+                        <li><a class="slide-item" data-is_active="{{request()->fullUrlIs(route('clients.index'))}}"
+                               href="{{route('clients.index')}}">@lang('app.clients.clients')</a></li>
                     </ul>
                 </li>
 
@@ -152,6 +146,10 @@
                     <a class="slide-item" data-is_active="{{request()->fullUrlIs(route('settings.index'))}}"
                        href="{{route('settings.index')}}"><i class="fa fa-archive pe-3"></i>@lang('app.settings.title')</a>
                 </li>
+{{--                <li>--}}
+{{--                    <a class="slide-item" data-is_active="{{request()->fullUrlIs(route('users.index'))}}"--}}
+{{--                       href="{{route('settings.index')}}"><i class="fa fa-archive pe-3"></i>@lang('app.settings.title')</a>--}}
+{{--                </li>--}}
             </ul>
             <div class="slide-right" id="slide-right">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="#7b8191" width="24" height="24" viewBox="0 0 24 24">

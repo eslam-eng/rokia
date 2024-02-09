@@ -1,6 +1,6 @@
 <?php
 
-namespace App\DataTables\clients;
+namespace App\DataTables\Users;
 
 use App\Enums\ActivationStatus;
 use App\Models\User;
@@ -23,17 +23,16 @@ class UsersDataTable extends DataTable
     {
         return (new EloquentDataTable($query))
             ->setRowId('id')
-            ->editColumn('status', function (User $user) {
-                $classes = $user->status == ActivationStatus::ACTIVE->value ? 'badge-success' : 'badge-danger';
-                return view('components._datatable-badge', ['class' => $classes, 'text' => ActivationStatus::from($user->status)->name]);
+            ->editColumn('status', function (User $client) {
+                $classes = $client->status == ActivationStatus::ACTIVE->value ? 'badge-success' : 'badge-danger';
+                return view('components._datatable-badge', ['class' => $classes, 'text' => ActivationStatus::from($client->status)->getLabel()]);
             })
-            ->editColumn('gender', fn(User $user) => __('app.general.' . $user->gender))
-            ->editColumn('lecture_count', fn(User $user) => $user->lecture_count)
-            ->editColumn('created_at', fn(User $user) => $user->created_at->format('Y-m-d'))
-            ->addColumn('action', function (User $user) {
+            ->editColumn('gender', fn(User $client) => __('app.general.' . $client->gender))
+            ->editColumn('created_at', fn(User $client) => $client->created_at->format('Y-m-d'))
+            ->addColumn('action', function (User $client) {
                 return view(
                     'layouts.dashboard.users.components._actions',
-                    ['model' => $user, 'url' => route('users.destroy', $user->id)]
+                    ['model' => $client, 'url' => route('clients.destroy', $client->id)]
                 );
             });
     }

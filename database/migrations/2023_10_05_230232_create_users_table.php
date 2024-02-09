@@ -25,6 +25,7 @@ return new class extends Migration
             $table->string('gender')->default(\App\Enums\GenderTypeEnum::MALE->value);
             $table->tinyInteger('status')->default(\App\Enums\ActivationStatus::ACTIVE->value);
             $table->string('locale')->default(config('app.locale'));
+            $table->tinyInteger('type')->default(\App\Enums\UsersType::CLIENT->value);
 //            $table->softDeletes();
             $table->timestamps();
         });

@@ -4,14 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Exceptions\NotFoundException;
 use App\Http\Requests\LoginRequest;
-use App\Http\Requests\Notification\StoreFcmTokenRequest;
-use App\Services\AuthService;
+use App\Services\UserService;
 use Exception;
 use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
-    public function __construct(protected AuthService $authService)
+    public function __construct(protected UserService $userService)
     {
     }
 
@@ -23,7 +22,7 @@ class AuthController extends Controller
     public function login(LoginRequest $request)
     {
         try {
-            $user = $this->authService->loginWithEmailOrPhone(identifier: $request->identifier, password: $request->password);
+            $this->userService->loginWithEmailOrPhone(identifier: $request->identifier, password: $request->password);
             $toast = [
                 'type' => 'success',
                 'title' => 'success',

@@ -41,7 +41,7 @@ Route::group(['prefix' => 'auth/therapist'], function () {
 });
 
 
-Route::group(['middleware' => 'auth:therapist'], function () {
+Route::group(['middleware' => 'auth:api_therapist'], function () {
 
     Route::group(['prefix' => 'therapist'], function () {
 
@@ -50,9 +50,6 @@ Route::group(['middleware' => 'auth:therapist'], function () {
         Route::post('update-fcm-token', [UsersController::class, 'updateFcmToken']);
         Route::post('/change-password', [UsersController::class, 'changePassword']);
         Route::post('/change-image', [UsersController::class, 'changeImage']);
-
-//        Route::patch('user', [AuthClientController::class, 'update']);
-
 
         Route::apiResource('lectures', LectureController::class);
         Route::post('live-lectures', [LectureController::class, 'storeLiveLecture'])->name('live-lectures');

@@ -3,20 +3,15 @@
 namespace App\Http\Controllers;
 
 
-use App\DataTables\clients\UsersDataTable;
-use App\Enum\Status;
+use App\DataTables\Clients\ClientsDataTable;
 use App\Enums\UsersType;
-use App\Exceptions\NotFoundException;
-use App\Http\Requests\FileUploadRequest;
-use App\Http\Requests\Users\ClientRequest;
 use App\Services\UserService;
-use Exception;
+use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Spatie\Permission\Models\Permission;
+use Illuminate\Support\Facades\Schema;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
-class UsersController extends Controller
+class ClientController extends Controller
 {
 
     public function __construct(private UserService $userService)
@@ -25,11 +20,11 @@ class UsersController extends Controller
     }
 
     /**
-     * @param UsersDataTable $usersDatatable
+     * @param ClientsDataTable $usersDatatable
      * @param Request $request
      * @return \Illuminate\Http\RedirectResponse|mixed
      */
-    public function index(UsersDataTable $usersDatatable, Request $request)
+    public function index(ClientsDataTable $usersDatatable, Request $request)
     {
         $filters = array_filter($request->get('filters', []), function ($value) {
             return ($value !== null && $value !== false && $value !== '');
@@ -51,12 +46,13 @@ class UsersController extends Controller
             return apiResponse(message: $exception->getMessage(), code: 500);
         }
     }
+
     public function search(Request $request)
     {
         $keyword = $request->keyword;
         $filters = [
             'keyword' => $keyword,
-            'type' => $request->get('type',UsersType::CLIENT->value),
+            'type' => $request->get('type', UsersType::CLIENT->value),
         ];
 
         return $this->userService->search(filters: $filters);

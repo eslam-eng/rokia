@@ -1,18 +1,19 @@
 <?php
 
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\Category\CategoryController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ClientController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Invoice\InvoicesController;
-use App\Http\Controllers\Language\SetLanguageController;
 use App\Http\Controllers\Media\MediaController;
 use App\Http\Controllers\Report\LectureReportController;
-use App\Http\Controllers\Rozmana\RozmanaController;
-use App\Http\Controllers\Settings\SettingsController;
-use App\Http\Controllers\Slider\SliderController;
+use App\Http\Controllers\RozmanaController;
+use App\Http\Controllers\SetLanguageController;
+use App\Http\Controllers\SettingsController;
+use App\Http\Controllers\SliderController;
 use App\Http\Controllers\Therapist\Lecture\LectureController;
 use App\Http\Controllers\Therapist\TherapistController;
-use App\Http\Controllers\UsersController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
@@ -42,8 +43,12 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'locale']], func
 
     Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 
-    Route::resource('users', UsersController::class);
-    Route::post('users/{id}/status', [UsersController::class, 'status'])->name('users.status');
+    Route::resource('clients', ClientController::class);
+    Route::post('clients/{id}/status', [ClientController::class, 'status'])->name('clients.status');
+
+    Route::resource('users', UserController::class);
+    Route::post('users/{id}/status', [UserController::class, 'status'])->name('users.status');
+
 
     Route::resource('therapists', TherapistController::class)->except(['create']);
     Route::post('therapist/{id}/status', [TherapistController::class, 'status'])->name('therapist.status');
@@ -67,7 +72,7 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'locale']], func
     Route::get('rozmana', RozmanaController::class)->name('rozmana.datatable');
 
     Route::group(['prefix' => 'search'],function (){
-        Route::get('users',[UsersController::class,'search'])->name('users.search');
+        Route::get('users',[ClientController::class,'search'])->name('users.search');
     });
 
     Route::group(['prefix' => 'report'],function (){

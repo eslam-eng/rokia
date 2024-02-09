@@ -42,10 +42,4 @@ class Therapist extends Authenticatable
         return $this->belongsTo(Location::class,'area_id');
     }
 
-    protected function password(): Attribute
-    {
-        return Attribute::make(
-            set: fn (string $value) => bcrypt($value),
-        );
-    }
 }

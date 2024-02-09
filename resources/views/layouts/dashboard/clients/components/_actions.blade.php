@@ -8,7 +8,7 @@
             @else
             btn-success
             @endif row-action"
-                data-action="{{route('users.status',$model->id)}}"
+                data-action="{{route('clients.status',$model->id)}}"
                 data-reload="0"
                 data-status=""
                 title="{{in_array($model->status,[\App\Enums\ActivationStatus::PENDING->value,\App\Enums\ActivationStatus::INACTIVE->value]) ? __(key: 'app.active'):__('app.blocked')}}"

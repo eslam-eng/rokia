@@ -1,10 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\Slider;
+namespace App\Http\Controllers;
 
 use App\DataTables\Slider\SlidersDataTable;
 use App\DataTransferObjects\Slider\SliderDTO;
-use App\Http\Controllers\Controller;
 use App\Http\Requests\Slider\SliderRequest;
 use App\Models\Slider;
 use App\Services\SliderService;

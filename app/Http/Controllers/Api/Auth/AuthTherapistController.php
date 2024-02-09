@@ -35,7 +35,7 @@ class AuthTherapistController extends Controller
             $data = [
                 'access_token' => $token,
                 'token_type' => 'Bearer',
-                'therapist' => new TherapistResource($therapist)
+//                'therapist' => new TherapistResource($therapist)
             ];
             return apiResponse(data: $data);
         } catch (NotFoundException $e) {
@@ -67,7 +67,7 @@ class AuthTherapistController extends Controller
     public function getProfileDetails()
     {
         try {
-            $therapist = Auth::guard('therapist')->user();
+            $therapist = Auth::guard('api_therapist')->user();
             return apiResponse(data: TherapistResource::make($therapist), message: trans('app.success_operation'));
         } catch (\Exception $e) {
             return apiResponse(message: $e->getMessage(), code: 500);

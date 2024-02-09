@@ -41,6 +41,10 @@ return [
             'provider' => 'users',
         ],
         'therapist'=>[
+            'driver' => 'session',
+            'provider' => 'therapists',
+        ],
+        'api_therapist'=>[
             'driver' => 'sanctum',
             'provider' => 'therapists',
         ],

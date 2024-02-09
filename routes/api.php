@@ -2,6 +2,7 @@
 
 use App\Enums\UsersType;
 use App\Http\Controllers\Api\Auth\AuthClientController;
+use App\Http\Controllers\Api\Category\CategoryController;
 use App\Http\Controllers\Api\Lecture\LectureController;
 use App\Http\Controllers\Api\Lecture\UserLectureController;
 use App\Http\Controllers\Api\NotificationController;
@@ -68,6 +69,6 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     });
 
     Route::get('sliders', SliderController::class);
-
+    Route::get('categories', CategoryController::class);
 });
 

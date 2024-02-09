@@ -64,4 +64,9 @@ class CategoryService extends BaseService
         $category->status = !$category->status;
         return $category->save();
     }
+
+    public function getAll(array $filters = []): \Illuminate\Database\Eloquent\Collection|array
+    {
+        return $this->getQuery($filters)->get();
+    }
 }

@@ -11,7 +11,7 @@
     {{--    end breadcrumb --}}
 
     <!--start filters section -->
-    @include('layouts.dashboard.users.components._filters')
+    @include('layouts.dashboard.clients.components._filters')
     <!--end filtered section -->
 
     <!-- Row -->

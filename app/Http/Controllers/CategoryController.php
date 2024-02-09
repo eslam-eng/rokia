@@ -1,10 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\Category;
+namespace App\Http\Controllers;
 
 use App\DataTables\Category\CategoryDataTable;
 use App\DataTransferObjects\category\CategoryDTO;
-use App\Http\Controllers\Controller;
 use App\Http\Requests\Category\CategoryRequest;
 use App\Models\Category;
 use App\Services\Category\CategoryService;

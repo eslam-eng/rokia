@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Resources\Therapist;
+namespace App\Http\Resources\Category;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class TherapistResource extends JsonResource
+class CategoryResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -16,12 +16,7 @@ class TherapistResource extends JsonResource
     {
         return [
             'id'=>$this->id,
-            'name'=>$this->name,
-            'phone'=>$this->phone,
-            'address'=>$this->address,
-            'email'=>$this->email,
-            'gender'=>$this->gender,
-//            'profile_img' => $this->getFirstMediaUrl() ?? ''
+            'name'=>$this->name
         ];
     }
 }

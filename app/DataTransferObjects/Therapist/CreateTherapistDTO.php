@@ -28,7 +28,6 @@ class CreateTherapistDTO extends BaseDTO
         public ?int $city_id = null,
         public ?int $area_id = null,
         public ?string $therapist_commission = null,
-        public ?array $categories = [],
 
     )
     {
@@ -48,7 +47,6 @@ class CreateTherapistDTO extends BaseDTO
             city_id: $request->city_id,
             area_id: $request->area_id,
             therapist_commission: $request->therapist_commission,
-            categories: $request->categories,
         );
     }
 
@@ -70,7 +68,6 @@ class CreateTherapistDTO extends BaseDTO
             city_id: Arr::get($data,'city_id'),
             area_id: Arr::get($data,'area_id'),
             therapist_commission: Arr::get($data,'therapist_commission',0),
-            categories: Arr::get($data,'therapist_commission',[]),
         );
     }
 
@@ -83,7 +80,6 @@ class CreateTherapistDTO extends BaseDTO
            'password'=>'required|string',
            'gender'=>'required|string',
            'address'=>'required|string',
-           'categories'=>'required|array|min:1',
        ];
     }
 
@@ -103,7 +99,6 @@ class CreateTherapistDTO extends BaseDTO
             "city_id" => $this->city_id,
             "area_id" => $this->area_id,
             "therapist_commission" => $this->therapist_commission,
-            "categories" => $this->categories,
         ];
     }
 }
