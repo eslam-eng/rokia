@@ -32,7 +32,10 @@ class RolesDatatable extends DataTable
 
                 return view('components._datatable-badge', ['class' => $classes, 'text' => $content]);
             })
-            ->addColumn('action', fn (Role $model) => view('layouts.dashboard.system.role.components.actions', compact('model')));
+            ->addColumn('action', fn (Role $model) => view(
+                'layouts.dashboard.system.role.components.actions',
+                ['model' => $model, 'url' => route('role.destroy', $model->id)]
+            ));
     }
 
     /**

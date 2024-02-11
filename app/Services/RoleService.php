@@ -105,7 +105,7 @@ class RoleService extends BaseService
         }
 
         //prevent deleting role if its name is super admin
-        if ($role->name == User::ROLE_SUPER_ADMIN) {
+        if ($role->name == Role::SUPER_ADMIN) {
             throw new \Exception('You cannot delete super admin role', 400);
         }
     }

@@ -6,11 +6,7 @@
                class="btn btn-sm btn-icon btn-warning btn-active-light-primary me-2">
                 <i class="fa fa-edit"></i>
             </a>
-            <button data-url="{{route('role.destroy',$model->id)}}" data-reload="0"
-                    data-toggle="tooltip" title="{{__('role.delete')}}"
-                    class="delete-row btn btn-sm btn-icon btn-danger btn-active-light-primary">
-                <i class="fa fa-trash"></i>
-            </button>
+            <button role="button" onclick="destroy('{{$url}}')" class="btn btn-danger"><i class="fa fa-trash"></i></button>
         </div>
 
     @endif
