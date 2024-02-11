@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\User;
+use App\Services\RoleService;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Permission;
 
@@ -15,16 +16,18 @@ class PermissionsTableSeeder extends Seeder
      */
     public function run()
     {
-        $user = User::find(1);
-
-        $permissions = config('permissions.super_admin');
-
-        foreach($permissions as $key=>$permission)
-        {
-            foreach ($permission as $item){
-                Permission::create(['group_name'=>$key,'name'=>$item]);
-                $user->givePermissionTo($item);
+        app()->make(RoleService::class)->createSuperAdminRole();
+        $permissionsList = config('permissions');
+        $data = [];
+        foreach ($permissionsList as $groupName => $permissions) {
+            foreach ($permissions as $permission) {
+                $data[] = [
+                    'name' => $permission,
+                    'group' => $groupName,
+                    'guard_name' => 'web',
+                ];
             }
         }
+        Permission::query()->upsert($data, ['name', 'group', 'guard_name'], ['name', 'group', 'guard_name']);
     }
 }

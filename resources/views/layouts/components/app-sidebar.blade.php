@@ -106,7 +106,7 @@
 
                 <li class="slide">
                     <a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0);">
-                        <i class="fa fa-users pe-3"></i>
+                        <i class="fa fa-users pe-2"></i>
                         <span class="side-menu__label">@lang('app.clients.clients')</span><i
                             class="angle fe fe-chevron-right"></i></a>
                     <ul class="slide-menu">
@@ -119,6 +119,26 @@
                                href="{{route('clients.index')}}">@lang('app.clients.clients')</a></li>
                     </ul>
                 </li>
+
+                <li class="side-item side-item-category">@lang('app.system.title')</li>
+
+                <li>
+
+                    <a class="slide-item" data-is_active="{{request()->fullUrlIs(route('users.index'))}}"
+                       href="{{route('users.index')}}">
+                        <i class="fa fa-users pe-2"></i>
+                        @lang('app.system.users_list')
+                    </a>
+                </li>
+
+                <li>
+                    <a class="slide-item" data-is_active="{{request()->fullUrlIs(route('role.index'))}}"
+                       href="{{route('role.index')}}">
+                        <i class="fa fa-user-shield pe-2"></i>
+                        @lang('app.system.roles')
+                    </a>
+                </li>
+
 
                 <li class="side-item side-item-category">@lang('app.therapist_accounting')</li>
 

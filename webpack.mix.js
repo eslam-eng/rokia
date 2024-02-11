@@ -11,7 +11,8 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/assets/js/datatable-filter.js', 'public/assets/js')
+mix.js('resources/assets/pages/js/datatable-filter.js', 'public/assets/pages/js')
+mix.js('resources/assets/pages/js/role/checkboxes.js', 'public/assets/pages/js')
 // mix.js('resources/assets/js/advanced-form-elements.js', 'public/assets/js')
 // mix.js('resources/assets/js/apexcharts-rtl.js', 'public/assets/js')
 // mix.js('resources/assets/js/apexchart-custom.js', 'public/assets/js')

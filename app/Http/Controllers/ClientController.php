@@ -32,7 +32,7 @@ class ClientController extends Controller
 
         $filters['type'] = UsersType::CLIENT->value;
 
-        return $usersDatatable->with(['filters' => $filters])->render('layouts.dashboard.users.index');
+        return $usersDatatable->with(['filters' => $filters])->render('layouts.dashboard.clients.index');
     }
 
     public function status($id)

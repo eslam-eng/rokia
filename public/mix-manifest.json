@@ -1,5 +1,6 @@
 {
-    "/assets/js/datatable-filter.js": "/assets/js/datatable-filter.js",
+    "/assets/pages/js/datatable-filter.js": "/assets/pages/js/datatable-filter.js",
+    "/assets/pages/js/checkboxes.js": "/assets/pages/js/checkboxes.js",
     "/assets/js/cookie.js": "/assets/js/cookie.js",
     "/assets/js/custom.js": "/assets/js/custom.js",
     "/assets/js/custom1.js": "/assets/js/custom1.js",

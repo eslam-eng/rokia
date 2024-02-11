@@ -7,6 +7,7 @@ use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Invoice\InvoicesController;
 use App\Http\Controllers\Media\MediaController;
 use App\Http\Controllers\Report\LectureReportController;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\RozmanaController;
 use App\Http\Controllers\SetLanguageController;
 use App\Http\Controllers\SettingsController;
@@ -83,7 +84,9 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'locale']], func
     Route::post('categories/{id}/status', [CategoryController::class, 'status'])->name('categories.status');
 
     Route::get('settings', SettingsController::class)->name('settings.index');
-
+    Route::group(['prefix' => 'admin'],function (){
+        Route::resource('role', RoleController::class);
+    });
     // Route::get('switcherpage', Switcherpage::class)->name('switcherpage');
 
 });

@@ -32,7 +32,7 @@ class ClientsDataTable extends DataTable
             ->editColumn('created_at', fn(User $client) => $client->created_at->format('Y-m-d'))
             ->addColumn('action', function (User $client) {
                 return view(
-                    'layouts.dashboard.users.components._actions',
+                    'layouts.dashboard.clients.components._actions',
                     ['model' => $client, 'url' => route('clients.destroy', $client->id)]
                 );
             });
