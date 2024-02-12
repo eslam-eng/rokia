@@ -32,7 +32,7 @@ class UsersFilters extends QueryFilter
     }
     public function type($term)
     {
-        return $this->builder->where('type',$term);
+        return $this->builder->whereIn('type',Arr::wrap($term));
     }
 
 

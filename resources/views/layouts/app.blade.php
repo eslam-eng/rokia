@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ app()->getLocale() }}">
+<html lang="{{ app()->getLocale() }}" dir="{{auth()->user()->locale=='en' ? 'ltr' : 'rtl'}}">
 <head>
 
     <meta charset="UTF-8">
@@ -17,7 +17,7 @@
     @livewireStyles
 </head>
 
-<body class="{{auth()->user()->locale=='en' ? 'ltr' : 'rtl'}} main-body app sidebar-mini">
+<body  class="{{auth()->user()->locale=='en' ? 'ltr' : 'rtl'}} main-body app sidebar-mini">
 
 <!-- Loader -->
 <div id="global-loader">

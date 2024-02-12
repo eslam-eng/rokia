@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
+use Spatie\Permission\Models\Permission;
 
 class RoleService extends BaseService
 {
@@ -28,6 +29,11 @@ class RoleService extends BaseService
         return $this
             ->getQuery(filters: $filters)
             ->withCount(['users', 'permissions']);
+    }
+
+    public function getAll(): \Illuminate\Database\Eloquent\Collection|array
+    {
+        return $this->getQuery(['status'=>ActivationStatus::ACTIVE->value])->get();
     }
 
     public function create(RoleDTO $roleDTO): Builder|Model|Role

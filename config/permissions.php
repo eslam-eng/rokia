@@ -17,32 +17,39 @@ return [
     ],
 
     'sliders' => [
+        'list_slider',
         'create_slider',
         'edit_slider',
         'delete_slider',
+        'change_slider_status',
     ],
 
     'categories' => [
+        'list_category',
         'create_category',
         'edit_category',
         'delete_category',
+        'change_category_status',
     ],
 
     'rozmana' => [
-        'view_rozmana',
+        'list_rozmana',
     ],
 
     'clients' => [
-        'view_clients',
+        'list_clients',
     ],
 
     'users' => [
+        'list_users',
         'create_users',
         'edit_users',
         'delete_users',
+        'change_users_status',
     ],
 
     'roles' => [
+        'list_role',
         'create_role',
         'edit_role',
         'delete_role',

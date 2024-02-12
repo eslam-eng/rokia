@@ -23,7 +23,7 @@ class User extends Authenticatable implements HasMedia
      * @var array<int, string>
      */
     protected $fillable = [
-        'name', 'email', 'password', 'phone', 'type', 'status','therapist_commission',
+        'name', 'email', 'password', 'phone', 'type', 'status',
         'gender','device_token','address','city_id','area_id','locale'
     ];
 
@@ -59,6 +59,11 @@ class User extends Authenticatable implements HasMedia
     public function area()
     {
         return $this->belongsTo(Location::class,'area_id');
+    }
+
+    public function isSuperAdmin(): bool
+    {
+        return $this->hasRole(Role::SUPER_ADMIN);
     }
 
     public function lecture(): \Illuminate\Database\Eloquent\Relations\BelongsToMany

@@ -23,16 +23,18 @@ class UsersDataTable extends DataTable
     {
         return (new EloquentDataTable($query))
             ->setRowId('id')
-            ->editColumn('status', function (User $client) {
-                $classes = $client->status == ActivationStatus::ACTIVE->value ? 'badge-success' : 'badge-danger';
-                return view('components._datatable-badge', ['class' => $classes, 'text' => ActivationStatus::from($client->status)->getLabel()]);
+            ->editColumn('status', function (User $admin) {
+                $classes = $admin->status == ActivationStatus::ACTIVE->value ? 'badge-success' : 'badge-danger';
+                return view('components._datatable-badge', ['class' => $classes, 'text' => ActivationStatus::from($admin->status)->getLabel()]);
             })
-            ->editColumn('gender', fn(User $client) => __('app.general.' . $client->gender))
-            ->editColumn('created_at', fn(User $client) => $client->created_at->format('Y-m-d'))
-            ->addColumn('action', function (User $client) {
+            ->editColumn('gender', fn(User $admin) => __('app.general.' . $admin->gender))
+            ->addColumn('role', fn(User $admin) => $admin->roles->first()?->name)
+            ->addColumn('permissions_count', fn(User $admin) => $admin->roles->first()?->permissions_count ?? '-')
+            ->editColumn('created_at', fn(User $admin) => $admin->created_at->format('Y-m-d'))
+            ->addColumn('action', function (User $admin) {
                 return view(
-                    'layouts.dashboard.users.components._actions',
-                    ['model' => $client, 'url' => route('clients.destroy', $client->id)]
+                    'layouts.dashboard.system.admin.components.actions',
+                    ['model' => $admin, 'url' => route('users.destroy', $admin->id)]
                 );
             });
     }
@@ -56,7 +58,7 @@ class UsersDataTable extends DataTable
     public function html(): HtmlBuilder
     {
         return $this->builder()
-            ->setTableId('users-table')
+            ->setTableId('admins-table')
             ->columns($this->getColumns())
             ->minifiedAjax()
             ->dom('Bfrtip')
@@ -78,6 +80,16 @@ class UsersDataTable extends DataTable
                 ->title(__('app.clients.name'))
                 ->orderable(false)
                 ->searchable(false),
+            Column::make('role')
+                ->title(__('app.admins.role'))
+                ->orderable(false)
+                ->searchable(false),
+
+            Column::make('permissions_count')
+                ->title(__('app.admins.permissions_count'))
+                ->orderable(false)
+                ->searchable(false),
+
             Column::make('phone')
                 ->title(__('app.clients.phone'))
                 ->orderable(false),
@@ -91,10 +103,7 @@ class UsersDataTable extends DataTable
                 ->title(__('app.clients.gender'))
                 ->orderable(false)
                 ->searchable(false),
-            Column::make('lecture_count')
-                ->title(__('app.clients.lecture_count'))
-                ->orderable(false)
-                ->searchable(false),
+
             Column::make('status')
                 ->title(__('app.clients.status'))
                 ->orderable(false)

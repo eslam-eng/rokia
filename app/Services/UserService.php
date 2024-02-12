@@ -3,7 +3,8 @@
 namespace App\Services;
 
 use App\DataTransferObjects\ChangePassword\PasswordChangeDTO;
-use App\DataTransferObjects\User\UserDTO;
+use App\DataTransferObjects\Client\ClientDTO;
+use App\DataTransferObjects\User\AdminDTO;
 use App\Enums\UsersType;
 use App\Exceptions\NotFoundException;
 use App\Exceptions\NotFoundException as NotMatchException;
@@ -17,6 +18,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 use Illuminate\Validation\ValidationException;
 
 class UserService extends BaseService
@@ -41,28 +43,42 @@ class UserService extends BaseService
     public function datatable(array $filters = []): Builder
     {
         return $this->getQuery(filters: $filters)
-            ->withCount('lecture');
+            ->with(['roles'=>fn($query)=>$query->withCount('permissions')]);
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
+     * @param ClientDTO $userDTO
      * @return \Illuminate\Http\Response
      */
-    public function store(UserDTO $userDTO)
+    public function storeClient(ClientDTO $clientDTO): \Illuminate\Http\Response
     {
-        $userData = $userDTO->toArray();
-        $userDTO->validate();
+        $userData = $clientDTO->toArray();
+        $clientDTO->validate();
         $validator = Validator::make($userData, ['email' => 'unique:users,email', 'phone' => 'unique:users,phone']);
         if ($validator->fails())
             throw new ValidationException($validator);
-        $user = $this->getQuery()->create($userData);
-        if (isset($userDTO->profile_image)) {
-            $user->clearMediaCollection(); // all media in the "default" collection will be deleted
-            $user->addMediaFromRequest('profile_image')->toMediaCollection();
-        }
-        return $user;
+        return $this->getQuery()->create($userData);
+    }
+
+    public function storeAdmin(AdminDTO $adminDTO)
+    {
+        $adminData = $adminDTO->toArrayExcept(['role_id']);
+        $adminDTO->validate();
+        $validator = Validator::make($adminData, ['email' => 'unique:users,email', 'phone' => 'unique:users,phone']);
+        if ($validator->fails())
+            throw new ValidationException($validator);
+        $admin =  $this->getQuery()->create($adminData);
+        $admin->syncRoles($adminDTO->role_id);
+    }
+    public function UpdateAdmin(User $admin , AdminDTO $adminDTO)
+    {
+        $adminData = $adminDTO->toFilteredArrayExcept(['role_id']);
+        $adminDTO->validate();
+        $validator = Validator::make($adminData, ['email' => Rule::unique('users','email')->ignore($admin->id), 'phone' => Rule::unique('users','phone')->ignore($admin->id)]);
+        if ($validator->fails())
+            throw new ValidationException($validator);
+        $admin->update($adminData);
+        $admin->syncRoles($adminDTO->role_id);
     }
 
     /**
@@ -72,7 +88,8 @@ class UserService extends BaseService
      * @param int $id
      * @return true
      */
-    public function update(UserDTO $userDTO, $id)
+
+    public function update(ClientDTO $userDTO, $id)
     {
         $user = $this->findById($id);
         $data = $userDTO->toArray();

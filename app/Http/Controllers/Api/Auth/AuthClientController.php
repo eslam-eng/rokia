@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Api\Auth;
 
-use App\DataTransferObjects\User\UserDTO;
+use App\DataTransferObjects\Client\ClientDTO;
 use App\Enums\ActivationStatus;
 use App\Enums\UsersType;
 use App\Exceptions\NotFoundException;
@@ -51,14 +51,14 @@ class AuthClientController extends Controller
     {
         try {
             DB::beginTransaction();
-            $userDTO = UserDTO::fromRequest($request);
-            $user = $this->userService->store($userDTO);
+            $clientDTO = ClientDTO::fromRequest($request);
+            $client = $this->userService->storeClient(clientDTO: $clientDTO);
             DB::commit();
-            $token = $user->getToken();
+            $token = $client->getToken();
             $data = [
                 'access_token' => $token,
                 'token_type' => 'Bearer',
-                'user' => new ClientResource($user)
+                'user' => new ClientResource($client)
             ];
             return apiResponse(data: $data);
         } catch (ValidationException $exception) {

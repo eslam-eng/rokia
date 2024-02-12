@@ -20,6 +20,7 @@
                        href="{{route('home')}}">@lang('app.dashboard.dashboard_title')</a>
                 </li>
                 <li class="side-item side-item-category">@lang('app.therapists.therapists')</li>
+
                 <li class="slide">
                     <a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0);">
                         <i class="fa fa-users ide-menu__icon pe-2"></i>
@@ -47,97 +48,117 @@
                     </ul>
                 </li>
 
-                <li class="slide">
-                    <a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0);">
-                        <i class="fa fa-users ide-menu__icon pe-2"></i>
-                        <span class="side-menu__label">@lang('app.sliders.title')</span>
-                        <i class="angle fe fe-chevron-right"></i>
-                    </a>
-                    <ul class="slide-menu">
-                        <li>
-                            <a class="slide-item" data-is_active="{{request()->fullUrlIs(route('therapists.index'))}}"
-                               href="{{route('sliders.index')}}">@lang('app.sliders.title')</a>
-                        </li>
+                @if(authUserHasPermission('list_slider') || authUserHasPermission('create_slider'))
 
-                        <li>
-                            <a class="slide-item"
-                               data-is_active="{{request()->fullUrlIs(route('therapist-lectures.index'))}}"
-                               href="{{route('sliders.create')}}">@lang('app.sliders.add_slider')</a>
-                        </li>
+                    <li class="slide">
+                        <a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0);">
+                            <i class="fa fa-users ide-menu__icon pe-2"></i>
+                            <span class="side-menu__label">@lang('app.sliders.title')</span>
+                            <i class="angle fe fe-chevron-right"></i>
+                        </a>
+                        <ul class="slide-menu">
+                            @if(authUserHasPermission('list_slider'))
+                                <li>
+                                    <a class="slide-item"
+                                       data-is_active="{{request()->fullUrlIs(route('therapists.index'))}}"
+                                       href="{{route('sliders.index')}}">@lang('app.sliders.title')</a>
+                                </li>
+                            @endif
+                            @if(authUserHasPermission('create_slider'))
+                                <li>
+                                    <a class="slide-item"
+                                       data-is_active="{{request()->fullUrlIs(route('therapist-lectures.index'))}}"
+                                       href="{{route('sliders.create')}}">@lang('app.sliders.add_slider')</a>
+                                </li>
+                            @endif
 
-                    </ul>
-                </li>
-                <li class="slide">
-                    <a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0);">
-                        <i class="fa fa-cubes ide-menu__icon pe-2"></i>
-                        <span class="side-menu__label">@lang('app.categories.title')</span>
-                        <i class="angle fe fe-chevron-right"></i>
-                    </a>
-                    <ul class="slide-menu">
-                        <li>
-                            <a class="slide-item" data-is_active="{{request()->fullUrlIs(route('categories.index'))}}"
-                               href="{{route('categories.index')}}">@lang('app.categories.title')</a>
-                        </li>
+                        </ul>
+                    </li>
 
-                        <li>
-                            <a class="slide-item"
-                               data-is_active="{{request()->fullUrlIs(route('categories.index'))}}"
-                               href="{{route('categories.create')}}">@lang('app.categories.add_category')</a>
-                        </li>
+                @endif
 
-                    </ul>
-                </li>
-                <li class="slide">
-                    <a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0);">
-                        <i class="fa fa-file ide-menu__icon pe-2"></i>
-                        <span class="side-menu__label">@lang('app.rozmana.rozmana_title')</span>
-                        <i class="angle fe fe-chevron-right"></i>
-                    </a>
-                    <ul class="slide-menu">
-                        <li>
-                            <a class="slide-item" data-is_active="{{request()->fullUrlIs(route('rozmana.datatable'))}}"
-                               href="{{route('rozmana.datatable')}}">@lang('app.rozmana.rozmana_title')</a>
-                        </li>
+                @if(authUserHasPermission('list_category') || authUserHasPermission('create_category'))
+                    <li class="slide">
+                        <a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0);">
+                            <i class="fa fa-cubes ide-menu__icon pe-2"></i>
+                            <span class="side-menu__label">@lang('app.categories.title')</span>
+                            <i class="angle fe fe-chevron-right"></i>
+                        </a>
+                        <ul class="slide-menu">
+                            @if(authUserHasPermission('list_category'))
+                                <li>
+                                    <a class="slide-item" data-is_active="{{request()->fullUrlIs(route('categories.index'))}}"
+                                       href="{{route('categories.index')}}">@lang('app.categories.title')</a>
+                                </li>
+                            @endif
+                            @if(authUserHasPermission('create_category'))
+                                    <li>
+                                        <a class="slide-item"
+                                           data-is_active="{{request()->fullUrlIs(route('categories.index'))}}"
+                                           href="{{route('categories.create')}}">@lang('app.categories.add_category')</a>
+                                    </li>
+                            @endif
+                        </ul>
+                    </li>
+                @endif
 
-                    </ul>
-                </li>
+                @if(authUserHasPermission('list_rozmana'))
+                    <li class="slide">
+                        <a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0);">
+                            <i class="fa fa-file ide-menu__icon pe-2"></i>
+                            <span class="side-menu__label">@lang('app.rozmana.rozmana_title')</span>
+                            <i class="angle fe fe-chevron-right"></i>
+                        </a>
+                        <ul class="slide-menu">
+                            <li>
+                                <a class="slide-item" data-is_active="{{request()->fullUrlIs(route('rozmana.datatable'))}}"
+                                   href="{{route('rozmana.datatable')}}">@lang('app.rozmana.rozmana_title')</a>
+                            </li>
 
-                <li class="side-item side-item-category">@lang('app.clients.clients')</li>
+                        </ul>
+                    </li>
+                @endif
 
-                <li class="slide">
-                    <a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0);">
-                        <i class="fa fa-users pe-2"></i>
-                        <span class="side-menu__label">@lang('app.clients.clients')</span><i
-                            class="angle fe fe-chevron-right"></i></a>
-                    <ul class="slide-menu">
-                        <li class="side-menu__label1"><a href="javascript:void(0);">Clients</a></li>
-                        @can('create_users')
-                            <li><a class="slide-item" data-is_active="{{request()->fullUrlIs(route('clients.create'))}}"
-                                   href="{{route('clients.create')}}">@lang('app.new_user')</a></li>
-                        @endcan
-                        <li><a class="slide-item" data-is_active="{{request()->fullUrlIs(route('clients.index'))}}"
-                               href="{{route('clients.index')}}">@lang('app.clients.clients')</a></li>
-                    </ul>
-                </li>
+                @if(authUserHasPermission('list_clients'))
+                    <li class="side-item side-item-category">@lang('app.clients.clients')</li>
+
+                    <li class="slide">
+                        <a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0);">
+                            <i class="fa fa-users pe-2"></i>
+                            <span class="side-menu__label">@lang('app.clients.clients')</span><i
+                                class="angle fe fe-chevron-right"></i></a>
+                        <ul class="slide-menu">
+                            <li class="side-menu__label1"><a href="javascript:void(0);">@lang('app.clients.clients')</a></li>
+                            <li><a class="slide-item" data-is_active="{{request()->fullUrlIs(route('clients.index'))}}"
+                                   href="{{route('clients.index')}}">@lang('app.clients.clients')</a></li>
+                        </ul>
+                    </li>
+
+                @endif
+
 
                 <li class="side-item side-item-category">@lang('app.system.title')</li>
 
-                <li>
+                @if(authUserHasPermission('list_users'))
+                    <li>
 
-                    <a class="slide-item" data-is_active="{{request()->fullUrlIs(route('users.index'))}}"
-                       href="{{route('users.index')}}">
-                        <i class="fa fa-users pe-2"></i>
-                        @lang('app.system.users_list')
-                    </a>
-                </li>
+                        <a class="slide-item" data-is_active="{{request()->fullUrlIs(route('users.index'))}}"
+                           href="{{route('users.index')}}">
+                            <i class="fa fa-users pe-2"></i>
+                            @lang('app.system.users_list')
+                        </a>
+                    </li>
+                @endif
 
-                <li>
-                    <a class="slide-item" data-is_active="{{request()->fullUrlIs(route('role.index'))}}"
-                       href="{{route('role.index')}}">
-                        <i class="fa fa-user-shield pe-2"></i>
-                        @lang('app.system.roles')
-                    </a>
-                </li>
+                @if(authUserHasPermission('list_role'))
+                    <li>
+                        <a class="slide-item" data-is_active="{{request()->fullUrlIs(route('role.index'))}}"
+                           href="{{route('role.index')}}">
+                            <i class="fa fa-user-shield pe-2"></i>
+                            @lang('app.system.roles')
+                        </a>
+                    </li>
+                @endif
 
 
                 <li class="side-item side-item-category">@lang('app.therapist_accounting')</li>
@@ -158,18 +179,16 @@
                 <li class="side-item side-item-category">@lang('app.lecture_report.title')</li>
                 <li>
                     <a class="slide-item" data-is_active="{{request()->fullUrlIs(route('lecture-report'))}}"
-                       href="{{route('lecture-report')}}"><i class="fa fa-archive pe-3"></i>@lang('app.lecture_report.title')</a>
+                       href="{{route('lecture-report')}}"><i
+                            class="fa fa-archive pe-3"></i>@lang('app.lecture_report.title')</a>
                 </li>
 
                 <li class="side-item side-item-category">@lang('app.settings.title')</li>
                 <li>
                     <a class="slide-item" data-is_active="{{request()->fullUrlIs(route('settings.index'))}}"
-                       href="{{route('settings.index')}}"><i class="fa fa-archive pe-3"></i>@lang('app.settings.title')</a>
+                       href="{{route('settings.index')}}"><i class="fa fa-archive pe-3"></i>@lang('app.settings.title')
+                    </a>
                 </li>
-{{--                <li>--}}
-{{--                    <a class="slide-item" data-is_active="{{request()->fullUrlIs(route('users.index'))}}"--}}
-{{--                       href="{{route('settings.index')}}"><i class="fa fa-archive pe-3"></i>@lang('app.settings.title')</a>--}}
-{{--                </li>--}}
             </ul>
             <div class="slide-right" id="slide-right">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="#7b8191" width="24" height="24" viewBox="0 0 24 24">

@@ -5,7 +5,7 @@ namespace App\Http\Requests\Users;
 use App\Enums\ActivationStatus;
 use App\Http\Requests\BaseRequest;
 
-class AdminRequest extends BaseRequest
+class AdminUpdateRequest extends BaseRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +24,7 @@ class AdminRequest extends BaseRequest
             'name' => 'required|string',
             'phone' => 'required|string',
             'email' => 'required|string',
-            'password' => 'required|string',
+            'password' => 'nullable|string',
             'address' => 'required|string',
             'role_id' => 'required|integer',
             'gender' => 'required|string',

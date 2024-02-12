@@ -16,7 +16,6 @@ class PermissionsTableSeeder extends Seeder
      */
     public function run()
     {
-        app()->make(RoleService::class)->createSuperAdminRole();
         $permissionsList = config('permissions');
         $data = [];
         foreach ($permissionsList as $groupName => $permissions) {
@@ -29,5 +28,6 @@ class PermissionsTableSeeder extends Seeder
             }
         }
         Permission::query()->upsert($data, ['name', 'group', 'guard_name'], ['name', 'group', 'guard_name']);
+        app()->make(RoleService::class)->createSuperAdminRole();
     }
 }

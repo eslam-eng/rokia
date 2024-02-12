@@ -15,6 +15,14 @@ class SliderController extends Controller
 {
     public function __construct(public SliderService $sliderService)
     {
+        //todo make polices as best practice
+        $this->middleware('auth');
+        $this->middleware(['permission:list_slider'], ['only' => ['index', 'show']]);
+        $this->middleware(['permission:create_slider'], ['only' => ['create', 'store']]);
+        $this->middleware(['permission:edit_slider'], ['only' => ['edit', 'update']]);
+        $this->middleware(['permission:delete_slider'], ['only' => ['destroy']]);
+        $this->middleware(['permission:change_slider_status'], ['only' => ['status']]);
+
     }
 
 

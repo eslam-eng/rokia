@@ -134,6 +134,23 @@ return [
         'order' => 'order',
         'status' => 'status',
     ],
+    'users' => [
+        'title' => 'Users',
+        'users_list' => 'Users List',
+        'name' => 'name',
+        'email' => 'email',
+        'phone' => 'phone',
+        'password' => 'pasword',
+        'gender' => 'gender',
+        'status' => 'gender',
+        'address' => 'address',
+        'choose_gender' => 'choose gender...',
+        'choose_role' => 'choose role...',
+        'role' => 'role',
+        'add_user' => 'Add User',
+        'edit_user' => 'Edit User',
+
+    ],
     'categories' => [
         'title' => 'Categories',
         'name' => 'name',

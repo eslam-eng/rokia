@@ -53,3 +53,12 @@ if (!function_exists('getAuthUser')) {
         return auth($guard)->user();
     }
 }
+
+
+if (!function_exists('authUserHasPermission')) {
+
+    function authUserHasPermission(string $permission_name): bool
+    {
+       return auth()->user()->can($permission_name);
+    }
+}

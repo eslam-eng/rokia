@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\ActivationStatus;
 use App\Exceptions\NotFoundException;
 use App\Http\Requests\LoginRequest;
 use App\Services\UserService;
@@ -22,7 +23,13 @@ class AuthController extends Controller
     public function login(LoginRequest $request)
     {
         try {
-            $this->userService->loginWithEmailOrPhone(identifier: $request->identifier, password: $request->password);
+            $user = $this->userService->loginWithEmailOrPhone(identifier: $request->identifier, password: $request->password);
+
+            if ($user->status != ActivationStatus::ACTIVE->value) {
+                $this->logout();
+                return back()->with('error', "you cannot login your account not active for now");
+            }
+
             $toast = [
                 'type' => 'success',
                 'title' => 'success',
@@ -31,7 +38,7 @@ class AuthController extends Controller
             return to_route('home')->with('toast', $toast);
         } catch (NotFoundException $e) {
             return back()->with('error', "email or password incorrect please try again");
-        }catch (Exception $e) {
+        } catch (Exception $e) {
             return back()->with('error', $e->getMessage());
         }
     }

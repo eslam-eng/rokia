@@ -3,7 +3,7 @@
 namespace App\Services;
 
 use App\DataTransferObjects\ChangePassword\PasswordChangeDTO;
-use App\DataTransferObjects\User\UserDTO;
+use App\DataTransferObjects\Client\ClientDTO;
 use App\Enums\ActivationStatus;
 use App\Enums\LecturesTypeEnum;
 use App\Enums\PaymentStatusEnum;

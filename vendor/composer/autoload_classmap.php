@@ -29,7 +29,7 @@ return array(
     'App\\DataTransferObjects\\Rozmana\\RozmanaDTO' => $baseDir . '/app/DataTransferObjects/Rozmana/RozmanaDTO.php',
     'App\\DataTransferObjects\\Slider\\SliderDTO' => $baseDir . '/app/DataTransferObjects/Slider/SliderDTO.php',
     'App\\DataTransferObjects\\Therapist\\CreateTherapistDTO' => $baseDir . '/app/DataTransferObjects/Therapist/CreateTherapistDTO.php',
-    'App\\DataTransferObjects\\User\\UserDTO' => $baseDir . '/app/DataTransferObjects/User/UserDTO.php',
+    'App\\DataTransferObjects\\User\\ClientDTO' => $baseDir . '/app/DataTransferObjects/User/UserDTO.php',
     'App\\DataTransferObjects\\Wishlist\\WishListDTO' => $baseDir . '/app/DataTransferObjects/Wishlist/WishListDTO.php',
     'App\\DataTransferObjects\\category\\CategoryDTO' => $baseDir . '/app/DataTransferObjects/category/CategoryDTO.php',
     'App\\Enums\\ActivationStatus' => $baseDir . '/app/Enums/ActivationStatus.php',

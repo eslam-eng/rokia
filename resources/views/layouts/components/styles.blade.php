@@ -5,7 +5,11 @@
 		<link href="{{asset('assets/plugins/icons/icons.css')}}" rel="stylesheet">
 
 		<!-- BOOTSTRAP CSS -->
-		<link href="{{asset('assets/plugins/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet" />
+        @if(auth()->user()->locale=='en')
+            <link href="{{asset('assets/plugins/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet" />
+        @else
+            <link href="{{asset('assets/plugins/bootstrap/css/bootstrap.rtl.css')}}">
+        @endif
 
 		<!-- RIGHT-SIDEMENU CSS -->
 		<link href="{{asset('assets/plugins/sidebar/sidebar.css')}}" rel="stylesheet">

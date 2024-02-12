@@ -1,49 +1,35 @@
 @extends('layouts.app')
-@section('title', "Admin")
+
+@section('styles')
+    <link href="{{asset('assets/plugins/datatable/css/dataTables.bootstrap5.css')}}" rel="stylesheet"/>
+@endsection
+
+@section('title',__('app.users.title'))
 @section('content')
-<section class="index">
-    <div class="card border-0">
-    <div class="card-header bg-transparent">
-        <div class="">
-            <h3 class="card-title">{{ translate('Admin') }}</h3>
-            <p><a href="{{url('dashboard')}}">Dashboard</a> / Admin</p>
-        </div>
-        <a class="btn btn-primary" href="{{ route('admin.create') }}"><i class="fa fa-plus"></i> Add New</a>
-    </div>
-    <div class="card-body">
-        <div class="card-datatable table-responsive pt-0">
-            <table class="user-list-table table table-bordered border-dark">
-                <thead class="table-light">
-                    <tr>
-                        <th>Sl</th>
-                        <th>Name</th>
-                        <th>Role</th>
-                        <th>Email</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach($admins as $admin)
-                    <tr>
-                        <td>{{ $loop->iteration }}</td>
-                        <td>{{ $admin->name }}</td>
-                        <td>{{ !empty($admin->role) ? $admin->role->name : 'N/L' }}</td>
-                        <td>{{ $admin->email }}</td>
-                        <td class="d-flex">
-                            <a class="btn btn-sm btn-info me-1" href="{{ route('admin.edit',$admin->id ) }}">
-                                <i class="fa fa-edit"></i>
-                            </a>
-                            <form  onclick="return confirm(\'Are you sure?\')" action="{{route('admin.destroy', $admin->id)}}" method="POST">
-                                @method('delete')
-                                @csrf
-                                <button type="submit" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></button>
-                            </form>
-                        </td>
-                    </tr>
-                    @endforeach
-                </tbody>
-            </table>         
+    {{--    breadcrumb --}}
+    @include('layouts.components.breadcrumb',['title' => trans('app.users.title'),'first_list_item' =>trans('app.users.users_list'),'last_list_item' => ''])
+    {{--    end breadcrumb --}}
+
+    <!--start filters section -->
+    @include('layouts.dashboard.slider.components._filters')
+    <!--end filtered section -->
+    <!-- Row -->
+    <div class="row row-sm">
+        <div class="col-lg-12">
+            <div class="card custom-card">
+                <div class="card-body">
+                    <a href="{{route('users.create')}}" role="button" class="btn btn-success text-dark"><i class="fa fa-plus"></i> @lang('app.users.add_user')</a>
+                    <div class="table-responsive">
+                        {!! $dataTable->table(['class' => 'table-data table table-bordered text-nowrap border-bottom']) !!}
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-</section>
+    <!-- End Row -->
+
+@endsection
+
+@section('scripts')
+    @include('layouts.components.datatable-scripts')
 @endsection
