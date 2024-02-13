@@ -135,6 +135,5 @@ return array(
     'Brick\\Math\\' => array($vendorDir . '/brick/math/src'),
     'BeyondCode\\LaravelWebSockets\\' => array($vendorDir . '/beyondcode/laravel-websockets/src'),
     'Asm89\\Stack\\' => array($vendorDir . '/asm89/stack-cors/src'),
-    'ArchTech\\Enums\\' => array($vendorDir . '/archtechx/enums/src'),
     'App\\' => array($baseDir . '/app'),
 );
