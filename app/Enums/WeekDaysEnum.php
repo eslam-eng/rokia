@@ -1,15 +1,8 @@
 <?php
 
 namespace App\Enums;
-
-use ArchTech\Enums\InvokableCases;
-use ArchTech\Enums\Options;
-use ArchTech\Enums\Values;
-
 enum WeekDaysEnum: int
 {
-    use Options, Values, InvokableCases;
-
     case SUNDAY = 0;
     case MONDAY = 1;
     case TUESDAY = 2;
