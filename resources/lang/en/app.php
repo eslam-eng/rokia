@@ -57,6 +57,16 @@ return [
         'no_data_available' => 'No data available',
     ],
 
+    'week_days' => [
+        'SUNDAY' => 'Sunday',
+        'MONDAY' => 'Monday',
+        'TUESDAY' => 'Tuesday',
+        'WEDNESDAY' => 'Wednesday',
+        'THURSDAY' => 'Thursday',
+        'FRIDDAY' => 'Friday',
+        'SATURDAY' => 'Saturday'
+    ],
+
 
     'lectures' => [
         'lectures' => 'Lectures',
@@ -187,59 +197,59 @@ return [
         'title' => 'System',
         'role_name' => 'Role Name',
         'add_role' => 'Add Role',
-        'roles'=>'Roles',
-        'roles_and_permissions'=>'Roles And Permissions',
-        'users_count'=>'Users Count',
-        'permissions_count'=>'Permissions Count',
+        'roles' => 'Roles',
+        'roles_and_permissions' => 'Roles And Permissions',
+        'users_count' => 'Users Count',
+        'permissions_count' => 'Permissions Count',
         'users_list' => 'Users List',
         'add_user' => 'Add User',
         'edit_user' => 'Edit User',
 
-        'permissions'=>[
+        'permissions' => [
             'therapists' => [
-                'title'=>'Therapists',
-                'create_therapist'=>'Create Therapist',
-                'edit_therapist'=>'Edit Therapist',
-                'delete_therapist'=>'Delete Therapist',
-                'change_therapist_status'=>'Change Therapist Status',
+                'title' => 'Therapists',
+                'create_therapist' => 'Create Therapist',
+                'edit_therapist' => 'Edit Therapist',
+                'delete_therapist' => 'Delete Therapist',
+                'change_therapist_status' => 'Change Therapist Status',
             ],
 
             'sliders' => [
-                'title'=>'Sliders',
-                'create_slider'=>'Create Slider',
-                'edit_slider'=>'Edit Slider',
-                'delete_slider'=>'Delete Slider',
+                'title' => 'Sliders',
+                'create_slider' => 'Create Slider',
+                'edit_slider' => 'Edit Slider',
+                'delete_slider' => 'Delete Slider',
             ],
 
             'categories' => [
-                'title'=>'Categories',
-                'create_category'=>'Create Category',
-                'edit_category'=>'Edit Category',
-                'delete_category'=>'Delete Category',
+                'title' => 'Categories',
+                'create_category' => 'Create Category',
+                'edit_category' => 'Edit Category',
+                'delete_category' => 'Delete Category',
             ],
 
             'rozmana' => [
-                'title'=>'Rozmana',
-                'view_rozmana'=>'View Rozmana',
+                'title' => 'Rozmana',
+                'view_rozmana' => 'View Rozmana',
             ],
 
             'clients' => [
-                'title'=>'Clients',
-                'view_clients'=>'View Clients',
+                'title' => 'Clients',
+                'view_clients' => 'View Clients',
             ],
 
             'users' => [
-                'title'=>'Users',
-                'create_users'=>'Create Users',
-                'edit_users'=>'Edit Users',
-                'delete_users'=>'Delete Users',
+                'title' => 'Users',
+                'create_users' => 'Create Users',
+                'edit_users' => 'Edit Users',
+                'delete_users' => 'Delete Users',
             ],
 
             'roles' => [
-                'title'=>'Roles',
-                'create_role'=>'Create Role',
-                'edit_role'=>'Edit Role',
-                'delete_role'=>'Delete Role',
+                'title' => 'Roles',
+                'create_role' => 'Create Role',
+                'edit_role' => 'Edit Role',
+                'delete_role' => 'Delete Role',
             ],
         ],
     ],

@@ -8,18 +8,19 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 
-class Therapist extends Authenticatable
+class Therapist extends Authenticatable implements HasMedia
 {
     use Filterable,HasApiTokens,
         HasFactory, Notifiable,HasRoles,InteractsWithMedia;
 
     protected $fillable = [
         'name', 'email', 'password', 'phone', 'type', 'status','therapist_commission',
-        'device_token','address','city_id','area_id','locale','email_verified_at'
+        'device_token','address','city_id','area_id','locale','email_verified_at','avg_therapy_duration'
     ];
 
     protected $hidden = [
@@ -41,5 +42,18 @@ class Therapist extends Authenticatable
     {
         return $this->belongsTo(Location::class,'area_id');
     }
+
+    public function categories(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    {
+        return $this->belongsToMany(Category::class,'therapist_categories');
+    }
+
+    protected function mediaUrl() :Attribute
+    {
+        return Attribute::make(
+            get: fn () =>!empty($this->getFirstMediaUrl()) ? $this->getFirstMediaUrl() : asset('assets/img/default_user.png'),
+        );
+    }
+
 
 }

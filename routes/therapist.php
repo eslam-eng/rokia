@@ -1,15 +1,12 @@
 <?php
 
-use App\Enums\UsersType;
-use App\Http\Controllers\Api\Auth\AuthClientController;
 use App\Http\Controllers\Api\Auth\AuthTherapistController;
 use App\Http\Controllers\Api\Lecture\LectureController;
-use App\Http\Controllers\Api\Lecture\UserLectureController;
 use App\Http\Controllers\Api\NotificationController;
 use App\Http\Controllers\Api\RozmanaController;
-use App\Http\Controllers\Api\Slider\SliderController;
+use App\Http\Controllers\Api\Therapist\TherapistController;
+use App\Http\Controllers\Api\TherapistSchedule\TherapistScheduleController;
 use App\Http\Controllers\Api\UsersController;
-use App\Http\Controllers\Api\Wishlist\WishlistController;
 use App\Http\Controllers\Media\MediaController;
 use Illuminate\Support\Facades\Route;
 
@@ -35,8 +32,8 @@ Route::group(['prefix' => 'auth/therapist'], function () {
 
     Route::post('login', [AuthTherapistController::class, 'signIn']);
 
-    Route::post('phone/verify', [AuthTherapistController::class,'phoneVerify']);
-    Route::post('password/reset', [AuthTherapistController::class,'resetPassword']);
+    Route::post('phone/verify', [AuthTherapistController::class, 'phoneVerify']);
+    Route::post('password/reset', [AuthTherapistController::class, 'resetPassword']);
 
 });
 
@@ -45,11 +42,23 @@ Route::group(['middleware' => 'auth:api_therapist'], function () {
 
     Route::group(['prefix' => 'therapist'], function () {
 
-        Route::get('profile', [AuthTherapistController::class, 'getProfileDetails']);
 
         Route::post('update-fcm-token', [UsersController::class, 'updateFcmToken']);
         Route::post('/change-password', [UsersController::class, 'changePassword']);
         Route::post('/change-image', [UsersController::class, 'changeImage']);
+
+        Route::get('profile', [TherapistController::class, 'getProfileDetails']);
+        Route::post('update-data', [TherapistController::class, 'update']);
+        Route::post('update-categories', [TherapistController::class, 'updateCategories']);
+
+        Route::group(['prefix' => 'schedule'],function (){
+            Route::get('/', [TherapistScheduleController::class, 'index']);
+            Route::get('days', [TherapistScheduleController::class, 'getDays']);
+            Route::post('/', [TherapistScheduleController::class, 'store']);
+            Route::delete('{therapist_schedule}', [TherapistScheduleController::class, 'destroy']);
+
+        });
+
 
         Route::apiResource('lectures', LectureController::class);
         Route::post('live-lectures', [LectureController::class, 'storeLiveLecture'])->name('live-lectures');

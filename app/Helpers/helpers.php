@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Arr;
+
 if (!function_exists('apiResponse')) {
     function apiResponse($data = null, $message = null, $code = 200)
     {
@@ -62,3 +64,17 @@ if (!function_exists('authUserHasPermission')) {
        return auth()->user()->can($permission_name);
     }
 }
+if (!function_exists('transformValidationErrors')) {
+
+    function transformValidationErrors(array $errors)
+    {
+        return collect($errors)->map(function ($error, $key) {
+            return [
+                "key" => $key,
+                "error" => Arr::first($error),
+            ];
+        })->values()->toArray();
+    }
+}
+
+

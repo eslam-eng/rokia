@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\DataTransferObjects\Therapist\CreateTherapistDTO;
+use App\DataTransferObjects\Therapist\UpdateTherapistDTO;
 use App\Exceptions\GeneralException;
 use App\Exceptions\NotFoundException;
 use App\Filters\TherapistFilters;
@@ -14,6 +15,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 
 class TherapistService extends BaseService
 {
@@ -61,9 +63,15 @@ class TherapistService extends BaseService
      * @param int $id
      * @return \Illuminate\Database\Eloquent\Collection|Model
      */
-    public function update(CreateTherapistDTO $therapistDTO, $id)
+    public function update(UpdateTherapistDTO $therapistDTO, Therapist|int $therapist)
     {
-        $therapist = $this->findById($id);
+        $therapistDTO->validate();
+        Validator::validate($therapistDTO->toArray(), [
+            'phone' => Rule::unique('therapists','phone')->ignore($therapist->id)
+        ]);
+        if (is_int($therapist)){
+            $therapist = $this->findById($therapist);
+        }
         $data = array_filter($therapistDTO->toArray());
         $therapist->update($data);
         return $therapist;
@@ -100,5 +108,10 @@ class TherapistService extends BaseService
         if (!auth()->guard('therapist')->attempt($credential))
             throw new NotFoundException(__('app.auth.login_failed'));
         return $this->model->where($identifierField, $identifier)->first();
+    }
+
+    public function getTherapistDetails(Therapist $therapist): Therapist
+    {
+        return $therapist->load('categories');
     }
 }

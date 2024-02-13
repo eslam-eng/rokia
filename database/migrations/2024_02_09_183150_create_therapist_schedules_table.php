@@ -19,9 +19,7 @@ return new class extends Migration
             $table->integer('day_id');
             $table->string('start_time');
             $table->string('end_time');
-            $table->integer('avg_therapy_duration')
-                ->default(15)
-                ->comment('avg duration for therapy session in minutes');
+            $table->unique(['day_id','therapist_id'],'unique_day_for_therapist');
             $table->timestamps();
         });
     }

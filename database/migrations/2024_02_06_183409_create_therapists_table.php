@@ -31,6 +31,7 @@ return new class extends Migration
             $table->decimal('therapist_commission')->default(0);
             $table->string('locale')->default(config('app.locale'));
             $table->timestamp('email_verified_at')->nullable();
+            $table->integer('avg_therapy_duration')->nullable();
             $table->timestamps();
         });
     }

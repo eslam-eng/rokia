@@ -54,6 +54,15 @@ return [
         'no_data_available' => 'لا يوجد سجلات',
 
     ],
+    'week_days' => [
+        'SUNDAY' => 'الاحد',
+        'MONDAY' => 'الاثنين',
+        'TUESDAY' => 'الثلاثاء',
+        'WEDNESDAY' => 'الاربعاء',
+        'THURSDAY' => 'الخميس',
+        'FRIDDAY' => 'الجمعة',
+        'SATURDAY' => 'السبت'
+    ],
 
 
     'lectures' => [

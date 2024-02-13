@@ -21,7 +21,10 @@ class TherapistResource extends JsonResource
             'address'=>$this->address,
             'email'=>$this->email,
             'gender'=>$this->gender,
-//            'profile_img' => $this->getFirstMediaUrl() ?? ''
+            'avg_therapy_duration'=>$this->avg_therapy_duration,
+            'media_id'=>$this?->getFirstMedia()?->id,
+            'media_url'=>$this->media_url,
+            'categories'=>TherapistCategoryResource::collection($this->whenLoaded('categories'))
         ];
     }
 }

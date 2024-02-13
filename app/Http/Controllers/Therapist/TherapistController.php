@@ -48,12 +48,7 @@ class TherapistController extends Controller
             return apiResponse(message: 'therapist registered successfully');
         } catch (ValidationException $exception) {
             DB::rollBack();
-            $mappedErrors = collect($exception->errors())->map(function ($error, $key) {
-                return [
-                    "key" => $key,
-                    "error" => Arr::first($error),
-                ];
-            })->values()->toArray();
+            $mappedErrors = transformValidationErrors($exception->errors());
             return response(['message' => __('lang.invalid inputs'), 'errors' => $mappedErrors], 422);
         } catch (\Exception $exception) {
             DB::rollBack();

@@ -52,25 +52,10 @@ class AuthTherapistController extends Controller
             $this->therapistService->store($therapistDTO);
             return apiResponse(message: __('app.auth.auth_in_review'));
         } catch (ValidationException $exception) {
-            $mappedErrors = collect($exception->errors())->map(function ($error, $key) {
-                return [
-                    "key" => $key,
-                    "error" => Arr::first($error),
-                ];
-            })->values()->toArray();
+            $mappedErrors = transformValidationErrors($exception->errors());
             return response(['message' => __('lang.invalid inputs'), 'errors' => $mappedErrors], 422);
         } catch (\Exception $exception) {
             return apiResponse(message: 'Something Went Wrong', code: 500);
-        }
-    }
-
-    public function getProfileDetails()
-    {
-        try {
-            $therapist = Auth::guard('api_therapist')->user();
-            return apiResponse(data: TherapistResource::make($therapist), message: trans('app.success_operation'));
-        } catch (\Exception $e) {
-            return apiResponse(message: $e->getMessage(), code: 500);
         }
     }
 
