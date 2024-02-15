@@ -41,4 +41,6 @@ class BaseService
     {
         return $this->getQuery()->find(Arr::wrap($id), $columns);
     }
+
+
 }

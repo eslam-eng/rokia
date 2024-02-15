@@ -12,6 +12,7 @@ use App\Http\Requests\Notification\StoreFcmTokenRequest;
 use App\Models\Therapist;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -20,7 +21,7 @@ use Illuminate\Validation\Rule;
 class TherapistService extends BaseService
 {
 
-    public function __construct(private readonly Therapist $model)
+    public function __construct(private readonly Therapist $model,protected readonly TherapistScheduleService $therapistScheduleService)
     {
 
     }
@@ -61,7 +62,7 @@ class TherapistService extends BaseService
      *
      * @param \Illuminate\Http\Request $request
      * @param int $id
-     * @return \Illuminate\Database\Eloquent\Collection|Model
+     * @return Collection|Model
      */
     public function update(UpdateTherapistDTO $therapistDTO, Therapist|int $therapist)
     {
@@ -113,5 +114,10 @@ class TherapistService extends BaseService
     public function getTherapistDetails(Therapist $therapist): Therapist
     {
         return $therapist->load('categories');
+    }
+
+    public function getSchedules($therapist_id): Collection|array
+    {
+        return $this->therapistScheduleService->getSchedulesByTherapist(therapist_id: $therapist_id);
     }
 }

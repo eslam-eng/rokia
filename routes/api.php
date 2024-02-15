@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\Lecture\LectureController;
 use App\Http\Controllers\Api\Lecture\UserLectureController;
 use App\Http\Controllers\Api\NotificationController;
 use App\Http\Controllers\Api\Slider\SliderController;
+use App\Http\Controllers\Api\Therapist\TherapistController;
 use App\Http\Controllers\Api\UsersController;
 use App\Http\Controllers\Api\Wishlist\WishlistController;
 use App\Http\Controllers\Media\MediaController;
@@ -70,5 +71,6 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
 
     Route::get('sliders', SliderController::class);
     Route::get('categories', CategoryController::class);
+    Route::get('therapist/{therapist}/schedule',[TherapistController::class,'getSchedules']);
 });
 

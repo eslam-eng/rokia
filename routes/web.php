@@ -117,29 +117,13 @@ Route::get('/migrate', function () {
 });
 Route::get('test',function (){
     // Define your start and end times
-    $startTime = Carbon::createFromTimeString('13:00');
-    $endTime = Carbon::createFromTimeString('18:00');
+
 
 // Define the interval in minutes (e.g., 15 minutes)
     $interval = 15;
 
 // Initialize an array to store the divided intervals
-    $dividedPeriod = [];
 
-// Start from the beginning of the period
-    $current = clone $startTime;
-
-// Iterate through the period
-    while ($current < $endTime) {
-        // Check if the current time falls within the specified range
-        if ($current >= $startTime && $current < $endTime) {
-            // Add the current time to the divided period
-            $dividedPeriod[] = $current->format('H:i');
-        }
-
-        // Move to the next interval
-        $current->addMinutes($interval);
-    }
 
 // Output the divided period
     foreach ($dividedPeriod as $interval) {

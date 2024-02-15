@@ -1,5 +1,6 @@
 <?php
 
+use Carbon\Carbon;
 use Illuminate\Support\Arr;
 
 if (!function_exists('apiResponse')) {
@@ -25,7 +26,7 @@ if (!function_exists('successCode')) {
 
 if (!function_exists('notifyUser')) {
 
-    function notifyUser(\App\Models\User $user,$data=[])
+    function notifyUser(\App\Models\User $user, $data = [])
     {
         $user->notify(new \App\Notifications\GeneralNotification($data));
     }
@@ -61,7 +62,7 @@ if (!function_exists('authUserHasPermission')) {
 
     function authUserHasPermission(string $permission_name): bool
     {
-       return auth()->user()->can($permission_name);
+        return auth()->user()->can($permission_name);
     }
 }
 if (!function_exists('transformValidationErrors')) {
@@ -76,5 +77,31 @@ if (!function_exists('transformValidationErrors')) {
         })->values()->toArray();
     }
 }
+if (!function_exists('timeTransformer')) {
 
+    function timeTransformer($start_time, $end_time, $interval_time): array
+    {
+
+        $start_time = Carbon::createFromTimeString("$start_time");
+        $end_time = Carbon::createFromTimeString("$end_time");
+        $dividedPeriod = [];
+
+        // Start from the beginning of the period
+        $current = clone $start_time;
+
+        // Iterate through the period
+        while ($current < $end_time) {
+            // Check if the current time falls within the specified range
+            if ($current >= $start_time && $current < $end_time) {
+                $dividedPeriod[] = $current->format('h:i A');
+            }
+
+            // Move to the next interval
+            $current->addMinutes($interval_time);
+        }
+
+        return $dividedPeriod;
+
+    }
+}
 

@@ -6,7 +6,9 @@ use App\DataTransferObjects\Therapist\UpdateTherapistDTO;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Therapist\Api\ThereapistApiUpdateRequest;
 use App\Http\Requests\Therapist\Api\ThereapistCategoriesRequest;
+use App\Http\Resources\ScheduleResource;
 use App\Http\Resources\Therapist\TherapistResource;
+use App\Models\Therapist;
 use App\Services\TherapistService;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
@@ -48,5 +50,11 @@ class TherapistController extends Controller
         $therapist = auth()->guard('api_therapist')->user();
         $therapist->categories()->sync($request->categories);
         return apiResponse(message: 'categories updated successfully');
+    }
+
+    public function getSchedules(Therapist $therapist)
+    {
+        $schedules = $this->therapistService->getSchedules(therapist_id: $therapist->id);
+        return ScheduleResource::collection($schedules);
     }
 }

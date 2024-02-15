@@ -259,11 +259,11 @@ class ComposerStaticInitd0072ab148209ec8ccba45e045b273d1
         ),
         'Yajra\\DataTables\\' => 
         array (
-            0 => __DIR__ . '/..' . '/yajra/laravel-datatables-oracle/src',
-            1 => __DIR__ . '/..' . '/yajra/laravel-datatables-html/src',
+            0 => __DIR__ . '/..' . '/yajra/laravel-datatables-buttons/src',
+            1 => __DIR__ . '/..' . '/yajra/laravel-datatables-editor/src',
             2 => __DIR__ . '/..' . '/yajra/laravel-datatables-fractal/src',
-            3 => __DIR__ . '/..' . '/yajra/laravel-datatables-editor/src',
-            4 => __DIR__ . '/..' . '/yajra/laravel-datatables-buttons/src',
+            3 => __DIR__ . '/..' . '/yajra/laravel-datatables-html/src',
+            4 => __DIR__ . '/..' . '/yajra/laravel-datatables-oracle/src',
         ),
         'Whoops\\' => 
         array (
@@ -515,8 +515,8 @@ class ComposerStaticInitd0072ab148209ec8ccba45e045b273d1
         ),
         'Psr\\Http\\Message\\' => 
         array (
-            0 => __DIR__ . '/..' . '/psr/http-message/src',
-            1 => __DIR__ . '/..' . '/psr/http-factory/src',
+            0 => __DIR__ . '/..' . '/psr/http-factory/src',
+            1 => __DIR__ . '/..' . '/psr/http-message/src',
         ),
         'Psr\\Http\\Client\\' => 
         array (
@@ -674,8 +674,8 @@ class ComposerStaticInitd0072ab148209ec8ccba45e045b273d1
         ),
         'Fruitcake\\Cors\\' => 
         array (
-            0 => __DIR__ . '/..' . '/fruitcake/php-cors/src',
-            1 => __DIR__ . '/..' . '/fruitcake/laravel-cors/src',
+            0 => __DIR__ . '/..' . '/fruitcake/laravel-cors/src',
+            1 => __DIR__ . '/..' . '/fruitcake/php-cors/src',
         ),
         'Faker\\' => 
         array (
@@ -841,6 +841,7 @@ class ComposerStaticInitd0072ab148209ec8ccba45e045b273d1
         'App\\Filters\\TherapistScheduleFilters' => __DIR__ . '/../..' . '/app/Filters/TherapistScheduleFilters.php',
         'App\\Filters\\UsersFilters' => __DIR__ . '/../..' . '/app/Filters/UsersFilters.php',
         'App\\Filters\\WishlistFilter' => __DIR__ . '/../..' . '/app/Filters/WishlistFilter.php',
+        'App\\Http\\Controllers\\Api\\Appointment\\AppointmentController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/Appointment/AppointmentController.php',
         'App\\Http\\Controllers\\Api\\Auth\\AuthClientController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/Auth/AuthClientController.php',
         'App\\Http\\Controllers\\Api\\Auth\\AuthTherapistController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/Auth/AuthTherapistController.php',
         'App\\Http\\Controllers\\Api\\Category\\CategoryController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/Category/CategoryController.php',
@@ -932,6 +933,7 @@ class ComposerStaticInitd0072ab148209ec8ccba45e045b273d1
         'App\\Livewire\\SettingsForm' => __DIR__ . '/../..' . '/app/Livewire/SettingsForm.php',
         'App\\Livewire\\UsersSearch' => __DIR__ . '/../..' . '/app/Livewire/UsersSearch.php',
         'App\\Mail\\ResetPasswordMail' => __DIR__ . '/../..' . '/app/Mail/ResetPasswordMail.php',
+        'App\\Models\\Appointment' => __DIR__ . '/../..' . '/app/Models/Appointment.php',
         'App\\Models\\Category' => __DIR__ . '/../..' . '/app/Models/Category.php',
         'App\\Models\\Comment' => __DIR__ . '/../..' . '/app/Models/Comment.php',
         'App\\Models\\DiscountSection' => __DIR__ . '/../..' . '/app/Models/DiscountSection.php',
@@ -959,6 +961,7 @@ class ComposerStaticInitd0072ab148209ec8ccba45e045b273d1
         'App\\Providers\\EventServiceProvider' => __DIR__ . '/../..' . '/app/Providers/EventServiceProvider.php',
         'App\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/app/Providers/RouteServiceProvider.php',
         'App\\Rules\\PhoneValidation' => __DIR__ . '/../..' . '/app/Rules/PhoneValidation.php',
+        'App\\Services\\Appointment\\AppointmentService' => __DIR__ . '/../..' . '/app/Services/Appointment/AppointmentService.php',
         'App\\Services\\BaseService' => __DIR__ . '/../..' . '/app/Services/BaseService.php',
         'App\\Services\\Category\\CategoryService' => __DIR__ . '/../..' . '/app/Services/Category/CategoryService.php',
         'App\\Services\\DashboardService' => __DIR__ . '/../..' . '/app/Services/DashboardService.php',

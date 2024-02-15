@@ -1,26 +1,22 @@
 <?php
 
-namespace App\Services;
+namespace App\Services\Appointment;
 
 use App\DataTransferObjects\Slider\SliderDTO;
 use App\DataTransferObjects\Therapist\CreateTherapistDTO;
-use App\DataTransferObjects\TherapistSchedule\TherapistScheduleDTO;
+use App\Enums\AttachmentsType;
 use App\Exceptions\GeneralException;
 use App\Exceptions\NotFoundException;
-use App\Filters\TherapistScheduleFilters;
+use App\Filters\SlidersFilter;
 use App\Models\Slider;
-use App\Models\Therapist;
-use App\Models\TherapistSchedule;
+use App\Services\BaseService;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Validation\Rule;
 
-class TherapistScheduleService extends BaseService
+class AppointmentService extends BaseService
 {
 
-    public function __construct(protected TherapistSchedule $model)
+    public function __construct(protected Slider $model)
     {
 
     }
@@ -33,7 +29,7 @@ class TherapistScheduleService extends BaseService
     public function getQuery(?array $filters = []): ?Builder
     {
         return parent::getQuery($filters)
-            ->when(!empty($filters), fn(Builder $builder) => $builder->filter(new TherapistScheduleFilters($filters)));
+            ->when(!empty($filters), fn(Builder $builder) => $builder->filter(new SlidersFilter($filters)));
     }
 
 
@@ -46,14 +42,17 @@ class TherapistScheduleService extends BaseService
      * @param CreateTherapistDTO $therapistDTO
      * @return Builder|Model|null
      */
-    public function store(TherapistScheduleDTO $therapistScheduleDTO)
+    public function store(SliderDTO $sliderDTO)
     {
-        $therapistScheduleDTO->validate();
-        Validator::validate($therapistScheduleDTO->toArray(), [
-            'day_id' => Rule::unique('therapist_schedules', 'day_id')->where('therapist_id', $therapistScheduleDTO->therapist_id)
-        ]);
-        $therapistScheduleData = $therapistScheduleDTO->toArray();
-        return $this->getQuery()->create($therapistScheduleData);
+        $sliderDTO->validate();
+        $sliderData = $sliderDTO->toArray();
+        $slider = $this->getQuery()->create($sliderData);
+        if (isset($sliderDTO->image)) {
+            $slider->addMediaFromRequest('image')->toMediaCollection('sliders');
+
+        }
+
+        return $slider;
     }
 
     /**
@@ -83,16 +82,20 @@ class TherapistScheduleService extends BaseService
      * @throws NotFoundException
      * @throws GeneralException
      */
-    public function destroy(TherapistSchedule|int $therapistSchedule): ?bool
+    public function destroy(Slider|int $slider): ?bool
     {
-        if (is_int($therapistSchedule))
-            $therapistSchedule = $this->findById($therapistSchedule);
-        return $therapistSchedule->delete();
+        if (is_int($slider))
+            $slider = $this->findById($slider);
+        return $slider->delete();
     }
 
-    public function getSchedulesByTherapist(int $therapist_id): Collection|array
-    {
-        return $this->getQuery(['therapist_id'=>$therapist_id])->with('therapist:id,avg_therapy_duration')->get();
-    }
 
+    public function changeStatus($id): bool
+    {
+        $slider = $this->findById($id);
+        if (!$slider)
+            throw new NotFoundException('therapist not found');
+        $slider->status = !$slider->status ;
+        return $slider->save();
+    }
 }
