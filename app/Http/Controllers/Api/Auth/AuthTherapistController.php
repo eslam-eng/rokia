@@ -55,6 +55,7 @@ class AuthTherapistController extends Controller
             $mappedErrors = transformValidationErrors($exception->errors());
             return response(['message' => __('lang.invalid inputs'), 'errors' => $mappedErrors], 422);
         } catch (\Exception $exception) {
+            dd($exception);
             return apiResponse(message: 'Something Went Wrong', code: 500);
         }
     }

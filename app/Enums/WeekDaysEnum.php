@@ -24,4 +24,8 @@ enum WeekDaysEnum: int
             self::SATURDAY => __('app.week_days.SATURDAY'),
         };
     }
+    public static function values(): array
+    {
+        return array_column(self::cases(), 'value');
+    }
 }

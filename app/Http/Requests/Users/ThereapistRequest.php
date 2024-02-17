@@ -30,7 +30,6 @@ class ThereapistRequest extends BaseRequest
             'password' => 'required|string',
             'status' => ['required',Rule::in(ActivationStatus::values())],
             'gender' => ['required',Rule::in(GenderTypeEnum::values())],
-            'categories'=>'required|array|min:1',
         ];
     }
 

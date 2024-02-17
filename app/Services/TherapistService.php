@@ -94,7 +94,7 @@ class TherapistService extends BaseService
     {
         $therapistDTO->validate();
         $therapistData = $therapistDTO->toArray();
-        Validator::validate($therapistData, ['email' => 'unique:users,email', 'phone' => 'unique:users,phone']);
+        Validator::validate($therapistData, ['email' => 'unique:therapists,email', 'phone' => 'unique:therapists,phone']);
 
     }
 
