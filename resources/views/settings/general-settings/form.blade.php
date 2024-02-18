@@ -4,11 +4,10 @@
             <div class="col-md-6 col-lg-6">
                 <div class="mb-1">
                     <label class="form-label"
-                           for="delivery_fees">{{ __('app.settings.general_settings.about_us') }}</label>
+                           for="delivery_fees">{{ __('app.settings.about_us') }}</label>
 
                     <div class="form-outline">
                         <textarea class="form-control" wire:model="generalSettingsForm.about_us" id="textAreaExample1" rows="4"></textarea>
-                        <label class="form-label" for="textAreaExample">Message</label>
                     </div>
                     @error('generalSettingsForm.about_us')
                     <div class="text text-danger">{{$message}}</div>
@@ -17,11 +16,10 @@
 
                 <div class="mb-1">
                     <label class="form-label"
-                           for="privacy_condition">{{ __('app.settings.general_settings.privacy') }}</label>
+                           for="privacy_condition">{{ __('app.settings.privacy') }}</label>
 
                     <div class="form-outline">
                         <textarea class="form-control" wire:model="generalSettingsForm.privacy_condition" id="textAreaExample1" rows="4"></textarea>
-                        <label class="form-label" for="textAreaExample">Message</label>
                     </div>
                     @error('generalSettingsForm.privacy_condition')
                     <div class="text text-danger">{{$message}}</div>
@@ -30,7 +28,7 @@
 
                 <div class="mb-1">
                     <label class="form-label"
-                           for="return_allowed_duration">{{ __('app.settings.general_setting.support_phone') }}</label>
+                           for="return_allowed_duration">{{ __('app.settings.support_phone') }}</label>
                     <input type="text" wire:model="generalSettingsForm.support_phone" id="support_phone" class="form-control"
                            name="return_allowed_duration" required>
                     @error('generalSettingsForm.support_phone')

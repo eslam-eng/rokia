@@ -23,8 +23,10 @@ class MySqlGrammar extends Grammar
      */
     protected function whereNull(Builder $query, $where)
     {
-        if ($this->isJsonSelector($where['column'])) {
-            [$field, $path] = $this->wrapJsonFieldAndPath($where['column']);
+        $columnValue = (string) $this->getValue($where['column']);
+
+        if ($this->isJsonSelector($columnValue)) {
+            [$field, $path] = $this->wrapJsonFieldAndPath($columnValue);
 
             return '(json_extract('.$field.$path.') is null OR json_type(json_extract('.$field.$path.')) = \'NULL\')';
         }
@@ -41,8 +43,10 @@ class MySqlGrammar extends Grammar
      */
     protected function whereNotNull(Builder $query, $where)
     {
-        if ($this->isJsonSelector($where['column'])) {
-            [$field, $path] = $this->wrapJsonFieldAndPath($where['column']);
+        $columnValue = (string) $this->getValue($where['column']);
+
+        if ($this->isJsonSelector($columnValue)) {
+            [$field, $path] = $this->wrapJsonFieldAndPath($columnValue);
 
             return '(json_extract('.$field.$path.') is not null AND json_type(json_extract('.$field.$path.')) != \'NULL\')';
         }
@@ -100,6 +104,19 @@ class MySqlGrammar extends Grammar
     public function compileInsertOrIgnore(Builder $query, array $values)
     {
         return Str::replaceFirst('insert', 'insert ignore', $this->compileInsert($query, $values));
+    }
+
+    /**
+     * Compile an insert ignore statement using a subquery into SQL.
+     *
+     * @param  \Illuminate\Database\Query\Builder  $query
+     * @param  array  $columns
+     * @param  string  $sql
+     * @return string
+     */
+    public function compileInsertOrIgnoreUsing(Builder $query, array $columns, string $sql)
+    {
+        return Str::replaceFirst('insert', 'insert ignore', $this->compileInsertUsing($query, $columns, $sql));
     }
 
     /**

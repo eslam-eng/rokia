@@ -4,13 +4,13 @@
             <button class="nav-link @if($activeTab == 'general_settings') active @endif"
                     style="padding: 12px !important;"
                     wire:click="$set('activeTab', 'general_settings')" type="button"
-                    role="tab">@lang('app.settings.general.title')</button>
+                    role="tab">@lang('app.settings.general_settings')</button>
         </li>
         <li class="nav-item" role="presentation">
             <button class="nav-link @if($activeTab == 'sales_invoice_settings') active @endif"
                     style="padding: 12px !important;"
                     wire:click="$set('activeTab', 'sales_invoice_settings')" type="button"
-                    role="tab">@lang('app.settings.sales_invoice.title')</button>
+                    role="tab">@lang('app.settings.title')</button>
         </li>
 
     </ul>

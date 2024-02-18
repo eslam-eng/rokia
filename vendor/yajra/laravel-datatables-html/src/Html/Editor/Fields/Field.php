@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Query\Builder as QueryBuilder;
 use Illuminate\Support\Fluent;
 use Illuminate\Support\Str;
+use Illuminate\Support\Traits\Macroable;
 use Yajra\DataTables\Html\HasAuthorizations;
 
 /**
@@ -16,6 +17,7 @@ use Yajra\DataTables\Html\HasAuthorizations;
 class Field extends Fluent
 {
     use HasAuthorizations;
+    use Macroable;
 
     /**
      * Field type.
@@ -119,6 +121,25 @@ class Field extends Fluent
         return $this->options(
             Options::model($model, $value, $key)
         );
+    }
+
+    /**
+     * Get options from a Enum::cases().
+     *
+     * @param array $cases
+     * @return $this
+     */
+    public function enumOptions(array $cases): static
+    {
+        $options = [];
+        foreach ($cases as $case) {
+            $options[] = [
+                'value' => $case->value,
+                'label' => $case->value,
+            ];
+        }
+
+        return $this->options($options);
     }
 
     /**

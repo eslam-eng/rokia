@@ -1,6 +1,8 @@
 <?php
 
 namespace Livewire;
+use Composer\InstalledVersions;
+use Illuminate\Foundation\Console\AboutCommand;
 
 class LivewireServiceProvider extends \Illuminate\Support\ServiceProvider
 {
@@ -38,7 +40,7 @@ class LivewireServiceProvider extends \Illuminate\Support\ServiceProvider
 
     protected function bootEventBus()
     {
-        (new \Livewire\EventBus)->boot();
+        app(\Livewire\EventBus::class)->boot();
     }
 
     protected function getMechanisms()
@@ -49,7 +51,7 @@ class LivewireServiceProvider extends \Illuminate\Support\ServiceProvider
             \Livewire\Mechanisms\HandleRequests\HandleRequests::class,
             \Livewire\Mechanisms\FrontendAssets\FrontendAssets::class,
             \Livewire\Mechanisms\ExtendBlade\ExtendBlade::class,
-            \Livewire\Mechanisms\CompileLivewireTags::class,
+            \Livewire\Mechanisms\CompileLivewireTags\CompileLivewireTags::class,
             \Livewire\Mechanisms\ComponentRegistry::class,
             \Livewire\Mechanisms\RenderComponent::class,
             \Livewire\Mechanisms\DataStore::class,
@@ -59,14 +61,20 @@ class LivewireServiceProvider extends \Illuminate\Support\ServiceProvider
     protected function registerMechanisms()
     {
         foreach ($this->getMechanisms() as $mechanism) {
-            (new $mechanism)->register($this);
+            app($mechanism)->register();
         }
     }
 
     protected function bootMechanisms()
     {
+        if (class_exists(AboutCommand::class) && class_exists(InstalledVersions::class)) {
+            AboutCommand::add('Livewire', [
+                'Livewire' => InstalledVersions::getPrettyVersion('livewire/livewire'),
+            ]);
+        }
+
         foreach ($this->getMechanisms() as $mechanism) {
-            (new $mechanism)->boot($this);
+            app($mechanism)->boot();
         }
     }
 
@@ -76,10 +84,12 @@ class LivewireServiceProvider extends \Illuminate\Support\ServiceProvider
             \Livewire\Features\SupportWireModelingNestedComponents\SupportWireModelingNestedComponents::class,
             \Livewire\Features\SupportMultipleRootElementDetection\SupportMultipleRootElementDetection::class,
             \Livewire\Features\SupportDisablingBackButtonCache\SupportDisablingBackButtonCache::class,
+            \Livewire\Features\SupportNestedComponentListeners\SupportNestedComponentListeners::class,
             \Livewire\Features\SupportMorphAwareIfStatement\SupportMorphAwareIfStatement::class,
             \Livewire\Features\SupportAutoInjectedAssets\SupportAutoInjectedAssets::class,
             \Livewire\Features\SupportComputed\SupportLegacyComputedPropertySyntax::class,
             \Livewire\Features\SupportNestingComponents\SupportNestingComponents::class,
+            \Livewire\Features\SupportScriptsAndAssets\SupportScriptsAndAssets::class,
             \Livewire\Features\SupportBladeAttributes\SupportBladeAttributes::class,
             \Livewire\Features\SupportConsoleCommands\SupportConsoleCommands::class,
             \Livewire\Features\SupportPageComponents\SupportPageComponents::class,
@@ -94,8 +104,8 @@ class LivewireServiceProvider extends \Illuminate\Support\ServiceProvider
             \Livewire\Features\SupportAttributes\SupportAttributes::class,
             \Livewire\Features\SupportPagination\SupportPagination::class,
             \Livewire\Features\SupportValidation\SupportValidation::class,
+            \Livewire\Features\SupportIsolating\SupportIsolating::class,
             \Livewire\Features\SupportRedirects\SupportRedirects::class,
-            \Livewire\Features\SupportWireables\SupportWireables::class,
             \Livewire\Features\SupportStreaming\SupportStreaming::class,
             \Livewire\Features\SupportNavigate\SupportNavigate::class,
             \Livewire\Features\SupportEntangle\SupportEntangle::class,
@@ -107,6 +117,7 @@ class LivewireServiceProvider extends \Illuminate\Support\ServiceProvider
             // Some features we want to have priority over others...
             \Livewire\Features\SupportLifecycleHooks\SupportLifecycleHooks::class,
             \Livewire\Features\SupportLegacyModels\SupportLegacyModels::class,
+            \Livewire\Features\SupportWireables\SupportWireables::class,
         ] as $feature) {
             app('livewire')->componentHook($feature);
         }

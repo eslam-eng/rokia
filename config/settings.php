@@ -7,6 +7,7 @@ return [
      * put them (manually) here.
      */
     'settings' => [
+
     ],
 
     /*

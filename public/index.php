@@ -1,18 +1,5 @@
 <?php
 
-/*
-Project         :   Nowa - Laravel Bootstrap 5 Admin & Dashboard Template
-@package        :   Laravel
-Laravel Version :   8.82.0
-PHP Version     :   8.1.2
-Created Date    :   18-02-2022
-Copyright       :   Spruko Technologies Private Limited
-Author          :   SPRUKO™
-Author URL      :   https://themeforest.net/user/spruko
-Support         :   support@spruko.com
-License         :   Licensed under ThemeForest Licence
-*/
-
 use Illuminate\Contracts\Http\Kernel;
 use Illuminate\Http\Request;
 
@@ -44,7 +31,7 @@ if (file_exists($maintenance = __DIR__.'/../storage/framework/maintenance.php'))
 |
 */
 
-require __DIR__ . '/../vendor/autoload.php';
+require __DIR__.'/../vendor/autoload.php';
 
 /*
 |--------------------------------------------------------------------------
