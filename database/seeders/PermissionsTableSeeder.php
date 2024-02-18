@@ -28,6 +28,8 @@ class PermissionsTableSeeder extends Seeder
             }
         }
         Permission::query()->upsert($data, ['name', 'group', 'guard_name'], ['name', 'group', 'guard_name']);
-        app()->make(RoleService::class)->createSuperAdminRole();
+        $role = app()->make(RoleService::class)->createSuperAdminRole();
+        $user = User::query()->first();
+        $user->assignRole($role);
     }
 }
