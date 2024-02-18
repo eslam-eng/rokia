@@ -116,6 +116,10 @@ Route::get('/migrate', function () {
     return '<pre>' . $output . '</pre>';
 });
 
+Route::get('/seed/{class_name}', function ($class_name) {
+    $output = Artisan::call("db:seed --class=$class_name");
+    return '<pre>' . $output . '</pre>';
+});
 
 
 
