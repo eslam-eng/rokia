@@ -70,7 +70,8 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'locale']], func
         Route::delete('id', [MediaController::class, 'deleteMedia'])->name('delete-media');
     });
     Route::get('therapist-invoice/{invoice_number}',[InvoicesController::class,'therapistInvoice']);
-    Route::get('rozmana', RozmanaController::class)->name('rozmana.datatable');
+    Route::get('therapists-rozmana', [RozmanaController::class,'index'])->name('therapists-rozmana');
+    Route::get('therapists-rozmana/{therapist_id}', [RozmanaController::class,'show'])->name('therapists-rozmana.show');
 
     Route::group(['prefix' => 'search'],function (){
         Route::get('users',[ClientController::class,'search'])->name('users.search');

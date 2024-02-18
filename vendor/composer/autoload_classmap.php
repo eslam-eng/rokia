@@ -190,7 +190,6 @@ return array(
     'App\\Traits\\EscapeUnicodeJson' => $baseDir . '/app/Traits/EscapeUnicodeJson.php',
     'App\\Traits\\Filterable' => $baseDir . '/app/Traits/Filterable.php',
     'App\\Traits\\HasMedia' => $baseDir . '/app/Traits/HasMedia.php',
-    'App\\Traits\\NotifyFcm' => $baseDir . '/app/Traits/NotifyFcm.php',
     'App\\Traits\\NotifyUsers' => $baseDir . '/app/Traits/NotifyUsers.php',
     'Attribute' => $vendorDir . '/symfony/polyfill-php80/Resources/stubs/Attribute.php',
     'Brick\\Math\\BigDecimal' => $vendorDir . '/brick/math/src/BigDecimal.php',

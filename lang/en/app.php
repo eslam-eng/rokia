@@ -173,6 +173,8 @@ return [
     'rozmana' => [
         'title' => 'title',
         'rozmana_title' => 'Rozmana',
+        'rozmana_count' => 'Rozmana Count',
+        'rozmana_details' => 'Rozmana Details',
         'rozmana_created_successfully' => 'Rozmana Created Successfully',
         'rozmana_updated_successfully' => 'Rozmana Updated Successfully',
         'rozmana_not_fount' => 'Rozmana Not Found',

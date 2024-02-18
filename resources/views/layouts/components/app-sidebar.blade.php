@@ -111,8 +111,8 @@
                         </a>
                         <ul class="slide-menu">
                             <li>
-                                <a class="slide-item" data-is_active="{{request()->fullUrlIs(route('rozmana.datatable'))}}"
-                                   href="{{route('rozmana.datatable')}}">@lang('app.rozmana.rozmana_title')</a>
+                                <a class="slide-item" data-is_active="{{request()->fullUrlIs(route('therapists-rozmana'))}}"
+                                   href="{{route('therapists-rozmana')}}">@lang('app.rozmana.rozmana_title')</a>
                             </li>
 
                         </ul>

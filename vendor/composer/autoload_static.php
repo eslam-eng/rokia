@@ -859,7 +859,6 @@ class ComposerStaticInit6832ed58e9884be689958b03c928d5d3
         'App\\Traits\\EscapeUnicodeJson' => __DIR__ . '/../..' . '/app/Traits/EscapeUnicodeJson.php',
         'App\\Traits\\Filterable' => __DIR__ . '/../..' . '/app/Traits/Filterable.php',
         'App\\Traits\\HasMedia' => __DIR__ . '/../..' . '/app/Traits/HasMedia.php',
-        'App\\Traits\\NotifyFcm' => __DIR__ . '/../..' . '/app/Traits/NotifyFcm.php',
         'App\\Traits\\NotifyUsers' => __DIR__ . '/../..' . '/app/Traits/NotifyUsers.php',
         'Attribute' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Attribute.php',
         'Brick\\Math\\BigDecimal' => __DIR__ . '/..' . '/brick/math/src/BigDecimal.php',

@@ -28,6 +28,8 @@ return [
         'please_login_to_continue'=>'من فضلك سجل دخولك للمتابعة.',
         'sign_in'=>'تسجيل الدخول',
         'welcome_back'=>'مرحبًا بعودتك',
+        'auth_in_review' => 'سوف يتم مراجعة البيانات,والرد في اقرب وقت',
+
     ],
     'general' => [
         'PENDING' => 'معلقة',
@@ -52,6 +54,7 @@ return [
         'back' => 'رجوع',
         'filters' => 'تصفية',
         'no_data_available' => 'لا يوجد سجلات',
+        'status' => 'الحالة',
 
     ],
     'week_days' => [
@@ -84,6 +87,8 @@ return [
         'edit_lecture' => 'تعديل المحاضرة',
         'lecture_title' => 'عنوان المحاضرة',
 
+        'lecture_upload_success' => 'تم رفع المحاضرة بنجاح',
+
     ],
 
     'therapists' => [
@@ -114,6 +119,9 @@ return [
         'gender' => 'الجنس',
         'lecture_count' => 'عدد المحاضرات',
         'status' => 'الحالة',
+
+        'status_changed_successfully' => 'تم تغير الحالة بنجاح',
+        'not_found' => 'المتسخدم غير موجود',
     ],
 
     'invoices' => [
@@ -125,6 +133,142 @@ return [
         'therapist_due'=>'مستحقات المعالج',
         'grand_total'=>'الصافي',
         'items_count'=>'Items Count',
+
+        'PENDING' => 'معلقة',
+        'Completed' => 'مكتملة',
+        'complete' => 'تم الاكتمال',
+    ],
+
+    'sliders' => [
+        'title' => 'شريط السحب',
+        'add_slider' => 'اضافة',
+        'image' => 'الصوره',
+        'caption' => 'الوصف',
+        'order' => 'الترتيب',
+        'status' => 'الحالة',
+    ],
+
+    'users' => [
+        'title' => 'المتستخدمين',
+        'users_list' => 'قائمه المستخدمين',
+        'name' => 'الاسم',
+        'email' => 'البريد الالكتروني',
+        'phone' => 'التليفون',
+        'password' => 'كلمه المرور',
+        'gender' => 'النوع',
+        'status' => 'الحالة',
+        'address' => 'العنوان',
+        'choose_gender' => 'اختر النوع...',
+        'choose_role' => 'اختر الدور...',
+        'role' => 'الدور',
+        'add_user' => 'اضافة مستخدم',
+        'edit_user' => 'تعديل مستخدم',
+
+    ],
+
+    'categories' => [
+        'title' => 'الاقسام',
+        'name' => 'الاسم',
+        'add_category' => 'إضافة قسم',
+        'edit_category' => 'تعديل قسم',
+        'status' => 'الحالة',
+        'status_changed_successfully' => 'تم تغير الحالة بنجاح',
+        'category_not_found' => 'القسم غير موجود',
+    ],
+
+    'rozmana' => [
+        'title' => 'title',
+        'rozmana_title' => 'Rozmana',
+        'rozmana_created_successfully' => 'Rozmana Created Successfully',
+        'rozmana_updated_successfully' => 'Rozmana Updated Successfully',
+        'rozmana_not_fount' => 'Rozmana Not Found',
+        'rozmana_deleted_successfully' => 'Rozmana Deleted Successfully',
+        'status' => 'status',
+        'date' => 'date',
+        'description' => 'Description',
+        'thereapist' => 'Therapist',
+    ],
+
+    'lecture_report' => [
+        'title' => 'تقرير المحاضرات',
+        'start_date' => 'تاريخ البدايه',
+        'end_date' => 'تاريخ النهاية',
+    ],
+
+    'select2' => [
+        'no_results' => 'لا توجد نتائج',
+        'searching' => 'جاري البحث...',
+        'input_too_short' => 'من فضلك اكتب علي الاقل حرفين',
+    ],
+
+    'settings' => [
+        'title' => 'الاعدادات',
+        'general_settings' => 'اعدادات عامه',
+        'about_us'=>'عنا',
+        'privacy'=>'الشروط والاحكام',
+        'support_phone'=>'تواصل معنا',
+
+    ],
+
+    'system' => [
+        'title' => 'النظام',
+        'role_name' => 'الدور',
+        'add_role' => 'اضافة الادوار',
+        'roles' => 'الادوار',
+        'roles_and_permissions' => 'الادوار والصلاحيات',
+        'users_count' => 'عدد المستخدمين',
+        'permissions_count' => 'عدد الصحلاحيات',
+        'users_list' => 'قايمة المستخدمين',
+        'add_user' => 'إضافة مستخدم',
+        'edit_user' => 'تعديل مستخدم',
+
+        'permissions' => [
+            'therapists' => [
+                'title' => 'المعالجين',
+                'create_therapist' => 'إضافة معالج',
+                'edit_therapist' => 'تعديل المعالج',
+                'delete_therapist' => 'حذف المعالج',
+                'change_therapist_status' => 'تغير حالة المعالج',
+            ],
+
+            'sliders' => [
+                'title' => 'Sliders',
+                'create_slider' => 'Create Slider',
+                'edit_slider' => 'Edit Slider',
+                'delete_slider' => 'Delete Slider',
+            ],
+
+            'categories' => [
+                'title' => 'الاقسام',
+                'create_category' => 'إضافة قسم',
+                'edit_category' => 'تعديل قسم',
+                'delete_category' => 'حذف القسم',
+            ],
+
+            'rozmana' => [
+                'title' => 'Rozmana',
+                'view_rozmana' => 'View Rozmana',
+            ],
+
+            'clients' => [
+                'title' => 'العملاء',
+                'view_clients' => 'عرض العملاء',
+            ],
+
+            'users' => [
+                'title' => 'المستخدمين',
+                'create_users' => 'إضافة مستخدم',
+                'edit_users' => 'تعديل مستخدم',
+                'delete_users' => 'حذف مستخدم',
+            ],
+
+            'roles' => [
+                'title' => 'الادوار',
+                'create_role' => 'إضافة دور',
+                'edit_role' => 'تعديل الدور',
+                'delete_role' => 'حذف الدور',
+            ],
+        ],
     ],
 
 ];

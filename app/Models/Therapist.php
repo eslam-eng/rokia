@@ -60,5 +60,10 @@ class Therapist extends Authenticatable implements HasMedia
         return $this->hasMany(TherapistSchedule::class,'therapist_id');
     }
 
+    public function rozmans()
+    {
+        return $this->hasMany(Rozmana::class,'therapist_id');
+    }
+
 
 }

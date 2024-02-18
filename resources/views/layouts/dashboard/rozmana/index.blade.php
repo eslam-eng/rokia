@@ -14,22 +14,43 @@
     @include('layouts.dashboard.rozmana.components._filters')
     <!--end filtered section -->
     <!-- Row -->
-    <div class="row row-sm">
-        <div class="col-lg-12">
-            <div class="card custom-card">
-                <div class="card-body">
-{{--                    <a href="{{route('sliders.create')}}" role="button" class="btn btn-success text-dark"><i class="fa fa-plus"></i> @lang('app.sliders.add_slider')</a>--}}
-                    <div class="table-responsive">
-                        {!! $dataTable->table(['class' => 'table-data table table-bordered text-nowrap border-bottom']) !!}
+    <div class="row">
+
+        @foreach($therapists as $therapist)
+            <div class="col-xl-4">
+                <div class="card custom-card">
+                    <div class="card-header">
+                        <div class="d-flex w-100">
+                            <div class="me-4"><span class="avatar avatar-lg avatar-rounded">
+                                    <img src="{{$therapist->media_url}}" alt="img"> </span>
+                            </div>
+                            <div class="d-flex align-items-center justify-content-between w-100 flex-wrap">
+                                <div class="me-3"><p class="text-muted mb-0">@lang('app.rozmana.rozmana_count')</p>
+                                    <p class="fw-semibold fs-16 mb-0">{{$therapist->rozmans_count}}</p></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="d-flex align-items-center justify-content-between w-100 flex-wrap">
+                            <div class="me-3"><p class="text-muted mb-0">@lang('app.therapists.name')</p>
+                                <p class="fw-semibold fs-16 mb-0">{{$therapist->name}}</p></div>
+                            <div class="me-3">
+                                <p class="text-dark mb-0">
+                                    <a class="btn btn-sm btn-info" href="{{route('therapists-rozmana.show',$therapist->id)}}">@lang('app.rozmana.rozmana_details')</a>
+                                </p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        @endforeach
+    </div>
+    <div class="row mt-2 justify-content-center">
+        {{ $therapists->links('vendor.pagination.bootstrap-4') }}
     </div>
     <!-- End Row -->
 
 @endsection
 
 @section('scripts')
-    @include('layouts.components.datatable-scripts')
 @endsection

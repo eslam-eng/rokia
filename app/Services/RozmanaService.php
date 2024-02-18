@@ -83,4 +83,9 @@ class RozmanaService extends BaseService
         ]);
 
     }
+
+    public function getRozmanaForTher()
+    {
+
+    }
 }
