@@ -115,21 +115,6 @@ Route::get('/migrate', function () {
     $output = Artisan::call('migrate');
     return '<pre>' . $output . '</pre>';
 });
-Route::get('test',function (){
-    // Define your start and end times
-
-
-// Define the interval in minutes (e.g., 15 minutes)
-    $interval = 15;
-
-// Initialize an array to store the divided intervals
-
-
-// Output the divided period
-    foreach ($dividedPeriod as $interval) {
-        echo $interval . PHP_EOL;
-    }
-});
 
 
 
