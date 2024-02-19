@@ -21,15 +21,9 @@
                                             <select class="form-control" name="status">
                                                 <option>@lang('app.general.select_status')</option>
                                                 @foreach(\App\Enums\ActivationStatus::cases() as $status)
-                                                    <option value="{{$status->value}}">@lang('app.general.'.$status->name)</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                        <div class="col-lg">
-                                            <div class="main-content-label mg-b-5">@lang('app.therapists.therapists')</div>
-                                            <select class="form-control" name="type">
-                                                @foreach (App\Enums\UsersType::cases() as $name=>$value)
-                                                <option value="{{ $value }}">{{ $name }}</option>
+                                                    @if($status->value != \App\Enums\ActivationStatus::INACTIVE->value)
+                                                        <option value="{{$status->value}}">@lang('app.general.'.$status->name)</option>
+                                                    @endif
                                                 @endforeach
                                             </select>
                                         </div>

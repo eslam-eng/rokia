@@ -30,7 +30,7 @@ class LecturesFilter extends QueryFilter
 
     public function date_between($term)
     {
-        $date = explode('-',$term);
+        $date = explode('To',$term);
         return $this->builder->whereDate('created_at', '>=', $date[0])
             ->whereDate('created_at', '<=', $date[1]);
     }

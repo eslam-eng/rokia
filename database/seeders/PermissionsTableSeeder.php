@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
 use App\Services\RoleService;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Permission;
@@ -28,8 +27,6 @@ class PermissionsTableSeeder extends Seeder
             }
         }
         Permission::query()->upsert($data, ['name', 'group', 'guard_name'], ['name', 'group', 'guard_name']);
-        $role = app()->make(RoleService::class)->createSuperAdminRole();
-        $user = User::query()->first();
-        $user->assignRole($role);
+        app()->make(RoleService::class)->createSuperAdminRole();
     }
 }

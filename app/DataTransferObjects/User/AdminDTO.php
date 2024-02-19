@@ -98,7 +98,7 @@ class AdminDTO extends BaseDTO
             "address" => $this->address,
             "city_id" => $this->city_id,
             "area_id" => $this->area_id,
-            "type" => UsersType::EMPLOYEE->value,
+            "type" => UsersType::ADMIN->value,
             "role_id" => $this->role_id,
         ];
     }

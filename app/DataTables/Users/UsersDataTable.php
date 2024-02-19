@@ -81,12 +81,12 @@ class UsersDataTable extends DataTable
                 ->orderable(false)
                 ->searchable(false),
             Column::make('role')
-                ->title(__('app.admins.role'))
+                ->title(__('app.system.role_name'))
                 ->orderable(false)
                 ->searchable(false),
 
             Column::make('permissions_count')
-                ->title(__('app.admins.permissions_count'))
+                ->title(__('app.system.permissions_count'))
                 ->orderable(false)
                 ->searchable(false),
 

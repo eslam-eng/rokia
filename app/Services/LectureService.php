@@ -13,6 +13,7 @@ use App\Models\User;
 use App\Models\UserLecture;
 use getID3;
 use getid3_lib;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
@@ -143,9 +144,9 @@ class LectureService extends BaseService
         return $user->lecture()->get();
     }
 
-    public function getReportForTherapist(array $filters = []): \Illuminate\Contracts\Pagination\LengthAwarePaginator
+    public function getLectureReportForTherapist(array $filters = []): LengthAwarePaginator
     {
-        return $this->getQuery($filters)->withCount('users')->paginate(20);
+        return $this->getQuery($filters)->withCount('users')->paginate();
     }
 
     public function getSubscribedUsersForTherapist(int $therapist_id)

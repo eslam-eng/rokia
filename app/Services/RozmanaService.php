@@ -8,7 +8,6 @@ use App\Filters\RozmanaFilter;
 use App\Models\Rozmana;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 
@@ -56,7 +55,7 @@ class RozmanaService extends BaseService
     {
         if (is_int($rozmana))
             $rozmana = $this->findById($rozmana);
-        $this->validateBeforeUpdate(dto: $dto,rozmana_id: $rozmana->id);
+        $this->validateBeforeUpdate(dto: $dto, rozmana_id: $rozmana->id);
         return $rozmana->update($dto->toArray());
     }
 
@@ -75,7 +74,7 @@ class RozmanaService extends BaseService
         ]);
     }
 
-    private function validateBeforeUpdate(RozmanaDTO $dto,int $rozmana_id): void
+    private function validateBeforeUpdate(RozmanaDTO $dto, int $rozmana_id): void
     {
         $dto->validate();
         Validator::validate($dto->toArray(), [

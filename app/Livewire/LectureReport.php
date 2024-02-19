@@ -9,14 +9,14 @@ use Livewire\WithPagination;
 class LectureReport extends Component
 {
     use WithPagination;
-    protected $listeners = ['onUserChange'=>'setTherapistId'];
+    protected $listeners = ['onTherapistChange'=>'setTherapistId'];
 
     public ?int $therapist_id = null;
 
     public mixed $start_date;
     public mixed $end_date;
 
-    public mixed $lectures = null;
+    private mixed $lectures = null;
 
     protected ?LectureService $lectureService = null ;
 
@@ -34,15 +34,17 @@ class LectureReport extends Component
     {
         $filters= [
           'therapist_id'=>$this->therapist_id,
-          'date_between'=>$this->start_date .'-'.$this->end_date,
+          'date_between'=>$this->start_date .'To'.$this->end_date,
         ];
 
-       $this->lectures = $this->lectureService->getReportForTherapist($filters);
+       $this->lectures = $this->lectureService->getLectureReportForTherapist($filters);
     }
 
 
     public function render()
     {
-        return view('livewire.lecture-report');
+        return view('livewire.lecture-report',[
+            'lectures'=>$this->lectures
+        ]);
     }
 }

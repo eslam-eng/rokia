@@ -3,6 +3,7 @@
 namespace App\DataTables\Therapist;
 
 use App\Enums\ActivationStatus;
+use App\Models\Therapist;
 use App\Models\User;
 use App\Services\TherapistService;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
@@ -23,15 +24,15 @@ class TherapistsDataTable extends DataTable
     {
         return (new EloquentDataTable($query))
             ->setRowId('id')
-            ->editColumn('status', function (User $user) {
-                $classes = $user->status == ActivationStatus::ACTIVE->value ? 'badge-success' : 'badge-danger';
-                return view('components._datatable-badge', ['class' => $classes, 'text' => ActivationStatus::from($user->status)->name]);
-            })->editColumn('gender', fn(User $user) => __('app.general.' . $user->gender))
-            ->editColumn('created_at',fn(User $user)=>$user->created_at->format('Y-m-d'))
-            ->addColumn('action', function (User $user) {
+            ->editColumn('status', function (Therapist $therapist) {
+                $classes =  ActivationStatus::from($therapist->status)->getClasses();
+                return view('components._datatable-badge', ['class' => $classes, 'text' => ActivationStatus::from($therapist->status)->getLabel()]);
+            })->editColumn('gender', fn(Therapist $therapist) => __('app.general.' . $therapist->gender))
+            ->editColumn('created_at',fn(Therapist $therapist)=>$therapist->created_at->format('Y-m-d'))
+            ->addColumn('action', function (Therapist $therapist) {
                 return view(
                     'layouts.dashboard.therapist.components._actions',
-                    ['model' => $user, 'url' => route('users.destroy', $user->id)]
+                    ['model' => $therapist, 'url' => route('users.destroy', $therapist->id)]
                 );
             });
     }
@@ -79,6 +80,7 @@ class TherapistsDataTable extends DataTable
             Column::make('gender')->title(__('app.therapists.gender'))->orderable(false)->searchable(false),
             Column::make('status')->title(__('app.therapists.status'))->orderable(false)->searchable(false),
             Column::make('therapist_commission')->title(__('app.therapists.therapist_commission'))->orderable(false)->searchable(false),
+            Column::make('avg_therapy_duration')->title(__('app.therapists.avg_therapy_duration'))->orderable(false)->searchable(false),
             Column::make('created_at')->title(__('app.general.created_at')),
             Column::computed('action')->title(__('app.general.action'))
                 ->exportable(false)

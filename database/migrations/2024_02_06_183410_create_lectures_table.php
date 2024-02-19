@@ -17,7 +17,7 @@ return new class extends Migration
         Schema::create('lectures', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->foreignIdFor(\App\Models\User::class,'therapist_id')->constrained('users');
+            $table->foreignIdFor(\App\Models\Therapist::class,'therapist_id')->constrained('therapists');
             $table->string('duration')->nullable();
             $table->string('description')->nullable();
             $table->decimal('price')->default(0);

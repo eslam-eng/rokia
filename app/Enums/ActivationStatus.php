@@ -21,4 +21,12 @@ enum ActivationStatus: int
         };
     }
 
+    public function getClasses(): string
+    {
+        return match ($this) {
+            self::PENDING, self::INACTIVE =>'badge-danger',
+            self::ACTIVE => 'badge-success',
+        };
+    }
+
 }

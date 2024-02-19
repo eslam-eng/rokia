@@ -4,8 +4,7 @@
             <form wire:submit.prevent="getReport">
                 <div class="row">
                     <div class="col-md-4 col-lg-4">
-                        <livewire:users-search :user_type="\App\Enums\UsersType::THERAPIST->value"
-                                               :title="__('app.therapists.therapist')"/>
+                        <livewire:therapists-search :title="__('app.therapists.therapist')"/>
                     </div>
                     <div class="col-md-4 col-lg-4">
                         <div>
@@ -26,5 +25,48 @@
             </form>
         </div>
     </div>
+
+
+    @if(!empty($lectures) && $lectures->count())
+        <div class="card">
+            <div class="card-body">
+                <table class="table table-bordered table-striped">
+                    <thead>
+                    <tr>
+                        <th>@lang('app.lectures.title')</th>
+                        <th>@lang('app.lectures.is_paid')</th>
+                        <th>@lang('app.lectures.created_at')</th>
+                        <th>@lang('app.lectures.publish_date')</th>
+                        <th>@lang('app.lectures.duration')</th>
+                        <th>@lang('app.lectures.price')</th>
+                        <th>@lang('app.lectures.users_subscription')</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach($lectures as $lecture)
+                        <tr>
+                            <td>{{$lecture->title}}</td>
+                            <td>{{$lecture->is_paid_text}}</td>
+                            <td>{{$lecture->created_at}}</td>
+                            <td>{{$lecture->publish_date ?? $lecture->created_at}}</td>
+                            <td>{{$lecture->duration}}</td>
+                            <td>{{$lecture->price}}</td>
+                            <td>{{$lecture->users_count}}</td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+
+            </div>
+            <div class="card-footer">
+                {{ $lectures->links('vendor.pagination.bootstrap-4') }}
+            </div>
+        </div>
+    @else
+        <div class="card">
+            <div class="card-header alert alert-info text-center fw-bold"><h4>there is no data to view</h4></div>
+        </div>
+    @endif
+
 
 </div>

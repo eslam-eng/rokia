@@ -6,6 +6,7 @@ use App\Enums\ActivationStatus;
 use App\Models\Lecture;
 use App\Services\LectureService;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
+use Illuminate\Support\Str;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
 use Yajra\DataTables\Html\Column;
@@ -33,6 +34,7 @@ class LecturesDatatable extends DataTable
                 return view('components._datatable-badge', ['class' => $classes, 'text' => $text]);
             })
             ->editColumn('therapist_id', fn(Lecture $lecture) => $lecture->therapist->name)
+            ->editColumn('description', fn(Lecture $lecture) => Str::limit($lecture->description,70))
             ->editColumn('created_at', fn(Lecture $lecture) => $lecture->created_at->format('Y-m-d'))
             ->addColumn('action', function (Lecture $lecture) {
                 return view(
@@ -89,6 +91,7 @@ class LecturesDatatable extends DataTable
             Column::computed('action')->title(__('app.general.action'))
                 ->exportable(false)
                 ->printable(false)
+                ->width(200)
                 ->addClass('text-center'),
         ];
     }

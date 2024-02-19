@@ -19,7 +19,7 @@ class Therapist extends Authenticatable implements HasMedia
         HasFactory, Notifiable,HasRoles,InteractsWithMedia;
 
     protected $fillable = [
-        'name', 'email', 'password', 'phone', 'type', 'status','therapist_commission',
+        'name', 'email', 'password', 'phone','status','therapist_commission','status',
         'device_token','address','city_id','area_id','locale','email_verified_at','avg_therapy_duration'
     ];
 

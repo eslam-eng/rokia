@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('date');
             $table->foreignIdFor(\App\Models\User::class,'therapist_id')->constrained('users')->cascadeOnDelete();
             $table->boolean('status')->default(\App\Enums\ActivationStatus::ACTIVE->value);
+            $table->foreignIdFor(\App\Models\Category::class)->nullable()->constrained('categories')->nullOnDelete();
             $table->unique(['therapist_id','date'],'unique_therapist_rozmana');
             $table->timestamps();
         });

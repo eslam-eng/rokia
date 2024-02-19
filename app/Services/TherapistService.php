@@ -11,6 +11,7 @@ use App\Filters\UsersFilters;
 use App\Http\Requests\Notification\StoreFcmTokenRequest;
 use App\Models\Therapist;
 use App\Models\User;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
@@ -73,7 +74,7 @@ class TherapistService extends BaseService
         if (is_int($therapist)){
             $therapist = $this->findById($therapist);
         }
-        $data = array_filter($therapistDTO->toArray());
+        $data = $therapistDTO->toFilteredArray();
         $therapist->update($data);
         return $therapist;
     }
@@ -119,5 +120,10 @@ class TherapistService extends BaseService
     public function getSchedules($therapist_id): Collection|array
     {
         return $this->therapistScheduleService->getSchedulesByTherapist(therapist_id: $therapist_id);
+    }
+
+    public function search(?array $filters = []): LengthAwarePaginator
+    {
+        return $this->getQuery($filters)->select(['id', 'name'])->paginate();
     }
 }

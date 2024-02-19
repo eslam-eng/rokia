@@ -8,15 +8,18 @@ use App\Traits\Filterable;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Support\Facades\DB;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 
 class Lecture extends Model implements HasMedia
 {
-    use Filterable, EscapeUnicodeJson, InteractsWithMedia;
+    use HasFactory, Filterable, EscapeUnicodeJson, InteractsWithMedia;
 
     protected $fillable = [
         'title', 'therapist_id', 'duration', 'description', 'price', 'status', 'is_paid', 'type', 'publish_date',
@@ -37,12 +40,12 @@ class Lecture extends Model implements HasMedia
         return $this->belongsToMany(User::class,'user_lectures','lecture_id');
     }
 
-    public function therapist(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function therapist(): BelongsTo
     {
-        return $this->belongsTo(User::class, 'therapist_id')->where('type', UsersType::THERAPIST->value);
+        return $this->belongsTo(Therapist::class, 'therapist_id');
     }
 
-    public function wishlist(): \Illuminate\Database\Eloquent\Relations\MorphMany
+    public function wishlist(): MorphMany
     {
         return $this->morphMany(Wishlist::class, 'relatable');
     }
@@ -76,6 +79,13 @@ class Lecture extends Model implements HasMedia
         $date = Carbon::parse($this->publish_date);
         return Attribute::make(
             get: fn () => $date->lte(Carbon::now()),
+        );
+    }
+
+    protected function isPaidText(): Attribute
+    {
+        return Attribute::make(
+            get: fn () => $this->is_paid ? __('app.lectures.paid') : __('app.lectures.free'),
         );
     }
 }

@@ -12,6 +12,7 @@ use App\Http\Controllers\RozmanaController;
 use App\Http\Controllers\SetLanguageController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\SliderController;
+use App\Http\Controllers\SpecialistController;
 use App\Http\Controllers\Therapist\Lecture\LectureController;
 use App\Http\Controllers\Therapist\TherapistController;
 use App\Http\Controllers\UserController;
@@ -75,6 +76,7 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'locale']], func
 
     Route::group(['prefix' => 'search'],function (){
         Route::get('users',[ClientController::class,'search'])->name('users.search');
+        Route::get('therapists',[TherapistController::class,'search'])->name('therapists.search');
     });
 
     Route::group(['prefix' => 'report'],function (){
@@ -82,7 +84,9 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'locale']], func
     });
 
     Route::resource('categories', CategoryController::class);
+    Route::resource('specialists', SpecialistController::class);
     Route::post('categories/{id}/status', [CategoryController::class, 'status'])->name('categories.status');
+    Route::post('specialists/{id}/status', [CategoryController::class, 'status'])->name('specialists.status');
 
     Route::get('settings', SettingsController::class)->name('settings.index');
     Route::group(['prefix' => 'admin'],function (){
@@ -121,6 +125,7 @@ Route::get('/seed/{class_name}', function ($class_name) {
     $output = Artisan::call("db:seed --class=$class_name");
     return '<pre>' . $output . '</pre>';
 });
+
 
 
 

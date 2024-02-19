@@ -43,7 +43,7 @@ class UserController extends Controller
             return ($value !== null && $value !== false && $value !== '');
         });
 
-        $filters['type'] = [UsersType::SUPERADMIN->value, UsersType::EMPLOYEE->value];
+        $filters['type'] = [UsersType::ADMIN->value];
 
         return $usersDatatable->with(['filters' => $filters])->render('layouts.dashboard.system.admin.index');
     }

@@ -25,12 +25,11 @@ class ThereapistUpdateRequest extends BaseRequest
     {
         return [
             'name' => 'required|string',
-            'email' => 'required|string',
             'therapist_commission' => 'required|numeric',
+            'avg_therapy_duration' => 'required|numeric|min:5',
             'phone' => 'required|string',
             'documents' => 'nullable|array|min:1',
             'documents.*' => 'file|mimes:png,jpg,jpeg,svg',
-            'type' => ['required',Rule::in(UsersType::values())],
             'status' => ['required',Rule::in(ActivationStatus::values())],
             'gender' => ['required',Rule::in(GenderTypeEnum::values())],
         ];
@@ -39,7 +38,7 @@ class ThereapistUpdateRequest extends BaseRequest
     public function prepareForValidation()
     {
         $this->merge([
-            'type'=>UsersType::THERAPIST->value,
+            'status'=>$this->boolean('status') ? ActivationStatus::ACTIVE->value : ActivationStatus::PENDING->value,
         ]);
     }
 }

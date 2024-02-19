@@ -16,7 +16,7 @@
                                 <div class="col-md-12 col-xl-12 col-xs-12 col-sm-12"> <!--div-->
 
                                     <div class="row row-sm mb-4">
-                                        <div class="col-lg mb-4">
+                                        <div class="col-lg-4 col-md-4 mb-4">
                                             <div class="main-content-label mg-b-5">@lang('app.therapists.status')</div>
                                             <select class="form-control" name="status">
                                                 <option>@lang('app.general.select_status')</option>
@@ -26,6 +26,10 @@
                                                     @endif
                                                 @endforeach
                                             </select>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 mb-4">
+                                            <div class="main-content-label mg-b-5">@lang('app.rozmana.date')</div>
+                                            <input type="date" class="form-control"/>
                                         </div>
                                     </div>
 

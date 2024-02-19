@@ -177,16 +177,16 @@ return [
     ],
 
     'rozmana' => [
-        'title' => 'title',
-        'rozmana_title' => 'Rozmana',
-        'rozmana_created_successfully' => 'Rozmana Created Successfully',
-        'rozmana_updated_successfully' => 'Rozmana Updated Successfully',
-        'rozmana_not_fount' => 'Rozmana Not Found',
-        'rozmana_deleted_successfully' => 'Rozmana Deleted Successfully',
-        'status' => 'status',
-        'date' => 'date',
-        'description' => 'Description',
-        'thereapist' => 'Therapist',
+        'title' => 'الاشعارات اليوميه',
+        'rozmana_title' => 'الاشعارات اليوميه',
+        'rozmana_created_successfully' => 'تم الحفظ بنجاح',
+        'rozmana_updated_successfully' => 'تم التعديل بنجاح',
+        'rozmana_not_fount' => 'الاشعار غير موجود',
+        'rozmana_deleted_successfully' => 'تم الحذف بنجاح',
+        'status' => 'الحالة',
+        'date' => 'التاريخ',
+        'description' => 'الوصف',
+        'thereapist' => 'المعالج',
     ],
 
     'lecture_report' => [

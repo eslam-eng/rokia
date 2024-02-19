@@ -34,6 +34,7 @@
                         </li>
 
                         <li>
+
                             <a class="slide-item"
                                data-is_active="{{request()->fullUrlIs(route('therapist-lectures.index'))}}"
                                href="{{route('therapist-lectures.index')}}">@lang('app.lectures.lectures')</a>
@@ -41,7 +42,7 @@
 
                         <li>
                             <a class="slide-item"
-                               data-is_active="{{request()->fullUrlIs(route('therapist-lectures.index'))}}"
+                               data-is_active="{{request()->fullUrlIs(route('therapist-lectures.index').'?upcoming=1')}}"
                                href="{{route('therapist-lectures.index').'?upcoming=1'}}">@lang('app.lectures.upcoming_lectures')</a>
                         </li>
 
@@ -69,6 +70,32 @@
                                     <a class="slide-item"
                                        data-is_active="{{request()->fullUrlIs(route('categories.index'))}}"
                                        href="{{route('categories.create')}}">@lang('app.categories.add_category')</a>
+                                </li>
+                            @endif
+                        </ul>
+                    </li>
+                @endif
+
+                @if(authUserHasPermission('list_specialist') || authUserHasPermission('create_specialist'))
+                    <li class="slide">
+                        <a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0);">
+                            <i class="fa fa-cubes ide-menu__icon pe-2"></i>
+                            <span class="side-menu__label">@lang('app.specialist.title')</span>
+                            <i class="angle fe fe-chevron-right"></i>
+                        </a>
+                        <ul class="slide-menu">
+                            @if(authUserHasPermission('list_specialist'))
+                                <li>
+                                    <a class="slide-item"
+                                       data-is_active="{{request()->fullUrlIs(route('specialists.index'))}}"
+                                       href="{{route('specialists.index')}}">@lang('app.specialist.title')</a>
+                                </li>
+                            @endif
+                            @if(authUserHasPermission('create_specialist'))
+                                <li>
+                                    <a class="slide-item"
+                                       data-is_active="{{request()->fullUrlIs(route('specialists.index'))}}"
+                                       href="{{route('specialists.create')}}">@lang('app.specialist.add_specialist')</a>
                                 </li>
                             @endif
                         </ul>

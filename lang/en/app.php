@@ -80,6 +80,9 @@ return [
         'status' => 'Status',
         'paid' => 'Paid',
         'free' => 'Free',
+        'duration'=>'duration',
+        'created_at'=>'Created At',
+        'publish_date'=>'Publish Date',
         'lectures_page_title' => 'Lectures',
         'lectures_filter' => 'Lectures Filter',
         'lectures_count' => 'Lectures Count',
@@ -92,6 +95,7 @@ return [
 
     'therapists' => [
         'therapists' => 'Therapists',
+        'search_therapists' => 'Search Therapists...',
         'therapist' => 'Therapist',
         'all_therapists' => 'All Therapists',
         'therapist_page_title' => 'therapists',
@@ -100,10 +104,13 @@ return [
         'phone' => 'Phone',
         'address' => 'Address',
         'email' => 'Email',
+        'password' => 'Password',
         'gender' => 'Gender',
         'therapist_commission' => 'Therapists commission',
         'add_therapist' => 'Add Therapists',
         'status' => 'Status',
+        'documets'=>'Documents',
+        'avg_therapy_duration'=>'avg therapy duration(in minutes)'
 
     ],
 
@@ -169,6 +176,17 @@ return [
         'status' => 'status',
         'status_changed_successfully' => 'Status Changed Successfully',
         'category_not_found' => 'Category Not Found',
+    ],
+    'specialist' => [
+        'title' => 'Specialists',
+        'name' => 'name',
+        'add_specialist' => 'Add Specialist',
+        'edit_specialist' => 'Edit',
+        'delete_specialist' => 'Delete',
+        'status' => 'status',
+        'change_status' => 'Change status',
+        'status_changed_successfully' => 'Status Changed Successfully',
+        'specialist_not_found' => 'Category Not Found',
     ],
     'rozmana' => [
         'title' => 'title',
