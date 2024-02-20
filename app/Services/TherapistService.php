@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\DataTransferObjects\Therapist\CreateTherapistDTO;
 use App\DataTransferObjects\Therapist\UpdateTherapistDTO;
+use App\Enums\ActivationStatus;
 use App\Exceptions\GeneralException;
 use App\Exceptions\NotFoundException;
 use App\Filters\TherapistFilters;
@@ -88,7 +89,11 @@ class TherapistService extends BaseService
         $therapist = $this->findById($id);
         if (!isset($status))
             throw new GeneralException('invalid inputs please provide status to update');
-        return $therapist->update(['status' => $status]);
+
+        $is_updated = $therapist->update(['status' => $status]);
+        if ($therapist->status != ActivationStatus::ACTIVE->value)
+            $therapist->tokens()->delete();
+        return $is_updated;
     }
 
     private function validateBeforeCreate(CreateTherapistDTO $therapistDTO): void

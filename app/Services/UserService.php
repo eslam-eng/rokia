@@ -5,6 +5,7 @@ namespace App\Services;
 use App\DataTransferObjects\ChangePassword\PasswordChangeDTO;
 use App\DataTransferObjects\Client\ClientDTO;
 use App\DataTransferObjects\User\AdminDTO;
+use App\Enums\ActivationStatus;
 use App\Enums\UsersType;
 use App\Exceptions\NotFoundException;
 use App\Exceptions\NotFoundException as NotMatchException;
@@ -142,7 +143,10 @@ class UserService extends BaseService
     {
         $user = $this->findById($id);
         $user->status = !$user->status;
-        return $user->save();
+        $is_updated = $user->save();
+        if ($user->status != ActivationStatus::ACTIVE->value)
+            $user->tokens()->delete();
+        return $is_updated;
     }
 
     public function search(?array $filters = []): LengthAwarePaginator
