@@ -12,11 +12,8 @@ use App\Http\Requests\PhoneVerifyRequest;
 use App\Http\Requests\ResetPasswordRequest;
 use App\Http\Requests\Users\ClientRequest;
 use App\Http\Resources\ClientResource;
-use App\Models\PasswordResetCode;
-use App\Models\User;
 use App\Services\UserService;
 use Exception;
-use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
@@ -30,7 +27,8 @@ class AuthClientController extends Controller
     public function signIn(LoginRequest $request)
     {
         try {
-            $user = $this->login(request: $request);
+            $user =  $this->userService->loginWithEmailOrPhone(identifier: $request->identifier, password: $request->password);
+
             if ($user->status == ActivationStatus::PENDING->value)
                 return apiResponse(message: __('app.auth.auth_in_review'), code: 422);
             $token = $user->getToken();
@@ -85,19 +83,19 @@ class AuthClientController extends Controller
     {
         try {
             $user_type = UsersType::CLIENT->value;
-            $this->userService->phoneVerifyAndSendFcm(phone: $request->phone,user_type: $user_type);
-            return apiResponse(message:'code sent to phone number');
-        }catch (NotFoundException $exception){
-            return apiResponse(message: $exception->getMessage(),code: 500);
+            $this->userService->phoneVerifyAndSendFcm(phone: $request->phone, user_type: $user_type);
+            return apiResponse(message: 'code sent to phone number');
+        } catch (NotFoundException $exception) {
+            return apiResponse(message: $exception->getMessage(), code: 500);
         }
     }
 
     public function resetPassword(ResetPasswordRequest $request)
     {
         $user_type = UsersType::CLIENT->value;
-        $is_password_updated = $this->userService->resetPassword(code: $request->code,password: $request->password,user_type: $user_type);
+        $is_password_updated = $this->userService->resetPassword(code: $request->code, password: $request->password, user_type: $user_type);
         if ($is_password_updated)
             return apiResponse(message: 'password updated successfully');
-        return apiResponse(message: 'there is an error please try again later',code: 422);
+        return apiResponse(message: 'there is an error please try again later', code: 422);
     }
 }
