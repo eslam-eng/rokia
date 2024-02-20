@@ -46,13 +46,6 @@ class User extends Authenticatable implements HasMedia
         'email_verified_at' => 'datetime',
     ];
 
-    protected function password(): Attribute
-    {
-        return Attribute::make(
-            set: fn() => bcrypt($this->password),
-        );
-    }
-
     protected function profileImageUrl(): Attribute
     {
         return Attribute::make(

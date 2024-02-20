@@ -54,13 +54,6 @@ class Therapist extends Authenticatable implements HasMedia
         );
     }
 
-    protected function password(): Attribute
-    {
-        return Attribute::make(
-            set: fn() => bcrypt($this->password),
-        );
-    }
-
     public function schedules()
     {
         return $this->hasMany(TherapistSchedule::class, 'therapist_id');

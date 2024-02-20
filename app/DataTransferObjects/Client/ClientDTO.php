@@ -89,7 +89,7 @@ class ClientDTO extends BaseDTO
             "name" => $this->name,
             "phone" => $this->phone,
             "email" => $this->email,
-            "password" => $this->password,
+            "password" =>bcrypt($this->password),
             "gender" => $this->gender,
             "status" => $this->status,
             "device_token" => $this->device_token,
