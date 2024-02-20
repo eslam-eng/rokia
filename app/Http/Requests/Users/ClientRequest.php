@@ -28,7 +28,6 @@ class ClientRequest extends BaseRequest
             'phone' => 'required|string',
             'email' => 'required|string',
             'password' => 'required|string',
-            'profile_image' => 'nullable|file|mimes:png,jpg,jpeg,svg',
             'type' => ['required', Rule::in(UsersType::values())],
             'status' => ['required', Rule::in(ActivationStatus::values())],
             'gender' => ['required', Rule::in(GenderTypeEnum::values())],

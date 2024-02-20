@@ -25,7 +25,7 @@ class PhoneVerifyRequest extends BaseRequest
     public function rules()
     {
         return [
-            'phone' => ['required',Rule::exists('users','phone')]
+            'phone' => 'required|string'
         ];
     }
 

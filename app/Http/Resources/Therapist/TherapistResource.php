@@ -22,9 +22,9 @@ class TherapistResource extends JsonResource
             'email'=>$this->email,
             'gender'=>$this->gender,
             'avg_therapy_duration'=>$this->avg_therapy_duration,
-            'media_id'=>$this?->getFirstMedia()?->id,
-            'media_url'=>$this->media_url,
-            'categories'=>TherapistCategoryResource::collection($this->whenLoaded('categories'))
+            'profile_image_id'=>$this?->getFirstMedia('profile_image')?->id,
+            'profile_image_url'=>$this->profile_image_url,
+            'spaecialists'=>TherapistCategoryResource::collection($this->whenLoaded('spaecialists'))
         ];
     }
 }

@@ -22,7 +22,7 @@
                     <div class="card-header">
                         <div class="d-flex w-100">
                             <div class="me-4"><span class="avatar avatar-lg avatar-rounded">
-                                    <img src="{{$therapist->media_url}}" alt="img"> </span>
+                                    <img src="{{$therapist->profile_image_url}}" alt="img"> </span>
                             </div>
                             <div class="d-flex align-items-center justify-content-between w-100 flex-wrap">
                                 <div class="me-3"><p class="text-muted mb-0">@lang('app.rozmana.rozmana_count')</p>

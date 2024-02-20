@@ -64,8 +64,11 @@ class AuthTherapistController extends Controller
     {
         try {
             $user_type = UsersType::THERAPIST->value;
-            $this->userService->phoneVerifyAndSendFcm(phone: $request->phone, user_type: $user_type);
-            return apiResponse(message: 'code sent to phone number');
+           $code= $this->userService->phoneVerifyAndSendFcm(phone: $request->phone, user_type: $user_type);
+            return apiResponse(data: $code, message: 'code sent to phone number');
+        }catch (ValidationException $exception) {
+            $mappedErrors = transformValidationErrors($exception->errors());
+            return response(['message' => __('lang.invalid inputs'), 'errors' => $mappedErrors], 422);
         } catch (NotFoundException $exception) {
             return apiResponse(message: $exception->getMessage(), code: 500);
         }
@@ -73,7 +76,7 @@ class AuthTherapistController extends Controller
 
     public function resetPassword(ResetPasswordRequest $request)
     {
-        $user_type = UsersType::CLIENT->value;
+        $user_type = UsersType::THERAPIST->value;
         $is_password_updated = $this->userService->resetPassword(code: $request->code, password: $request->password, user_type: $user_type);
         if ($is_password_updated)
             return apiResponse(message: 'password updated successfully');

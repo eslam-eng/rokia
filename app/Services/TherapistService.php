@@ -114,7 +114,7 @@ class TherapistService extends BaseService
 
     public function getTherapistDetails(Therapist $therapist): Therapist
     {
-        return $therapist->load('categories');
+        return $therapist->load('spaecialists');
     }
 
     public function getSchedules($therapist_id): Collection|array

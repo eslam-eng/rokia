@@ -46,11 +46,8 @@ class UserService extends BaseService
             ->with(['roles'=>fn($query)=>$query->withCount('permissions')]);
     }
 
-    /**
-     * @param ClientDTO $userDTO
-     * @return \Illuminate\Http\Response
-     */
-    public function storeClient(ClientDTO $clientDTO): \Illuminate\Http\Response
+
+    public function storeClient(ClientDTO $clientDTO)
     {
         $userData = $clientDTO->toArray();
         $clientDTO->validate();
@@ -120,8 +117,8 @@ class UserService extends BaseService
 
     public function changeImage(User|Therapist $user, $image_file): Model
     {
-        $user->clearMediaCollection(); // all media in the "default" collection will be deleted
-        $user->addMedia($image_file)->toMediaCollection();
+        $user->clearMediaCollection('profile_image'); // all media in the "profile_image" collection will be deleted
+        $user->addMedia($image_file)->toMediaCollection('profile_image');
         return $user;
     }
 
@@ -171,6 +168,7 @@ class UserService extends BaseService
      */
     public function phoneVerifyAndSendFcm(string $phone, int $user_type)
     {
+        $this->validateBeforeCreate(user_type: $user_type,phone: $phone);
         $code = mt_rand(100000, 999999);
         $token = [];
         PasswordResetCode::query()->where('phone', $phone)->delete();
@@ -187,7 +185,8 @@ class UserService extends BaseService
 
         $title = 'Your OTP Code';
         $body = $codeData->code;
-        $this->pushNotificationService->sendToTokens(title: $title, body: $body, tokens: $token);
+        return $body;
+//        $this->pushNotificationService->sendToTokens(title: $title, body: $body, tokens: $token);
     }
 
     public function resetPassword(string $code, string $password, int $user_type)
@@ -211,5 +210,16 @@ class UserService extends BaseService
     public function getDeviceTokenForUsers(array $users_id = []): array
     {
         return $this->getQuery(['ids'=>$users_id])->pluck('device_token')->toArray();
+    }
+
+    private function validateBeforeCreate(int $user_type , string $phone)
+    {
+        switch ($user_type){
+            case UsersType::THERAPIST->value:
+                Validator::validate(['phone'=>$phone],[Rule::exists('therapists','phone')]);
+
+            case UsersType::CLIENT->value:
+                Validator::validate(['phone'=>$phone],[Rule::exists('users','phone')]);
+        }
     }
 }

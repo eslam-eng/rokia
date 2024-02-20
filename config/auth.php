@@ -40,6 +40,14 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+        'therapist'=>[
+            'driver' => 'session',
+            'provider' => 'therapists',
+        ],
+        'api_therapist'=>[
+            'driver' => 'sanctum',
+            'provider' => 'therapists',
+        ],
     ],
 
     /*
@@ -63,6 +71,10 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
+        ],
+        'therapists' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Therapist::class,
         ],
 
         // 'users' => [

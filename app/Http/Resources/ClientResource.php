@@ -21,7 +21,8 @@ class ClientResource extends JsonResource
             'address'=>$this->address,
             'email'=>$this->email,
             'gender'=>$this->gender,
-            'profile_img' => $this->getFirstMediaUrl()
+            'profile_img_id' => $this->getFirstMediaUrl('profile_image')?->id,
+            'profile_img_url' => $this->profile_image_url
         ];
     }
 }
