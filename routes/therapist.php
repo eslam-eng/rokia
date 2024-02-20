@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\Auth\AuthTherapistController;
 use App\Http\Controllers\Api\Lecture\LectureController;
 use App\Http\Controllers\Api\NotificationController;
 use App\Http\Controllers\Api\RozmanaController;
+use App\Http\Controllers\Api\Specialist\SpecialistController;
 use App\Http\Controllers\Api\Therapist\TherapistController;
 use App\Http\Controllers\Api\TherapistSchedule\TherapistScheduleController;
 use App\Http\Controllers\Api\UsersController;
@@ -76,6 +77,8 @@ Route::group(['middleware' => 'auth:api_therapist'], function () {
         });
 
         Route::apiResource('rozmana', RozmanaController::class);
+        Route::get('specialists', SpecialistController::class);
+
 
     });
 

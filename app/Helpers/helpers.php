@@ -79,7 +79,7 @@ if (!function_exists('transformValidationErrors')) {
 }
 if (!function_exists('timeTransformer')) {
 
-    function timeTransformer($start_time, $end_time, $interval_time): array
+    function timeTransformer(string $start_time, string $end_time, int $interval_time, int $day_id): array
     {
 
         $start_time = Carbon::createFromTimeString("$start_time");
@@ -91,7 +91,7 @@ if (!function_exists('timeTransformer')) {
 
         // Iterate through the period
         while ($current < $end_time) {
-            // Check if the current time falls within the specified range
+            // Check if the current time falls within the specified rangeW
             if ($current >= $start_time && $current < $end_time) {
                 $dividedPeriod[] = $current->format('h:i A');
             }
@@ -102,6 +102,25 @@ if (!function_exists('timeTransformer')) {
 
         return $dividedPeriod;
 
+    }
+}
+
+if (!function_exists('getDateForBookAppointment')) {
+
+    function getDateForBookAppointment(int $day_id, string $appointment_time): string
+    {
+        // Get the current date
+        $currentDate = Carbon::now();
+        // Calculate the future date based on the day index
+        $futureDate = $currentDate->startOfWeek()->next($day_id);
+        // Convert the appointment time to hours and minutes
+        list($hours, $minutes) = explode(':', $appointment_time);
+
+        // Set the appointment time on the future date
+        $appointmentDateTime = $futureDate->setTime($hours, $minutes);
+
+        // Format the appointment date/time as needed
+        return  $appointmentDateTime->format('Y-m-d H:i:s');
     }
 }
 

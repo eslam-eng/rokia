@@ -3,7 +3,6 @@
 namespace App\DataTransferObjects\TherapistSchedule;
 
 use App\DataTransferObjects\BaseDTO;
-use App\Enums\ActivationStatus;
 use Illuminate\Support\Arr;
 
 class TherapistScheduleDTO extends BaseDTO
@@ -14,10 +13,9 @@ class TherapistScheduleDTO extends BaseDTO
      */
 
     public function __construct(
-        public int  $day_id,
-        public string  $start_time,
-        public string  $end_time ,
-        public ?int $therapist_id =null,
+        public int   $day_id,
+        public ?int  $therapist_id = null,
+        public array $schedule = [],
     )
     {
     }
@@ -26,9 +24,8 @@ class TherapistScheduleDTO extends BaseDTO
     {
         return new self(
             day_id: $request->day_id,
-            start_time: $request->start_time,
-            end_time: $request->end_time,
             therapist_id: $request->therapist_id,
+            schedule: $request->schedule,
         );
     }
 
@@ -40,9 +37,8 @@ class TherapistScheduleDTO extends BaseDTO
     {
         return new self(
             day_id: Arr::get($data, 'day_id'),
-            start_time: Arr::get($data, 'start_time'),
-            end_time: Arr::get($data, 'end_time'),
             therapist_id: Arr::get($data, 'therapist_id'),
+            schedule: Arr::get($data, 'schedule'),
         );
     }
 
@@ -50,9 +46,10 @@ class TherapistScheduleDTO extends BaseDTO
     {
         return [
             'day_id' => 'required|integer',
-            'start_time' => 'required|string',
-            'end_time' => 'required|string',
             'therapist_id' => 'required|integer',
+            'schedule.*' => 'required|array|min:1',
+            'schedule.*.start_time' => 'required|date_format:H:i',
+            'schedule.*.end_time' => 'required|date_format:H:i',
         ];
     }
 
@@ -63,9 +60,8 @@ class TherapistScheduleDTO extends BaseDTO
     {
         return [
             "day_id" => $this->day_id,
-            "start_time" => $this->start_time,
-            "end_time" => $this->end_time,
             "therapist_id" => $this->therapist_id,
+            'schedule' => $this->schedule
         ];
     }
 }

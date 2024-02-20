@@ -21,14 +21,11 @@ class TherapistSceduleRequest extends BaseRequest
     {
         return [
             'day_id' => 'required|integer',
-            'start_time' => 'required|string',
-            'end_time' => 'required|string',
-            'therapist_id' => 'required|integer',
+            'schedule' => 'required|array|min:1',
+            'schedule.*' => 'required|array|min:1',
+            'schedule.*.start_time' => 'required|date_format:H:i',
+            'schedule.*.end_time' => 'required|date_format:H:i',
         ];
     }
 
-    public function prepareForValidation()
-    {
-        $this->merge(['therapist_id' => auth()->guard('api_therapist')->id()]);
-    }
 }

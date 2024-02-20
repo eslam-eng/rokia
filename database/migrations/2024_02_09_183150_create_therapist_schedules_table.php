@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Therapist;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -15,11 +16,11 @@ return new class extends Migration
     {
         Schema::create('therapist_schedules', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(\App\Models\Therapist::class)->constrained('therapists')->cascadeOnDelete();
+            $table->foreignIdFor(Therapist::class)->constrained('therapists')->cascadeOnDelete();
             $table->integer('day_id');
             $table->string('start_time');
             $table->string('end_time');
-            $table->unique(['day_id','therapist_id'],'unique_day_for_therapist');
+            $table->unique(['day_id','start_time','end_time','therapist_id'],'unique_day_time_for_therapist');
             $table->timestamps();
         });
     }

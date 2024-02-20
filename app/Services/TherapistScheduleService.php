@@ -9,11 +9,11 @@ use App\Exceptions\GeneralException;
 use App\Exceptions\NotFoundException;
 use App\Filters\TherapistScheduleFilters;
 use App\Models\Slider;
-use App\Models\Therapist;
 use App\Models\TherapistSchedule;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 
@@ -44,16 +44,28 @@ class TherapistScheduleService extends BaseService
 
     /**
      * @param CreateTherapistDTO $therapistDTO
-     * @return Builder|Model|null
+     * @return bool
      */
     public function store(TherapistScheduleDTO $therapistScheduleDTO)
     {
         $therapistScheduleDTO->validate();
-        Validator::validate($therapistScheduleDTO->toArray(), [
-            'day_id' => Rule::unique('therapist_schedules', 'day_id')->where('therapist_id', $therapistScheduleDTO->therapist_id)
-        ]);
-        $therapistScheduleData = $therapistScheduleDTO->toArray();
-        return $this->getQuery()->create($therapistScheduleData);
+        $scheduleData = $therapistScheduleDTO->toArray();
+        $inseredData = [];
+        foreach ($scheduleData as $schedule) {
+            $inseredData[] = [
+                'day_id' => $therapistScheduleDTO->day_id,
+                'therapist_id' => $therapistScheduleDTO->therapist_id,
+                'start_time' => Arr::get($schedule, 'start_time'),
+                'end_time' => Arr::get($schedule, 'end_time'),
+            ];
+        }
+        $stringifiedArrays = array_map('serialize', $inseredData);
+        // Remove duplicate stringified arrays
+        $uniqueStringifiedArrays = array_unique($stringifiedArrays);
+        // Convert the unique stringified arrays back to arrays
+        $therapistScheduleData = array_map('unserialize', $uniqueStringifiedArrays);
+
+        return $this->getQuery()->insert($therapistScheduleData);
     }
 
     /**
@@ -92,7 +104,8 @@ class TherapistScheduleService extends BaseService
 
     public function getSchedulesByTherapist(int $therapist_id): Collection|array
     {
-        return $this->getQuery(['therapist_id'=>$therapist_id])->with('therapist:id,avg_therapy_duration')->get();
+        return $this->getQuery(['therapist_id' => $therapist_id])
+            ->with('therapist:id,avg_therapy_duration')->get();
     }
 
 }

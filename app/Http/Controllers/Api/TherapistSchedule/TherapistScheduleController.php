@@ -39,6 +39,7 @@ class TherapistScheduleController extends Controller
 
     public function store(TherapistSceduleRequest $request)
     {
+
         try {
             $therapistSceduleDTO = TherapistScheduleDTO::fromRequest($request);
             $this->therapistScheduleService->store(therapistScheduleDTO: $therapistSceduleDTO);

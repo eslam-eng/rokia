@@ -2,6 +2,7 @@
 
 namespace App\Services\Appointment;
 
+use App\DataTransferObjects\BookAppointment\BookAppointmentDTO;
 use App\DataTransferObjects\Slider\SliderDTO;
 use App\DataTransferObjects\Therapist\CreateTherapistDTO;
 use App\Enums\AttachmentsType;
@@ -13,7 +14,7 @@ use App\Services\BaseService;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
-class AppointmentService extends BaseService
+class BookAppointmentService extends BaseService
 {
 
     public function __construct(protected Slider $model)
@@ -42,17 +43,11 @@ class AppointmentService extends BaseService
      * @param CreateTherapistDTO $therapistDTO
      * @return Builder|Model|null
      */
-    public function store(SliderDTO $sliderDTO)
+    public function store(BookAppointmentDTO $bookAppointmentDTO)
     {
-        $sliderDTO->validate();
-        $sliderData = $sliderDTO->toArray();
-        $slider = $this->getQuery()->create($sliderData);
-        if (isset($sliderDTO->image)) {
-            $slider->addMediaFromRequest('image')->toMediaCollection('sliders');
-
-        }
-
-        return $slider;
+        $bookAppointmentDTO->validate();
+        $bookAppointmentDate = $bookAppointmentDTO->toArray();
+        return $this->getQuery()->create($bookAppointmentDate);
     }
 
     /**
