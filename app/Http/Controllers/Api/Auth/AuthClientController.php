@@ -67,7 +67,7 @@ class AuthClientController extends Controller
             return response(['message' => __('lang.invalid inputs'), 'errors' => $mappedErrors], 422);
         } catch (\Exception $exception) {
             DB::rollBack();
-            return apiResponse(message: 'Something Went Wrong', code: 500);
+            return apiResponse(message: $exception->getMessage(), code: 500);
         }
     }
 
