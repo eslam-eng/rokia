@@ -2,20 +2,16 @@
 
 namespace App\Services;
 
-use App\DataTransferObjects\Slider\SliderDTO;
 use App\DataTransferObjects\Therapist\CreateTherapistDTO;
 use App\DataTransferObjects\TherapistSchedule\TherapistScheduleDTO;
 use App\Exceptions\GeneralException;
 use App\Exceptions\NotFoundException;
 use App\Filters\TherapistScheduleFilters;
-use App\Models\Slider;
 use App\Models\TherapistSchedule;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Validation\Rule;
 
 class TherapistScheduleService extends BaseService
 {
@@ -49,9 +45,9 @@ class TherapistScheduleService extends BaseService
     public function store(TherapistScheduleDTO $therapistScheduleDTO)
     {
         $therapistScheduleDTO->validate();
-        $scheduleData = $therapistScheduleDTO->toArray();
+        $schedules = $therapistScheduleDTO->schedules;
         $inseredData = [];
-        foreach ($scheduleData as $schedule) {
+        foreach ($schedules as $schedule) {
             $inseredData[] = [
                 'day_id' => $therapistScheduleDTO->day_id,
                 'therapist_id' => $therapistScheduleDTO->therapist_id,
@@ -59,37 +55,8 @@ class TherapistScheduleService extends BaseService
                 'end_time' => Arr::get($schedule, 'end_time'),
             ];
         }
-        $stringifiedArrays = array_map('serialize', $inseredData);
-        // Remove duplicate stringified arrays
-        $uniqueStringifiedArrays = array_unique($stringifiedArrays);
-        // Convert the unique stringified arrays back to arrays
-        $therapistScheduleData = array_map('unserialize', $uniqueStringifiedArrays);
-
-        return $this->getQuery()->insert($therapistScheduleData);
+        return $this->getQuery()->insert($inseredData);
     }
-
-    /**
-     * @param SliderDTO $sliderDTO
-     * @param int|Slider $slider
-     * @return mixed
-     * @throws NotFoundException
-     */
-    public function update(SliderDTO $sliderDTO, int|Slider $slider)
-    {
-        if (is_int($slider))
-            $slider = $this->findById($slider);
-
-        $sliderData = $sliderDTO->toFilteredArray();
-
-        if (isset($sliderData['image'])) {
-            //first remove the old
-            $slider->clearMediaCollection('sliders');
-            //second add new image
-            $slider->addMediaFromRequest('image')->toMediaCollection('sliders');
-        }
-        return $slider->update($sliderData);
-    }
-
 
     /**
      * @throws NotFoundException

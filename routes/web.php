@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\BookAppointmentController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\Dashboard\DashboardController;
@@ -54,6 +55,7 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'locale']], func
 
     Route::resource('therapists', TherapistController::class)->except(['create']);
     Route::post('therapist/{id}/status', [TherapistController::class, 'status'])->name('therapist.status');
+    Route::get('therapist/schedules', [TherapistController::class, 'showSchedules'])->name('therapist.schedules');
 
     Route::resource('sliders', SliderController::class);
     Route::post('sliders/{id}/status', [SliderController::class, 'status'])->name('sliders.status');
@@ -92,6 +94,8 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'locale']], func
     Route::group(['prefix' => 'admin'],function (){
         Route::resource('role', RoleController::class);
     });
+
+    Route::resource('appointments', BookAppointmentController::class);
     // Route::get('switcherpage', Switcherpage::class)->name('switcherpage');
 
 });

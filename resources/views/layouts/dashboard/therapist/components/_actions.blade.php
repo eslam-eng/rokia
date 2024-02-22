@@ -1,31 +1,42 @@
-<td class="text-end">
-    <div class="row">
-        <div>
-            <button
-                class="btn btn-sm change_status
-            @if($model->status == \App\Enums\ActivationStatus::ACTIVE->value)
-            btn-danger
-            @else
-            btn-success
-            @endif row-action"
-                data-action="{{route('therapist.status',$model->id)}}"
-                data-reload="0"
-                data-status="{{in_array($model->status,[\App\Enums\ActivationStatus::PENDING->value,\App\Enums\ActivationStatus::INACTIVE->value]) ?  \App\Enums\ActivationStatus::ACTIVE->value :  \App\Enums\ActivationStatus::INACTIVE->value}}"
-                title="{{in_array($model->status,[\App\Enums\ActivationStatus::PENDING->value,\App\Enums\ActivationStatus::INACTIVE->value]) ? __(key: 'app.active'):__('app.blocked')}}"
-                data-method="POST"
-            >
+<div class="dropdown">
+    <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
+            aria-expanded="false">
+        <i class="fa fa-cogs"></i>
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+
+        <li>
+            <a class="dropdown-item" href="{{route('therapist.schedules')."?therapist=$model->id"}}">
+                @lang('app.therapists.schedules.title')
+            </a>
+        </li>
+
+        <li>
+            <a class="dropdown-item" href="{{route('therapists.edit',$model->id)}}">
+               @lang('app.therapists.edit')
+            </a>
+        </li>
+
+        <li>
+            <a class="dropdown-item"
+               data-action="{{route('therapist.status',$model->id)}}"
+               data-reload="0"
+               data-method="POST"
+               role="button"
+               href="#">
                 @if($model->status == \App\Enums\ActivationStatus::ACTIVE->value)
-                    <i class="fa fa-pause"></i>
+                    @lang('app.therapists.deactive')
                 @else
-                    <i class="fa fa-check"></i>
+                    @lang('app.therapists.activate')
                 @endif
-            </button>
-        </div>
-        <div>
-            <a href="{{route('therapists.edit',$model->id)}}" class="btn btn-sm btn-warning"><i class="fa fa-edit"></i></a>
-        </div>
-        <div>
-            <button role="button" onclick="destroy('{{$url}}')" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button>
-        </div>
-    </div>
-</td>
+            </a>
+        </li>
+
+        <li>
+            <a class="dropdown-item" role="button" onclick="destroy('{{$url}}')" href="#">
+                @lang('app.therapists.delete')
+            </a>
+        </li>
+    </ul>
+</div>
+

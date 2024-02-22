@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Therapist;
 
 use App\DataTables\Therapist\TherapistsDataTable;
+use App\DataTables\TherapistSchedule\TherapistScheduleDataTable;
 use App\DataTransferObjects\Therapist\CreateTherapistDTO;
 use App\DataTransferObjects\Therapist\UpdateTherapistDTO;
 use App\Enums\UsersType;
@@ -111,5 +112,14 @@ class TherapistController extends Controller
         ];
 
         return $this->therapistService->search(filters: $filters);
+    }
+
+    public function showSchedules(TherapistScheduleDataTable $therapistScheduleDataTable,Request $request)
+    {
+        $filters = array_filter($request->get('filters', []), function ($value) {
+            return ($value !== null && $value !== false && $value !== '');
+        });
+        $filters['therapist_id'] = $request->therapist;
+        return $therapistScheduleDataTable->with(['filters' => $filters])->render('layouts.dashboard.therapist-schedules.index');
     }
 }

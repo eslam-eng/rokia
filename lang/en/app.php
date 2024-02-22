@@ -110,6 +110,16 @@ return [
         'add_therapist' => 'Add Therapists',
         'status' => 'Status',
         'documets'=>'Documents',
+        'edit'=>'Edit',
+        'deactive'=>'Deactivate',
+        'activate'=>'Activate',
+        'delete'=>'Delete',
+        'schedules'=>[
+            'title'=>'Schedules',
+            'day_name'=>'Day',
+            'time_from'=>'Time Form',
+            'time_to'=>'Time To',
+        ],
         'avg_therapy_duration'=>'avg therapy duration(in minutes)'
 
     ],
@@ -141,6 +151,22 @@ return [
         'PENDING' => 'Pending',
         'Completed' => 'Completed',
         'complete' => 'Complete',
+
+    ],
+    'appointments' => [
+        'title' => 'Appointments',
+        'appointments_list' => 'Appointments List',
+        'price' => 'Price',
+        'user_description' => 'User Description',
+        'day' => 'Day',
+        'date' => 'Date',
+        'status' => 'status',
+        'therapist_name' => 'status',
+        'client_name' => 'Client',
+        'pending'=>'Pending',
+        'waiting_for_paid'=>'Waiting For Paid',
+        'approved'=>'Approved',
+        'compeleted'=>'Compeleted',
 
     ],
     'sliders' => [

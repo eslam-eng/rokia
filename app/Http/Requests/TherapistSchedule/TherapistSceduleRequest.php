@@ -21,11 +21,19 @@ class TherapistSceduleRequest extends BaseRequest
     {
         return [
             'day_id' => 'required|integer',
-            'schedule' => 'required|array|min:1',
-            'schedule.*' => 'required|array|min:1',
-            'schedule.*.start_time' => 'required|date_format:H:i',
-            'schedule.*.end_time' => 'required|date_format:H:i',
+            'schedules' => 'required|array',
+            'schedules.*' => 'required|array|min:1',
+            'schedules.*.start_time' => 'required|date_format:H:i',
+            'schedules.*.end_time' => 'required|date_format:H:i',
         ];
+    }
+
+    public function prepareForValidation()
+    {
+        $decodedArray = array_map(function($schedule) {
+            return json_decode($schedule, true);
+        },  $this->schedules);
+        $this->merge(['schedules' => $decodedArray]);
     }
 
 }

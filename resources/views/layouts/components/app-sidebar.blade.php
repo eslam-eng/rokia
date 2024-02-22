@@ -209,6 +209,19 @@
                     </ul>
                 </li>
 
+                <li class="slide">
+                    <a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0);">
+                        <i class="fa fa-calendar-day pe-3"></i>
+                        <span class="side-menu__label">@lang('app.appointments.title')</span><i
+                            class="angle fe fe-chevron-right"></i></a>
+                    <ul class="slide-menu">
+                        <li>
+                            <a class="slide-item" data-is_active="{{request()->fullUrlIs("#")}}"
+                               href="{{route('appointments.index')}}">@lang('app.appointments.appointments_list')</a>
+                        </li>
+                    </ul>
+                </li>
+
                 <li class="side-item side-item-category">@lang('app.lecture_report.title')</li>
                 <li>
                     <a class="slide-item" data-is_active="{{request()->fullUrlIs(route('lecture-report'))}}"
