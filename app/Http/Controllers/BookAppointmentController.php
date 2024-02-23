@@ -3,18 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\DataTables\BookAppointment\BookAppointmentDataTable;
-use App\DataTables\Category\CategoryDataTable;
-use App\DataTransferObjects\category\CategoryDTO;
-use App\Http\Requests\Category\CategoryRequest;
+use App\DataTables\Category\InterestsDatatable;
+use App\DataTransferObjects\category\InterestDTO;
+use App\Http\Requests\Category\InteresetRequest;
 use App\Models\Category;
-use App\Services\Category\CategoryService;
+use App\Services\Category\InterestService;
 use Illuminate\Http\Request;
 use Mockery\Exception;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class BookAppointmentController extends Controller
 {
-    public function __construct(public CategoryService $categoryService)
+    public function __construct(public InterestService $categoryService)
     {
         //todo make polices as best practice
         $this->middleware('auth');

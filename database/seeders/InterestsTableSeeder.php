@@ -4,16 +4,17 @@ namespace Database\Seeders;
 
 use App\Enums\ActivationStatus;
 use App\Models\Category;
+use App\Models\Interest;
 use Illuminate\Database\Seeder;
 
-class CategoriesTableSeeder extends Seeder
+class InterestsTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        Category::query()->insert([
+        Interest::query()->insert([
             [
                 'name' => fake()->name,
                 'status' => ActivationStatus::ACTIVE->value,

@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BookAppointmentController;
-use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\InterestsyController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Invoice\InvoicesController;
@@ -85,10 +85,10 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'locale']], func
         Route::get('lecture', LectureReportController::class)->name('lecture-report');
     });
 
-    Route::resource('categories', CategoryController::class);
+    Route::resource('intersts', InterestsyController::class);
     Route::resource('specialists', SpecialistController::class);
-    Route::post('categories/{id}/status', [CategoryController::class, 'status'])->name('categories.status');
-    Route::post('specialists/{id}/status', [CategoryController::class, 'status'])->name('specialists.status');
+    Route::post('intersts/{id}/status', [InterestsyController::class, 'status'])->name('intersts.status');
+    Route::post('specialists/{id}/status', [InterestsyController::class, 'status'])->name('specialists.status');
 
     Route::get('settings', SettingsController::class)->name('settings.index');
     Route::group(['prefix' => 'admin'],function (){

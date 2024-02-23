@@ -4,7 +4,7 @@ namespace App\Filters;
 
 use App\Abstracts\QueryFilter;
 
-class CategoriesFilter extends QueryFilter
+class InterestsFilter extends QueryFilter
 {
 
     public function __construct($params = array())

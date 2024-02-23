@@ -61,15 +61,15 @@
                             @if(authUserHasPermission('list_category'))
                                 <li>
                                     <a class="slide-item"
-                                       data-is_active="{{request()->fullUrlIs(route('categories.index'))}}"
-                                       href="{{route('categories.index')}}">@lang('app.categories.title')</a>
+                                       data-is_active="{{request()->fullUrlIs(route('intersts.index'))}}"
+                                       href="{{route('intersts.index')}}">@lang('app.categories.title')</a>
                                 </li>
                             @endif
                             @if(authUserHasPermission('create_category'))
                                 <li>
                                     <a class="slide-item"
-                                       data-is_active="{{request()->fullUrlIs(route('categories.index'))}}"
-                                       href="{{route('categories.create')}}">@lang('app.categories.add_category')</a>
+                                       data-is_active="{{request()->fullUrlIs(route('intersts.index'))}}"
+                                       href="{{route('intersts.create')}}">@lang('app.interests.add_interest')</a>
                                 </li>
                             @endif
                         </ul>

@@ -4,7 +4,7 @@ namespace App\Http\Requests\Category;
 
 use App\Http\Requests\BaseRequest;
 
-class CategoryRequest extends BaseRequest
+class InteresetRequest extends BaseRequest
 {
     /**
      * Determine if the user is authorized to make this request.

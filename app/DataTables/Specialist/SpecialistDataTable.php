@@ -6,7 +6,7 @@ use App\Enums\ActivationStatus;
 use App\Models\Category;
 use App\Models\Slider;
 use App\Models\Specialist;
-use App\Services\Category\CategoryService;
+use App\Services\Category\InterestService;
 use App\Services\Specialist\SpecialistService;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;

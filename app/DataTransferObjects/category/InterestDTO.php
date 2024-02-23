@@ -6,7 +6,7 @@ use App\DataTransferObjects\BaseDTO;
 use App\Enums\ActivationStatus;
 use Illuminate\Support\Arr;
 
-class CategoryDTO extends BaseDTO
+class InterestDTO extends BaseDTO
 {
 
     /**

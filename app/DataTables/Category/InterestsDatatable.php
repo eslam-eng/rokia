@@ -4,15 +4,16 @@ namespace App\DataTables\Category;
 
 use App\Enums\ActivationStatus;
 use App\Models\Category;
+use App\Models\Interest;
 use App\Models\Slider;
-use App\Services\Category\CategoryService;
+use App\Services\Category\InterestService;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Services\DataTable;
 
-class CategoryDataTable extends DataTable
+class InterestsDatatable extends DataTable
 {
     /**
      * Build DataTable class.
@@ -24,14 +25,14 @@ class CategoryDataTable extends DataTable
     {
         return (new EloquentDataTable($query))
             ->setRowId('id')
-            ->editColumn('status', function (Category $model) {
+            ->editColumn('status', function (Interest $model) {
                 $classes = ($model->status == ActivationStatus::ACTIVE->value) ? 'badge-success' : 'badge-danger';
                 return view('components._datatable-badge', ['class' => $classes, 'text' => ActivationStatus::from($model->status)->getLabel()]);
             })
-            ->addColumn('action', function (Category $model) {
+            ->addColumn('action', function (Interest $model) {
                 return view(
                     'layouts.dashboard.category.components.actions',
-                    ['model' => $model, 'url' => route('categories.destroy', $model->id)]
+                    ['model' => $model, 'url' => route('intersts.destroy', $model->id)]
                 );
             });
     }
@@ -42,7 +43,7 @@ class CategoryDataTable extends DataTable
      * @param \App\Models\User $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(CategoryService $categoryService): QueryBuilder
+    public function query(InterestService $categoryService): QueryBuilder
     {
         return $categoryService->datatable($this->filters);
     }
