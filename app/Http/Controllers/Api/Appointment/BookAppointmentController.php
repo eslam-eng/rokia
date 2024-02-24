@@ -6,6 +6,7 @@ use App\DataTransferObjects\BookAppointment\BookAppointmentDTO;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\BookAppointment\BookAppointmentRequest;
 use App\Services\Appointment\BookAppointmentService;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class BookAppointmentController extends Controller

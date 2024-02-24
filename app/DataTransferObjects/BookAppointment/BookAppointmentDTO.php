@@ -5,6 +5,7 @@ namespace App\DataTransferObjects\BookAppointment;
 use App\DataTransferObjects\BaseDTO;
 use App\Enums\BookAppointmentStatusEnum;
 use App\Enums\WeekDaysEnum;
+use Carbon\Carbon;
 use Illuminate\Support\Arr;
 use Illuminate\Validation\Rule;
 
@@ -79,7 +80,7 @@ class BookAppointmentDTO extends BaseDTO
         return [
             "day_id" => $this->day_id,
             "price" => $this->price,
-            "time" => $this->time,
+            "time" => Carbon::createFromFormat('h:i A', $this->time)->format('H:i'),
             "date" => getDateForBookAppointment(day_id: $this->day_id,appointment_time: $this->time),
             "client_id" => $this->client_id,
             "therapist_id" => $this->therapist_id,

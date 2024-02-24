@@ -56,7 +56,7 @@ class TherapistScheduleController extends Controller
     {
         try {
             $this->therapistScheduleService->destroy($therapist_schedule);
-            return apiResponse(message: 'deleted successfully');
+            return apiResponse(message: __('app.general.success_operation'));
         } catch (GeneralException $exception) {
             return apiResponse(message: $exception->getMessage(), code: 422);
         } catch (\Exception $exception) {
