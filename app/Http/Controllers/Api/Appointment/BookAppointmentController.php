@@ -33,7 +33,6 @@ class BookAppointmentController extends Controller
             $toast = ['type' => 'error', 'title' => 'Success', 'message' => $exception->getMessage()];
             return back()->with('toast', $toast);
         }
-
     }
 
 }

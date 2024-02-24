@@ -121,6 +121,7 @@ return [
             'day_name'=>'Day',
             'time_from'=>'Time Form',
             'time_to'=>'Time To',
+            'to'=>' To ',
         ],
         'avg_therapy_duration'=>'avg therapy duration(in minutes)'
 

@@ -24,9 +24,7 @@ class TherapistScheduleController extends Controller
 
     public function index(Request $request)
     {
-        $filters = array_filter($request->get('filters', []), function ($value) {
-            return ($value !== null && $value !== false && $value !== '');
-        });
+        $filters = $request->all();
         $filters['therapist_id'] = auth()->guard('api_therapist')->id();
         $schedule = $this->therapistScheduleService->getQuery($filters)->get();
         return TherapistScheduleResource::collection($schedule);

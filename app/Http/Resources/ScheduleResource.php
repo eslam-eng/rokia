@@ -17,6 +17,7 @@ class ScheduleResource extends JsonResource
     {
         return [
             'id'=>$this->id,
+            'duration'=>$this->duration,
             'day_name'=>WeekDaysEnum::from($this->day_id)->getLabel(),
             'day_id'=>$this->day_id,
             'available_times'=>timeTransformer(
