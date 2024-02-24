@@ -108,6 +108,14 @@ return [
 
     ],
 
+    'therapist_plan'=>[
+        'title'=>'خطط الاسعار',
+        'name'=>'الاسم',
+        'duration'=>'المدة(ايام)',
+        'price'=>'السعر',
+        'status'=>'الحالة',
+    ],
+
     'clients' => [
         'users_page_title' => 'العملاء',
         'all_clients' => 'كل العملاء',

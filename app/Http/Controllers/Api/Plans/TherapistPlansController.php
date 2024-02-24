@@ -29,7 +29,7 @@ class TherapistPlansController extends Controller
             $therapistPlandDTO = TherapistPlansDTO::fromRequest($request);
             $therapistPlandDTO->therapist_id = auth()->guard('api_therapist')->id();
             $this->therapistPlansService->store(therapistPlansDTO: $therapistPlandDTO);
-            return apiResponse(message: __('app.therapist_plan.created_successfully'));
+            return apiResponse(message: __('app.general.success_operation'));
         } catch (\Exception $exception) {
             return apiResponse(message: $exception->getMessage(), code: 500);
         }
