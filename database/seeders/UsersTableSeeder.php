@@ -42,7 +42,6 @@ class UsersTableSeeder extends Seeder
         $admin = User::create($admin);
         $role = Role::first();
         $admin->assignRole($role);
-
         User::create($client);
     }
 }

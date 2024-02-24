@@ -114,33 +114,33 @@
                         </div>
 
 
-                        <div class="row row-sm mb-4">
-                            <div class="col-lg">
-                                <div class="main-content-label mg-b-5">@lang('app.therapists.documets')</div>
-                                <input class="form-control" value="{{old('documents')}}" name="documents[]"
-                                       type="file" multiple>
-                                @error('documents.*')
-                                <div class="text-danger"> {{$message}}</div>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="row">
-                            @if(count($therapist->getMedia()))
-                                @foreach($therapist->getMedia() as $media)
-                                    <div class="col-md-3 col-lg-3 col-sm-12">
-                                        <div class="container">
-                                            <img src="{{$media->getUrl()}}" alt="Snow" style="width:100%">
-                                            <a class="btn" href="javascript:void(0);"
-                                               onclick="destroy('{{route('delete-media',['media_id'=>$media->id])}}','1')"><i
-                                                    class="fa fa-trash"></i></a>
-                                        </div>
-                                    </div>
-                                @endforeach
-                            @endif
-                        </div>
+{{--                        <div class="row row-sm mb-4">--}}
+{{--                            <div class="col-lg">--}}
+{{--                                <div class="main-content-label mg-b-5">@lang('app.therapists.documets')</div>--}}
+{{--                                <input class="form-control" value="{{old('documents')}}" name="documents[]"--}}
+{{--                                       type="file" multiple>--}}
+{{--                                @error('documents.*')--}}
+{{--                                <div class="text-danger"> {{$message}}</div>--}}
+{{--                                @enderror--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                        <div class="row">--}}
+{{--                            @if(count($therapist->getMedia()))--}}
+{{--                                @foreach($therapist->getMedia() as $media)--}}
+{{--                                    <div class="col-md-3 col-lg-3 col-sm-12">--}}
+{{--                                        <div class="container">--}}
+{{--                                            <img src="{{$media->getUrl()}}" alt="Snow" style="width:100%">--}}
+{{--                                            <a class="btn" href="javascript:void(0);"--}}
+{{--                                               onclick="destroy('{{route('delete-media',['media_id'=>$media->id])}}','1')"><i--}}
+{{--                                                    class="fa fa-trash"></i></a>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                @endforeach--}}
+{{--                            @endif--}}
+{{--                        </div>--}}
 
-                        <div class="row row-sm mb-4 mt-5">
-                            <div class="col-lg mt-2 mb-4">
+                        <div class="row">
+                            <div class="col-lg mt-1">
                                 <label class="custom-control custom-checkbox custom-control-lg">
                                     <input type="checkbox" class="custom-control-input" name="status"
                                         {{$therapist->status == \App\Enums\ActivationStatus::ACTIVE->value ?'checked' :''}} />
@@ -167,7 +167,5 @@
             </div>
         </div>
     </div>
-
     <!-- End Row -->
-
 @endsection

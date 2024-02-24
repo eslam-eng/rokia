@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\Auth\AuthTherapistController;
 use App\Http\Controllers\Api\Lecture\LectureController;
 use App\Http\Controllers\Api\NotificationController;
+use App\Http\Controllers\Api\Plans\TherapistPlansController;
 use App\Http\Controllers\Api\RozmanaController;
 use App\Http\Controllers\Api\Specialist\SpecialistController;
 use App\Http\Controllers\Api\Therapist\TherapistController;
@@ -50,7 +51,7 @@ Route::group(['middleware' => 'auth:api_therapist'], function () {
 
         Route::get('profile', [TherapistController::class, 'getProfileDetails']);
         Route::post('update-data', [TherapistController::class, 'update']);
-        Route::post('update-categories', [TherapistController::class, 'updateCategories']);
+        Route::post('update-specialists', [TherapistController::class, 'updateSpecialists']);
 
         Route::group(['prefix' => 'schedule'],function (){
             Route::get('/', [TherapistScheduleController::class, 'index']);
@@ -79,6 +80,7 @@ Route::group(['middleware' => 'auth:api_therapist'], function () {
         Route::apiResource('rozmana', RozmanaController::class);
         Route::get('specialists', SpecialistController::class);
 
+        Route::apiResource('plans', TherapistPlansController::class);
 
     });
 

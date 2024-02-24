@@ -27,13 +27,4 @@ class TherapistSceduleRequest extends BaseRequest
             'schedules.*.end_time' => 'required|date_format:H:i',
         ];
     }
-
-    public function prepareForValidation()
-    {
-        $decodedArray = array_map(function($schedule) {
-            return json_decode($schedule, true);
-        },  $this->schedules);
-        $this->merge(['schedules' => $decodedArray]);
-    }
-
 }

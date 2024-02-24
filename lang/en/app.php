@@ -55,6 +55,8 @@ return [
         'filters' => 'Filters',
         'status' => 'Status',
         'no_data_available' => 'No data available',
+        'success_operation' => 'Success Operation',
+        'invaild_inputs' => 'Invaild Inputs',
     ],
 
     'week_days' => [
@@ -122,6 +124,16 @@ return [
         ],
         'avg_therapy_duration'=>'avg therapy duration(in minutes)'
 
+    ],
+    'therapist_plan'=>[
+      'title'=>'Therapist Plans',
+      'name'=>'Name',
+      'duration'=>'Duration (days)',
+      'price'=>'Price',
+      'status'=>'Price',
+      'created_successfully'=>'Plan Created Successfully',
+      'updated_successfully'=>'Plan Updated Successfully',
+      'deleted_successfully'=>'Plan Deleted Successfully',
     ],
 
     'clients' => [
@@ -194,14 +206,14 @@ return [
         'edit_user' => 'Edit User',
 
     ],
-    'categories' => [
-        'title' => 'Categories',
+    'interests' => [
+        'title' => 'Interests',
         'name' => 'name',
-        'add_category' => 'Add Category',
-        'edit_category' => 'edit Category',
+        'add_interest' => 'Add Interest',
+        'edit_interest' => 'edit Interest',
         'status' => 'status',
         'status_changed_successfully' => 'Status Changed Successfully',
-        'category_not_found' => 'Category Not Found',
+        'interest_not_found' => 'Interest Not Found',
     ],
     'specialist' => [
         'title' => 'Specialists',
@@ -275,11 +287,12 @@ return [
                 'delete_slider' => 'Delete Slider',
             ],
 
-            'categories' => [
-                'title' => 'Categories',
-                'create_category' => 'Create Category',
-                'edit_category' => 'Edit Category',
-                'delete_category' => 'Delete Category',
+            'interests' => [
+                'title' => 'interests',
+                'create_interest' => 'Create Interest',
+                'edit_interest' => 'Edit Interest',
+                'delete_interest' => 'Delete Interest',
+                'change_interest_status' => 'Change Interest Status',
             ],
 
             'rozmana' => [

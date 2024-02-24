@@ -7,13 +7,13 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Notification\PushNotificationRequest;
 use App\Http\Resources\NotificationsResource;
 use App\Services\LectureService;
-use App\Services\PushNotificationService;
+use App\Services\NotificationService;
 use App\Services\UserService;
 
 
 class NotificationController extends Controller
 {
-    public function __construct(protected PushNotificationService $pushNotificationService, protected LectureService $lectureService, protected UserService $userService)
+    public function __construct(protected NotificationService $pushNotificationService, protected LectureService $lectureService, protected UserService $userService)
     {
     }
 

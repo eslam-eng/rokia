@@ -11,14 +11,14 @@
     {{--    end breadcrumb --}}
 
     <!--start filters section -->
-    @include('layouts.dashboard.category.components._filters')
+    @include('layouts.dashboard.interest.components._filters')
     <!--end filtered section -->
     <!-- Row -->
     <div class="row row-sm">
         <div class="col-lg-12">
             <div class="card custom-card">
                 <div class="card-body">
-                    <a href="{{route('categories.create')}}" role="button" class="btn btn-success text-dark"><i class="fa fa-plus"></i> @lang('app.categories.add_category')</a>
+                    <a href="{{route('intersts.create')}}" role="button" class="btn btn-success text-dark"><i class="fa fa-plus"></i> @lang('app.interests.add_interest')</a>
                     <div class="table-responsive">
                         {!! $dataTable->table(['class' => 'table-data table table-bordered text-nowrap border-bottom']) !!}
                     </div>

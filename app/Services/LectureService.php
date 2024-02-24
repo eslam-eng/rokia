@@ -73,7 +73,7 @@ class LectureService extends BaseService
         $lectureData = $lectureDTO->toArrayExcept(['audio_file']);
         $lecture = $this->getQuery()->create($lectureData);
         if (isset($lectureDTO->image_cover)) {
-            $lecture->addMediaFromRequest('image_cover')->withCustomProperties(['type' => 'image'])->toMediaCollection();
+            $lecture->addMediaFromRequest('image_cover')->toMediaCollection('lectures_covers');
         }
         if (isset($lectureDTO->audio_file)) {
             // Initialize getID3
@@ -92,7 +92,8 @@ class LectureService extends BaseService
             //save duration in lecture
             $lecture->duration = $formattedDuration;
             $lecture->save();
-            $lecture->addMediaFromRequest('audio_file')->withCustomProperties(['type' => 'mp3'])->toMediaCollection();
+            $lecture->addMediaFromRequest('audio_file')
+                ->toMediaCollection('lectures_media_content');
         }
         return $lecture;
     }
@@ -154,6 +155,12 @@ class LectureService extends BaseService
        return $this->getQuery(['therapist_id'=>$therapist_id])
             ->join('user_lectures', 'user_lectures.lecture_id', '=', 'lectures.id')
             ->pluck('user_lectures.user_id')->toArray();
+    }
 
+    public function changeLectureCover(Lecture $lecture,$image_cover): Lecture
+    {
+        $lecture->clearMediaCollection('lectures_covers'); // all media in the "profile_image" collection will be deleted
+        $lecture->addMedia($image_cover)->toMediaCollection('lectures_covers');
+        return $lecture;
     }
 }

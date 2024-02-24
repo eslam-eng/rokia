@@ -46,26 +46,31 @@
                                href="{{route('therapist-lectures.index').'?upcoming=1'}}">@lang('app.lectures.upcoming_lectures')</a>
                         </li>
 
+                        <li>
+                            <a class="slide-item"
+                               data-is_active="{{request()->fullUrlIs(route('therapist-plans'))}}"
+                               href="{{route('therapist-plans')}}">@lang('app.therapist_plan.title')</a>
+                        </li>
                     </ul>
                 </li>
 
 
-                @if(authUserHasPermission('list_category') || authUserHasPermission('create_category'))
+                @if(authUserHasPermission('list_interest') || authUserHasPermission('create_interest'))
                     <li class="slide">
                         <a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0);">
                             <i class="fa fa-cubes ide-menu__icon pe-2"></i>
-                            <span class="side-menu__label">@lang('app.categories.title')</span>
+                            <span class="side-menu__label">@lang('app.interests.title')</span>
                             <i class="angle fe fe-chevron-right"></i>
                         </a>
                         <ul class="slide-menu">
-                            @if(authUserHasPermission('list_category'))
+                            @if(authUserHasPermission('list_interest'))
                                 <li>
                                     <a class="slide-item"
                                        data-is_active="{{request()->fullUrlIs(route('intersts.index'))}}"
-                                       href="{{route('intersts.index')}}">@lang('app.categories.title')</a>
+                                       href="{{route('intersts.index')}}">@lang('app.interests.title')</a>
                                 </li>
                             @endif
-                            @if(authUserHasPermission('create_category'))
+                            @if(authUserHasPermission('create_interest'))
                                 <li>
                                     <a class="slide-item"
                                        data-is_active="{{request()->fullUrlIs(route('intersts.index'))}}"

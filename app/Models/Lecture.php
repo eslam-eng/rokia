@@ -25,14 +25,17 @@ class Lecture extends Model implements HasMedia
         'title', 'therapist_id', 'duration', 'description', 'price', 'status', 'is_paid', 'type', 'publish_date',
     ];
 
-    public function getImageCoverAttribute()
+    protected function imageCoverUrl(): Attribute
     {
-        return $this->getMedia('*', ['type' => 'image'])->first()->getUrl();
+        return Attribute::make(
+            get: fn() => !empty($this->getFirstMediaUrl('lectures_covers')) ? $this->getFirstMediaUrl('lectures_covers') : asset('assets/img/default_lecture'),
+        );
     }
-
-    public function getLectureContentAttribute()
+    protected function lectureMediaContentUrl(): Attribute
     {
-        return $this->getMedia('*', ['type' => 'mp3'])->first()->getUrl();
+        return Attribute::make(
+            get: fn() => $this->getFirstMediaUrl('lectures_media_content') ?? null
+        );
     }
 
     public function users(): BelongsToMany
@@ -79,13 +82,6 @@ class Lecture extends Model implements HasMedia
         $date = Carbon::parse($this->publish_date);
         return Attribute::make(
             get: fn () => $date->lte(Carbon::now()),
-        );
-    }
-
-    protected function isPaidText(): Attribute
-    {
-        return Attribute::make(
-            get: fn () => $this->is_paid ? __('app.lectures.paid') : __('app.lectures.free'),
         );
     }
 }

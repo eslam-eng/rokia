@@ -11,4 +11,12 @@ enum PaymentStatusEnum: int
     {
         return array_column(self::cases(), 'value');
     }
+
+    public function getLabel(): string
+    {
+        return match ($this) {
+            self::FREE => __('app.lectures.free'),
+            self::PAID =>  __('app.lectures.paid') ,
+        };
+    }
 }

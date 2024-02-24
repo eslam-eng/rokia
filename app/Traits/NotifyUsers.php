@@ -3,7 +3,7 @@
 namespace App\Traits;
 
 use App\Models\User;
-use App\Services\PushNotificationService;
+use App\Services\NotificationService;
 
 trait NotifyUsers
 {
@@ -12,7 +12,7 @@ trait NotifyUsers
         $usersTokens = User::query()->pluck('device_token')->toArray();
         $usersTokens = array_filter($usersTokens);
         if (count($usersTokens)) {
-            app()->make(PushNotificationService::class)->sendToTokens($title, $content, $usersTokens);
+            app()->make(NotificationService::class)->sendToTokens($title, $content, $usersTokens);
         }
     }
 

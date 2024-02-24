@@ -14,6 +14,7 @@ return new class extends Migration
     {
         Schema::create('therapist_plans', function (Blueprint $table) {
             $table->id();
+            $table->string('name')->nullable();
             $table->foreignIdFor(\App\Models\Therapist::class)->constrained('therapists')->cascadeOnDelete();
             $table->decimal('price');
             $table->integer('duration')->comment('duration in days');

@@ -25,7 +25,7 @@ use Illuminate\Validation\ValidationException;
 class UserService extends BaseService
 {
 
-    public function __construct(private User $model, protected PushNotificationService $pushNotificationService)
+    public function __construct(private User $model, protected NotificationService $pushNotificationService)
     {
 
     }

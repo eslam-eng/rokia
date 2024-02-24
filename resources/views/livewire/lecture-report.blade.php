@@ -46,7 +46,7 @@
                     @foreach($lectures as $lecture)
                         <tr>
                             <td>{{$lecture->title}}</td>
-                            <td>{{$lecture->is_paid_text}}</td>
+                            <td>{{\App\Enums\PaymentStatusEnum::from($lecture->is_paid)->getLabel()}}</td>
                             <td>{{$lecture->created_at}}</td>
                             <td>{{$lecture->publish_date ?? $lecture->created_at}}</td>
                             <td>{{$lecture->duration}}</td>

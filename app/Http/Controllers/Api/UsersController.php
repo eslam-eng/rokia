@@ -45,8 +45,8 @@ class UsersController extends Controller
                 $user = Auth::guard('api_therapist')->user();
             else
                 $user = Auth::user();
-            $user = $this->userService->changeImage($user, $request->image);
-            return apiResponse(data: ClientResource::make($user), message: trans('app.success_operation'));
+            $this->userService->changeImage($user, $request->image);
+            return apiResponse(message: trans('app.success_operation'));
         } catch (\Exception $e) {
             return apiResponse(message: 'something went wrong', code: 500);
         }

@@ -2,7 +2,7 @@
 
 namespace App\Services\Specialist;
 
-use App\DataTransferObjects\category\InterestDTO;
+use App\DataTransferObjects\Interests\InterestDTO;
 use App\DataTransferObjects\specialist\SpecialistDTO;
 use App\Filters\InterestsFilter;
 use App\Filters\SpecialistsFilter;

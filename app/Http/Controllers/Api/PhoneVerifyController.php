@@ -7,7 +7,7 @@ use App\Http\Requests\PhoneVerifyRequest;
 use App\Mail\ResetPasswordMail;
 use App\Models\PasswordResetCode;
 use App\Models\User;
-use App\Services\PushNotificationService;
+use App\Services\NotificationService;
 use Illuminate\Support\Facades\Mail;
 
 class PhoneVerifyController extends Controller
@@ -23,7 +23,7 @@ class PhoneVerifyController extends Controller
             {
                 $title = 'Your OTP Code';
                 $body = $codeData->code;
-                app()->make(PushNotificationService::class)->sendToTokens(title: $title,body: $body,tokens: $token);
+                app()->make(NotificationService::class)->sendToTokens(title: $title,body: $body,tokens: $token);
                 return apiResponse(message: __('lang.code_send_successfully'));
             }
             return apiResponse(message: 'there is an error please try again later',code: 422);

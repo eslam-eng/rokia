@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Api\Therapist;
 
-use App\DataTransferObjects\Therapist\UpdateTherapistDTO;
+use App\DataTransferObjects\Therapist\Api\UpdateTherapistDTO;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Therapist\Api\ThereapistApiUpdateRequest;
-use App\Http\Requests\Therapist\Api\ThereapistCategoriesRequest;
+use App\Http\Requests\Therapist\Api\ThereapistSpecialistsRequest;
 use App\Http\Resources\ScheduleResource;
 use App\Http\Resources\Therapist\TherapistResource;
 use App\Models\Therapist;
@@ -36,20 +36,20 @@ class TherapistController extends Controller
             $therapistDTO = UpdateTherapistDTO::fromRequest($request);
             $therapist = auth()->guard('api_therapist')->user();
             $this->therapistService->update(therapistDTO: $therapistDTO, therapist: $therapist);
-            return apiResponse(message: 'data updated successfully');
+            return apiResponse(message: __('app.general.success_operation'));
         } catch (ValidationException $exception) {
             $mappedErrors = transformValidationErrors($exception->errors());
-            return apiResponse(data: ['message' => __('lang.invalid inputs'), 'errors' => $mappedErrors], code: 422);
+            return apiResponse(data: ['message' => __('app.general.invaild_inputs'), 'errors' => $mappedErrors], code: 422);
         } catch (\Exception $exception) {
             return apiResponse(message: $exception->getMessage(), code: 500);
         }
     }
 
-    public function updateCategories(ThereapistCategoriesRequest $request)
+    public function updateSpecialists(ThereapistSpecialistsRequest $request)
     {
         $therapist = auth()->guard('api_therapist')->user();
-        $therapist->categories()->sync($request->categories);
-        return apiResponse(message: 'categories updated successfully');
+        $therapist->spaecialists()->sync($request->categories);
+        return apiResponse(message: __('app.general.success_operation'));
     }
 
     public function getSchedules(Therapist $therapist)

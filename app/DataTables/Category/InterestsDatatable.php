@@ -6,7 +6,7 @@ use App\Enums\ActivationStatus;
 use App\Models\Category;
 use App\Models\Interest;
 use App\Models\Slider;
-use App\Services\Category\InterestService;
+use App\Services\Interest\InterestService;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
@@ -31,7 +31,7 @@ class InterestsDatatable extends DataTable
             })
             ->addColumn('action', function (Interest $model) {
                 return view(
-                    'layouts.dashboard.category.components.actions',
+                    'layouts.dashboard.interest.components.actions',
                     ['model' => $model, 'url' => route('intersts.destroy', $model->id)]
                 );
             });
@@ -56,7 +56,7 @@ class InterestsDatatable extends DataTable
     public function html(): HtmlBuilder
     {
         return $this->builder()
-            ->setTableId('categories-table')
+            ->setTableId('interests-table')
             ->columns($this->getColumns())
             ->minifiedAjax()
             ->dom('Bfrtip')
@@ -73,11 +73,11 @@ class InterestsDatatable extends DataTable
     {
         return [
             Column::make('name')
-                ->title(__('app.categories.title'))
+                ->title(__('app.interests.title'))
                 ->orderable(false),
 
             Column::make('status')
-                ->title(__('app.categories.status'))
+                ->title(__('app.interests.status'))
                 ->orderable(false),
 
 

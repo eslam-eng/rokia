@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BookAppointmentController;
-use App\Http\Controllers\InterestsyController;
+use App\Http\Controllers\InterestsController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Invoice\InvoicesController;
@@ -15,6 +15,7 @@ use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\SliderController;
 use App\Http\Controllers\SpecialistController;
 use App\Http\Controllers\Therapist\Lecture\LectureController;
+use App\Http\Controllers\Therapist\Plans\TherapistPlansController;
 use App\Http\Controllers\Therapist\TherapistController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Artisan;
@@ -54,8 +55,11 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'locale']], func
 
 
     Route::resource('therapists', TherapistController::class)->except(['create']);
-    Route::post('therapist/{id}/status', [TherapistController::class, 'status'])->name('therapist.status');
-    Route::get('therapist/schedules', [TherapistController::class, 'showSchedules'])->name('therapist.schedules');
+    Route::group(['prefix' => 'therapist'],function (){
+        Route::post('{id}/status', [TherapistController::class, 'status'])->name('therapist.status');
+        Route::get('schedules', [TherapistController::class, 'showSchedules'])->name('therapist.schedules');
+        Route::get('plans', TherapistPlansController::class)->name('therapist-plans');
+    });
 
     Route::resource('sliders', SliderController::class);
     Route::post('sliders/{id}/status', [SliderController::class, 'status'])->name('sliders.status');
@@ -85,10 +89,10 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'locale']], func
         Route::get('lecture', LectureReportController::class)->name('lecture-report');
     });
 
-    Route::resource('intersts', InterestsyController::class);
+    Route::resource('intersts', InterestsController::class);
     Route::resource('specialists', SpecialistController::class);
-    Route::post('intersts/{id}/status', [InterestsyController::class, 'status'])->name('intersts.status');
-    Route::post('specialists/{id}/status', [InterestsyController::class, 'status'])->name('specialists.status');
+    Route::post('intersts/{id}/status', [InterestsController::class, 'status'])->name('intersts.status');
+    Route::post('specialists/{id}/status', [InterestsController::class, 'status'])->name('specialists.status');
 
     Route::get('settings', SettingsController::class)->name('settings.index');
     Route::group(['prefix' => 'admin'],function (){

@@ -99,8 +99,12 @@ class LaravelSettingsServiceProvider extends ServiceProvider
             ->filter()
             ->values();
 
+        $migrationsConfig = config()->get('database.migrations');
+
+        $migrationsTable = is_array($migrationsConfig) ? ($migrationsConfig['table'] ?? null) : $migrationsConfig;
+
         $event->connection
-            ->table(config()->get('database.migrations'))
+            ->table($migrationsTable)
             ->useWritePdo()
             ->whereIn('migration', $migrations)
             ->delete();

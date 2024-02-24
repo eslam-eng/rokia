@@ -1,11 +1,11 @@
 @extends('layouts.app')
 
-@section('title',__('app.categories.title'))
+@section('title',__('app.interests.title'))
 
 @section('content')
 
     {{--    breadcrumb --}}
-    @include('layouts.components.breadcrumb',['title' => __('app.categories.title'),'first_list_item' => __('app.categories.title'),'last_list_item' => __('app.app.categories.add_category')])
+    @include('layouts.components.breadcrumb',['title' => __('app.interests.title'),'first_list_item' => __('app.interests.title'),'last_list_item' => __('app.interests.add_interest')])
     {{--    end breadcrumb --}}
 
     <!-- Row -->

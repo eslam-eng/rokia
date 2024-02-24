@@ -24,7 +24,7 @@ class TherapistResource extends JsonResource
             'avg_therapy_duration'=>$this->avg_therapy_duration,
             'profile_image_id'=>$this?->getFirstMedia('profile_image')?->id,
             'profile_image_url'=>$this->profile_image_url,
-            'spaecialists'=>TherapistCategoryResource::collection($this->whenLoaded('spaecialists'))
+            'spaecialists'=>TherapistInterestResource::collection($this->whenLoaded('spaecialists'))
         ];
     }
 }

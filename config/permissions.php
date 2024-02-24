@@ -24,12 +24,12 @@ return [
         'change_slider_status',
     ],
 
-    'categories' => [
-        'list_category',
-        'create_category',
-        'edit_category',
-        'delete_category',
-        'change_category_status',
+    'interests' => [
+        'list_interests',
+        'create_interest',
+        'edit_interest',
+        'delete_interest',
+        'change_interest_status',
     ],
 
     'rozmana' => [

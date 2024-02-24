@@ -4,18 +4,15 @@ namespace App\Http\Controllers\Therapist;
 
 use App\DataTables\Therapist\TherapistsDataTable;
 use App\DataTables\TherapistSchedule\TherapistScheduleDataTable;
-use App\DataTransferObjects\Therapist\CreateTherapistDTO;
 use App\DataTransferObjects\Therapist\UpdateTherapistDTO;
 use App\Enums\UsersType;
 use App\Exceptions\GeneralException;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Therapist\ThereapistUpdateRequest;
-use App\Http\Requests\Users\ThereapistRequest;
 use App\Models\Therapist;
 use App\Services\TherapistService;
 use App\Services\UserService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
 use Mockery\Exception;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -63,7 +60,7 @@ class TherapistController extends Controller
         return view('layouts.dashboard.therapist.edit', compact('therapist'));
     }
 
-    public function update(ThereapistUpdateRequest $request,Therapist $therapist)
+    public function update(ThereapistUpdateRequest $request, Therapist $therapist)
     {
         try {
 
@@ -114,7 +111,7 @@ class TherapistController extends Controller
         return $this->therapistService->search(filters: $filters);
     }
 
-    public function showSchedules(TherapistScheduleDataTable $therapistScheduleDataTable,Request $request)
+    public function showSchedules(TherapistScheduleDataTable $therapistScheduleDataTable, Request $request)
     {
         $filters = array_filter($request->get('filters', []), function ($value) {
             return ($value !== null && $value !== false && $value !== '');
