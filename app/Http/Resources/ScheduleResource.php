@@ -19,7 +19,12 @@ class ScheduleResource extends JsonResource
             'id'=>$this->id,
             'day_name'=>WeekDaysEnum::from($this->day_id)->getLabel(),
             'day_id'=>$this->day_id,
-            'available_times'=>timeTransformer(start_time: $this->start_time,end_time: $this->end_time,interval_time: $this->therapist->avg_therapy_duration)
+            'available_times'=>timeTransformer(
+                start_time: $this->start_time,
+                end_time: $this->end_time,
+                day_id: $this->day_id,
+                therapist: $this->therapist
+            )
         ];
     }
 }

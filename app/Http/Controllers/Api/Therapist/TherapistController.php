@@ -51,10 +51,4 @@ class TherapistController extends Controller
         $therapist->spaecialists()->sync($request->categories);
         return apiResponse(message: __('app.general.success_operation'));
     }
-
-    public function getSchedules(Therapist $therapist)
-    {
-        $schedules = $this->therapistService->getSchedules(therapist_id: $therapist->id);
-        return ScheduleResource::collection($schedules);
-    }
 }

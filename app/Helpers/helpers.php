@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Therapist;
 use Carbon\Carbon;
 use Illuminate\Support\Arr;
 
@@ -79,9 +80,10 @@ if (!function_exists('transformValidationErrors')) {
 }
 if (!function_exists('timeTransformer')) {
 
-    function timeTransformer(string $start_time, string $end_time, int $interval_time, int $day_id): array
+    function timeTransformer(string $start_time, string $end_time,int $day_id,Therapist $therapist): array
     {
 
+        $interval_time = $therapist->avg_therapy_duration;
         $start_time = Carbon::createFromTimeString("$start_time");
         $end_time = Carbon::createFromTimeString("$end_time");
         $dividedPeriod = [];
@@ -99,8 +101,14 @@ if (!function_exists('timeTransformer')) {
             // Move to the next interval
             $current->addMinutes($interval_time);
         }
+        $bookedAppointments = $therapist->appointments->whereDate('date','>=',Carbon::now())
+            ->where('day_id',$day_id)
+            ->where('status','!=',\App\Enums\BookAppointmentStatusEnum::COMPOLETED->value)
+            ->pluck('time')
+            ->toArray();
 
-        return $dividedPeriod;
+        return array_diff($dividedPeriod, $bookedAppointments);
+
 
     }
 }

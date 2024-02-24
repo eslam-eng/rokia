@@ -72,7 +72,9 @@ class TherapistScheduleService extends BaseService
     public function getSchedulesByTherapist(int $therapist_id): Collection|array
     {
         return $this->getQuery(['therapist_id' => $therapist_id])
-            ->with('therapist:id,avg_therapy_duration')->get();
+            ->with(['therapist'=>function ($query) {
+                $query->select(['id','avg_therapy_duration'])->with('appointments:id,therapist_id,day_id,time,date');
+            }])->get();
     }
 
 }

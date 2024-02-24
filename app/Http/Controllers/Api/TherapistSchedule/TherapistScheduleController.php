@@ -7,8 +7,10 @@ use App\Enums\WeekDaysEnum;
 use App\Exceptions\GeneralException;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\TherapistSchedule\TherapistSceduleRequest;
+use App\Http\Resources\ScheduleResource;
 use App\Http\Resources\Therapist\TherapistScheduleResource;
 use App\Http\Resources\WeekDays\WeekDaysResource;
+use App\Models\Therapist;
 use App\Models\TherapistSchedule;
 use App\Services\TherapistScheduleService;
 use Illuminate\Http\Request;
@@ -43,10 +45,10 @@ class TherapistScheduleController extends Controller
             $therapistSceduleDTO = TherapistScheduleDTO::fromRequest($request);
             $therapistSceduleDTO->therapist_id = auth()->guard('api_therapist')->id();
             $this->therapistScheduleService->store(therapistScheduleDTO: $therapistSceduleDTO);
-            return apiResponse(message: 'created sucessfully');
+            return apiResponse(message: __('app.general.success_operation'));
         } catch (ValidationException $exception) {
             $mappedErrors = transformValidationErrors($exception->errors());
-            return apiResponse(data: ['message' => __('lang.invalid inputs'), 'errors' => $mappedErrors], code: 422);
+            return apiResponse(data: ['message' => __('app.general.invaild_inputs'), 'errors' => $mappedErrors], code: 422);
         } catch (\Exception $exception) {
             return apiResponse(message: $exception->getMessage(), code: 500);
         }
@@ -63,6 +65,10 @@ class TherapistScheduleController extends Controller
             return apiResponse(message: $exception->getMessage(), code: 500);
         }
     }
-
+    public function getScheduleForTherapist(Therapist $therapist)
+    {
+        $schedules = $this->therapistScheduleService->getSchedulesByTherapist(therapist_id: $therapist->id);
+        return ScheduleResource::collection($schedules);
+    }
 
 }

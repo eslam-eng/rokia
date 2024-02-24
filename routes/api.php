@@ -9,6 +9,7 @@ use App\Http\Controllers\Api\NotificationController;
 use App\Http\Controllers\Api\Plans\TherapistPlansController;
 use App\Http\Controllers\Api\Slider\SliderController;
 use App\Http\Controllers\Api\Therapist\TherapistController;
+use App\Http\Controllers\Api\TherapistSchedule\TherapistScheduleController;
 use App\Http\Controllers\Api\UsersController;
 use App\Http\Controllers\Api\Wishlist\WishlistController;
 use App\Http\Controllers\Media\MediaController;
@@ -73,6 +74,6 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::get('sliders', SliderController::class);
     Route::get('interests', InterestsController::class);
     Route::get('interests', [TherapistPlansController::class,'getPlansForClients']);
-    Route::get('therapist/{therapist}/schedule',[TherapistController::class,'getSchedules']);
+    Route::get('therapist/{therapist}/schedule',[TherapistScheduleController::class,'getScheduleForTherapist']);
 });
 
