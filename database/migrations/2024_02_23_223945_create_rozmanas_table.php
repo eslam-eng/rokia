@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('title');
             $table->text('description');
             $table->string('date');
-            $table->foreignIdFor(\App\Models\User::class,'therapist_id')->constrained('users')->cascadeOnDelete();
+            $table->foreignIdFor(\App\Models\Therapist::class,'therapist_id')->constrained('therapists')->cascadeOnDelete();
             $table->boolean('status')->default(\App\Enums\ActivationStatus::ACTIVE->value);
             $table->string('itnterests')->nullable();
             $table->unique(['therapist_id','date'],'unique_therapist_rozmana');

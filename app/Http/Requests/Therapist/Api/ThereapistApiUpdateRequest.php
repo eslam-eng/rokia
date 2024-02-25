@@ -27,7 +27,6 @@ class ThereapistApiUpdateRequest extends BaseRequest
             'phone' => 'required|string',
             'gender' => ['required', Rule::in(GenderTypeEnum::values())],
             'address' => 'required|string',
-            'avg_therapy_duration' => 'required|integer',
         ];
     }
 }

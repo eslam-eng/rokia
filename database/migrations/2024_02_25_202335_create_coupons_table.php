@@ -8,24 +8,24 @@ return new class extends Migration
 {
     /**
      * Run the migrations.
-     *
-     * @return void
      */
-    public function up()
+    public function up(): void
     {
-        Schema::create('discount_sections', function (Blueprint $table) {
+        Schema::create('coupons', function (Blueprint $table) {
             $table->id();
+            $table->morphs('relatable');
+            $table->integer('discount');
+            $table->date('start_date');
+            $table->date('end_date');
             $table->timestamps();
         });
     }
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
-    public function down()
+    public function down(): void
     {
-        Schema::dropIfExists('discount_sections');
+        Schema::dropIfExists('coupons');
     }
 };

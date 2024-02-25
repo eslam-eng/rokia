@@ -15,11 +15,12 @@ return new class extends Migration
     {
         Schema::create('invoices', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(\App\Models\User::class,'therapist_id')->constrained('users');
-            $table->decimal('sub_total')->default(0);
+            $table->foreignIdFor(\App\Models\Therapist::class)->constrained('therapists');
+            $table->decimal('sub_total');
             $table->decimal('grand_total');
             $table->decimal('therapist_due');
-            $table->tinyInteger('status')->default(\App\Enums\ActivationStatus::PENDING->value);
+            $table->tinyInteger('status')->default(\App\Enums\InvoiceStatus::PENDING->value);
+            $table->string('notes')->nullable();
             $table->timestamps();
         });
     }

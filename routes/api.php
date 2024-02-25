@@ -1,6 +1,7 @@
 <?php
 
 use App\Enums\UsersType;
+use App\Http\Controllers\Api\Appointment\BookAppointmentController;
 use App\Http\Controllers\Api\Auth\AuthClientController;
 use App\Http\Controllers\Api\Category\InterestsController;
 use App\Http\Controllers\Api\Lecture\LectureController;
@@ -58,6 +59,7 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
             Route::get('lectures', UserLectureController::class);
             Route::apiResource('wishlist', WishlistController::class);
             Route::delete('wishlist/lecture/{id}/remove', [WishlistController::class, 'removeLectureFormFavorite']);
+            Route::apiResource('book-appointment', BookAppointmentController::class);
         });
     });
 
@@ -75,5 +77,6 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::get('interests', InterestsController::class);
     Route::get('interests', [TherapistPlansController::class,'getPlansForClients']);
     Route::get('therapist/{therapist}/schedule',[TherapistScheduleController::class,'getScheduleForTherapist']);
+    Route::post('therapist/apointments/schedule',[TherapistScheduleController::class,'getScheduleForTherapist']);
 });
 

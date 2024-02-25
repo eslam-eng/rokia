@@ -17,26 +17,26 @@ class BookAppointmentDTO extends BaseDTO
      */
     public function __construct(
         public int     $day_id,
-        public int     $price,
         public string  $time,
         public ?int    $client_id = null,
+        public ?int    $therapy_price = null,
         public ?int    $therapist_id = null,
         public ?int    $status = null,
         public ?string $user_description = null,
     )
     {
-            $this->status ?? BookAppointmentStatusEnum::PENDING->value;
+        $this->status = $this->status ?: BookAppointmentStatusEnum::PENDING->value;
     }
 
     public static function fromRequest($request): BaseDTO
     {
         return new self(
             day_id: $request->day_id,
-            price: $request->price,
             time: $request->time,
             client_id: $request->client_id,
+            therapy_price: $request->therapy_price,
             therapist_id: $request->therapist_id,
-            status: $request->status,
+            status: $request->status ?? BookAppointmentStatusEnum::PENDING->value,
             user_description: $request->user_description,
         );
     }
@@ -49,9 +49,9 @@ class BookAppointmentDTO extends BaseDTO
     {
         return new self(
             day_id: Arr::get($data, 'day_id'),
-            price: Arr::get($data, 'price'),
             time: Arr::get($data, 'time'),
             client_id: Arr::get($data, 'client_id'),
+            therapy_price: Arr::get($data, 'therapy_price'),
             therapist_id: Arr::get($data, 'therapist_id'),
             status: Arr::get($data, 'status', BookAppointmentStatusEnum::PENDING->value),
             user_description: Arr::get($data, 'user_description'),
@@ -62,8 +62,7 @@ class BookAppointmentDTO extends BaseDTO
     {
         return [
             'day_id' => ['required', Rule::in(WeekDaysEnum::values())],
-            'price' => 'required|integer',
-            'time' => 'required|string|date_format:H:i',
+            'time' => 'required|string|date_format:H:i', //as rueles applys on to array data and we convert time in toArray method to format H:i
             'date' => 'required|string',
             'client_id' => 'required|integer',
             'therapist_id' => 'required|integer',
@@ -79,9 +78,9 @@ class BookAppointmentDTO extends BaseDTO
     {
         return [
             "day_id" => $this->day_id,
-            "price" => $this->price,
+            "price" => $this->therapy_price,
             "time" => Carbon::createFromFormat('h:i A', $this->time)->format('H:i'),
-            "date" => getDateForBookAppointment(day_id: $this->day_id,appointment_time: $this->time),
+            "date" => getDateForBookAppointment(day_id: $this->day_id, appointment_time: $this->time),
             "client_id" => $this->client_id,
             "therapist_id" => $this->therapist_id,
             "status" => $this->status,

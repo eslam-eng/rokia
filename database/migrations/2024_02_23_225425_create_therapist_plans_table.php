@@ -19,6 +19,7 @@ return new class extends Migration
             $table->decimal('price');
             $table->integer('duration')->comment('duration in days');
             $table->boolean('status')->default(\App\Enums\ActivationStatus::ACTIVE->value);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

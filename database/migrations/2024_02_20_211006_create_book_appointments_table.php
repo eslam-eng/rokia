@@ -24,6 +24,7 @@ return new class extends Migration
             $table->tinyInteger('status')->default(BookAppointmentStatusEnum::PENDING->value);
             $table->string('user_description')->nullable();
             $table->boolean('notify')->default(false);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

@@ -20,8 +20,8 @@ class BookAppointmentRequest extends BaseRequest
     public function rules(): array
     {
         return [
-            'theraist_id' => 'required|integer|exists:therapists,id',
-            'appointment_time' => 'required|date_format:h:i A',
+            'therapist_id' => 'required|integer|exists:therapists,id',
+            'time' => 'required|date_format:h:i A',
             'day_id' => 'required|bool',
             'user_description' => 'nullable|string',
         ];

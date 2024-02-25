@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers\Api\Therapist;
 
-use App\DataTransferObjects\Therapist\Api\UpdateTherapistDTO;
+use App\DataTransferObjects\Therapist\Api\UpdateMainTherapisDatatDTO;
+use App\DataTransferObjects\Therapist\Api\UpdateTherapySessionDataDTO;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Therapist\Api\TherapySessionUpdateRequest;
 use App\Http\Requests\Therapist\Api\ThereapistApiUpdateRequest;
-use App\Http\Requests\Therapist\Api\ThereapistSpecialistsRequest;
-use App\Http\Resources\ScheduleResource;
 use App\Http\Resources\Therapist\TherapistResource;
-use App\Models\Therapist;
 use App\Services\TherapistService;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
@@ -33,7 +32,7 @@ class TherapistController extends Controller
     public function update(ThereapistApiUpdateRequest $request)
     {
         try {
-            $therapistDTO = UpdateTherapistDTO::fromRequest($request);
+            $therapistDTO = UpdateMainTherapisDatatDTO::fromRequest($request);
             $therapist = auth()->guard('api_therapist')->user();
             $this->therapistService->update(therapistDTO: $therapistDTO, therapist: $therapist);
             return apiResponse(message: __('app.general.success_operation'));
@@ -45,10 +44,15 @@ class TherapistController extends Controller
         }
     }
 
-    public function updateSpecialists(ThereapistSpecialistsRequest $request)
+    public function updateTherapyData(TherapySessionUpdateRequest $request)
     {
-        $therapist = auth()->guard('api_therapist')->user();
-        $therapist->spaecialists()->sync($request->categories);
-        return apiResponse(message: __('app.general.success_operation'));
+        try {
+            $therapist = auth()->guard('api_therapist')->user();
+            $therapySessionDTO = UpdateTherapySessionDataDTO::fromRequest($request);
+            $therapist = $this->therapistService->updateTherapySessionData(therapySessionDataDTO: $therapySessionDTO, therapist: $therapist);
+            return apiResponse(data: TherapistResource::make($therapist), message: __('app.general.success_operation'));
+        } catch (\Exception $exception) {
+            return apiResponse(message: $exception->getMessage(), code: 500);
+        }
     }
 }

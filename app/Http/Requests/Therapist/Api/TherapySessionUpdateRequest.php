@@ -6,7 +6,7 @@ use App\Enums\GenderTypeEnum;
 use App\Http\Requests\BaseRequest;
 use Illuminate\Validation\Rule;
 
-class ThereapistSpecialistsRequest extends BaseRequest
+class TherapySessionUpdateRequest extends BaseRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,8 +22,10 @@ class ThereapistSpecialistsRequest extends BaseRequest
     public function rules(): array
     {
         return [
-            'spaecialists' => 'required|array|min:1',
-            'spaecialists.*' => 'required|exists:spaecialists,id',
+            'specialists' => 'required|array|min:1',
+            'specialists.*' => 'required|exists:specialists,id',
+            'avg_therapy_duration' => 'required|integer|min:1',
+            'therapy_price' => 'required|numeric',
         ];
     }
 }

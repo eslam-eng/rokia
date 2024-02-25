@@ -18,7 +18,7 @@ class Therapist extends Authenticatable implements HasMedia
         HasFactory, Notifiable, HasRoles, InteractsWithMedia;
 
     protected $fillable = [
-        'name', 'email', 'password', 'phone', 'status', 'therapist_commission', 'status',
+        'name', 'email', 'password', 'phone', 'status', 'therapist_commission', 'status','therapy_price',
         'device_token', 'address', 'city_id', 'area_id', 'locale', 'email_verified_at', 'avg_therapy_duration'
     ];
 
@@ -42,7 +42,7 @@ class Therapist extends Authenticatable implements HasMedia
         return $this->belongsTo(Location::class, 'area_id');
     }
 
-    public function spaecialists(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    public function specialists(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
         return $this->belongsToMany(Specialist::class, 'therapist_specialists');
     }

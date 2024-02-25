@@ -51,7 +51,7 @@ Route::group(['middleware' => 'auth:api_therapist'], function () {
 
         Route::get('profile', [TherapistController::class, 'getProfileDetails']);
         Route::post('update-data', [TherapistController::class, 'update']);
-        Route::post('update-specialists', [TherapistController::class, 'updateSpecialists']);
+        Route::post('update-therapy-data', [TherapistController::class, 'updateTherapyData']);
 
         Route::group(['prefix' => 'schedule'],function (){
             Route::get('/', [TherapistScheduleController::class, 'index']);

@@ -9,15 +9,17 @@ use App\Enums\AttachmentsType;
 use App\Exceptions\GeneralException;
 use App\Exceptions\NotFoundException;
 use App\Filters\SlidersFilter;
+use App\Models\BookAppointment;
 use App\Models\Slider;
 use App\Services\BaseService;
+use App\Services\TherapistService;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 class BookAppointmentService extends BaseService
 {
 
-    public function __construct(protected Slider $model)
+    public function __construct(protected BookAppointment $model)
     {
 
     }

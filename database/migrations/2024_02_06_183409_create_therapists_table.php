@@ -32,7 +32,7 @@ return new class extends Migration
             $table->string('locale')->default(config('app.locale'));
             $table->timestamp('email_verified_at')->nullable();
             $table->integer('avg_therapy_duration')->default(15);
-            $table->integer('therpy_price')->nullable();
+            $table->integer('therapy_price')->nullable();
             $table->timestamps();
         });
     }

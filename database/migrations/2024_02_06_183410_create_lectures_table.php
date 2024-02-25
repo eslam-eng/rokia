@@ -25,6 +25,7 @@ return new class extends Migration
             $table->tinyInteger('is_paid')->default(0);
             $table->tinyInteger('type');
             $table->timestamp('publish_date')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

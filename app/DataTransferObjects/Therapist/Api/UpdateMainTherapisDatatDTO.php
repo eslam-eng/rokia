@@ -7,7 +7,7 @@ use App\Enums\ActivationStatus;
 use Illuminate\Support\Arr;
 use Illuminate\Validation\Rule;
 
-class UpdateTherapistDTO extends BaseDTO
+class UpdateMainTherapisDatatDTO extends BaseDTO
 {
 
     /**
@@ -19,7 +19,6 @@ class UpdateTherapistDTO extends BaseDTO
         public string $phone,
         public ?string $gender,
         public ?string $password,
-        public int $avg_therapy_duration,
         public ?string $address = null,
     )
     {
@@ -32,7 +31,6 @@ class UpdateTherapistDTO extends BaseDTO
             phone: $request->phone,
             gender: $request->gender,
             password: $request->password,
-            avg_therapy_duration: $request->avg_therapy_duration,
             address: $request->address,
         );
     }
@@ -48,7 +46,6 @@ class UpdateTherapistDTO extends BaseDTO
             phone: Arr::get($data,'phone'),
             gender: Arr::get($data,'gender'),
             password: Arr::get($data,'password'),
-            avg_therapy_duration: Arr::get($data,'avg_therapy_duration'),
             address: Arr::get($data,'address'),
         );
     }
@@ -60,7 +57,6 @@ class UpdateTherapistDTO extends BaseDTO
            'phone'=>'required|string',
            'gender'=>'required|string',
            'address'=>'required|string',
-           'avg_therapy_duration'=>'required|integer',
        ];
     }
 
@@ -74,7 +70,6 @@ class UpdateTherapistDTO extends BaseDTO
             "phone" => $this->phone,
             "gender" => $this->gender,
             "address" => $this->address,
-            "avg_therapy_duration" => $this->avg_therapy_duration,
         ];
     }
 }

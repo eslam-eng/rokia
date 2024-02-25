@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\DataTransferObjects\Therapist\Api\UpdateTherapySessionDataDTO;
 use App\DataTransferObjects\Therapist\CreateTherapistDTO;
 use App\DataTransferObjects\Therapist\UpdateTherapistDTO;
 use App\Enums\ActivationStatus;
@@ -17,6 +18,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 
@@ -119,7 +121,7 @@ class TherapistService extends BaseService
 
     public function getTherapistDetails(Therapist $therapist): Therapist
     {
-        return $therapist->load('spaecialists');
+        return $therapist->load('specialists');
     }
 
     public function getSchedules($therapist_id): Collection|array
@@ -130,5 +132,17 @@ class TherapistService extends BaseService
     public function search(?array $filters = []): LengthAwarePaginator
     {
         return $this->getQuery($filters)->select(['id', 'name'])->paginate();
+    }
+
+    public function updateTherapySessionData(UpdateTherapySessionDataDTO $therapySessionDataDTO , Therapist $therapist): Therapist
+    {
+        //first update specialists
+        DB::beginTransaction();
+        $therapist->specialists()->sync($therapySessionDataDTO->specialists);
+        $therapistSessionData = $therapySessionDataDTO->toArrayExcept(['specialists']);
+        $therapist->update($therapistSessionData);
+        DB::commit();
+        return $therapist;
+
     }
 }
