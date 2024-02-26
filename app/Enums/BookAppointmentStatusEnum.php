@@ -6,9 +6,10 @@ enum BookAppointmentStatusEnum: int
 {
 
     case PENDING = 1;
-    case WAITING_FOR_PAID = 2;
-    case APPROVED = 3;
+    case WAITING_FOR_PAID = 2; //mean that therapist accept the apointment and wait client paid
+    case PAID = 3;
     case COMPOLETED = 4;
+    case CANCELED = 5;
 
     public static function values(): array
     {
@@ -29,9 +30,9 @@ enum BookAppointmentStatusEnum: int
     public function getClasses(): string
     {
         return match ($this) {
-            self::PENDING =>'badge-danger',
+            self::PENDING => 'badge-danger',
             self::WAITING_FOR_PAID => 'badge-warning',
-            self::APPROVED,self::COMPOLETED => 'badge-success',
+            self::APPROVED, self::COMPOLETED => 'badge-success',
         };
     }
 

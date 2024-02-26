@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\Appointment\BookAppointmentController;
 use App\Http\Controllers\Api\Auth\AuthTherapistController;
 use App\Http\Controllers\Api\Lecture\LectureController;
 use App\Http\Controllers\Api\NotificationController;
@@ -81,7 +82,10 @@ Route::group(['middleware' => 'auth:api_therapist'], function () {
         Route::get('specialists', SpecialistController::class);
 
         Route::apiResource('plans', TherapistPlansController::class);
-
+        Route::apiResource('book-appointment', BookAppointmentController::class)->only('index');
+        Route::post('appointments/{book_appointment}/waitng-for-paid',[BookAppointmentController::class,'changeToWatingForPaid']);
+        Route::post('appointments/{book_appointment}/cancel',[BookAppointmentController::class,'changeToCanceled']);
+        Route::post('appointments/{book_appointment}/compeleted',[BookAppointmentController::class,'changeToComeleted']);
     });
 
 });

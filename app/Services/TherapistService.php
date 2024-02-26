@@ -145,4 +145,12 @@ class TherapistService extends BaseService
         return $therapist;
 
     }
+
+    public function getToken(int|Therapist $therapist)
+    {
+        if (is_int($therapist)) {
+            $therapist = $this->findById($therapist);
+        }
+        return $therapist->pluck('device_token')->toArray();
+    }
 }

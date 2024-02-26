@@ -18,8 +18,10 @@ class BookAppointment extends Model
         return $this->belongsTo(User::class,'client_id');
     }
 
-    public function therapist_id(): BelongsTo
+    public function therapist(): BelongsTo
     {
         return $this->belongsTo(Therapist::class,'therapist_id');
     }
+
+
 }

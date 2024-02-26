@@ -44,7 +44,7 @@ class UserService extends BaseService
     public function datatable(array $filters = []): Builder
     {
         return $this->getQuery(filters: $filters)
-            ->with(['roles'=>fn($query)=>$query->withCount('permissions')]);
+            ->with(['roles' => fn($query) => $query->withCount('permissions')]);
     }
 
 
@@ -65,14 +65,15 @@ class UserService extends BaseService
         $validator = Validator::make($adminData, ['email' => 'unique:users,email', 'phone' => 'unique:users,phone']);
         if ($validator->fails())
             throw new ValidationException($validator);
-        $admin =  $this->getQuery()->create($adminData);
+        $admin = $this->getQuery()->create($adminData);
         $admin->syncRoles($adminDTO->role_id);
     }
-    public function UpdateAdmin(User $admin , AdminDTO $adminDTO)
+
+    public function UpdateAdmin(User $admin, AdminDTO $adminDTO)
     {
         $adminData = $adminDTO->toFilteredArrayExcept(['role_id']);
         $adminDTO->validate();
-        $validator = Validator::make($adminData, ['email' => Rule::unique('users','email')->ignore($admin->id), 'phone' => Rule::unique('users','phone')->ignore($admin->id)]);
+        $validator = Validator::make($adminData, ['email' => Rule::unique('users', 'email')->ignore($admin->id), 'phone' => Rule::unique('users', 'phone')->ignore($admin->id)]);
         if ($validator->fails())
             throw new ValidationException($validator);
         $admin->update($adminData);
@@ -172,7 +173,7 @@ class UserService extends BaseService
      */
     public function phoneVerifyAndSendFcm(string $phone, int $user_type)
     {
-        $this->validateBeforeCreate(user_type: $user_type,phone: $phone);
+        $this->validateBeforeCreate(user_type: $user_type, phone: $phone);
         $code = mt_rand(100000, 999999);
         $token = [];
         PasswordResetCode::query()->where('phone', $phone)->delete();
@@ -189,8 +190,8 @@ class UserService extends BaseService
 
         $title = 'Your OTP Code';
         $body = $codeData->code;
+        $this->pushNotificationService->sendToTokens(title: $title, body: $body, tokens: $token);
         return $body;
-//        $this->pushNotificationService->sendToTokens(title: $title, body: $body, tokens: $token);
     }
 
     public function resetPassword(string $code, string $password, int $user_type)
@@ -204,7 +205,7 @@ class UserService extends BaseService
         else
             $user = Therapist::where('phone', $passwordReset->phone)->first();
 
-        $is_updated =  $user->update(['password' => $password]);
+        $is_updated = $user->update(['password' => $password]);
 
         $passwordReset->delete();
 
@@ -213,17 +214,25 @@ class UserService extends BaseService
 
     public function getDeviceTokenForUsers(array $users_id = []): array
     {
-        return $this->getQuery(['ids'=>$users_id])->pluck('device_token')->toArray();
+        return $this->getQuery(['ids' => $users_id])->pluck('device_token')->toArray();
     }
 
-    private function validateBeforeCreate(int $user_type , string $phone)
+    private function validateBeforeCreate(int $user_type, string $phone)
     {
-        switch ($user_type){
+        switch ($user_type) {
             case UsersType::THERAPIST->value:
-                Validator::validate(['phone'=>$phone],[Rule::exists('therapists','phone')]);
+                Validator::validate(['phone' => $phone], [Rule::exists('therapists', 'phone')]);
 
             case UsersType::CLIENT->value:
-                Validator::validate(['phone'=>$phone],[Rule::exists('users','phone')]);
+                Validator::validate(['phone' => $phone], [Rule::exists('users', 'phone')]);
         }
+    }
+
+    public function getToken(int|User $user)
+    {
+        if (is_int($user)) {
+            $user = $this->findById($user);
+        }
+        return $user->pluck('device_token')->toArray();
     }
 }

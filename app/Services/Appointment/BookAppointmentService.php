@@ -5,21 +5,25 @@ namespace App\Services\Appointment;
 use App\DataTransferObjects\BookAppointment\BookAppointmentDTO;
 use App\DataTransferObjects\Slider\SliderDTO;
 use App\DataTransferObjects\Therapist\CreateTherapistDTO;
-use App\Enums\AttachmentsType;
+use App\Enums\BookAppointmentStatusEnum;
+use App\Exceptions\BookAppointmentStatusException;
 use App\Exceptions\GeneralException;
 use App\Exceptions\NotFoundException;
 use App\Filters\SlidersFilter;
 use App\Models\BookAppointment;
 use App\Models\Slider;
 use App\Services\BaseService;
+use App\Services\NotificationService;
 use App\Services\TherapistService;
+use App\Services\UserService;
+use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 class BookAppointmentService extends BaseService
 {
 
-    public function __construct(protected BookAppointment $model)
+    public function __construct(protected BookAppointment $model, protected readonly NotificationService $notificationService, protected UserService $userService, protected readonly TherapistService $therapistService)
     {
 
     }
@@ -39,6 +43,13 @@ class BookAppointmentService extends BaseService
     public function datatable(array $filters = []): Builder
     {
         return $this->getQuery(filters: $filters);
+    }
+
+    public function paginate(array $filters = []): Paginator
+    {
+        return $this->getQuery(filters: $filters)
+            ->with(['client:id,name,phone','therapist:id,name'])
+            ->simplePaginate();
     }
 
     /**
@@ -87,12 +98,60 @@ class BookAppointmentService extends BaseService
     }
 
 
-    public function changeStatus($id): bool
+    /**
+     * @throws BookAppointmentStatusException
+     */
+    public function waitingForPaid(BookAppointment $bookAppointment): void
     {
-        $slider = $this->findById($id);
-        if (!$slider)
-            throw new NotFoundException('therapist not found');
-        $slider->status = !$slider->status ;
-        return $slider->save();
+        if ($bookAppointment->status == BookAppointmentStatusEnum::WAITING_FOR_PAID->value)
+            throw new BookAppointmentStatusException(status: BookAppointmentStatusEnum::from($bookAppointment->status)->getLabel());
+        $bookAppointment->update(['status' => BookAppointmentStatusEnum::WAITING_FOR_PAID->value]);
+        $this->sendFcm(bookAppointment: $bookAppointment);
+    }
+
+    /**
+     * @throws BookAppointmentStatusException
+     */
+    public function paid(BookAppointment $bookAppointment): void
+    {
+        if ($bookAppointment->status == BookAppointmentStatusEnum::PAID->value)
+            throw new BookAppointmentStatusException(status: BookAppointmentStatusEnum::from($bookAppointment->status)->getLabel());
+        $bookAppointment->update(['status' => BookAppointmentStatusEnum::PAID->value]);
+        $this->sendFcm(bookAppointment: $bookAppointment,send_to_client: false,send_to_therapist: true);
+
+    }
+
+    /**
+     * @throws BookAppointmentStatusException
+     */
+    public function compoleted(BookAppointment $bookAppointment)
+    {
+        if ($bookAppointment->status == BookAppointmentStatusEnum::COMPOLETED->value)
+            throw new BookAppointmentStatusException(status: BookAppointmentStatusEnum::from($bookAppointment->status)->getLabel());
+        $bookAppointment->update(['status' => BookAppointmentStatusEnum::COMPOLETED->value]);
+        $this->sendFcm(bookAppointment: $bookAppointment);
+    }
+
+    /**
+     * @throws BookAppointmentStatusException
+     */
+    public function canceled(BookAppointment $bookAppointment,$cancel_owner): void
+    {
+        if ($bookAppointment->status == BookAppointmentStatusEnum::CANCELED->value)
+            throw new BookAppointmentStatusException(status: BookAppointmentStatusEnum::from($bookAppointment->status)->getLabel());
+        $bookAppointment->update(['status' => BookAppointmentStatusEnum::CANCELED->value]);
+        $this->sendFcm(bookAppointment: $bookAppointment,send_to_client: ($cancel_owner == 2),send_to_therapist: ($cancel_owner == 1));
+    }
+
+    private function sendFcm(BookAppointment $bookAppointment, bool $send_to_client = true, bool $send_to_therapist = false)
+    {
+        $title = __('app.appointments.appointment_notification_title', ['number' => $bookAppointment->id]);
+        $body = __('app.appointments.appointment_notification_body', ['status' => BookAppointmentStatusEnum::from($bookAppointment->status)->getLabel()]);
+        if ($send_to_client)
+            $clientToken = $this->userService->getToken($bookAppointment->client_id);
+        if ($send_to_therapist)
+            $therapistToken = $this->therapistService->getToken($bookAppointment->therapist_id);
+        $tokens = array_merge($clientToken, $therapistToken);
+        $this->notificationService->sendToTokens(title: $title, body: $body, tokens: $tokens);
     }
 }

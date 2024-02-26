@@ -57,6 +57,7 @@ return [
         'no_data_available' => 'No data available',
         'success_operation' => 'Success Operation',
         'invaild_inputs' => 'Invaild Inputs',
+        'there_is_an_error' => 'There is an Error',
     ],
 
     'week_days' => [
@@ -180,6 +181,9 @@ return [
         'waiting_for_paid'=>'Waiting For Paid',
         'approved'=>'Approved',
         'compeleted'=>'Compeleted',
+        'appointment_notification_title'=>'Appointment Number # :number',
+        'appointment_notification_body'=>'Appointment Status Changet To :status',
+        'appointment_status_change_exception'=>'Cannot Change Status Appointment Status Alreast :status',
 
     ],
     'sliders' => [
