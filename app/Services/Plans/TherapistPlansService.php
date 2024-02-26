@@ -58,11 +58,12 @@ class TherapistPlansService extends BaseService
     }
 
 
-    public function changeStatus($id): bool
+    public function changeStatus(int|TherapistPlan $therapistPlan): bool
     {
-        $specialist = $this->findById($id);
-        $specialist->status = !$specialist->status;
-        return $specialist->save();
+        if (is_int($therapistPlan))
+            $therapistPlan = $this->findById($therapistPlan);
+        $therapistPlan->status = !$therapistPlan->status;
+        return $therapistPlan->save();
     }
 
     public function getAll(array $filters = []): \Illuminate\Database\Eloquent\Collection|array

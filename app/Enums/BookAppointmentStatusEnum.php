@@ -21,8 +21,7 @@ enum BookAppointmentStatusEnum: int
     {
         return match ($this) {
             self::PENDING => __('app.appointments.pending'),
-            self::WAITING_FOR_PAID => __('app.appointments.waiting_for_paid'),
-            self::APPROVED => __('app.appointments.approved'),
+            self::WAITING_FOR_PAID => __('app.appointments.approved'),
             self::COMPOLETED => __('app.appointments.compeleted'),
         };
     }
@@ -30,9 +29,9 @@ enum BookAppointmentStatusEnum: int
     public function getClasses(): string
     {
         return match ($this) {
-            self::PENDING => 'badge-danger',
+            self::PENDING,self::CANCELED => 'badge-danger',
             self::WAITING_FOR_PAID => 'badge-warning',
-            self::APPROVED, self::COMPOLETED => 'badge-success',
+            self::PAID, self::COMPOLETED => 'badge-success',
         };
     }
 

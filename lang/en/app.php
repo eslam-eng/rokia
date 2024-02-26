@@ -123,6 +123,7 @@ return [
             'time_from'=>'Time Form',
             'time_to'=>'Time To',
             'to'=>' To ',
+            'therapist_schedule_exception_profile_data_not_completed'=>'Please make sure you set time and price for therapy session',
         ],
         'avg_therapy_duration'=>'avg therapy duration(in minutes)'
 
@@ -133,9 +134,6 @@ return [
       'duration'=>'Duration (days)',
       'price'=>'Price',
       'status'=>'Price',
-      'created_successfully'=>'Plan Created Successfully',
-      'updated_successfully'=>'Plan Updated Successfully',
-      'deleted_successfully'=>'Plan Deleted Successfully',
     ],
 
     'clients' => [
@@ -175,15 +173,15 @@ return [
         'day' => 'Day',
         'date' => 'Date',
         'status' => 'status',
-        'therapist_name' => 'status',
+        'therapist_name' => 'Therapist',
         'client_name' => 'Client',
         'pending'=>'Pending',
         'waiting_for_paid'=>'Waiting For Paid',
-        'approved'=>'Approved',
+        'approved'=>'Approved(waiting for pay)',
         'compeleted'=>'Compeleted',
         'appointment_notification_title'=>'Appointment Number # :number',
         'appointment_notification_body'=>'Appointment Status Changet To :status',
-        'appointment_status_change_exception'=>'Cannot Change Status Appointment Status Alreast :status',
+        'appointment_status_change_exception'=>'Cannot Change Status Appointment Status already :status',
 
     ],
     'sliders' => [
@@ -193,6 +191,16 @@ return [
         'caption' => 'caption',
         'order' => 'order',
         'status' => 'status',
+    ],
+    'plans' => [
+        'title' => 'Plans',
+        'plans_list' => 'Plans List',
+        'add_plan' => 'Add Plan',
+        'name' => 'Name',
+        'duration' => 'Duraion',
+        'price' => 'Price',
+        'status' => 'Status',
+        'plan_not_found' => 'Plan Not Found',
     ],
     'users' => [
         'title' => 'Users',

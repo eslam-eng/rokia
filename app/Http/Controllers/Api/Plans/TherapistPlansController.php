@@ -9,6 +9,8 @@ use App\Http\Requests\TherapistPlan\TherapistPlanRequest;
 use App\Http\Resources\TherapistPlans\TherapistPlansResource;
 use App\Models\TherapistPlan;
 use App\Services\Plans\TherapistPlansService;
+use Mockery\Exception;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class TherapistPlansController extends Controller
 {
@@ -42,19 +44,30 @@ class TherapistPlansController extends Controller
             $therapistPlandDTO = TherapistPlansDTO::fromRequest($request);
             $therapistPlandDTO->therapist_id = auth()->guard('api_therapist')->id();
             $this->therapistPlansService->update(therapistPlansDTO: $therapistPlandDTO, therapistPlan: $plan);
-            return apiResponse(message: __('app.therapist_plan.updated_successfully'));
+            return apiResponse(message: __('app.general.success_operation'));
         } catch (\Exception $exception) {
             return apiResponse(message: $exception->getMessage(), code: 500);
         }
-
     }
 
     public function destroy(TherapistPlan $therapist_plan)
     {
         try {
             $this->therapistPlansService->destroy(therapistPlan: $therapist_plan);
-            return apiResponse(message: __('app.therapist_plan.deleted_successfully'));
+            return apiResponse(message: __('app.general.success_operation'));
         } catch (\Exception $exception) {
+            return apiResponse(message: $exception->getMessage(), code: 500);
+        }
+    }
+
+    public function changeStatus($id)
+    {
+        try {
+            $this->therapistPlansService->changeStatus(therapistPlan: $id);
+            return apiResponse(message: __('app.general.success_operation'));
+        } catch (NotFoundHttpException $exception) {
+            return apiResponse(message: __('app.plans.plan_not_found'), code: 404);
+        } catch (Exception $exception) {
             return apiResponse(message: $exception->getMessage(), code: 500);
         }
     }

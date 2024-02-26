@@ -9,6 +9,7 @@ use App\Enums\BookAppointmentStatusEnum;
 use App\Exceptions\BookAppointmentStatusException;
 use App\Exceptions\GeneralException;
 use App\Exceptions\NotFoundException;
+use App\Filters\BookAppointmentsFilter;
 use App\Filters\SlidersFilter;
 use App\Models\BookAppointment;
 use App\Models\Slider;
@@ -36,19 +37,23 @@ class BookAppointmentService extends BaseService
     public function getQuery(?array $filters = []): ?Builder
     {
         return parent::getQuery($filters)
-            ->when(!empty($filters), fn(Builder $builder) => $builder->filter(new SlidersFilter($filters)));
+            ->when(!empty($filters), fn(Builder $builder) => $builder->filter(new BookAppointmentsFilter($filters)));
     }
 
 
     public function datatable(array $filters = []): Builder
     {
-        return $this->getQuery(filters: $filters);
+        return $this->getQuery(filters: $filters)
+            ->with(['client:id,name,phone','therapist:id,name'])
+            ->orderBy('status')
+            ->orderByDesc('date');
     }
 
     public function paginate(array $filters = []): Paginator
     {
         return $this->getQuery(filters: $filters)
             ->with(['client:id,name,phone','therapist:id,name'])
+            ->orderBy('status')
             ->simplePaginate();
     }
 
@@ -124,7 +129,7 @@ class BookAppointmentService extends BaseService
     /**
      * @throws BookAppointmentStatusException
      */
-    public function compoleted(BookAppointment $bookAppointment)
+    public function compoleted(BookAppointment $bookAppointment): void
     {
         if ($bookAppointment->status == BookAppointmentStatusEnum::COMPOLETED->value)
             throw new BookAppointmentStatusException(status: BookAppointmentStatusEnum::from($bookAppointment->status)->getLabel());
@@ -137,14 +142,15 @@ class BookAppointmentService extends BaseService
      */
     public function canceled(BookAppointment $bookAppointment,$cancel_owner): void
     {
-        if ($bookAppointment->status == BookAppointmentStatusEnum::CANCELED->value)
+        if (!in_array($bookAppointment->status,[BookAppointmentStatusEnum::PENDING->value,BookAppointmentStatusEnum::WAITING_FOR_PAID->value]))
             throw new BookAppointmentStatusException(status: BookAppointmentStatusEnum::from($bookAppointment->status)->getLabel());
         $bookAppointment->update(['status' => BookAppointmentStatusEnum::CANCELED->value]);
         $this->sendFcm(bookAppointment: $bookAppointment,send_to_client: ($cancel_owner == 2),send_to_therapist: ($cancel_owner == 1));
     }
 
-    private function sendFcm(BookAppointment $bookAppointment, bool $send_to_client = true, bool $send_to_therapist = false)
+    private function sendFcm(BookAppointment $bookAppointment, bool $send_to_client = true, bool $send_to_therapist = false): void
     {
+        [$clientToken,$therapistToken] = [];
         $title = __('app.appointments.appointment_notification_title', ['number' => $bookAppointment->id]);
         $body = __('app.appointments.appointment_notification_body', ['status' => BookAppointmentStatusEnum::from($bookAppointment->status)->getLabel()]);
         if ($send_to_client)

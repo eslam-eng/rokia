@@ -8,6 +8,7 @@ use App\Enums\WeekDaysEnum;
 use App\Models\BookAppointment;
 use App\Models\Slider;
 use App\Models\User;
+use App\Services\Appointment\BookAppointmentService;
 use App\Services\SliderService;
 use App\Services\TherapistService;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
@@ -32,28 +33,20 @@ class BookAppointmentDataTable extends DataTable
 
             ->editColumn('day_id', fn (BookAppointment $model)=>WeekDaysEnum::from($model->day_id)->getLabel())
             ->editColumn('user_description', fn (BookAppointment $model)=>Str::limit($model->user_description))
-            ->editColumn('status', function (Slider $model) {
+            ->editColumn('status', function (BookAppointment $model) {
                 $classes = BookAppointmentStatusEnum::from($model->status)->getClasses();
                 $text = BookAppointmentStatusEnum::from($model->status)->getLabel();
                 return view('components._datatable-badge', ['class' => $classes, 'text' => $text]);
-            })
-            ->addColumn('action', function (Slider $model) {
-                return view(
-                    'layouts.dashboard.slider.components.actions',
-                    ['model' => $model, 'url' => route('sliders.destroy', $model->id)]
-                );
             });
     }
 
     /**
-     * Get query source of dataTable.
-     *
-     * @param \App\Models\User $model
-     * @return \Illuminate\Database\Eloquent\Builder
+     * @param BookAppointmentService $bookAppointmentService
+     * @return QueryBuilder
      */
-    public function query(SliderService $sliderService): QueryBuilder
+    public function query(BookAppointmentService $bookAppointmentService): QueryBuilder
     {
-        return $sliderService->datatable($this->filters);
+        return $bookAppointmentService->datatable($this->filters);
     }
 
     /**
@@ -102,15 +95,19 @@ class BookAppointmentDataTable extends DataTable
                 ->title(__('app.appointments.user_description'))
                 ->orderable(false),
 
+            Column::make('date')
+                ->title(__('app.appointments.date'))
+                ->orderable(false),
+
             Column::make('status')
                 ->title(__('app.sliders.status'))
                 ->orderable(false),
 
-            Column::computed('action')
-                ->title(__('app.general.action'))
-                ->exportable(false)
-                ->printable(false)
-                ->addClass('text-center'),
+//            Column::computed('action')
+//                ->title(__('app.general.action'))
+//                ->exportable(false)
+//                ->printable(false)
+//                ->addClass('text-center'),
         ];
     }
 

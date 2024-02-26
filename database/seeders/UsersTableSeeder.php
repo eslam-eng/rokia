@@ -31,8 +31,8 @@ class UsersTableSeeder extends Seeder
         ];
         $client =  [
             'name' => "client",
-            'email' => "client@admin.com",
-            'password' => bcrypt('123456789'),
+            'email' => "client@client.com",
+            'password' => bcrypt('Qwe@1234'),
             'phone' => '01022843293',
             'type'=>UsersType::CLIENT->value,
             'address' => Str::random(10),

@@ -60,7 +60,7 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
             Route::apiResource('wishlist', WishlistController::class);
             Route::delete('wishlist/lecture/{id}/remove', [WishlistController::class, 'removeLectureFormFavorite']);
             Route::apiResource('book-appointment', BookAppointmentController::class);
-            Route::post('appointments/{book_appointment}/cancel',[BookAppointmentController::class,'changeToCanceled']);
+            Route::post('booked-appointments/{book_appointment}/cancel',[BookAppointmentController::class,'changeToCanceled']);
         });
     });
 

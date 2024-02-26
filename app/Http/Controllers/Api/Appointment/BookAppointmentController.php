@@ -6,6 +6,7 @@ use App\DataTransferObjects\BookAppointment\BookAppointmentDTO;
 use App\Exceptions\BookAppointmentStatusException;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\BookAppointment\BookAppointmentRequest;
+use App\Http\Resources\Appointments\BookAppointmentsResource;
 use App\Models\BookAppointment;
 use App\Services\Appointment\BookAppointmentService;
 use App\Services\NotificationService;
@@ -31,13 +32,14 @@ class BookAppointmentController extends Controller
             $filters['therapist_id'] = auth()->guard('api_therapist')->id();
         else
             $filters['client_id'] = auth()->id();
-        return $this->bookAppointmentService->paginate();
+        return BookAppointmentsResource::collection($this->bookAppointmentService->paginate(filters: $filters));
 
     }
 
     public function store(BookAppointmentRequest $request)
     {
         try {
+            //todo make validation that time inperiod that i store in therapist scheule
             $bookAppointmentDTO = BookAppointmentDTO::fromRequest($request);
             $therapist = $this->therapistService->findById(id: $bookAppointmentDTO->therapist_id);
             $bookAppointmentDTO->therapy_price = $therapist->therapy_price;
@@ -54,19 +56,6 @@ class BookAppointmentController extends Controller
     {
         try {
             $this->bookAppointmentService->waitingForPaid(bookAppointment: $book_appointment);
-            return apiResponse(message: __('app.general.success_operation'));
-        } catch (BookAppointmentStatusException $exception) {
-            return apiResponse(message: $exception->getMessage(), code: 422);
-        } catch (\Exception $exception) {
-            return apiResponse(message: __('app.general.there_is_an_error'), code: 500);
-
-        }
-    }
-
-    public function changeToPaid(BookAppointment $book_appointment)
-    {
-        try {
-            $this->bookAppointmentService->paid(bookAppointment: $book_appointment);
             return apiResponse(message: __('app.general.success_operation'));
         } catch (BookAppointmentStatusException $exception) {
             return apiResponse(message: $exception->getMessage(), code: 422);

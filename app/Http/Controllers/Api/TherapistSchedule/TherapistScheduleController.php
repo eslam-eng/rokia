@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\TherapistSchedule;
 use App\DataTransferObjects\TherapistSchedule\TherapistScheduleDTO;
 use App\Enums\WeekDaysEnum;
 use App\Exceptions\GeneralException;
+use App\Exceptions\TherapistScheduleException;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\TherapistSchedule\TherapistSceduleRequest;
 use App\Http\Resources\ScheduleResource;
@@ -47,6 +48,9 @@ class TherapistScheduleController extends Controller
         } catch (ValidationException $exception) {
             $mappedErrors = transformValidationErrors($exception->errors());
             return apiResponse(data: ['message' => __('app.general.invaild_inputs'), 'errors' => $mappedErrors], code: 422);
+        } catch (TherapistScheduleException $exception) {
+            return apiResponse(message: $exception->getMessage(), code: $exception->getCode());
+
         } catch (\Exception $exception) {
             return apiResponse(message: $exception->getMessage(), code: 500);
         }
@@ -63,6 +67,7 @@ class TherapistScheduleController extends Controller
             return apiResponse(message: $exception->getMessage(), code: 500);
         }
     }
+
     public function getScheduleForTherapist(Therapist $therapist)
     {
         $schedules = $this->therapistScheduleService->getSchedulesByTherapist(therapist_id: $therapist->id);

@@ -6,7 +6,9 @@ use App\DataTransferObjects\Therapist\CreateTherapistDTO;
 use App\DataTransferObjects\TherapistSchedule\TherapistScheduleDTO;
 use App\Exceptions\GeneralException;
 use App\Exceptions\NotFoundException;
+use App\Exceptions\TherapistScheduleException;
 use App\Filters\TherapistScheduleFilters;
+use App\Models\Therapist;
 use App\Models\TherapistSchedule;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
@@ -41,10 +43,13 @@ class TherapistScheduleService extends BaseService
     /**
      * @param CreateTherapistDTO $therapistDTO
      * @return bool
+     * @throws TherapistScheduleException
      */
-    public function store(TherapistScheduleDTO $therapistScheduleDTO)
+    public function store(TherapistScheduleDTO $therapistScheduleDTO,Therapist $therapist)
     {
         $therapistScheduleDTO->validate();
+        if (!isset($therapist->therapy_price))
+            throw new TherapistScheduleException();
         $schedules = $therapistScheduleDTO->schedules;
         $inseredData = [];
         foreach ($schedules as $schedule) {

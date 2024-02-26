@@ -29,12 +29,12 @@ class TherapistController extends Controller
         }
     }
 
-    public function update(ThereapistApiUpdateRequest $request)
+    public function updateProfileData(ThereapistApiUpdateRequest $request)
     {
         try {
             $therapistDTO = UpdateMainTherapisDatatDTO::fromRequest($request);
             $therapist = auth()->guard('api_therapist')->user();
-            $this->therapistService->update(therapistDTO: $therapistDTO, therapist: $therapist);
+            $this->therapistService->updateProfileData(therapistDTO: $therapistDTO, therapist: $therapist);
             return apiResponse(message: __('app.general.success_operation'));
         } catch (ValidationException $exception) {
             $mappedErrors = transformValidationErrors($exception->errors());

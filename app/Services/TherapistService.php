@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\DataTransferObjects\Therapist\Api\UpdateMainTherapisDatatDTO;
 use App\DataTransferObjects\Therapist\Api\UpdateTherapySessionDataDTO;
 use App\DataTransferObjects\Therapist\CreateTherapistDTO;
 use App\DataTransferObjects\Therapist\UpdateTherapistDTO;
@@ -69,6 +70,20 @@ class TherapistService extends BaseService
      * @return Collection|Model
      */
     public function update(UpdateTherapistDTO $therapistDTO, Therapist|int $therapist)
+    {
+        $therapistDTO->validate();
+        Validator::validate($therapistDTO->toArray(), [
+            'phone' => Rule::unique('therapists','phone')->ignore($therapist->id)
+        ]);
+        if (is_int($therapist)){
+            $therapist = $this->findById($therapist);
+        }
+        $data = $therapistDTO->toFilteredArray();
+        $therapist->update($data);
+        return $therapist;
+    }
+
+    public function updateProfileData(UpdateMainTherapisDatatDTO $therapistDTO, Therapist|int $therapist)
     {
         $therapistDTO->validate();
         Validator::validate($therapistDTO->toArray(), [

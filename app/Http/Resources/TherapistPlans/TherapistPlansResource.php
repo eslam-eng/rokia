@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources\TherapistPlans;
 
+use App\Enums\ActivationStatus;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class TherapistPlansResource extends JsonResource
@@ -19,7 +20,8 @@ class TherapistPlansResource extends JsonResource
             'name'=>$this->name,
             'duration'=>$this->duration,
             'price'=>$this->price,
-            'status'=>$this->status
+            'status'=>$this->status,
+            'status_text'=>ActivationStatus::from($this->status)->getLabel()
         ];
     }
 }

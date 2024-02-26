@@ -106,6 +106,23 @@ return [
         'add_therapist' => 'اضافة معالج',
         'status' => 'الحالة',
 
+        'search_therapists' => 'بحث في المعالجين...',
+        'password' => 'كلمة المرور',
+        'documets'=>'الوثائق',
+        'edit'=>'تعديل',
+        'deactive'=>'غير مفعل',
+        'activate'=>'مفعل',
+        'delete'=>'حذف',
+        'schedules'=>[
+            'title'=>'الجدول الزمني',
+            'day_name'=>'اليوم',
+            'time_from'=>'الوقت من',
+            'time_to'=>'الوقت الي',
+            'to'=>' ألي ',
+            'therapist_schedule_exception_profile_data_not_completed'=>'يرجى التأكد من تحديد الوقت والسعر لجلسة العلاج',
+        ],
+        'avg_therapy_duration'=>'متوسط مدة العلاج (بالدقائق)'
+
     ],
 
     'therapist_plan'=>[
@@ -147,6 +164,26 @@ return [
         'complete' => 'تم الاكتمال',
     ],
 
+    'appointments' => [
+        'title' => 'الحجوزات',
+        'appointments_list' => 'قائمة الحجوزات',
+        'price' => 'السعر',
+        'user_description' => 'الوصف',
+        'day' => 'اليوم',
+        'date' => 'تاريخ',
+        'status' => 'الحالة',
+        'therapist_name' => 'المعالج',
+        'client_name' => 'العميل',
+        'pending'=>'معلقه',
+        'waiting_for_paid'=>'تم الموافقة(منتظر الدفع)',
+        'approved'=>'تم الموافقة(منتظر الدفع)',
+        'compeleted'=>'مكتمل',
+        'appointment_notification_title'=>'الحجز رقم  # :number',
+        'appointment_notification_body'=>'تم تغير حالة الحجز الي :status',
+        'appointment_status_change_exception'=>'لا يمكن تغير الحالة , حالة الحجز  :status',
+
+    ],
+
     'sliders' => [
         'title' => 'شريط السحب',
         'add_slider' => 'اضافة',
@@ -174,16 +211,37 @@ return [
 
     ],
 
-    'categories' => [
-        'title' => 'الاقسام',
+    'interests' => [
+        'title' => 'الفئات /الاهتمامات',
         'name' => 'الاسم',
-        'add_category' => 'إضافة قسم',
-        'edit_category' => 'تعديل قسم',
+        'add_interest' => 'اضافة فئه/اهتمام',
+        'edit_interest' => 'تعديل',
         'status' => 'الحالة',
         'status_changed_successfully' => 'تم تغير الحالة بنجاح',
-        'category_not_found' => 'القسم غير موجود',
+        'interest_not_found' => 'غير موجود',
     ],
 
+    'specialist' => [
+        'title' => 'التخصصات',
+        'name' => 'الاسم',
+        'add_specialist' => 'إضافة تخصص',
+        'edit_specialist' => 'تعديل',
+        'delete_specialist' => 'حذف',
+        'status' => 'الحالة',
+        'change_status' => 'تغير الحالة',
+        'status_changed_successfully' => 'تم تغير الحالة بنجاح',
+        'specialist_not_found' => 'التخصص غير موجود',
+    ],
+    'plans' => [
+        'title' => 'خطط الاسعار',
+        'plans_list' => 'قائمة خطط الاسعار',
+        'add_plan' => 'إضافة',
+        'name' => 'الاسم',
+        'duration' => 'المدة',
+        'price' => 'السعر',
+        'status' => 'الحالة',
+        'plan_not_found' => 'غير موجودة',
+    ],
     'rozmana' => [
         'title' => 'الاشعارات اليوميه',
         'rozmana_title' => 'الاشعارات اليوميه',

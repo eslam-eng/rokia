@@ -22,6 +22,7 @@ class TherapistsTableSeeder extends Seeder
             'therapist_commission' => fake()->numberBetween(1, 50),
             'status' => true,
             'avg_therapy_duration' => 15,
+            'therapy_price' => 120,
 
         ]);
     }

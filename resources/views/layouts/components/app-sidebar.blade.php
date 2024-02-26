@@ -110,6 +110,8 @@
                 <li class="side-item side-item-category">@lang('app.sliders.title')
                     | @lang('app.rozmana.rozmana_title')</li>
 
+
+
                 @if(authUserHasPermission('list_slider') || authUserHasPermission('create_slider'))
                     <li class="slide">
                         <a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0);">

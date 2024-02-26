@@ -82,10 +82,16 @@ Route::group(['middleware' => 'auth:api_therapist'], function () {
         Route::get('specialists', SpecialistController::class);
 
         Route::apiResource('plans', TherapistPlansController::class);
-        Route::apiResource('book-appointment', BookAppointmentController::class)->only('index');
-        Route::post('appointments/{book_appointment}/waitng-for-paid',[BookAppointmentController::class,'changeToWatingForPaid']);
-        Route::post('appointments/{book_appointment}/cancel',[BookAppointmentController::class,'changeToCanceled']);
-        Route::post('appointments/{book_appointment}/compeleted',[BookAppointmentController::class,'changeToComeleted']);
+        Route::post('plans/{id}/status', [TherapistPlansController::class, 'changeStatus']);
+
+        Route::apiResource('booked-appointments', BookAppointmentController::class)->only('index');
+
+        Route::group(['prefix' => 'booked-appointments/{book_appointment}'],function (){
+            Route::post('approve',[BookAppointmentController::class,'changeToWatingForPaid']);
+            Route::post('cancel',[BookAppointmentController::class,'changeToCanceled']);
+            Route::post('compelete',[BookAppointmentController::class,'changeToComeleted']);
+
+        });
     });
 
 });
