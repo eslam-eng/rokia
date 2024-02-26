@@ -25,7 +25,7 @@ class TherapistResource extends JsonResource
             'therapy_price'=>$this->therapy_price,
             'profile_image_id'=>$this?->getFirstMedia('profile_image')?->id,
             'profile_image_url'=>$this->profile_image_url,
-            'specialists'=>TherapistInterestResource::collection($this->whenLoaded('spaecialists'))
+            'specialists'=>TherapistInterestResource::collection($this->whenLoaded('specialists'))
         ];
     }
 }
