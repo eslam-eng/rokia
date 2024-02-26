@@ -51,7 +51,7 @@ Route::group(['middleware' => 'auth:api_therapist'], function () {
         Route::post('/change-image', [UsersController::class, 'changeImage']);
 
         Route::get('profile', [TherapistController::class, 'getProfileDetails']);
-        Route::post('update-data', [TherapistController::class, 'update']);
+        Route::post('update-data', [TherapistController::class, 'updateProfileData']);
         Route::post('update-therapy-data', [TherapistController::class, 'updateTherapyData']);
 
         Route::group(['prefix' => 'schedule'],function (){
