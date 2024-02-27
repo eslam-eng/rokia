@@ -1,12 +1,14 @@
 <?php
 
-namespace App\Services;
+namespace App\Services\Invoice;
 
-use App\Enums\InvoiceStatus;
+use App\Enums\InvoiceStatusEnum;
 use App\Exceptions\GeneralException;
 use App\Exceptions\NotFoundException;
 use App\Filters\InvoicesFilter;
 use App\Models\Invoice;
+use App\Services\BaseService;
+use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
@@ -29,10 +31,10 @@ class InvoiceService extends BaseService
             ->when(!empty($filters), fn(Builder $builder) => $builder->filter(new InvoicesFilter($filters)));
     }
 
-    public function paginateInvoices(array $filters = []): \Illuminate\Contracts\Pagination\Paginator
+    public function paginateInvoices(array $filters = []): Paginator
     {
         return $this->getQuery(filters: $filters)
-            ->withCount('items')
+            ->withCount('invoiceItems')
             ->simplePaginate();
     }
 
@@ -40,8 +42,8 @@ class InvoiceService extends BaseService
     {
 
         return $this->getQuery(filters: $filters)
-            ->withCount('items')
-            ->with('therapist');
+            ->withCount('invoiceItems')
+            ->with('therapist:id,name');
     }
 
     /**
@@ -50,8 +52,13 @@ class InvoiceService extends BaseService
     public function findForView(int|Invoice $invoice)
     {
         if (is_int($invoice))
-            return $this->findById(id: $invoice, withRelations: ['items', 'therapist']);
-        return $invoice->load(['items', 'therapist']);
+            return $this->getQuery()->where('id',$invoice)
+                ->withCount('invoiceItems')
+                ->with(['invoiceItems.client:id,name', 'therapist:id,name']);
+
+        return $invoice
+            ->loadCount('invoiceItems')
+            ->load(['invoiceItems.client:id,name', 'therapist:id,name']);
     }
 
     /**
@@ -63,8 +70,8 @@ class InvoiceService extends BaseService
         $invoice = $this->findById($id);
         if (!$invoice)
             throw new NotFoundException('invoice not found');
-        if ($invoice->status == InvoiceStatus::COMPLETED->value)
+        if ($invoice->status == InvoiceStatusEnum::COMPLETED->value)
             throw new GeneralException('invoice already completed');
-        return $invoice->update(['status' => InvoiceStatus::COMPLETED->value]);
+        return $invoice->update(['status' => InvoiceStatusEnum::COMPLETED->value]);
     }
 }

@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Api\Invoice;
 
-use App\DataTables\Invoice\InvoicesDataTable;
 use App\Http\Controllers\Controller;
-use App\Services\InvoiceService;
+use App\Http\Resources\Invoice\InvoicesResource;
+use App\Models\Invoice;
+use App\Services\Invoice\InvoiceService;
 use Illuminate\Http\Request;
 
 class InvoicesController extends Controller
@@ -14,11 +15,19 @@ class InvoicesController extends Controller
     {
     }
 
-    public function index(InvoicesDataTable $invoicesDataTable , Request $request)
+    public function index(Request $request)
     {
-        $filters = array_filter($request->get('filters', []), function ($value) {
+        $filters = array_filter($request->all(), function ($value) {
             return ($value !== null && $value !== false && $value !== '');
         });
-        return $invoicesDataTable->with(['filters' => $filters])->render('layouts.dashboard.invoice.index');
+        $filters['therapist_id'] = auth()->guard('api_therapist')->id();
+        $invoices = $this->invoiceService->paginateInvoices(filters: $filters);
+        return InvoicesResource::collection($invoices);
+    }
+
+    public function show(Invoice $invoice)
+    {
+        $invoice = $this->invoiceService->findForView(invoice: $invoice);
+        return InvoicesResource::make($invoice);
     }
 }

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\DataTables\Rozmana\RozmanaDataTable;
 use App\Services\RozmanaService;
-use App\Services\TherapistService;
+use App\Services\Therapist\TherapistService;
 use Illuminate\Http\Request;
 
 class RozmanaController extends Controller

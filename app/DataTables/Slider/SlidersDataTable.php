@@ -4,9 +4,7 @@ namespace App\DataTables\Slider;
 
 use App\Enums\ActivationStatus;
 use App\Models\Slider;
-use App\Models\User;
 use App\Services\SliderService;
-use App\Services\TherapistService;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;

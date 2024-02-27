@@ -2,11 +2,12 @@
 
 namespace App\Enums;
 
-enum LecturesTypeEnum: int
+
+enum InvoiceStatusEnum: int
 {
 
-    case RECORDED = 1;
-    case LIVE = 2;
+    case PENDING = 1;
+    case COMPLETED = 2;
 
     public static function values(): array
     {
@@ -16,9 +17,8 @@ enum LecturesTypeEnum: int
     public function getLabel(): string
     {
         return match ($this) {
-            self::RECORDED => __('app.lectures.recorded_lecture'),
-            self::LIVE => __('app.lectures.live_lecture'),
+            self::PENDING => __('app.invoices.PENDING'),
+            self::COMPLETED => __('app.invoices.Completed'),
         };
     }
-
 }

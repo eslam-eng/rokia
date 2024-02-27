@@ -2,15 +2,10 @@
 
 namespace App\DataTables\BookAppointment;
 
-use App\Enums\ActivationStatus;
 use App\Enums\BookAppointmentStatusEnum;
 use App\Enums\WeekDaysEnum;
 use App\Models\BookAppointment;
-use App\Models\Slider;
-use App\Models\User;
 use App\Services\Appointment\BookAppointmentService;
-use App\Services\SliderService;
-use App\Services\TherapistService;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Illuminate\Support\Str;
 use Yajra\DataTables\EloquentDataTable;

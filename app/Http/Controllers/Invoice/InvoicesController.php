@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Invoice;
 use App\DataTables\Invoice\InvoicesDataTable;
 use App\Http\Controllers\Controller;
 use App\Models\Invoice;
-use App\Services\InvoiceService;
+use App\Services\Invoice\InvoiceService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Mockery\Exception;

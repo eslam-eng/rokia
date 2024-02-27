@@ -2,13 +2,9 @@
 
 namespace App\DataTables\TherapistSchedule;
 
-use App\Enums\ActivationStatus;
 use App\Enums\WeekDaysEnum;
-use App\Models\Therapist;
 use App\Models\TherapistSchedule;
-use App\Models\User;
-use App\Services\TherapistScheduleService;
-use App\Services\TherapistService;
+use App\Services\Therapist\TherapistScheduleService;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;

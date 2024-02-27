@@ -11,12 +11,9 @@ use App\Http\Requests\LoginRequest;
 use App\Http\Requests\PhoneVerifyRequest;
 use App\Http\Requests\ResetPasswordRequest;
 use App\Http\Requests\Users\ThereapistRequest;
-use App\Http\Resources\Therapist\TherapistResource;
-use App\Services\TherapistService;
+use App\Services\Therapist\TherapistService;
 use App\Services\UserService;
 use Exception;
-use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 
 class AuthTherapistController extends Controller

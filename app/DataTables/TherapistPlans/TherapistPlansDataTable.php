@@ -5,7 +5,6 @@ namespace App\DataTables\TherapistPlans;
 use App\Enums\ActivationStatus;
 use App\Models\TherapistPlan;
 use App\Services\Plans\TherapistPlansService;
-use App\Services\TherapistScheduleService;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;

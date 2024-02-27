@@ -6,20 +6,21 @@ use App\DataTransferObjects\BookAppointment\BookAppointmentDTO;
 use App\DataTransferObjects\Slider\SliderDTO;
 use App\DataTransferObjects\Therapist\CreateTherapistDTO;
 use App\Enums\BookAppointmentStatusEnum;
+use App\Events\TherapistInvoice\TherapistInvoiceHandler;
 use App\Exceptions\BookAppointmentStatusException;
 use App\Exceptions\GeneralException;
 use App\Exceptions\NotFoundException;
 use App\Filters\BookAppointmentsFilter;
-use App\Filters\SlidersFilter;
 use App\Models\BookAppointment;
 use App\Models\Slider;
 use App\Services\BaseService;
 use App\Services\NotificationService;
-use App\Services\TherapistService;
+use App\Services\Therapist\TherapistService;
 use App\Services\UserService;
 use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class BookAppointmentService extends BaseService
 {

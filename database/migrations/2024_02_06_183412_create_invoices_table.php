@@ -1,5 +1,7 @@
 <?php
 
+use App\Enums\InvoiceStatusEnum;
+use App\Models\Therapist;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -15,11 +17,12 @@ return new class extends Migration
     {
         Schema::create('invoices', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(\App\Models\Therapist::class)->constrained('therapists');
+            $table->foreignIdFor(Therapist::class)->constrained('therapists');
             $table->decimal('sub_total');
             $table->decimal('grand_total');
             $table->decimal('therapist_due');
-            $table->tinyInteger('status')->default(\App\Enums\InvoiceStatus::PENDING->value);
+            $table->tinyInteger('status')->default(InvoiceStatusEnum::PENDING->value);
+            $table->date('compeleted_date')->nullable();
             $table->string('notes')->nullable();
             $table->timestamps();
         });

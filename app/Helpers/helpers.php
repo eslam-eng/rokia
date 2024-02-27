@@ -66,6 +66,22 @@ if (!function_exists('authUserHasPermission')) {
         return auth()->user()->can($permission_name);
     }
 }
+
+if (!function_exists('getPriceAfterCommition')) {
+
+    function getPriceAfterCommition(float $price,float $commission): float
+    {
+        if ($commission < 0 || $commission > 100) {
+            throw new InvalidArgumentException('Discount percentage should be between 0 and 100.');
+        }
+
+        $commissionValue = $price * ($commission / 100);
+        $finalPrice = $price - $commissionValue;
+        return round($finalPrice);
+
+    }
+}
+
 if (!function_exists('transformValidationErrors')) {
 
     function transformValidationErrors(array $errors)

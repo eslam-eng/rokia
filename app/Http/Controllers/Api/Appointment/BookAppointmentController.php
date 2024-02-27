@@ -10,7 +10,7 @@ use App\Http\Resources\Appointments\BookAppointmentsResource;
 use App\Models\BookAppointment;
 use App\Services\Appointment\BookAppointmentService;
 use App\Services\NotificationService;
-use App\Services\TherapistService;
+use App\Services\Therapist\TherapistService;
 use Illuminate\Http\Request;
 
 class BookAppointmentController extends Controller

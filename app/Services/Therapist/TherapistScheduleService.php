@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services;
+namespace App\Services\Therapist;
 
 use App\DataTransferObjects\Therapist\CreateTherapistDTO;
 use App\DataTransferObjects\TherapistSchedule\TherapistScheduleDTO;
@@ -10,6 +10,7 @@ use App\Exceptions\TherapistScheduleException;
 use App\Filters\TherapistScheduleFilters;
 use App\Models\Therapist;
 use App\Models\TherapistSchedule;
+use App\Services\BaseService;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;

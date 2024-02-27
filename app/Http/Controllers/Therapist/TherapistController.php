@@ -10,7 +10,7 @@ use App\Exceptions\GeneralException;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Therapist\ThereapistUpdateRequest;
 use App\Models\Therapist;
-use App\Services\TherapistService;
+use App\Services\Therapist\TherapistService;
 use App\Services\UserService;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;

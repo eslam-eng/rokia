@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services;
+namespace App\Services\Therapist;
 
 use App\DataTransferObjects\Therapist\Api\UpdateMainTherapisDatatDTO;
 use App\DataTransferObjects\Therapist\Api\UpdateTherapySessionDataDTO;
@@ -10,15 +10,12 @@ use App\Enums\ActivationStatus;
 use App\Exceptions\GeneralException;
 use App\Exceptions\NotFoundException;
 use App\Filters\TherapistFilters;
-use App\Filters\UsersFilters;
-use App\Http\Requests\Notification\StoreFcmTokenRequest;
 use App\Models\Therapist;
-use App\Models\User;
+use App\Services\BaseService;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;

@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use App\Events\PushNotificationEvent;
+use App\Events\TherapistInvoice\TherapistInvoiceHandler;
+use App\Listeners\HandleTherapistInvoice;
 use App\Listeners\SendPushNotification;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
@@ -20,6 +22,11 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
+
+        TherapistInvoiceHandler::class => [
+            HandleTherapistInvoice::class,
+        ],
+
     ];
 
     /**

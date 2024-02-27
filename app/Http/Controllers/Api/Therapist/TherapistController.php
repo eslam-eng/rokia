@@ -8,7 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Therapist\Api\TherapySessionUpdateRequest;
 use App\Http\Requests\Therapist\Api\ThereapistApiUpdateRequest;
 use App\Http\Resources\Therapist\TherapistResource;
-use App\Services\TherapistService;
+use App\Services\Therapist\TherapistService;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 

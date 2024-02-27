@@ -9,7 +9,13 @@ class UserLecture extends Model
 {
 
     //this for paid lectures when user buy paid lecture store it here
+
     use HasFactory;
-    protected $fillable = ['user_id','lecture_id'];
+    protected $fillable = ['client_id','lecture_id'];
+
+    public function lecture()
+    {
+        return $this->belongsTo(Lecture::class);
+    }
 
 }

@@ -4,8 +4,7 @@ namespace App\DataTables\Therapist;
 
 use App\Enums\ActivationStatus;
 use App\Models\Therapist;
-use App\Models\User;
-use App\Services\TherapistService;
+use App\Services\Therapist\TherapistService;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;

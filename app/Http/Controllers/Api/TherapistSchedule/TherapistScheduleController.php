@@ -13,7 +13,7 @@ use App\Http\Resources\Therapist\TherapistScheduleResource;
 use App\Http\Resources\WeekDays\WeekDaysResource;
 use App\Models\Therapist;
 use App\Models\TherapistSchedule;
-use App\Services\TherapistScheduleService;
+use App\Services\Therapist\TherapistScheduleService;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 

@@ -1,11 +1,11 @@
 <td class="text-end">
     <div class="row">
         <div>
-            @if($model->status == \App\Enums\InvoiceStatus::PENDING->value)
+            @if($model->status == \App\Enums\InvoiceStatusEnum::PENDING->value)
                 <button class="btn btn-sm change_status btn-success row-action"
                         data-action="{{route('invoices.status',$model->id)}}"
                         data-reload="0"
-                        data-status="{{\App\Enums\InvoiceStatus::COMPLETED->value}}"
+                        data-status="{{\App\Enums\InvoiceStatusEnum::COMPLETED->value}}"
                         data-method="POST"
                 >
                     @lang('app.invoices.complete')

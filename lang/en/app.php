@@ -93,6 +93,8 @@ return [
         'edit_lecture' => 'Lecture Edit',
         'lecture_title' => 'Lecture Title',
         'lecture_upload_success' => 'Lecture Uploaded Successfully',
+        'recorded_lecture' => 'Recorded lecture',
+        'live_lecture' => 'Live lecture',
 
     ],
 
@@ -163,6 +165,12 @@ return [
         'PENDING' => 'Pending',
         'Completed' => 'Completed',
         'complete' => 'Complete',
+
+        'invoice_items'=>[
+          'buy_lecture'=>'Buy Lecture',
+          'plan_subscription'=>'Plan Subscription',
+          'book_appointment'=>'Book Appointment',
+        ],
 
     ],
     'appointments' => [

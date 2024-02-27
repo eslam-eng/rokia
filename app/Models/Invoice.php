@@ -6,19 +6,21 @@ use App\Enums\UsersType;
 use App\Traits\Filterable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Invoice extends Model
 {
     use HasFactory, Filterable;
 
-    protected $fillable = ['therapist_id', 'sub_total', 'grand_total', 'therapist_due','status'];
+    protected $fillable = ['therapist_id', 'sub_total', 'grand_total', 'therapist_due','status','compeleted_date'];
 
-    public function therapist(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function therapist(): BelongsTo
     {
-        return $this->belongsTo(User::class,'therapist_id')->where('type',UsersType::THERAPIST->value);
+        return $this->belongsTo(Therapist::class);
     }
 
-    public function items(): \Illuminate\Database\Eloquent\Relations\HasMany
+    public function InvoiceItems(): HasMany
     {
         return $this->hasMany(InvoiceItem::class,'invoice_id');
     }

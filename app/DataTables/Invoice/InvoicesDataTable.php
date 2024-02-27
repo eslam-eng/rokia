@@ -4,7 +4,7 @@ namespace App\DataTables\Invoice;
 
 use App\Enums\ActivationStatus;
 use App\Models\Invoice;
-use App\Services\InvoiceService;
+use App\Services\Invoice\InvoiceService;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
