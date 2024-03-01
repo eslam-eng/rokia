@@ -28,6 +28,8 @@ class AuthTherapistController extends Controller
             $therapist = $this->therapistService->loginWithEmailOrPhone(identifier: $request->identifier, password: $request->password);
             if ($therapist->status == ActivationStatus::PENDING->value)
                 return apiResponse(message: __('app.auth.auth_in_review'), code: 422);
+
+            $this->userService->setUserFcmToken(user: $therapist,fcm_token: $request->fcm_token);
             $token = $therapist->getToken();
             $data = [
                 'access_token' => $token,
@@ -52,7 +54,6 @@ class AuthTherapistController extends Controller
             $mappedErrors = transformValidationErrors($exception->errors());
             return response(['message' => __('lang.invalid inputs'), 'errors' => $mappedErrors], 422);
         } catch (\Exception $exception) {
-            dd($exception);
             return apiResponse(message: 'Something Went Wrong', code: 500);
         }
     }
