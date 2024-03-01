@@ -28,6 +28,7 @@ class InvoicesDataTable extends DataTable
                 $classes = $invoice->status == ActivationStatus::ACTIVE->value ? 'badge-success' : 'badge-danger';
                 return view('components._datatable-badge', ['class' => $classes, 'text' => __('app.general.' . ActivationStatus::from($invoice->status)->name)]);
             })
+            ->editColumn('items_count', fn(Invoice $invoice) => $invoice->invoice_items_count)
             ->editColumn('created_at', fn(Invoice $invoice) => $invoice->created_at->format('Y-m-d'))
             ->addColumn('action', function (Invoice $invoice) {
                 return view(
@@ -75,12 +76,12 @@ class InvoicesDataTable extends DataTable
             Column::make('id')->title("#"),
             Column::make('therapist.name')->title(__('app.therapists.name')),
             Column::make('therapist.phone')->title(__('app.therapists.phone'))->orderable(false),
-            Column::make('items_count')->title(__('app.invoices.items_count'))->searchable(false),
+            Column::make('items_count')->title(__('app.invoices.items_count'))->orderable(false)->searchable(false),
             Column::make('status')->title(__('app.invoices.status'))->searchable(false),
             Column::make('sub_total')->title(__('app.invoices.sub_total'))->orderable(false)->searchable(false),
             Column::make('therapist_due')->title(__('app.invoices.therapist_due'))->orderable(false)->searchable(false),
             Column::make('grand_total')->title(__('app.invoices.grand_total'))->orderable(false),
-            Column::make('created_at')->title(__('app.general.created_at')),
+            Column::make('created_at')->title(__('app.general.created_at'))->searchable(false),
             Column::computed('action')->title(__('app.general.action'))
                 ->exportable(false)
                 ->printable(false)

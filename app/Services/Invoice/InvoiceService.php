@@ -43,7 +43,7 @@ class InvoiceService extends BaseService
 
         return $this->getQuery(filters: $filters)
             ->withCount('invoiceItems')
-            ->with('therapist:id,name');
+            ->with('therapist:id,name,phone');
     }
 
     /**
