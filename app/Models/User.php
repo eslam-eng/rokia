@@ -3,8 +3,10 @@
 namespace App\Models;
 
 use App\Traits\Filterable;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -77,5 +79,15 @@ class User extends Authenticatable implements HasMedia
     public function lecture(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
         return $this->belongsToMany(Lecture::class, 'user_lectures');
+    }
+
+    public function plans()
+    {
+        return $this->hasMany(ClientPlanSubscription::class,'client_id');
+    }
+
+    public function interests(): BelongsToMany
+    {
+        return $this->belongsToMany(Interest::class,'client_interests','client_id','interest_id');
     }
 }

@@ -50,10 +50,10 @@ class TherapistPlansController extends Controller
         }
     }
 
-    public function destroy(TherapistPlan $therapist_plan)
+    public function destroy(TherapistPlan $plan)
     {
         try {
-            $this->therapistPlansService->destroy(therapistPlan: $therapist_plan);
+            $this->therapistPlansService->destroy(therapistPlan: $plan);
             return apiResponse(message: __('app.general.success_operation'));
         } catch (\Exception $exception) {
             return apiResponse(message: $exception->getMessage(), code: 500);

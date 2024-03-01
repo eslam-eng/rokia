@@ -66,15 +66,15 @@
                             @if(authUserHasPermission('list_interest'))
                                 <li>
                                     <a class="slide-item"
-                                       data-is_active="{{request()->fullUrlIs(route('intersts.index'))}}"
-                                       href="{{route('intersts.index')}}">@lang('app.interests.title')</a>
+                                       data-is_active="{{request()->fullUrlIs(route('interests.index'))}}"
+                                       href="{{route('interests.index')}}">@lang('app.interests.title')</a>
                                 </li>
                             @endif
                             @if(authUserHasPermission('create_interest'))
                                 <li>
                                     <a class="slide-item"
-                                       data-is_active="{{request()->fullUrlIs(route('intersts.index'))}}"
-                                       href="{{route('intersts.create')}}">@lang('app.interests.add_interest')</a>
+                                       data-is_active="{{request()->fullUrlIs(route('interests.index'))}}"
+                                       href="{{route('interests.create')}}">@lang('app.interests.add_interest')</a>
                                 </li>
                             @endif
                         </ul>

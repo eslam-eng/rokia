@@ -47,7 +47,7 @@ class InterestsController extends Controller
             $interestDTO = InterestDTO::fromRequest($request);
             $this->interestService->store($interestDTO);
             $toast = ['type' => 'success', 'title' => 'Success', 'message' => 'category created successfully'];
-            return redirect(route('invoices.index'))->with('toast', $toast);
+            return redirect(route('interests.index'))->with('toast', $toast);
         } catch (\Exception $exception) {
             $toast = ['type' => 'error', 'title' => 'Success', 'message' => $exception->getMessage()];
             return back()->with('toast', $toast);
@@ -59,7 +59,7 @@ class InterestsController extends Controller
         //
     }
 
-    public function edit( Interest $interest)
+    public function edit(Interest $interest)
     {
         return view('layouts.dashboard.interest.edit', compact('interest'));
     }
@@ -70,7 +70,7 @@ class InterestsController extends Controller
             $interestDTO = InterestDTO::fromRequest($request);
             $this->interestService->update($interestDTO, $interest);
             $toast = ['type' => 'success', 'title' => 'Success', 'message' => 'category created successfully'];
-            return redirect(route('intersts.index'))->with('toast', $toast);
+            return redirect(route('interests.index'))->with('toast', $toast);
         } catch (\Exception $exception) {
             $toast = ['type' => 'error', 'title' => 'Success', 'message' => $exception->getMessage()];
             return back()->with('toast', $toast);
@@ -92,9 +92,9 @@ class InterestsController extends Controller
     {
         try {
             $this->interestService->changeStatus(id: $id);
-            return apiResponse(message: __('app.intersts.status_changed_successfully'));
+            return apiResponse(message: __('app.interests.status_changed_successfully'));
         } catch (NotFoundHttpException $exception) {
-            return apiResponse(message: __('app.intersts.category_not_found'), code: 404);
+            return apiResponse(message: __('app.interests.interest_not_found'), code: 404);
         } catch (Exception $exception) {
             return apiResponse(message: $exception->getMessage(), code: 500);
         }

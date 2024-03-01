@@ -13,6 +13,13 @@ return new class extends Migration
     {
         Schema::create('client_plan_subscriptions', function (Blueprint $table) {
             $table->id();
+            $table->foreignIdFor(\App\Models\TherapistPlan::class)->constrained('therapist_plans');
+            $table->foreignIdFor(\App\Models\Therapist::class)->constrained('therapists');
+            $table->foreignIdFor(\App\Models\User::class,'client_id')->constrained('users');
+            $table->date('start_date');
+            $table->date('end_date');
+            $table->integer('price');
+            $table->tinyInteger('status')->nullable();
             $table->timestamps();
         });
     }

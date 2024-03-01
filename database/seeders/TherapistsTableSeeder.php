@@ -13,17 +13,56 @@ class TherapistsTableSeeder extends Seeder
      */
     public function run(): void
     {
-        Therapist::create([
-            'name' => "therapist test",
-            'email' => "therapist@example.com",
-            'password' => bcrypt('Qwe@1234'),
-            'phone' => '01022843293',
-            'address' => Str::random(10),
-            'therapist_commission' => fake()->numberBetween(1, 50),
-            'status' => true,
-            'avg_therapy_duration' => 15,
-            'therapy_price' => 120,
+        $therapists = [
+            [
+                'name' => "therapist test",
+                'email' => "therapist@example.com",
+                'password' => bcrypt('Qwe@1234'),
+                'phone' => '01022843293',
+                'address' => Str::random(10),
+                'therapist_commission' => fake()->numberBetween(1, 50),
+                'status' => true,
+                'avg_therapy_duration' => 15,
+                'therapy_price' => 120,
 
-        ]);
+            ],
+            [
+                'name' => "therapist2 test",
+                'email' => "therapist2@example.com",
+                'password' => bcrypt('Qwe@1234'),
+                'phone' => '01022843222',
+                'address' => Str::random(10),
+                'therapist_commission' => fake()->numberBetween(1, 50),
+                'status' => true,
+                'avg_therapy_duration' => 15,
+                'therapy_price' => 120,
+
+            ],
+            [
+                'name' => "therapist3 test",
+                'email' => "therapist3@example.com",
+                'password' => bcrypt('Qwe@1234'),
+                'phone' => '01022843211',
+                'address' => Str::random(10),
+                'therapist_commission' => fake()->numberBetween(1, 50),
+                'status' => true,
+                'avg_therapy_duration' => 15,
+                'therapy_price' => 120,
+
+            ],
+            [
+                'name' => "therapist4 test",
+                'email' => "therapist4@example.com",
+                'password' => bcrypt('Qwe@1234'),
+                'phone' => '010228432155',
+                'address' => Str::random(10),
+                'therapist_commission' => fake()->numberBetween(1, 50),
+                'status' => true,
+                'avg_therapy_duration' => 15,
+                'therapy_price' => 120,
+
+            ]
+        ];
+        Therapist::query()->insert($therapists);
     }
 }

@@ -18,7 +18,7 @@
         <div class="col-lg-12">
             <div class="card custom-card">
                 <div class="card-body">
-                    <a href="{{route('intersts.create')}}" role="button" class="btn btn-success text-dark"><i class="fa fa-plus"></i> @lang('app.interests.add_interest')</a>
+                    <a href="{{route('interests.create')}}" role="button" class="btn btn-success text-dark"><i class="fa fa-plus"></i> @lang('app.interests.add_interest')</a>
                     <div class="table-responsive">
                         {!! $dataTable->table(['class' => 'table-data table table-bordered text-nowrap border-bottom']) !!}
                     </div>

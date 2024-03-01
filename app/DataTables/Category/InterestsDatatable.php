@@ -32,7 +32,7 @@ class InterestsDatatable extends DataTable
             ->addColumn('action', function (Interest $model) {
                 return view(
                     'layouts.dashboard.interest.components.actions',
-                    ['model' => $model, 'url' => route('intersts.destroy', $model->id)]
+                    ['model' => $model, 'url' => route('interests.destroy', $model->id)]
                 );
             });
     }

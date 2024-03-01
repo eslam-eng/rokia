@@ -1,27 +1,25 @@
 @extends('layouts.app')
 
-@section('title',__('app.categories.title'))
+@section('title',__('app.interests.title'))
 
 @section('content')
-
     {{--    breadcrumb --}}
-    @include('layouts.components.breadcrumb',['title' => __('app.categories.title'),'first_list_item' => __('app.categories.title'),'last_list_item' => __('app.app.categories.edit_category')])
+    @include('layouts.components.breadcrumb',['title' => __('app.interests.title'),'first_list_item' => __('app.interests.title'),'last_list_item' => __('app.interests.edit_category')])
     {{--    end breadcrumb --}}
-
     <!-- Row -->
     <div class="row">
 
         <div class="col-md-12 col-xl-12 col-xs-12 col-sm-12"> <!--div-->
             <div class="card">
                 <div class="card-body">
-                    <form action="{{route('categories.update',$category)}}" method="post" enctype="multipart/form-data">
+                    <form action="{{route('interests.update',$interest)}}" method="post" enctype="multipart/form-data">
                         @csrf
                         @method('PATCH')
                         <div class="row row-sm mb-4">
 
                             <div class="col-lg-6 col-md-6 col-sm-12 mb-2">
-                                <div class="main-content-label mg-b-5">@lang('app.categories.name') <span class="text-danger"*></span></div>
-                                <input class="form-control" value="{{old('name',$category->name)}}" name="name"
+                                <div class="main-content-label mg-b-5">@lang('app.interests.name') <span class="text-danger"*></span></div>
+                                <input class="form-control" value="{{old('name',$interest->name)}}" name="name"
                                        type="text" required>
                                 @error('name')
                                 <div class="text-danger"> {{$message}}</div>
@@ -33,7 +31,7 @@
                         <div class="row row-sm mb-4">
                             <div class="col-lg mt-2 mb-4">
                                 <label class="custom-control custom-checkbox custom-control-lg">
-                                    <input type="checkbox" class="custom-control-input" name="status" @checked(old('status', $category->status))>
+                                    <input type="checkbox" class="custom-control-input" name="status" @checked(old('status', $interest->status))>
                                     <span class="custom-control-label custom-control-label-md  tx-17">@lang('app.interests.status')</span>
                                 </label>
                             </div>

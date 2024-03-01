@@ -23,16 +23,15 @@ class RozmanaRequest extends BaseRequest
         return [
             'title' => 'required|string',
             'description' => 'required|string',
-            'status' => 'boolean|required',
             'therapist_id' => 'required|exists:users,id',
-            'date'=>'required|date_format:d-m'
+            'date'=>'required|date_format:d-m',
+            'interests'=>'required|array|min:1'
         ];
     }
 
     public function prepareForValidation()
     {
         $this->merge([
-            'status' => $this->boolean('status'),
             'therapist_id' => auth()->id(),
         ]);
     }

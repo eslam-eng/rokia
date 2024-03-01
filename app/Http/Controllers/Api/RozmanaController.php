@@ -13,6 +13,7 @@ use App\Imports\RozmanaImport;
 use App\Services\RozmanaService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
+use Illuminate\Validation\ValidationException;
 
 class RozmanaController extends Controller
 {
@@ -51,7 +52,11 @@ class RozmanaController extends Controller
             $rozamnaDTO = RozmanaDTO::fromRequest($request);
             $this->rozmanaService->create(dto: $rozamnaDTO);
             return apiResponse(message: __('app.general.success_operation'));
-        } catch (\Exception $exception) {
+        }catch (ValidationException $exception) {
+            $mappedErrors = transformValidationErrors($exception->errors());
+            return response(['message' => __('lang.invalid inputs'), 'errors' => $mappedErrors], 422);
+        }
+        catch (\Exception $exception) {
             return apiResponse(message: $exception->getMessage(), code: 500);
         }
     }

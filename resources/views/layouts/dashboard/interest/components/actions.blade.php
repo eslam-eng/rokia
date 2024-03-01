@@ -8,7 +8,7 @@
             @else
             btn-success
             @endif row-action"
-                data-action="{{route('intersts.status',$model->id)}}"
+                data-action="{{route('interests.status',$model->id)}}"
                 data-reload="0"
                 data-status=""
                 title="{{in_array($model->status,[\App\Enums\ActivationStatus::PENDING->value,\App\Enums\ActivationStatus::INACTIVE->value]) ? __(key: 'app.active'):__('app.blocked')}}"
@@ -22,7 +22,7 @@
             </button>
         </div>
         <div>
-            <a href="{{route('intersts.edit',$model->id)}}" class="btn btn-sm btn-warning"><i class="fa fa-edit"></i></a>
+            <a href="{{route('interests.edit',$model->id)}}" class="btn btn-sm btn-warning"><i class="fa fa-edit"></i></a>
         </div>
         <div>
             <button role="button" onclick="destroy('{{$url}}')" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button>

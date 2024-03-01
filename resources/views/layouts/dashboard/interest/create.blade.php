@@ -14,12 +14,12 @@
         <div class="col-md-12 col-xl-12 col-xs-12 col-sm-12"> <!--div-->
             <div class="card">
                 <div class="card-body">
-                    <form action="{{route('categories.store')}}" method="post" enctype="multipart/form-data">
+                    <form action="{{route('interests.store')}}" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="row row-sm mb-4">
 
                             <div class="col-lg-6 col-md-6 col-sm-12 mb-2">
-                                <div class="main-content-label mg-b-5">@lang('app.categories.name') <span class="text-danger"*></span></div>
+                                <div class="main-content-label mg-b-5">@lang('app.interests.name') <span class="text-danger"*></span></div>
                                 <input class="form-control" value="{{old('name')}}" name="name"
                                        type="text" required>
                                 @error('name')
@@ -32,7 +32,7 @@
                                 <div class="col-lg mt-2 mb-4">
                                     <label class="custom-control custom-checkbox custom-control-lg">
                                         <input type="checkbox" class="custom-control-input" name="status" value="1" checked="">
-                                        <span class="custom-control-label custom-control-label-md  tx-17">Status</span>
+                                        <span class="custom-control-label custom-control-label-md  tx-17">@lang('app.interests.status')</span>
                                     </label>
                                 </div>
                         </div>
@@ -54,7 +54,5 @@
             </div>
         </div>
     </div>
-
     <!-- End Row -->
-
 @endsection

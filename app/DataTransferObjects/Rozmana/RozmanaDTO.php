@@ -9,17 +9,13 @@ use phpDocumentor\Reflection\Types\Integer;
 
 class RozmanaDTO extends BaseDTO
 {
-
-    /**
-     * @param string $name
-     */
-
     public function __construct(
         public string $title,
         public string $description,
         public mixed  $date,
         public int $therapist_id,
         public bool   $status = true,
+        public array $interests = []
     )
     {
     }
@@ -32,6 +28,7 @@ class RozmanaDTO extends BaseDTO
             date: $request->date,
             therapist_id: $request->therapist_id,
             status: $request->status,
+            interests: $request->interests,
         );
     }
 
@@ -47,6 +44,7 @@ class RozmanaDTO extends BaseDTO
             date: Arr::get($data, 'date'),
             therapist_id: Arr::get($data, 'therapist_id'),
             status: Arr::get($data, 'status'),
+            interests: Arr::get($data, 'interests',[]),
         );
     }
 
@@ -58,6 +56,7 @@ class RozmanaDTO extends BaseDTO
             'date' => 'required|date_format:d-m',
             'therapist_id' => 'required|integer',
             'status' => 'boolean|required',
+            'interests' => 'required|array|min:1',
         ];
     }
 
@@ -72,6 +71,7 @@ class RozmanaDTO extends BaseDTO
             "therapist_id" => $this->therapist_id,
             "date" => $this->date,
             "status" => $this->status,
+            "interests" => $this->interests,
         ];
     }
 }

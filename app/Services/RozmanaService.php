@@ -8,6 +8,7 @@ use App\Filters\RozmanaFilter;
 use App\Models\Rozmana;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 
@@ -44,8 +45,13 @@ class RozmanaService extends BaseService
 
     public function create(RozmanaDTO $dto)
     {
+        DB::beginTransaction();
         $this->validateBeforeCreate($dto);
-        return $this->getQuery()->create($dto->toArray());
+        $rozmanaData = $dto->toArrayExcept(['interets']);
+        $rozmana = $this->getQuery()->create($rozmanaData);
+        $rozmana->interests()->sync($dto->interests);
+        DB::commit();
+        return $rozmana;
     }
 
     /**
@@ -53,10 +59,14 @@ class RozmanaService extends BaseService
      */
     public function update(RozmanaDTO $dto, Rozmana|int $rozmana)
     {
+        DB::beginTransaction();
         if (is_int($rozmana))
             $rozmana = $this->findById($rozmana);
         $this->validateBeforeUpdate(dto: $dto, rozmana_id: $rozmana->id);
-        return $rozmana->update($dto->toArray());
+        $rozmana->update($dto->toArray());
+        $rozmana->interests()->sync($dto->interests);
+        DB::commit();
+        return $rozmana;
     }
 
     public function destroy(Rozmana|int $rozmana)
