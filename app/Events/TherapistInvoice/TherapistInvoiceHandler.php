@@ -7,6 +7,7 @@ use App\Interfaces\TherapistInvoiceInterface;
 use App\Models\BookAppointment;
 use App\Models\ClientPlanSubscription;
 use App\Models\UserLecture;
+use Carbon\Carbon;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Foundation\Events\Dispatchable;
@@ -62,20 +63,28 @@ class TherapistInvoiceHandler implements TherapistInvoiceInterface
             return json_encode([
                 'title' => $this->model->plan->name,
                 'price' => $this->model->plan->price,
-                'duration' => $this->model->plan->duration
+                'duration' => $this->model->plan->duration,
+                'date' => isset($this->model->created_at) ? Carbon::parse($this->model->created_at)->format('Y-m-d') : null,
+                'time' => isset($this->model->created_at) ? Carbon::parse($this->model->created_at)->format('H:i:s') : null,
+                'type' =>  null,
             ]);
         elseif ($this->model instanceof BookAppointment)
             return json_encode([
+                'title' => null,
+                'price' => $this->model->price,
+                'duration' =>null,
                 'date' => $this->model->date,
                 'time' => $this->model->time,
-                'price' => $this->model->price,
+                'type' => null,
             ]);
         else
             return json_encode([
                 'title' => $this->model->lecture->title,
                 'price' => $this->model->lecture->price,
+                'duration' => $this->model->lecture->duration,
+                'date' => isset($this->model->lecture->created_at) ? Carbon::parse($this->model->lecture->created_at)->format('Y-m-d') : null,
+                'time' => isset($this->model->lecture->created_at) ? Carbon::parse($this->model->lecture->created_at)->format('H:i:s') : null,
                 'type' => $this->model->lecture->type,
-                'duration' => $this->model->lecture->duration
             ]);
     }
 }

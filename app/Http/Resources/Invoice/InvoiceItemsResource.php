@@ -28,7 +28,7 @@ class InvoiceItemsResource extends JsonResource
             'price'=>$this->price,
             'therapist_commission'=>$this->therapist_commission,
             'created_at'=>$this->created_at->format('Y-m-d'),
-            'details'=>$this->details,
+            'details'=>json_decode($this->details),
         ];
     }
 }
