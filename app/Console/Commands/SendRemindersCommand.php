@@ -29,7 +29,7 @@ class SendRemindersCommand extends Command
      */
     public function handle()
     {
-        $today = Carbon::now()->format('m-d'); // Get current date
+        $now = Carbon::now(); // Get current date
 
         $clientsHasTherapistPlan = User::query()
             ->select(['id', 'name', 'device_token'])
@@ -42,10 +42,27 @@ class SendRemindersCommand extends Command
             foreach ($client->plans as $plan) {
                 $rozmanas = Rozmana::query()
                     ->where('therapist_id', $plan->therapist_id)
-                    ->where('date',$today)
-                    ->whereHas('interests', fn($query) => $query->whereIn('interest_id', $interests))->get();
+                    ->where('date', $now->format('m-d'))
+                    ->whereHas('interests', fn($query) => $query->whereIn('interest_id', $interests))
+                    ->get();
                 if ($rozmanas->isNotEmpty())
-                    dispatch(new SendRemindersFcm(reminders: $rozmanas, client: $client));
+                    $rozmanas->map(function ($rozama) use ($now, $client) {
+                        // Define the provided time
+                        $otherDate = Carbon::parse("$rozama->time")->format('H:i:s');
+
+// Get the current time
+                        $now = Carbon::now()->format('H:i:s');
+
+// Convert both times to Carbon instances with timestamps
+                        $otherTime = Carbon::createFromFormat('H:i:s', $otherDate);
+                        $currentTime = Carbon::createFromFormat('H:i:s', $now);
+
+// Calculate the difference in seconds
+                        $diffInSecs = $currentTime->diffInSeconds($otherTime);
+                        logger()->info('delay in seconds : ' . $diffInSecs);
+                        dispatch(new SendRemindersFcm(reminder: $rozama, client: $client))
+                            ->delay($diffInSecs);
+                    });
             }
         }
     }

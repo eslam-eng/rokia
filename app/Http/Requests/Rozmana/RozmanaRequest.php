@@ -25,6 +25,7 @@ class RozmanaRequest extends BaseRequest
             'description' => 'required|string',
             'therapist_id' => 'required|exists:users,id',
             'date'=>'required|date_format:d-m',
+            'time'=>'required|date_format:H:i',
             'interests'=>'required|array|min:1'
         ];
     }

@@ -2,11 +2,11 @@
 
 namespace App\Jobs;
 
+use App\Models\Rozmana;
 use App\Models\User;
 use App\Services\NotificationService;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
@@ -19,8 +19,8 @@ class SendRemindersFcm implements ShouldQueue
      * Create a new job instance.
      */
     public function __construct(
-        public Collection $reminders,
-        public User $client)
+        public Rozmana $reminder,
+        public User    $client)
     {
 
     }
@@ -31,13 +31,11 @@ class SendRemindersFcm implements ShouldQueue
     public function handle(): void
     {
         $notificationService = app(NotificationService::class);
-        $year = now()->year;
-        foreach ($this->reminders as $reminder)
-        {
-            $dateTimeString = "$year-$reminder->date $reminder->time";
-            $notificationService->sendToTokens(title: $reminder->title,body: $reminder->description,tokens: [$this->client->device_token]);
-            $this->availableAt(now()->diffInSeconds($dateTimeString));
-        }
+        $notificationService->sendToTokens(
+            title: $this->reminder->title,
+            body: $this->reminder->description,
+            tokens: [$this->client->device_token]
+        );
     }
 
 }

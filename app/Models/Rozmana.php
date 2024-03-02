@@ -15,7 +15,7 @@ class Rozmana extends Model
 {
     use HasFactory,Filterable,EscapeUnicodeJson;
 
-    protected $fillable = ['title','description','date','therapist_id','status'];
+    protected $fillable = ['title','description','date','therapist_id','status','time'];
 
     public function therapist(): BelongsTo
     {

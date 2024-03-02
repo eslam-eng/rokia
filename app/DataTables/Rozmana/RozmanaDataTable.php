@@ -4,9 +4,7 @@ namespace App\DataTables\Rozmana;
 
 use App\Enums\ActivationStatus;
 use App\Models\Rozmana;
-use App\Models\Slider;
 use App\Services\RozmanaService;
-use App\Services\SliderService;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
@@ -25,6 +23,7 @@ class RozmanaDataTable extends DataTable
     {
         return (new EloquentDataTable($query))
             ->setRowId('id')
+            ->editColumn('date', fn(Rozmana $rozmana)=>$rozmana->date ." | ". $rozmana->time)
             ->editColumn('status', function (Rozmana $model) {
                 $classes = $model->status == ActivationStatus::ACTIVE->value ? 'badge-success' : 'badge-danger';
                 return view('components._datatable-badge', ['class' => $classes, 'text' => ActivationStatus::from($model->status)->name]);
@@ -70,10 +69,6 @@ class RozmanaDataTable extends DataTable
             Column::make('id')
                 ->title('#')
                 ->searchable(false)
-                ->orderable(false),
-
-            Column::make('therapist.name','therapist_id')
-                ->title(__('app.therapists.therapist'))
                 ->orderable(false),
 
             Column::make('title')

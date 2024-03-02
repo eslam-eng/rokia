@@ -23,6 +23,7 @@ class RozmanasTableSeeder extends Seeder
                 'title'=>fake()->title,
                 'description'=>fake()->sentence,
                 'date'=>fake()->date('m-d'),
+                'time'=>fake()->time('H:i'),
                 'therapist_id'=>Therapist::query()->inRandomOrder()->first('id')?->id,
 
             ];

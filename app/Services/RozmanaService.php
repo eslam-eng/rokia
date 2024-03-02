@@ -39,8 +39,7 @@ class RozmanaService extends BaseService
 
     public function datatable(array $filters = []): Builder
     {
-        return $this->getQuery(filters: $filters)
-            ->with('therapist');
+        return $this->getQuery(filters: $filters);
     }
 
     public function create(RozmanaDTO $dto)
