@@ -27,10 +27,13 @@ class AuthClientController extends Controller
     public function signIn(LoginRequest $request)
     {
         try {
-            $user =  $this->userService->loginWithEmailOrPhone(identifier: $request->identifier, password: $request->password);
+            $user = $this->userService->loginWithEmailOrPhone(identifier: $request->identifier, password: $request->password);
 
             if ($user->status == ActivationStatus::PENDING->value)
                 return apiResponse(message: __('app.auth.auth_in_review'), code: 422);
+            if (isset($request->fcm_token))
+                $this->userService->setUserFcmToken(user: $user, fcm_token: $request->fcm_token);
+
             $token = $user->getToken();
             $data = [
                 'access_token' => $token,

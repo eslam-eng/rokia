@@ -28,8 +28,8 @@ class AuthTherapistController extends Controller
             $therapist = $this->therapistService->loginWithEmailOrPhone(identifier: $request->identifier, password: $request->password);
             if ($therapist->status == ActivationStatus::PENDING->value)
                 return apiResponse(message: __('app.auth.auth_in_review'), code: 422);
-
-            $this->userService->setUserFcmToken(user: $therapist,fcm_token: $request->fcm_token);
+            if (isset($request->fcm_token))
+                $this->userService->setUserFcmToken(user: $therapist, fcm_token: $request->fcm_token);
             $token = $therapist->getToken();
             $data = [
                 'access_token' => $token,
@@ -62,9 +62,9 @@ class AuthTherapistController extends Controller
     {
         try {
             $user_type = UsersType::THERAPIST->value;
-           $code= $this->userService->phoneVerifyAndSendFcm(phone: $request->phone, user_type: $user_type);
+            $code = $this->userService->phoneVerifyAndSendFcm(phone: $request->phone, user_type: $user_type);
             return apiResponse(data: $code, message: 'code sent to phone number');
-        }catch (ValidationException $exception) {
+        } catch (ValidationException $exception) {
             $mappedErrors = transformValidationErrors($exception->errors());
             return response(['message' => __('lang.invalid inputs'), 'errors' => $mappedErrors], 422);
         } catch (NotFoundException $exception) {

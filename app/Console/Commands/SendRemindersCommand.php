@@ -42,6 +42,7 @@ class SendRemindersCommand extends Command
             foreach ($client->plans as $plan) {
                 $rozmanas = Rozmana::query()
                     ->where('therapist_id', $plan->therapist_id)
+                    ->where('date',$today)
                     ->whereHas('interests', fn($query) => $query->whereIn('interest_id', $interests))->get();
                 if ($rozmanas->isNotEmpty())
                     dispatch(new SendRemindersFcm(reminders: $rozmanas, client: $client));

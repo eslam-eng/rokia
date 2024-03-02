@@ -31,10 +31,12 @@ class SendRemindersFcm implements ShouldQueue
     public function handle(): void
     {
         $notificationService = app(NotificationService::class);
+        $year = now()->year;
         foreach ($this->reminders as $reminder)
         {
+            $dateTimeString = "$year-$reminder->date $reminder->time";
             $notificationService->sendToTokens(title: $reminder->title,body: $reminder->description,tokens: [$this->client->device_token]);
-            $this->release(900); //900 second equal to 15 minute
+            $this->availableAt(now()->diffInSeconds($dateTimeString));
         }
     }
 
