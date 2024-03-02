@@ -6,2214 +6,58 @@ Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:900
 Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
 Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
 Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-
-   Error 
-
-  Class "Aws\Sqs\SqsClient" not found
-
-  at /home/eslam/Documents/rokia/vendor/laravel/framework/src/Illuminate/Queue/Connectors/SqsConnector.php:26
-     22▕             $config['credentials'] = Arr::only($config, ['key', 'secret', 'token']);
-     23▕         }
-     24▕ 
-     25▕         return new SqsQueue(
-  ➜  26▕             new SqsClient(
-     27▕                 Arr::except($config, ['token'])
-     28▕             ),
-     29▕             $config['queue'],
-     30▕             $config['prefix'] ?? '',
-
-   Error 
-
-  Class "Aws\Sqs\SqsClient" not found
-
-
-   Error 
-
-  Class "Aws\Sqs\SqsClient" not found
-
-  at /home/eslam/Documents/rokia/vendor/laravel/framework/src/Illuminate/Queue/Connectors/SqsConnector.php:26
-  at /home/eslam/Documents/rokia/vendor/laravel/framework/src/Illuminate/Queue/Connectors/SqsConnector.php:26
-     22▕             $config['credentials'] = Arr::only($config, ['key', 'secret', 'token']);
-     23▕         }
-     24▕ 
-     25▕         return new SqsQueue(
-  ➜  26▕             new SqsClient(
-     27▕                 Arr::except($config, ['token'])
-     28▕             ),
-     29▕             $config['queue'],
-     30▕             $config['prefix'] ?? '',
-     22▕             $config['credentials'] = Arr::only($config, ['key', 'secret', 'token']);
-     23▕         }
-     24▕ 
-     25▕         return new SqsQueue(
-  ➜  26▕             new SqsClient(
-     27▕                 Arr::except($config, ['token'])
-     28▕             ),
-     29▕             $config['queue'],
-     30▕             $config['prefix'] ?? '',
-
-   Error 
-
-  Class "Aws\Sqs\SqsClient" not found
-
-  at /home/eslam/Documents/rokia/vendor/laravel/framework/src/Illuminate/Queue/Connectors/SqsConnector.php:26
-
-   Error 
-
-     22▕             $config['credentials'] = Arr::only($config, ['key', 'secret', 'token']);
-     23▕         }
-     24▕ 
-     25▕         return new SqsQueue(
-  ➜  26▕             new SqsClient(
-     27▕                 Arr::except($config, ['token'])
-     28▕             ),
-     29▕             $config['queue'],
-     30▕             $config['prefix'] ?? '',
-  Class "Aws\Sqs\SqsClient" not found
-
-  at /home/eslam/Documents/rokia/vendor/laravel/framework/src/Illuminate/Queue/Connectors/SqsConnector.php:26
-     22▕             $config['credentials'] = Arr::only($config, ['key', 'secret', 'token']);
-     23▕         }
-     24▕ 
-     25▕         return new SqsQueue(
-  ➜  26▕             new SqsClient(
-     27▕                 Arr::except($config, ['token'])
-     28▕             ),
-     29▕             $config['queue'],
-     30▕             $config['prefix'] ?? '',
-
-   Error 
-
-  Class "Aws\Sqs\SqsClient" not found
-
-  at /home/eslam/Documents/rokia/vendor/laravel/framework/src/Illuminate/Queue/Connectors/SqsConnector.php:26
-
-   Error 
-
-  Class "Aws\Sqs\SqsClient" not found
-
-  at /home/eslam/Documents/rokia/vendor/laravel/framework/src/Illuminate/Queue/Connectors/SqsConnector.php:26
-     22▕             $config['credentials'] = Arr::only($config, ['key', 'secret', 'token']);
-     23▕         }
-     24▕ 
-     25▕         return new SqsQueue(
-  ➜  26▕             new SqsClient(
-     27▕                 Arr::except($config, ['token'])
-     28▕             ),
-     29▕             $config['queue'],
-     30▕             $config['prefix'] ?? '',
-     22▕             $config['credentials'] = Arr::only($config, ['key', 'secret', 'token']);
-     23▕         }
-     24▕ 
-     25▕         return new SqsQueue(
-  ➜  26▕             new SqsClient(
-     27▕                 Arr::except($config, ['token'])
-     28▕             ),
-     29▕             $config['queue'],
-     30▕             $config['prefix'] ?? '',
-
-   Error 
-
-  Class "Aws\Sqs\SqsClient" not found
-
-  at /home/eslam/Documents/rokia/vendor/laravel/framework/src/Illuminate/Queue/Connectors/SqsConnector.php:26
-     22▕             $config['credentials'] = Arr::only($config, ['key', 'secret', 'token']);
-     23▕         }
-     24▕ 
-     25▕         return new SqsQueue(
-  ➜  26▕             new SqsClient(
-     27▕                 Arr::except($config, ['token'])
-     28▕             ),
-     29▕             $config['queue'],
-     30▕             $config['prefix'] ?? '',
-
-      [2m+17 vendor frames [22m
-
-  18  /home/eslam/Documents/rokia/artisan:35
-      Illuminate\Foundation\Console\Kernel::handle()
-
+  2024-03-02 15:26:22 App\Jobs\SendRemindersFcm ...................... RUNNING
+  2024-03-02 15:26:23 App\Jobs\SendRemindersFcm ................ 540.45ms DONE
+  2024-03-02 15:39:36 App\Jobs\SendRemindersFcm ...................... RUNNING
+1709356260 // app/Jobs/SendRemindersFcm.php:40
 Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
 Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-
-      [2m+17 vendor frames [22m
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-
-  18  /home/eslam/Documents/rokia/artisan:35
-      Illuminate\Foundation\Console\Kernel::handle()
-
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-
-      [2m+17 vendor frames [22m
-
-  18  /home/eslam/Documents/rokia/artisan:35
-      Illuminate\Foundation\Console\Kernel::handle()
-
-
-      [2m+17 vendor frames [22m
-
-  18  /home/eslam/Documents/rokia/artisan:35
-      Illuminate\Foundation\Console\Kernel::handle()
-
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-      [2m+17 vendor frames [22m
-
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-  18  /home/eslam/Documents/rokia/artisan:35
-      Illuminate\Foundation\Console\Kernel::handle()
-
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-      [2m+17 vendor frames [22m
-
-  18  /home/eslam/Documents/rokia/artisan:35
-      Illuminate\Foundation\Console\Kernel::handle()
-
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-
-      [2m+17 vendor frames [22m
-
-  18  /home/eslam/Documents/rokia/artisan:35
-      Illuminate\Foundation\Console\Kernel::handle()
-
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-
-      [2m+17 vendor frames [22m
-
-  18  /home/eslam/Documents/rokia/artisan:35
-      Illuminate\Foundation\Console\Kernel::handle()
-
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-
-   Error 
-
-  Class "Aws\Sqs\SqsClient" not found
-
-  at /home/eslam/Documents/rokia/vendor/laravel/framework/src/Illuminate/Queue/Connectors/SqsConnector.php:26
-     22▕             $config['credentials'] = Arr::only($config, ['key', 'secret', 'token']);
-     23▕         }
-     24▕ 
-     25▕         return new SqsQueue(
-  ➜  26▕             new SqsClient(
-     27▕                 Arr::except($config, ['token'])
-     28▕             ),
-     29▕             $config['queue'],
-     30▕             $config['prefix'] ?? '',
-
-   Error 
-
-
-   Error 
-  Class "Aws\Sqs\SqsClient" not found
-
-  at /home/eslam/Documents/rokia/vendor/laravel/framework/src/Illuminate/Queue/Connectors/SqsConnector.php:26
-
-  Class "Aws\Sqs\SqsClient" not found
-
-  at /home/eslam/Documents/rokia/vendor/laravel/framework/src/Illuminate/Queue/Connectors/SqsConnector.php:26
-     22▕             $config['credentials'] = Arr::only($config, ['key', 'secret', 'token']);
-     23▕         }
-     24▕ 
-     25▕         return new SqsQueue(
-  ➜  26▕             new SqsClient(
-     27▕                 Arr::except($config, ['token'])
-     28▕             ),
-     29▕             $config['queue'],
-     30▕             $config['prefix'] ?? '',
-     22▕             $config['credentials'] = Arr::only($config, ['key', 'secret', 'token']);
-     23▕         }
-     24▕ 
-     25▕         return new SqsQueue(
-  ➜  26▕             new SqsClient(
-     27▕                 Arr::except($config, ['token'])
-     28▕             ),
-     29▕             $config['queue'],
-     30▕             $config['prefix'] ?? '',
-
-   Error 
-
-  Class "Aws\Sqs\SqsClient" not found
-
-  at /home/eslam/Documents/rokia/vendor/laravel/framework/src/Illuminate/Queue/Connectors/SqsConnector.php:26
-     22▕             $config['credentials'] = Arr::only($config, ['key', 'secret', 'token']);
-     23▕         }
-     24▕ 
-     25▕         return new SqsQueue(
-  ➜  26▕             new SqsClient(
-     27▕                 Arr::except($config, ['token'])
-     28▕             ),
-     29▕             $config['queue'],
-     30▕             $config['prefix'] ?? '',
-
-   Error 
-
-  Class "Aws\Sqs\SqsClient" not found
-
-  at /home/eslam/Documents/rokia/vendor/laravel/framework/src/Illuminate/Queue/Connectors/SqsConnector.php:26
-     22▕             $config['credentials'] = Arr::only($config, ['key', 'secret', 'token']);
-     23▕         }
-     24▕ 
-     25▕         return new SqsQueue(
-  ➜  26▕             new SqsClient(
-     27▕                 Arr::except($config, ['token'])
-     28▕             ),
-     29▕             $config['queue'],
-     30▕             $config['prefix'] ?? '',
-
-   Error 
-
-  Class "Aws\Sqs\SqsClient" not found
-
-  at /home/eslam/Documents/rokia/vendor/laravel/framework/src/Illuminate/Queue/Connectors/SqsConnector.php:26
-     22▕             $config['credentials'] = Arr::only($config, ['key', 'secret', 'token']);
-     23▕         }
-     24▕ 
-     25▕         return new SqsQueue(
-  ➜  26▕             new SqsClient(
-     27▕                 Arr::except($config, ['token'])
-     28▕             ),
-     29▕             $config['queue'],
-     30▕             $config['prefix'] ?? '',
-
-   Error 
-
-  Class "Aws\Sqs\SqsClient" not found
-
-  at /home/eslam/Documents/rokia/vendor/laravel/framework/src/Illuminate/Queue/Connectors/SqsConnector.php:26
-     22▕             $config['credentials'] = Arr::only($config, ['key', 'secret', 'token']);
-     23▕         }
-     24▕ 
-     25▕         return new SqsQueue(
-  ➜  26▕             new SqsClient(
-     27▕                 Arr::except($config, ['token'])
-     28▕             ),
-     29▕             $config['queue'],
-     30▕             $config['prefix'] ?? '',
-
-   Error 
-
-  Class "Aws\Sqs\SqsClient" not found
-
-  at /home/eslam/Documents/rokia/vendor/laravel/framework/src/Illuminate/Queue/Connectors/SqsConnector.php:26
-     22▕             $config['credentials'] = Arr::only($config, ['key', 'secret', 'token']);
-     23▕         }
-     24▕ 
-     25▕         return new SqsQueue(
-  ➜  26▕             new SqsClient(
-     27▕                 Arr::except($config, ['token'])
-     28▕             ),
-     29▕             $config['queue'],
-     30▕             $config['prefix'] ?? '',
-
-      [2m+17 vendor frames [22m
-
-  18  /home/eslam/Documents/rokia/artisan:35
-      Illuminate\Foundation\Console\Kernel::handle()
-
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-
-      [2m+17 vendor frames [22m
-
-  18  /home/eslam/Documents/rokia/artisan:35
-      Illuminate\Foundation\Console\Kernel::handle()
-
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-
-      [2m+17 vendor frames [22m
-
-  18  /home/eslam/Documents/rokia/artisan:35
-      Illuminate\Foundation\Console\Kernel::handle()
-
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-
-
-      [2m+17 vendor frames [22m
-
-  18  /home/eslam/Documents/rokia/artisan:35
-      Illuminate\Foundation\Console\Kernel::handle()
-
-      [2m+17 vendor frames [22m
-
-  18  /home/eslam/Documents/rokia/artisan:35
-      Illuminate\Foundation\Console\Kernel::handle()
-
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-
-      [2m+17 vendor frames [22m
-
-  18  /home/eslam/Documents/rokia/artisan:35
-      Illuminate\Foundation\Console\Kernel::handle()
-
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-
-      [2m+17 vendor frames [22m
-
-  18  /home/eslam/Documents/rokia/artisan:35
-      Illuminate\Foundation\Console\Kernel::handle()
-
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-
-      [2m+17 vendor frames [22m
-
-  18  /home/eslam/Documents/rokia/artisan:35
-      Illuminate\Foundation\Console\Kernel::handle()
-
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-
-   Error 
-
-  Class "Aws\Sqs\SqsClient" not found
-
-  at /home/eslam/Documents/rokia/vendor/laravel/framework/src/Illuminate/Queue/Connectors/SqsConnector.php:26
-     22▕             $config['credentials'] = Arr::only($config, ['key', 'secret', 'token']);
-     23▕         }
-     24▕ 
-     25▕         return new SqsQueue(
-  ➜  26▕             new SqsClient(
-     27▕                 Arr::except($config, ['token'])
-     28▕             ),
-     29▕             $config['queue'],
-     30▕             $config['prefix'] ?? '',
-
-   Error 
-
-  Class "Aws\Sqs\SqsClient" not found
-
-  at /home/eslam/Documents/rokia/vendor/laravel/framework/src/Illuminate/Queue/Connectors/SqsConnector.php:26
-
-   Error 
-
-  Class "Aws\Sqs\SqsClient" not found
-
-  at /home/eslam/Documents/rokia/vendor/laravel/framework/src/Illuminate/Queue/Connectors/SqsConnector.php:26
-
-   Error 
-
-     22▕             $config['credentials'] = Arr::only($config, ['key', 'secret', 'token']);
-     23▕         }
-     24▕ 
-     25▕         return new SqsQueue(
-  ➜  26▕             new SqsClient(
-     27▕                 Arr::except($config, ['token'])
-     28▕             ),
-     29▕             $config['queue'],
-     30▕             $config['prefix'] ?? '',
-  Class "Aws\Sqs\SqsClient" not found
-
-  at /home/eslam/Documents/rokia/vendor/laravel/framework/src/Illuminate/Queue/Connectors/SqsConnector.php:26
-     22▕             $config['credentials'] = Arr::only($config, ['key', 'secret', 'token']);
-     23▕         }
-     24▕ 
-     25▕         return new SqsQueue(
-  ➜  26▕             new SqsClient(
-     27▕                 Arr::except($config, ['token'])
-     28▕             ),
-     29▕             $config['queue'],
-     30▕             $config['prefix'] ?? '',
-     22▕             $config['credentials'] = Arr::only($config, ['key', 'secret', 'token']);
-     23▕         }
-     24▕ 
-     25▕         return new SqsQueue(
-  ➜  26▕             new SqsClient(
-     27▕                 Arr::except($config, ['token'])
-     28▕             ),
-     29▕             $config['queue'],
-     30▕             $config['prefix'] ?? '',
-
-   Error 
-
-  Class "Aws\Sqs\SqsClient" not found
-
-  at /home/eslam/Documents/rokia/vendor/laravel/framework/src/Illuminate/Queue/Connectors/SqsConnector.php:26
-     22▕             $config['credentials'] = Arr::only($config, ['key', 'secret', 'token']);
-     23▕         }
-     24▕ 
-     25▕         return new SqsQueue(
-  ➜  26▕             new SqsClient(
-     27▕                 Arr::except($config, ['token'])
-     28▕             ),
-     29▕             $config['queue'],
-     30▕             $config['prefix'] ?? '',
-
-   Error 
-
-  Class "Aws\Sqs\SqsClient" not found
-
-  at /home/eslam/Documents/rokia/vendor/laravel/framework/src/Illuminate/Queue/Connectors/SqsConnector.php:26
-     22▕             $config['credentials'] = Arr::only($config, ['key', 'secret', 'token']);
-     23▕         }
-     24▕ 
-     25▕         return new SqsQueue(
-  ➜  26▕             new SqsClient(
-     27▕                 Arr::except($config, ['token'])
-     28▕             ),
-     29▕             $config['queue'],
-     30▕             $config['prefix'] ?? '',
-
-   Error 
-
-  Class "Aws\Sqs\SqsClient" not found
-
-  at /home/eslam/Documents/rokia/vendor/laravel/framework/src/Illuminate/Queue/Connectors/SqsConnector.php:26
-     22▕             $config['credentials'] = Arr::only($config, ['key', 'secret', 'token']);
-     23▕         }
-     24▕ 
-     25▕         return new SqsQueue(
-  ➜  26▕             new SqsClient(
-     27▕                 Arr::except($config, ['token'])
-     28▕             ),
-     29▕             $config['queue'],
-     30▕             $config['prefix'] ?? '',
-
-   Error 
-
-  Class "Aws\Sqs\SqsClient" not found
-
-  at /home/eslam/Documents/rokia/vendor/laravel/framework/src/Illuminate/Queue/Connectors/SqsConnector.php:26
-     22▕             $config['credentials'] = Arr::only($config, ['key', 'secret', 'token']);
-     23▕         }
-     24▕ 
-     25▕         return new SqsQueue(
-  ➜  26▕             new SqsClient(
-     27▕                 Arr::except($config, ['token'])
-     28▕             ),
-     29▕             $config['queue'],
-     30▕             $config['prefix'] ?? '',
-
-      [2m+17 vendor frames [22m
-
-  18  /home/eslam/Documents/rokia/artisan:35
-
-      [2m+17 vendor frames [22m
-
-  18  /home/eslam/Documents/rokia/artisan:35
-      Illuminate\Foundation\Console\Kernel::handle()
-
-      Illuminate\Foundation\Console\Kernel::handle()
-
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-
-      [2m+17 vendor frames [22m
-
-  18  /home/eslam/Documents/rokia/artisan:35
-      Illuminate\Foundation\Console\Kernel::handle()
-
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-
-      [2m+17 vendor frames [22m
-
-  18  /home/eslam/Documents/rokia/artisan:35
-      Illuminate\Foundation\Console\Kernel::handle()
-
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-
-      [2m+17 vendor frames [22m
-
-  18  /home/eslam/Documents/rokia/artisan:35
-      Illuminate\Foundation\Console\Kernel::handle()
-
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-
-      [2m+17 vendor frames [22m
-
-  18  /home/eslam/Documents/rokia/artisan:35
-      Illuminate\Foundation\Console\Kernel::handle()
-
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-
-      [2m+17 vendor frames [22m
-
-
-      [2m+17 vendor frames [22m
-
-  18  /home/eslam/Documents/rokia/artisan:35
-      Illuminate\Foundation\Console\Kernel::handle()
-
-  18  /home/eslam/Documents/rokia/artisan:35
-      Illuminate\Foundation\Console\Kernel::handle()
-
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-
-   Error 
-
-  Class "Aws\Sqs\SqsClient" not found
-
-  at /home/eslam/Documents/rokia/vendor/laravel/framework/src/Illuminate/Queue/Connectors/SqsConnector.php:26
-     22▕             $config['credentials'] = Arr::only($config, ['key', 'secret', 'token']);
-     23▕         }
-     24▕ 
-     25▕         return new SqsQueue(
-  ➜  26▕             new SqsClient(
-     27▕                 Arr::except($config, ['token'])
-     28▕             ),
-     29▕             $config['queue'],
-     30▕             $config['prefix'] ?? '',
-
-   Error 
-
-  Class "Aws\Sqs\SqsClient" not found
-
-  at /home/eslam/Documents/rokia/vendor/laravel/framework/src/Illuminate/Queue/Connectors/SqsConnector.php:26
-     22▕             $config['credentials'] = Arr::only($config, ['key', 'secret', 'token']);
-     23▕         }
-     24▕ 
-     25▕         return new SqsQueue(
-  ➜  26▕             new SqsClient(
-     27▕                 Arr::except($config, ['token'])
-     28▕             ),
-     29▕             $config['queue'],
-     30▕             $config['prefix'] ?? '',
-
-   Error 
-
-  Class "Aws\Sqs\SqsClient" not found
-
-  at /home/eslam/Documents/rokia/vendor/laravel/framework/src/Illuminate/Queue/Connectors/SqsConnector.php:26
-     22▕             $config['credentials'] = Arr::only($config, ['key', 'secret', 'token']);
-     23▕         }
-     24▕ 
-     25▕         return new SqsQueue(
-  ➜  26▕             new SqsClient(
-     27▕                 Arr::except($config, ['token'])
-     28▕             ),
-     29▕             $config['queue'],
-     30▕             $config['prefix'] ?? '',
-
-   Error 
-
-  Class "Aws\Sqs\SqsClient" not found
-
-  at /home/eslam/Documents/rokia/vendor/laravel/framework/src/Illuminate/Queue/Connectors/SqsConnector.php:26
-     22▕             $config['credentials'] = Arr::only($config, ['key', 'secret', 'token']);
-     23▕         }
-     24▕ 
-     25▕         return new SqsQueue(
-  ➜  26▕             new SqsClient(
-     27▕                 Arr::except($config, ['token'])
-     28▕             ),
-     29▕             $config['queue'],
-     30▕             $config['prefix'] ?? '',
-
-   Error 
-
-  Class "Aws\Sqs\SqsClient" not found
-
-  at /home/eslam/Documents/rokia/vendor/laravel/framework/src/Illuminate/Queue/Connectors/SqsConnector.php:26
-     22▕             $config['credentials'] = Arr::only($config, ['key', 'secret', 'token']);
-     23▕         }
-     24▕ 
-     25▕         return new SqsQueue(
-  ➜  26▕             new SqsClient(
-     27▕                 Arr::except($config, ['token'])
-     28▕             ),
-     29▕             $config['queue'],
-     30▕             $config['prefix'] ?? '',
-
-   Error 
-
-  Class "Aws\Sqs\SqsClient" not found
-
-  at /home/eslam/Documents/rokia/vendor/laravel/framework/src/Illuminate/Queue/Connectors/SqsConnector.php:26
-     22▕             $config['credentials'] = Arr::only($config, ['key', 'secret', 'token']);
-     23▕         }
-     24▕ 
-     25▕         return new SqsQueue(
-  ➜  26▕             new SqsClient(
-     27▕                 Arr::except($config, ['token'])
-     28▕             ),
-     29▕             $config['queue'],
-     30▕             $config['prefix'] ?? '',
-
-      [2m+17 vendor frames [22m
-
-  18  /home/eslam/Documents/rokia/artisan:35
-      Illuminate\Foundation\Console\Kernel::handle()
-
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-
-   Error 
-
-  Class "Aws\Sqs\SqsClient" not found
-
-  at /home/eslam/Documents/rokia/vendor/laravel/framework/src/Illuminate/Queue/Connectors/SqsConnector.php:26
-     22▕             $config['credentials'] = Arr::only($config, ['key', 'secret', 'token']);
-     23▕         }
-     24▕ 
-     25▕         return new SqsQueue(
-  ➜  26▕             new SqsClient(
-     27▕                 Arr::except($config, ['token'])
-     28▕             ),
-     29▕             $config['queue'],
-     30▕             $config['prefix'] ?? '',
-
-      [2m+17 vendor frames [22m
-
-  18  /home/eslam/Documents/rokia/artisan:35
-      Illuminate\Foundation\Console\Kernel::handle()
-
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-
-   Error 
-
-  Class "Aws\Sqs\SqsClient" not found
-
-  at /home/eslam/Documents/rokia/vendor/laravel/framework/src/Illuminate/Queue/Connectors/SqsConnector.php:26
-     22▕             $config['credentials'] = Arr::only($config, ['key', 'secret', 'token']);
-     23▕         }
-     24▕ 
-     25▕         return new SqsQueue(
-  ➜  26▕             new SqsClient(
-     27▕                 Arr::except($config, ['token'])
-     28▕             ),
-     29▕             $config['queue'],
-     30▕             $config['prefix'] ?? '',
-
-      [2m+17 vendor frames [22m
-
-  18  /home/eslam/Documents/rokia/artisan:35
-      Illuminate\Foundation\Console\Kernel::handle()
-
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-
-      [2m+17 vendor frames [22m
-
-  18  /home/eslam/Documents/rokia/artisan:35
-      Illuminate\Foundation\Console\Kernel::handle()
-
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-
-      [2m+17 vendor frames [22m
-
-  18  /home/eslam/Documents/rokia/artisan:35
-      Illuminate\Foundation\Console\Kernel::handle()
-
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-
-      [2m+17 vendor frames [22m
-
-  18  /home/eslam/Documents/rokia/artisan:35
-      Illuminate\Foundation\Console\Kernel::handle()
-
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-
-      [2m+17 vendor frames [22m
-
-  18  /home/eslam/Documents/rokia/artisan:35
-      Illuminate\Foundation\Console\Kernel::handle()
-
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-
-   Error 
-
-  Class "Aws\Sqs\SqsClient" not found
-
-  at /home/eslam/Documents/rokia/vendor/laravel/framework/src/Illuminate/Queue/Connectors/SqsConnector.php:26
-     22▕             $config['credentials'] = Arr::only($config, ['key', 'secret', 'token']);
-     23▕         }
-     24▕ 
-     25▕         return new SqsQueue(
-  ➜  26▕             new SqsClient(
-     27▕                 Arr::except($config, ['token'])
-     28▕             ),
-     29▕             $config['queue'],
-     30▕             $config['prefix'] ?? '',
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-
-      [2m+17 vendor frames [22m
-
-  18  /home/eslam/Documents/rokia/artisan:35
-      Illuminate\Foundation\Console\Kernel::handle()
-
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-
-   Error 
-
-  Class "Aws\Sqs\SqsClient" not found
-
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-  at /home/eslam/Documents/rokia/vendor/laravel/framework/src/Illuminate/Queue/Connectors/SqsConnector.php:26
-     22▕             $config['credentials'] = Arr::only($config, ['key', 'secret', 'token']);
-     23▕         }
-     24▕ 
-     25▕         return new SqsQueue(
-  ➜  26▕             new SqsClient(
-     27▕                 Arr::except($config, ['token'])
-     28▕             ),
-     29▕             $config['queue'],
-     30▕             $config['prefix'] ?? '',
-
-   Error 
-
-  Class "Aws\Sqs\SqsClient" not found
-
-  at /home/eslam/Documents/rokia/vendor/laravel/framework/src/Illuminate/Queue/Connectors/SqsConnector.php:26
-     22▕             $config['credentials'] = Arr::only($config, ['key', 'secret', 'token']);
-     23▕         }
-     24▕ 
-     25▕         return new SqsQueue(
-  ➜  26▕             new SqsClient(
-     27▕                 Arr::except($config, ['token'])
-     28▕             ),
-     29▕             $config['queue'],
-     30▕             $config['prefix'] ?? '',
-
-   Error 
-
-  Class "Aws\Sqs\SqsClient" not found
-
-  at /home/eslam/Documents/rokia/vendor/laravel/framework/src/Illuminate/Queue/Connectors/SqsConnector.php:26
-     22▕             $config['credentials'] = Arr::only($config, ['key', 'secret', 'token']);
-     23▕         }
-     24▕ 
-     25▕         return new SqsQueue(
-  ➜  26▕             new SqsClient(
-     27▕                 Arr::except($config, ['token'])
-     28▕             ),
-     29▕             $config['queue'],
-     30▕             $config['prefix'] ?? '',
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-
-   Error 
-
-  Class "Aws\Sqs\SqsClient" not found
-
-  at /home/eslam/Documents/rokia/vendor/laravel/framework/src/Illuminate/Queue/Connectors/SqsConnector.php:26
-     22▕             $config['credentials'] = Arr::only($config, ['key', 'secret', 'token']);
-     23▕         }
-     24▕ 
-     25▕         return new SqsQueue(
-  ➜  26▕             new SqsClient(
-     27▕                 Arr::except($config, ['token'])
-     28▕             ),
-     29▕             $config['queue'],
-     30▕             $config['prefix'] ?? '',
-
-      [2m+17 vendor frames [22m
-
-  18  /home/eslam/Documents/rokia/artisan:35
-      Illuminate\Foundation\Console\Kernel::handle()
-
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-
-   Error 
-
-  Class "Aws\Sqs\SqsClient" not found
-
-  at /home/eslam/Documents/rokia/vendor/laravel/framework/src/Illuminate/Queue/Connectors/SqsConnector.php:26
-     22▕             $config['credentials'] = Arr::only($config, ['key', 'secret', 'token']);
-     23▕         }
-     24▕ 
-     25▕         return new SqsQueue(
-  ➜  26▕             new SqsClient(
-     27▕                 Arr::except($config, ['token'])
-     28▕             ),
-     29▕             $config['queue'],
-     30▕             $config['prefix'] ?? '',
-
-      [2m+17 vendor frames [22m
-
-  18  /home/eslam/Documents/rokia/artisan:35
-      Illuminate\Foundation\Console\Kernel::handle()
-
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-
-   Error 
-
-  Class "Aws\Sqs\SqsClient" not found
-
-  at /home/eslam/Documents/rokia/vendor/laravel/framework/src/Illuminate/Queue/Connectors/SqsConnector.php:26
-     22▕             $config['credentials'] = Arr::only($config, ['key', 'secret', 'token']);
-     23▕         }
-     24▕ 
-     25▕         return new SqsQueue(
-  ➜  26▕             new SqsClient(
-     27▕                 Arr::except($config, ['token'])
-     28▕             ),
-     29▕             $config['queue'],
-     30▕             $config['prefix'] ?? '',
-
-      [2m+17 vendor frames [22m
-
-  18  /home/eslam/Documents/rokia/artisan:35
-      Illuminate\Foundation\Console\Kernel::handle()
-
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-
-      [2m+17 vendor frames [22m
-
-  18  /home/eslam/Documents/rokia/artisan:35
-      Illuminate\Foundation\Console\Kernel::handle()
-
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-
-   Error 
-
-  Class "Aws\Sqs\SqsClient" not found
-
-  at /home/eslam/Documents/rokia/vendor/laravel/framework/src/Illuminate/Queue/Connectors/SqsConnector.php:26
-     22▕             $config['credentials'] = Arr::only($config, ['key', 'secret', 'token']);
-     23▕         }
-     24▕ 
-     25▕         return new SqsQueue(
-  ➜  26▕             new SqsClient(
-     27▕                 Arr::except($config, ['token'])
-     28▕             ),
-     29▕             $config['queue'],
-     30▕             $config['prefix'] ?? '',
-
-      [2m+17 vendor frames [22m
-
-  18  /home/eslam/Documents/rokia/artisan:35
-      Illuminate\Foundation\Console\Kernel::handle()
-
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-
-      [2m+17 vendor frames [22m
-
-  18  /home/eslam/Documents/rokia/artisan:35
-      Illuminate\Foundation\Console\Kernel::handle()
-
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-
-      [2m+17 vendor frames [22m
-
-  18  /home/eslam/Documents/rokia/artisan:35
-      Illuminate\Foundation\Console\Kernel::handle()
-
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-
-      [2m+17 vendor frames [22m
-
-  18  /home/eslam/Documents/rokia/artisan:35
-      Illuminate\Foundation\Console\Kernel::handle()
-
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-
-   Error 
-
-  Class "Aws\Sqs\SqsClient" not found
-
-  at /home/eslam/Documents/rokia/vendor/laravel/framework/src/Illuminate/Queue/Connectors/SqsConnector.php:26
-     22▕             $config['credentials'] = Arr::only($config, ['key', 'secret', 'token']);
-     23▕         }
-     24▕ 
-     25▕         return new SqsQueue(
-  ➜  26▕             new SqsClient(
-     27▕                 Arr::except($config, ['token'])
-     28▕             ),
-     29▕             $config['queue'],
-     30▕             $config['prefix'] ?? '',
-
-      [2m+17 vendor frames [22m
-
-  18  /home/eslam/Documents/rokia/artisan:35
-      Illuminate\Foundation\Console\Kernel::handle()
-
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-
-   Error 
-
-  Class "Aws\Sqs\SqsClient" not found
-
-  at /home/eslam/Documents/rokia/vendor/laravel/framework/src/Illuminate/Queue/Connectors/SqsConnector.php:26
-     22▕             $config['credentials'] = Arr::only($config, ['key', 'secret', 'token']);
-     23▕         }
-     24▕ 
-     25▕         return new SqsQueue(
-  ➜  26▕             new SqsClient(
-     27▕                 Arr::except($config, ['token'])
-     28▕             ),
-     29▕             $config['queue'],
-     30▕             $config['prefix'] ?? '',
-
-   Error 
-
-  Class "Aws\Sqs\SqsClient" not found
-
-  at /home/eslam/Documents/rokia/vendor/laravel/framework/src/Illuminate/Queue/Connectors/SqsConnector.php:26
-
-   Error 
-     22▕             $config['credentials'] = Arr::only($config, ['key', 'secret', 'token']);
-     23▕         }
-     24▕ 
-     25▕         return new SqsQueue(
-  ➜  26▕             new SqsClient(
-     27▕                 Arr::except($config, ['token'])
-     28▕             ),
-     29▕             $config['queue'],
-     30▕             $config['prefix'] ?? '',
-
-
-   Error 
-
-  Class "Aws\Sqs\SqsClient" not found
-
-   Error 
-
-  Class "Aws\Sqs\SqsClient" not found
-
-  at /home/eslam/Documents/rokia/vendor/laravel/framework/src/Illuminate/Queue/Connectors/SqsConnector.php:26
-     22▕             $config['credentials'] = Arr::only($config, ['key', 'secret', 'token']);
-     23▕         }
-     24▕ 
-     25▕         return new SqsQueue(
-  ➜  26▕             new SqsClient(
-     27▕                 Arr::except($config, ['token'])
-     28▕             ),
-     29▕             $config['queue'],
-     30▕             $config['prefix'] ?? '',
-
-  at /home/eslam/Documents/rokia/vendor/laravel/framework/src/Illuminate/Queue/Connectors/SqsConnector.php:26
-  Class "Aws\Sqs\SqsClient" not found
-
-  at /home/eslam/Documents/rokia/vendor/laravel/framework/src/Illuminate/Queue/Connectors/SqsConnector.php:26
-     22▕             $config['credentials'] = Arr::only($config, ['key', 'secret', 'token']);
-     23▕         }
-     24▕ 
-     25▕         return new SqsQueue(
-  ➜  26▕             new SqsClient(
-     27▕                 Arr::except($config, ['token'])
-     28▕             ),
-     29▕             $config['queue'],
-     30▕             $config['prefix'] ?? '',
-
-   Error 
-
-  Class "Aws\Sqs\SqsClient" not found
-
-  at /home/eslam/Documents/rokia/vendor/laravel/framework/src/Illuminate/Queue/Connectors/SqsConnector.php:26
-     22▕             $config['credentials'] = Arr::only($config, ['key', 'secret', 'token']);
-     23▕         }
-     24▕ 
-     25▕         return new SqsQueue(
-  ➜  26▕             new SqsClient(
-     27▕                 Arr::except($config, ['token'])
-     28▕             ),
-     29▕             $config['queue'],
-     30▕             $config['prefix'] ?? '',
-     22▕             $config['credentials'] = Arr::only($config, ['key', 'secret', 'token']);
-     23▕         }
-     24▕ 
-     25▕         return new SqsQueue(
-  ➜  26▕             new SqsClient(
-     27▕                 Arr::except($config, ['token'])
-     28▕             ),
-     29▕             $config['queue'],
-     30▕             $config['prefix'] ?? '',
-
-   Error 
-
-  Class "Aws\Sqs\SqsClient" not found
-
-  at /home/eslam/Documents/rokia/vendor/laravel/framework/src/Illuminate/Queue/Connectors/SqsConnector.php:26
-     22▕             $config['credentials'] = Arr::only($config, ['key', 'secret', 'token']);
-     23▕         }
-     24▕ 
-     25▕         return new SqsQueue(
-  ➜  26▕             new SqsClient(
-     27▕                 Arr::except($config, ['token'])
-     28▕             ),
-     29▕             $config['queue'],
-     30▕             $config['prefix'] ?? '',
-
-   Error 
-
-  Class "Aws\Sqs\SqsClient" not found
-
-  at /home/eslam/Documents/rokia/vendor/laravel/framework/src/Illuminate/Queue/Connectors/SqsConnector.php:26
-     22▕             $config['credentials'] = Arr::only($config, ['key', 'secret', 'token']);
-     23▕         }
-     24▕ 
-     25▕         return new SqsQueue(
-  ➜  26▕             new SqsClient(
-     27▕                 Arr::except($config, ['token'])
-     28▕             ),
-     29▕             $config['queue'],
-     30▕             $config['prefix'] ?? '',
-
-      [2m+17 vendor frames [22m
-
-  18  /home/eslam/Documents/rokia/artisan:35
-      Illuminate\Foundation\Console\Kernel::handle()
-
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-
-      [2m+17 vendor frames [22m
-
-  18  /home/eslam/Documents/rokia/artisan:35
-      Illuminate\Foundation\Console\Kernel::handle()
-
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-
-      [2m+17 vendor frames [22m
-
-  18  /home/eslam/Documents/rokia/artisan:35
-      Illuminate\Foundation\Console\Kernel::handle()
-
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-
-      [2m+17 vendor frames [22m
-
-  18  /home/eslam/Documents/rokia/artisan:35
-      Illuminate\Foundation\Console\Kernel::handle()
-
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-
-      [2m+17 vendor frames [22m
-
-  18  /home/eslam/Documents/rokia/artisan:35
-      Illuminate\Foundation\Console\Kernel::handle()
-
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-
-      [2m+17 vendor frames [22m
-
-  18  /home/eslam/Documents/rokia/artisan:35
-      Illuminate\Foundation\Console\Kernel::handle()
-
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-
-      [2m+17 vendor frames [22m
-
-  18  /home/eslam/Documents/rokia/artisan:35
-      Illuminate\Foundation\Console\Kernel::handle()
-
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-
-      [2m+17 vendor frames [22m
-
-  18  /home/eslam/Documents/rokia/artisan:35
-      Illuminate\Foundation\Console\Kernel::handle()
-
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-
-   Error 
-
-  Class "Aws\Sqs\SqsClient" not found
-
-  at /home/eslam/Documents/rokia/vendor/laravel/framework/src/Illuminate/Queue/Connectors/SqsConnector.php:26
-     22▕             $config['credentials'] = Arr::only($config, ['key', 'secret', 'token']);
-     23▕         }
-     24▕ 
-     25▕         return new SqsQueue(
-  ➜  26▕             new SqsClient(
-     27▕                 Arr::except($config, ['token'])
-     28▕             ),
-     29▕             $config['queue'],
-     30▕             $config['prefix'] ?? '',
-
-   Error 
-
-  Class "Aws\Sqs\SqsClient" not found
-
-  at /home/eslam/Documents/rokia/vendor/laravel/framework/src/Illuminate/Queue/Connectors/SqsConnector.php:26
-     22▕             $config['credentials'] = Arr::only($config, ['key', 'secret', 'token']);
-     23▕         }
-     24▕ 
-     25▕         return new SqsQueue(
-  ➜  26▕             new SqsClient(
-     27▕                 Arr::except($config, ['token'])
-     28▕             ),
-     29▕             $config['queue'],
-     30▕             $config['prefix'] ?? '',
-
-   Error 
-
-  Class "Aws\Sqs\SqsClient" not found
-
-  at /home/eslam/Documents/rokia/vendor/laravel/framework/src/Illuminate/Queue/Connectors/SqsConnector.php:26
-     22▕             $config['credentials'] = Arr::only($config, ['key', 'secret', 'token']);
-     23▕         }
-     24▕ 
-     25▕         return new SqsQueue(
-  ➜  26▕             new SqsClient(
-     27▕                 Arr::except($config, ['token'])
-     28▕             ),
-     29▕             $config['queue'],
-     30▕             $config['prefix'] ?? '',
-
-   Error 
-
-  Class "Aws\Sqs\SqsClient" not found
-
-  at /home/eslam/Documents/rokia/vendor/laravel/framework/src/Illuminate/Queue/Connectors/SqsConnector.php:26
-     22▕             $config['credentials'] = Arr::only($config, ['key', 'secret', 'token']);
-     23▕         }
-     24▕ 
-     25▕         return new SqsQueue(
-  ➜  26▕             new SqsClient(
-     27▕                 Arr::except($config, ['token'])
-     28▕             ),
-     29▕             $config['queue'],
-     30▕             $config['prefix'] ?? '',
-
-   Error 
-
-  Class "Aws\Sqs\SqsClient" not found
-
-  at /home/eslam/Documents/rokia/vendor/laravel/framework/src/Illuminate/Queue/Connectors/SqsConnector.php:26
-     22▕             $config['credentials'] = Arr::only($config, ['key', 'secret', 'token']);
-     23▕         }
-     24▕ 
-     25▕         return new SqsQueue(
-  ➜  26▕             new SqsClient(
-     27▕                 Arr::except($config, ['token'])
-     28▕             ),
-     29▕             $config['queue'],
-     30▕             $config['prefix'] ?? '',
-
-   Error 
-
-  Class "Aws\Sqs\SqsClient" not found
-
-  at /home/eslam/Documents/rokia/vendor/laravel/framework/src/Illuminate/Queue/Connectors/SqsConnector.php:26
-     22▕             $config['credentials'] = Arr::only($config, ['key', 'secret', 'token']);
-     23▕         }
-     24▕ 
-     25▕         return new SqsQueue(
-  ➜  26▕             new SqsClient(
-     27▕                 Arr::except($config, ['token'])
-     28▕             ),
-     29▕             $config['queue'],
-     30▕             $config['prefix'] ?? '',
-
-   Error 
-
-  Class "Aws\Sqs\SqsClient" not found
-
-  at /home/eslam/Documents/rokia/vendor/laravel/framework/src/Illuminate/Queue/Connectors/SqsConnector.php:26
-     22▕             $config['credentials'] = Arr::only($config, ['key', 'secret', 'token']);
-     23▕         }
-     24▕ 
-     25▕         return new SqsQueue(
-  ➜  26▕             new SqsClient(
-     27▕                 Arr::except($config, ['token'])
-     28▕             ),
-     29▕             $config['queue'],
-     30▕             $config['prefix'] ?? '',
-
-   Error 
-
-  Class "Aws\Sqs\SqsClient" not found
-
-  at /home/eslam/Documents/rokia/vendor/laravel/framework/src/Illuminate/Queue/Connectors/SqsConnector.php:26
-     22▕             $config['credentials'] = Arr::only($config, ['key', 'secret', 'token']);
-     23▕         }
-     24▕ 
-     25▕         return new SqsQueue(
-  ➜  26▕             new SqsClient(
-     27▕                 Arr::except($config, ['token'])
-     28▕             ),
-     29▕             $config['queue'],
-     30▕             $config['prefix'] ?? '',
-
-      [2m+17 vendor frames [22m
-
-  18  /home/eslam/Documents/rokia/artisan:35
-      Illuminate\Foundation\Console\Kernel::handle()
-
-
-      [2m+17 vendor frames [22m
-
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-  18  /home/eslam/Documents/rokia/artisan:35
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-      Illuminate\Foundation\Console\Kernel::handle()
-
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-
-      [2m+17 vendor frames [22m
-
-  18  /home/eslam/Documents/rokia/artisan:35
-      Illuminate\Foundation\Console\Kernel::handle()
-
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-
-      [2m+17 vendor frames [22m
-
-  18  /home/eslam/Documents/rokia/artisan:35
-      Illuminate\Foundation\Console\Kernel::handle()
-
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-
-      [2m+17 vendor frames [22m
-
-  18  /home/eslam/Documents/rokia/artisan:35
-      Illuminate\Foundation\Console\Kernel::handle()
-
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-
-      [2m+17 vendor frames [22m
-
-  18  /home/eslam/Documents/rokia/artisan:35
-      Illuminate\Foundation\Console\Kernel::handle()
-
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-
-      [2m+17 vendor frames [22m
-
-  18  /home/eslam/Documents/rokia/artisan:35
-      Illuminate\Foundation\Console\Kernel::handle()
-
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-
-      [2m+17 vendor frames [22m
-
-  18  /home/eslam/Documents/rokia/artisan:35
-      Illuminate\Foundation\Console\Kernel::handle()
-
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-
-   Error 
-
-  Class "Aws\Sqs\SqsClient" not found
-
-  at /home/eslam/Documents/rokia/vendor/laravel/framework/src/Illuminate/Queue/Connectors/SqsConnector.php:26
-     22▕             $config['credentials'] = Arr::only($config, ['key', 'secret', 'token']);
-     23▕         }
-     24▕ 
-     25▕         return new SqsQueue(
-  ➜  26▕             new SqsClient(
-     27▕                 Arr::except($config, ['token'])
-     28▕             ),
-     29▕             $config['queue'],
-     30▕             $config['prefix'] ?? '',
-
-   Error 
-
-  Class "Aws\Sqs\SqsClient" not found
-
-  at /home/eslam/Documents/rokia/vendor/laravel/framework/src/Illuminate/Queue/Connectors/SqsConnector.php:26
-     22▕             $config['credentials'] = Arr::only($config, ['key', 'secret', 'token']);
-     23▕         }
-     24▕ 
-     25▕         return new SqsQueue(
-  ➜  26▕             new SqsClient(
-     27▕                 Arr::except($config, ['token'])
-     28▕             ),
-     29▕             $config['queue'],
-     30▕             $config['prefix'] ?? '',
-
-   Error 
-
-  Class "Aws\Sqs\SqsClient" not found
-
-  at /home/eslam/Documents/rokia/vendor/laravel/framework/src/Illuminate/Queue/Connectors/SqsConnector.php:26
-     22▕             $config['credentials'] = Arr::only($config, ['key', 'secret', 'token']);
-     23▕         }
-     24▕ 
-     25▕         return new SqsQueue(
-  ➜  26▕             new SqsClient(
-     27▕                 Arr::except($config, ['token'])
-     28▕             ),
-     29▕             $config['queue'],
-     30▕             $config['prefix'] ?? '',
-
-   Error 
-
-  Class "Aws\Sqs\SqsClient" not found
-
-  at /home/eslam/Documents/rokia/vendor/laravel/framework/src/Illuminate/Queue/Connectors/SqsConnector.php:26
-     22▕             $config['credentials'] = Arr::only($config, ['key', 'secret', 'token']);
-     23▕         }
-     24▕ 
-     25▕         return new SqsQueue(
-  ➜  26▕             new SqsClient(
-     27▕                 Arr::except($config, ['token'])
-     28▕             ),
-     29▕             $config['queue'],
-     30▕             $config['prefix'] ?? '',
-
-      [2m+17 vendor frames [22m
-
-  18  /home/eslam/Documents/rokia/artisan:35
-      Illuminate\Foundation\Console\Kernel::handle()
-
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-
-      [2m+17 vendor frames [22m
-
-  18  /home/eslam/Documents/rokia/artisan:35
-      Illuminate\Foundation\Console\Kernel::handle()
-
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-
-      [2m+17 vendor frames [22m
-
-  18  /home/eslam/Documents/rokia/artisan:35
-      Illuminate\Foundation\Console\Kernel::handle()
-
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-
-      [2m+17 vendor frames [22m
-
-  18  /home/eslam/Documents/rokia/artisan:35
-      Illuminate\Foundation\Console\Kernel::handle()
-
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-
-   Error 
-
-  Class "Aws\Sqs\SqsClient" not found
-
-
-  at /home/eslam/Documents/rokia/vendor/laravel/framework/src/Illuminate/Queue/Connectors/SqsConnector.php:26
-   Error 
-
-  Class "Aws\Sqs\SqsClient" not found
-
-  at /home/eslam/Documents/rokia/vendor/laravel/framework/src/Illuminate/Queue/Connectors/SqsConnector.php:26
-     22▕             $config['credentials'] = Arr::only($config, ['key', 'secret', 'token']);
-     23▕         }
-     24▕ 
-     25▕         return new SqsQueue(
-  ➜  26▕             new SqsClient(
-     27▕                 Arr::except($config, ['token'])
-     28▕             ),
-     29▕             $config['queue'],
-     30▕             $config['prefix'] ?? '',
-     22▕             $config['credentials'] = Arr::only($config, ['key', 'secret', 'token']);
-     23▕         }
-     24▕ 
-     25▕         return new SqsQueue(
-  ➜  26▕             new SqsClient(
-     27▕                 Arr::except($config, ['token'])
-     28▕             ),
-     29▕             $config['queue'],
-     30▕             $config['prefix'] ?? '',
-
-   Error 
-
-  Class "Aws\Sqs\SqsClient" not found
-
-  at /home/eslam/Documents/rokia/vendor/laravel/framework/src/Illuminate/Queue/Connectors/SqsConnector.php:26
-     22▕             $config['credentials'] = Arr::only($config, ['key', 'secret', 'token']);
-     23▕         }
-     24▕ 
-     25▕         return new SqsQueue(
-  ➜  26▕             new SqsClient(
-     27▕                 Arr::except($config, ['token'])
-     28▕             ),
-     29▕             $config['queue'],
-     30▕             $config['prefix'] ?? '',
-
-   Error 
-
-  Class "Aws\Sqs\SqsClient" not found
-
-  at /home/eslam/Documents/rokia/vendor/laravel/framework/src/Illuminate/Queue/Connectors/SqsConnector.php:26
-
-   Error 
-
-
-   Error 
-
-  Class "Aws\Sqs\SqsClient" not found
-     22▕             $config['credentials'] = Arr::only($config, ['key', 'secret', 'token']);
-     23▕         }
-     24▕ 
-     25▕         return new SqsQueue(
-  ➜  26▕             new SqsClient(
-     27▕                 Arr::except($config, ['token'])
-     28▕             ),
-     29▕             $config['queue'],
-     30▕             $config['prefix'] ?? '',
-
-  Class "Aws\Sqs\SqsClient" not found
-
-  at /home/eslam/Documents/rokia/vendor/laravel/framework/src/Illuminate/Queue/Connectors/SqsConnector.php:26
-  at /home/eslam/Documents/rokia/vendor/laravel/framework/src/Illuminate/Queue/Connectors/SqsConnector.php:26
-     22▕             $config['credentials'] = Arr::only($config, ['key', 'secret', 'token']);
-     23▕         }
-     24▕ 
-     25▕         return new SqsQueue(
-  ➜  26▕             new SqsClient(
-     27▕                 Arr::except($config, ['token'])
-     28▕             ),
-     29▕             $config['queue'],
-     30▕             $config['prefix'] ?? '',
-     22▕             $config['credentials'] = Arr::only($config, ['key', 'secret', 'token']);
-     23▕         }
-     24▕ 
-     25▕         return new SqsQueue(
-  ➜  26▕             new SqsClient(
-     27▕                 Arr::except($config, ['token'])
-     28▕             ),
-     29▕             $config['queue'],
-     30▕             $config['prefix'] ?? '',
-
-
-   Error 
-
-  Class "Aws\Sqs\SqsClient" not found
-
-   Error 
-  at /home/eslam/Documents/rokia/vendor/laravel/framework/src/Illuminate/Queue/Connectors/SqsConnector.php:26
-
-  Class "Aws\Sqs\SqsClient" not found
-
-  at /home/eslam/Documents/rokia/vendor/laravel/framework/src/Illuminate/Queue/Connectors/SqsConnector.php:26
-     22▕             $config['credentials'] = Arr::only($config, ['key', 'secret', 'token']);
-     23▕         }
-     24▕ 
-     25▕         return new SqsQueue(
-  ➜  26▕             new SqsClient(
-     27▕                 Arr::except($config, ['token'])
-     28▕             ),
-     29▕             $config['queue'],
-     30▕             $config['prefix'] ?? '',
-     22▕             $config['credentials'] = Arr::only($config, ['key', 'secret', 'token']);
-     23▕         }
-     24▕ 
-     25▕         return new SqsQueue(
-  ➜  26▕             new SqsClient(
-     27▕                 Arr::except($config, ['token'])
-     28▕             ),
-     29▕             $config['queue'],
-     30▕             $config['prefix'] ?? '',
-
-
-      [2m+17 vendor frames [22m
-
-  18  /home/eslam/Documents/rokia/artisan:35
-      Illuminate\Foundation\Console\Kernel::handle()
-
-      [2m+17 vendor frames [22m
-
-  18  /home/eslam/Documents/rokia/artisan:35
-      Illuminate\Foundation\Console\Kernel::handle()
-
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-
-      [2m+17 vendor frames [22m
-
-  18  /home/eslam/Documents/rokia/artisan:35
-      Illuminate\Foundation\Console\Kernel::handle()
-
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-
-      [2m+17 vendor frames [22m
-
-  18  /home/eslam/Documents/rokia/artisan:35
-      Illuminate\Foundation\Console\Kernel::handle()
-
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-
-      [2m+17 vendor frames [22m
-
-  18  /home/eslam/Documents/rokia/artisan:35
-      Illuminate\Foundation\Console\Kernel::handle()
-
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-
-      [2m+17 vendor frames [22m
-
-  18  /home/eslam/Documents/rokia/artisan:35
-      Illuminate\Foundation\Console\Kernel::handle()
-
-
-      [2m+17 vendor frames [22m
-
-  18  /home/eslam/Documents/rokia/artisan:35
-      Illuminate\Foundation\Console\Kernel::handle()
-
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-
-      [2m+17 vendor frames [22m
-
-  18  /home/eslam/Documents/rokia/artisan:35
-      Illuminate\Foundation\Console\Kernel::handle()
-
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-
-   Error 
-
-  Class "Aws\Sqs\SqsClient" not found
-
-  at /home/eslam/Documents/rokia/vendor/laravel/framework/src/Illuminate/Queue/Connectors/SqsConnector.php:26
-     22▕             $config['credentials'] = Arr::only($config, ['key', 'secret', 'token']);
-     23▕         }
-     24▕ 
-     25▕         return new SqsQueue(
-  ➜  26▕             new SqsClient(
-     27▕                 Arr::except($config, ['token'])
-     28▕             ),
-     29▕             $config['queue'],
-     30▕             $config['prefix'] ?? '',
-
-   Error 
-
-  Class "Aws\Sqs\SqsClient" not found
-
-  at /home/eslam/Documents/rokia/vendor/laravel/framework/src/Illuminate/Queue/Connectors/SqsConnector.php:26
-     22▕             $config['credentials'] = Arr::only($config, ['key', 'secret', 'token']);
-     23▕         }
-     24▕ 
-     25▕         return new SqsQueue(
-  ➜  26▕             new SqsClient(
-     27▕                 Arr::except($config, ['token'])
-     28▕             ),
-     29▕             $config['queue'],
-     30▕             $config['prefix'] ?? '',
-
-   Error 
-
-  Class "Aws\Sqs\SqsClient" not found
-
-   Error 
-
-
-  at /home/eslam/Documents/rokia/vendor/laravel/framework/src/Illuminate/Queue/Connectors/SqsConnector.php:26
-  Class "Aws\Sqs\SqsClient" not found
-
-  at /home/eslam/Documents/rokia/vendor/laravel/framework/src/Illuminate/Queue/Connectors/SqsConnector.php:26
-     22▕             $config['credentials'] = Arr::only($config, ['key', 'secret', 'token']);
-     23▕         }
-     24▕ 
-     25▕         return new SqsQueue(
-  ➜  26▕             new SqsClient(
-     27▕                 Arr::except($config, ['token'])
-     28▕             ),
-     29▕             $config['queue'],
-     30▕             $config['prefix'] ?? '',
-     22▕             $config['credentials'] = Arr::only($config, ['key', 'secret', 'token']);
-     23▕         }
-     24▕ 
-     25▕         return new SqsQueue(
-  ➜  26▕             new SqsClient(
-     27▕                 Arr::except($config, ['token'])
-     28▕             ),
-     29▕             $config['queue'],
-     30▕             $config['prefix'] ?? '',
-
-   Error 
-
-  Class "Aws\Sqs\SqsClient" not found
-
-  at /home/eslam/Documents/rokia/vendor/laravel/framework/src/Illuminate/Queue/Connectors/SqsConnector.php:26
-
-     22▕             $config['credentials'] = Arr::only($config, ['key', 'secret', 'token']);
-     23▕         }
-     24▕ 
-     25▕         return new SqsQueue(
-  ➜  26▕             new SqsClient(
-     27▕                 Arr::except($config, ['token'])
-     28▕             ),
-     29▕             $config['queue'],
-     30▕             $config['prefix'] ?? '',
-   Error 
-
-  Class "Aws\Sqs\SqsClient" not found
-
-  at /home/eslam/Documents/rokia/vendor/laravel/framework/src/Illuminate/Queue/Connectors/SqsConnector.php:26
-     22▕             $config['credentials'] = Arr::only($config, ['key', 'secret', 'token']);
-     23▕         }
-     24▕ 
-     25▕         return new SqsQueue(
-  ➜  26▕             new SqsClient(
-     27▕                 Arr::except($config, ['token'])
-     28▕             ),
-     29▕             $config['queue'],
-     30▕             $config['prefix'] ?? '',
-
-   Error 
-
-  Class "Aws\Sqs\SqsClient" not found
-
-
-  at /home/eslam/Documents/rokia/vendor/laravel/framework/src/Illuminate/Queue/Connectors/SqsConnector.php:26
-   Error 
-
-  Class "Aws\Sqs\SqsClient" not found
-
-     22▕             $config['credentials'] = Arr::only($config, ['key', 'secret', 'token']);
-     23▕         }
-     24▕ 
-     25▕         return new SqsQueue(
-  ➜  26▕             new SqsClient(
-     27▕                 Arr::except($config, ['token'])
-     28▕             ),
-     29▕             $config['queue'],
-     30▕             $config['prefix'] ?? '',
-  at /home/eslam/Documents/rokia/vendor/laravel/framework/src/Illuminate/Queue/Connectors/SqsConnector.php:26
-     22▕             $config['credentials'] = Arr::only($config, ['key', 'secret', 'token']);
-     23▕         }
-     24▕ 
-     25▕         return new SqsQueue(
-  ➜  26▕             new SqsClient(
-     27▕                 Arr::except($config, ['token'])
-     28▕             ),
-     29▕             $config['queue'],
-     30▕             $config['prefix'] ?? '',
-
-      [2m+17 vendor frames [22m
-
-      [2m+17 vendor frames [22m
-
-  18  /home/eslam/Documents/rokia/artisan:35
-      Illuminate\Foundation\Console\Kernel::handle()
-
-
-  18  /home/eslam/Documents/rokia/artisan:35
-      Illuminate\Foundation\Console\Kernel::handle()
-
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-      [2m+17 vendor frames [22m
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-
-  18  /home/eslam/Documents/rokia/artisan:35
-      Illuminate\Foundation\Console\Kernel::handle()
-
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-
-      [2m+17 vendor frames [22m
-
-  18  /home/eslam/Documents/rokia/artisan:35
-      Illuminate\Foundation\Console\Kernel::handle()
-
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-
-      [2m+17 vendor frames [22m
-
-  18  /home/eslam/Documents/rokia/artisan:35
-      Illuminate\Foundation\Console\Kernel::handle()
-
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-
-      [2m+17 vendor frames [22m
-
-  18  /home/eslam/Documents/rokia/artisan:35
-      Illuminate\Foundation\Console\Kernel::handle()
-
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-
-      [2m+17 vendor frames [22m
-
-  18  /home/eslam/Documents/rokia/artisan:35
-      Illuminate\Foundation\Console\Kernel::handle()
-
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-
-      [2m+17 vendor frames [22m
-
-  18  /home/eslam/Documents/rokia/artisan:35
-      Illuminate\Foundation\Console\Kernel::handle()
-
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-
-   Error 
-
-  Class "Aws\Sqs\SqsClient" not found
-
-  at /home/eslam/Documents/rokia/vendor/laravel/framework/src/Illuminate/Queue/Connectors/SqsConnector.php:26
-
-   Error 
-
-  Class "Aws\Sqs\SqsClient" not found
-     22▕             $config['credentials'] = Arr::only($config, ['key', 'secret', 'token']);
-     23▕         }
-     24▕ 
-     25▕         return new SqsQueue(
-  ➜  26▕             new SqsClient(
-     27▕                 Arr::except($config, ['token'])
-     28▕             ),
-     29▕             $config['queue'],
-     30▕             $config['prefix'] ?? '',
-
-  at /home/eslam/Documents/rokia/vendor/laravel/framework/src/Illuminate/Queue/Connectors/SqsConnector.php:26
-     22▕             $config['credentials'] = Arr::only($config, ['key', 'secret', 'token']);
-     23▕         }
-     24▕ 
-     25▕         return new SqsQueue(
-  ➜  26▕             new SqsClient(
-     27▕                 Arr::except($config, ['token'])
-     28▕             ),
-     29▕             $config['queue'],
-     30▕             $config['prefix'] ?? '',
-
-   Error 
-
-  Class "Aws\Sqs\SqsClient" not found
-
-  at /home/eslam/Documents/rokia/vendor/laravel/framework/src/Illuminate/Queue/Connectors/SqsConnector.php:26
-
-   Error 
-
-  Class "Aws\Sqs\SqsClient" not found
-
-     22▕             $config['credentials'] = Arr::only($config, ['key', 'secret', 'token']);
-     23▕         }
-     24▕ 
-     25▕         return new SqsQueue(
-  ➜  26▕             new SqsClient(
-     27▕                 Arr::except($config, ['token'])
-     28▕             ),
-     29▕             $config['queue'],
-     30▕             $config['prefix'] ?? '',
-  at /home/eslam/Documents/rokia/vendor/laravel/framework/src/Illuminate/Queue/Connectors/SqsConnector.php:26
-     22▕             $config['credentials'] = Arr::only($config, ['key', 'secret', 'token']);
-     23▕         }
-     24▕ 
-     25▕         return new SqsQueue(
-  ➜  26▕             new SqsClient(
-     27▕                 Arr::except($config, ['token'])
-     28▕             ),
-     29▕             $config['queue'],
-     30▕             $config['prefix'] ?? '',
-
-   Error 
-
-  Class "Aws\Sqs\SqsClient" not found
-
-
-  at /home/eslam/Documents/rokia/vendor/laravel/framework/src/Illuminate/Queue/Connectors/SqsConnector.php:26
-   Error 
-
-  Class "Aws\Sqs\SqsClient" not found
-
-     22▕             $config['credentials'] = Arr::only($config, ['key', 'secret', 'token']);
-     23▕         }
-     24▕ 
-     25▕         return new SqsQueue(
-  ➜  26▕             new SqsClient(
-     27▕                 Arr::except($config, ['token'])
-     28▕             ),
-     29▕             $config['queue'],
-     30▕             $config['prefix'] ?? '',
-  at /home/eslam/Documents/rokia/vendor/laravel/framework/src/Illuminate/Queue/Connectors/SqsConnector.php:26
-     22▕             $config['credentials'] = Arr::only($config, ['key', 'secret', 'token']);
-     23▕         }
-     24▕ 
-     25▕         return new SqsQueue(
-  ➜  26▕             new SqsClient(
-     27▕                 Arr::except($config, ['token'])
-     28▕             ),
-     29▕             $config['queue'],
-     30▕             $config['prefix'] ?? '',
-
-   Error 
-
-  Class "Aws\Sqs\SqsClient" not found
-
-  at /home/eslam/Documents/rokia/vendor/laravel/framework/src/Illuminate/Queue/Connectors/SqsConnector.php:26
-     22▕             $config['credentials'] = Arr::only($config, ['key', 'secret', 'token']);
-     23▕         }
-     24▕ 
-     25▕         return new SqsQueue(
-  ➜  26▕             new SqsClient(
-     27▕                 Arr::except($config, ['token'])
-     28▕             ),
-     29▕             $config['queue'],
-     30▕             $config['prefix'] ?? '',
-
-   Error 
-
-  Class "Aws\Sqs\SqsClient" not found
-
-  at /home/eslam/Documents/rokia/vendor/laravel/framework/src/Illuminate/Queue/Connectors/SqsConnector.php:26
-     22▕             $config['credentials'] = Arr::only($config, ['key', 'secret', 'token']);
-     23▕         }
-     24▕ 
-     25▕         return new SqsQueue(
-  ➜  26▕             new SqsClient(
-     27▕                 Arr::except($config, ['token'])
-     28▕             ),
-     29▕             $config['queue'],
-     30▕             $config['prefix'] ?? '',
-
-      [2m+17 vendor frames [22m
-
-  18  /home/eslam/Documents/rokia/artisan:35
-      Illuminate\Foundation\Console\Kernel::handle()
-
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-
-      [2m+17 vendor frames [22m
-
-  18  /home/eslam/Documents/rokia/artisan:35
-      Illuminate\Foundation\Console\Kernel::handle()
-
-
-      [2m+17 vendor frames [22m
-
-  18  /home/eslam/Documents/rokia/artisan:35
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-      Illuminate\Foundation\Console\Kernel::handle()
-
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-
-      [2m+17 vendor frames [22m
-
-  18  /home/eslam/Documents/rokia/artisan:35
-      Illuminate\Foundation\Console\Kernel::handle()
-
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-
-      [2m+17 vendor frames [22m
-
-  18  /home/eslam/Documents/rokia/artisan:35
-      Illuminate\Foundation\Console\Kernel::handle()
-
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-
-      [2m+17 vendor frames [22m
-
-  18  /home/eslam/Documents/rokia/artisan:35
-      Illuminate\Foundation\Console\Kernel::handle()
-
-
-      [2m+17 vendor frames [22m
-
-  18  /home/eslam/Documents/rokia/artisan:35
-      Illuminate\Foundation\Console\Kernel::handle()
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-
-      [2m+17 vendor frames [22m
-
-  18  /home/eslam/Documents/rokia/artisan:35
-      Illuminate\Foundation\Console\Kernel::handle()
-
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-  2024-03-01 20:35:40 App\Jobs\SendRemindersFcm  2024-03-01 20:35:40 App\Jobs\SendRemindersFcm ...................... ...................... RUNNING
- RUNNING
-  2024-03-01 20:35:41 App\Jobs\SendRemindersFcm  2024-03-01 20:35:41 App\Jobs\SendRemindersFcm ...................... 1s DONE
- ...................... 1s DONE
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
-  2024-03-01 20:50:41 App\Jobs\SendRemindersFcm ...................... RUNNING
-  2024-03-01 20:50:41 App\Jobs\SendRemindersFcm ...................... RUNNING
-  2024-03-01 20:50:41 App\Jobs\SendRemindersFcm ...................... RUNNING
-  2024-03-01 20:50:41 App\Jobs\SendRemindersFcm ...................... RUNNING
-  2024-03-01 20:50:42 App\Jobs\SendRemindersFcm ................  2024-03-01 20:50:42 App\Jobs\SendRemindersFcm ................ 811.86ms DONE
- 843.07ms DONE
-  2024-03-01 20:50:42 App\Jobs\SendRemindersFcm ................  2024-03-01 20:50:42 App\Jobs\SendRemindersFcm 828.84ms DONE
- ................ 827.43ms DONE
-  2024-03-01 21:05:43 App\Jobs\SendRemindersFcm  2024-03-01 21:05:43 App\Jobs\SendRemindersFcm ...................... ...................... RUNNING
- RUNNING
-  2024-03-01 21:05:44 App\Jobs\SendRemindersFcm ......................  2024-03-01 21:05:44 App\Jobs\SendRemindersFcm RUNNING
- ...................... RUNNING
-  2024-03-01 21:05:44 App\Jobs\SendRemindersFcm ................ 862.63ms DONE
-  2024-03-01 21:05:44 App\Jobs\SendRemindersFcm  2024-03-01 21:05:44 App\Jobs\SendRemindersFcm ................ 989.89ms DONE
- ................ 990.75ms DONE
-  2024-03-01 21:05:44 App\Jobs\SendRemindersFcm ................ 878.70ms DONE
-  2024-03-01 21:20:44 App\Jobs\SendRemindersFcm  2024-03-01 21:20:44 App\Jobs\SendRemindersFcm ...................... ......................  2024-03-01 21:20:44 App\Jobs\SendRemindersFcm RUNNING
- RUNNING
- ......................  2024-03-01 21:20:44 App\Jobs\SendRemindersFcm ...................... RUNNING
- RUNNING
-  2024-03-01 21:20:44 App\Jobs\SendRemindersFcm  2024-03-01 21:20:44 App\Jobs\SendRemindersFcm ...................... ...................... RUNNING
- RUNNING
-  2024-03-01 21:20:44 App\Jobs\SendRemindersFcm .................  2024-03-01 21:20:44 App\Jobs\SendRemindersFcm 27.88ms  2024-03-01 21:20:44 App\Jobs\SendRemindersFcm FAIL
-  2024-03-01 21:20:44 App\Jobs\SendRemindersFcm ................. ................. ................. 30.22ms FAIL
- 26.58ms FAIL
- 24.04ms FAIL
-  2024-03-01 21:20:44 App\Jobs\SendRemindersFcm .................  2024-03-01 21:20:44 App\Jobs\SendRemindersFcm 18.53ms FAIL
- ................. 17.97ms FAIL
-  2024-03-01 21:20:44 App\Jobs\SendRemindersFcm ...................... RUNNING
-  2024-03-01 21:20:44 App\Jobs\SendRemindersFcm ...................... RUNNING
-  2024-03-01 21:20:44 App\Jobs\SendRemindersFcm .................. 9.98ms FAIL
-  2024-03-01 21:20:44 App\Jobs\SendRemindersFcm .................. 9.38ms FAIL
 Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
 Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+  2024-03-02 15:41:06 App\Jobs\SendRemindersFcm ...................... RUNNING
+1709356260 // app/Jobs/SendRemindersFcm.php:40
 Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
 Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
 Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
 Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+  2024-03-02 15:42:37 App\Jobs\SendRemindersFcm ...................... RUNNING
+1709356260 // app/Jobs/SendRemindersFcm.php:40
 Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
 Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
 Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
 Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+  2024-03-02 15:44:07 App\Jobs\SendRemindersFcm ...................... RUNNING
+  2024-03-02 15:44:07 App\Jobs\SendRemindersFcm ................. 25.24ms FAIL
 Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
 Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
 Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
 Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
 Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
 Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+  2024-03-02 16:48:51 App\Jobs\SendRemindersFcm ...................... RUNNING
+  2024-03-02 16:48:52 App\Jobs\SendRemindersFcm ................ 817.41ms DONE
+  2024-03-02 16:49:04 App\Jobs\SendRemindersFcm ...................... RUNNING
+  2024-03-02 16:49:16 App\Jobs\SendRemindersFcm ..................... 11s DONE
+  2024-03-02 16:49:33 App\Jobs\SendRemindersFcm ...................... RUNNING
+  2024-03-02 16:49:34 App\Jobs\SendRemindersFcm ................ 696.12ms DONE
+  2024-03-02 16:51:41 App\Jobs\SendRemindersFcm ...................... RUNNING
 Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+  2024-03-02 16:53:11 App\Jobs\SendRemindersFcm ...................... RUNNING
+  2024-03-02 16:53:11 App\Jobs\SendRemindersFcm ................ 657.49ms DONE
+  2024-03-02 16:55:32 App\Jobs\SendRemindersFcm ...................... RUNNING
+  2024-03-02 16:55:33 App\Jobs\SendRemindersFcm ................ 619.90ms DONE
+  2024-03-02 16:55:43 App\Jobs\SendRemindersFcm ...................... RUNNING
+  2024-03-02 16:55:44 App\Jobs\SendRemindersFcm ................ 852.59ms DONE
+  2024-03-02 16:55:45 App\Jobs\SendRemindersFcm ...................... RUNNING
+  2024-03-02 16:55:48 App\Jobs\SendRemindersFcm ...................... 3s DONE
+  2024-03-02 16:55:54 App\Jobs\SendRemindersFcm ...................... RUNNING
+  2024-03-02 16:55:57 App\Jobs\SendRemindersFcm ...................... 2s DONE
+  2024-03-02 16:56:21 App\Jobs\SendRemindersFcm ...................... RUNNING
+  2024-03-02 16:56:24 App\Jobs\SendRemindersFcm ...................... 3s DONE
+  2024-03-02 16:57:00 App\Jobs\SendRemindersFcm ...................... RUNNING
+  2024-03-02 16:57:01 App\Jobs\SendRemindersFcm ................ 540.96ms DONE
+  2024-03-02 17:20:59 App\Jobs\SendRemindersFcm ...................... RUNNING
+  2024-03-02 17:21:00 App\Jobs\SendRemindersFcm ................ 985.92ms DONE
 Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
 Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
 Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
@@ -2262,6 +106,12 @@ Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:900
 Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
 Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
 Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+  2024-03-02 17:23:58 App\Jobs\SendRemindersFcm ...................... RUNNING
+  2024-03-02 17:23:58 App\Jobs\SendRemindersFcm ................ 601.12ms DONE
+  2024-03-02 17:25:53 App\Jobs\SendRemindersFcm ...................... RUNNING
+  2024-03-02 17:25:54 App\Jobs\SendRemindersFcm ................ 614.49ms DONE
+  2024-03-02 17:26:13 App\Jobs\SendRemindersFcm ...................... RUNNING
+  2024-03-02 17:26:14 App\Jobs\SendRemindersFcm ................ 669.62ms DONE
 Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
 Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
 Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
@@ -2275,3 +125,544 @@ Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:900
 Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
 Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
 Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+  2024-03-02 17:27:20 App\Jobs\SendRemindersFcm ...................... RUNNING
+  2024-03-02 17:27:21 App\Jobs\SendRemindersFcm ................ 424.70ms DONE
+  2024-03-02 17:28:20 App\Jobs\SendRemindersFcm ...................... RUNNING
+  2024-03-02 17:28:21 App\Jobs\SendRemindersFcm ................ 693.66ms DONE
+  2024-03-02 17:57:58 App\Jobs\SendRemindersFcm ...................... RUNNING
+  2024-03-02 17:57:59 App\Jobs\SendRemindersFcm ................ 720.41ms DONE
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+  2024-03-02 18:11:32 App\Jobs\SendRemindersFcm ...................... RUNNING
+  2024-03-02 18:11:33 App\Jobs\SendRemindersFcm ................ 720.72ms DONE
+  2024-03-02 18:12:58 App\Jobs\SendRemindersFcm ...................... RUNNING
+  2024-03-02 18:12:59 App\Jobs\SendRemindersFcm ................ 599.18ms DONE
+  2024-03-02 18:19:51 App\Jobs\SendRemindersFcm ...................... RUNNING
+  2024-03-02 18:19:52 App\Jobs\SendRemindersFcm ................ 652.52ms DONE
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+  2024-03-02 18:20:52 App\Jobs\SendRemindersFcm ...................... RUNNING
+  2024-03-02 18:20:53 App\Jobs\SendRemindersFcm ................ 917.34ms DONE
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+  2024-03-02 18:22:00 App\Jobs\SendRemindersFcm ...................... RUNNING
+  2024-03-02 18:22:00 App\Jobs\SendRemindersFcm ................ 563.92ms DONE
+  2024-03-02 18:22:36 App\Jobs\SendRemindersFcm ...................... RUNNING
+  2024-03-02 18:22:36 App\Jobs\SendRemindersFcm ................ 746.42ms DONE
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+  2024-03-02 18:26:52 App\Jobs\SendRemindersFcm ...................... RUNNING
+  2024-03-02 18:26:54 App\Jobs\SendRemindersFcm ...................... 1s DONE
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+  2024-03-02 18:27:34 App\Jobs\SendRemindersFcm ...................... RUNNING
+  2024-03-02 18:27:35 App\Jobs\SendRemindersFcm ................ 803.18ms DONE
+  2024-03-02 18:27:59 App\Jobs\SendRemindersFcm ...................... RUNNING
+  2024-03-02 18:28:00 App\Jobs\SendRemindersFcm ................ 931.32ms DONE
+  2024-03-02 18:28:56 App\Jobs\SendRemindersFcm ...................... RUNNING
+  2024-03-02 18:28:56 App\Jobs\SendRemindersFcm ...................... RUNNING
+  2024-03-02 18:28:57 App\Jobs\SendRemindersFcm ................ 688.55ms DONE
+  2024-03-02 18:28:57 App\Jobs\SendRemindersFcm ................ 523.81ms DONE
+  2024-03-02 18:29:11 App\Jobs\SendRemindersFcm ...................... RUNNING
+  2024-03-02 18:29:12 App\Jobs\SendRemindersFcm ................ 587.90ms DONE
+  2024-03-02 18:29:12 App\Jobs\SendRemindersFcm ...................... RUNNING
+  2024-03-02 18:29:12 App\Jobs\SendRemindersFcm ................ 155.32ms DONE
+  2024-03-02 18:29:20 App\Jobs\SendRemindersFcm ...................... RUNNING
+  2024-03-02 18:29:21 App\Jobs\SendRemindersFcm ................ 764.61ms DONE
+  2024-03-02 18:29:21 App\Jobs\SendRemindersFcm ...................... RUNNING
+  2024-03-02 18:29:21 App\Jobs\SendRemindersFcm ................ 232.39ms DONE
+  2024-03-02 18:29:53 App\Jobs\SendRemindersFcm ...................... RUNNING
+  2024-03-02 18:29:54 App\Jobs\SendRemindersFcm ...................... 1s DONE
+  2024-03-02 18:30:27 App\Jobs\SendRemindersFcm ...................... RUNNING
+  2024-03-02 18:30:27 App\Jobs\SendRemindersFcm ................ 273.71ms DONE
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+  2024-03-02 18:31:18 App\Jobs\SendRemindersFcm ...................... RUNNING
+  2024-03-02 18:31:18 App\Jobs\SendRemindersFcm ................ 807.56ms DONE
+  2024-03-02 18:31:18 App\Jobs\SendRemindersFcm ...................... RUNNING
+  2024-03-02 18:31:19 App\Jobs\SendRemindersFcm ................ 293.41ms DONE
+  2024-03-02 18:32:28 App\Jobs\SendRemindersFcm ...................... RUNNING
+  2024-03-02 18:32:28 App\Jobs\SendRemindersFcm ................. 16.58ms DONE
+  2024-03-02 18:32:28 App\Jobs\SendRemindersFcm ...................... RUNNING
+  2024-03-02 18:32:28 App\Jobs\SendRemindersFcm .................. 9.62ms FAIL
+  2024-03-02 18:32:28 App\Jobs\SendRemindersFcm ...................... RUNNING
+  2024-03-02 18:32:28 App\Jobs\SendRemindersFcm ................. 10.79ms FAIL
+  2024-03-02 18:32:28 App\Jobs\SendRemindersFcm ...................... RUNNING
+  2024-03-02 18:32:28 App\Jobs\SendRemindersFcm .................. 7.97ms FAIL
+  2024-03-02 18:33:15 App\Jobs\SendRemindersFcm ...................... RUNNING
+  2024-03-02 18:33:15 App\Jobs\SendRemindersFcm ................. 16.95ms DONE
+  2024-03-02 18:33:16 App\Jobs\SendRemindersFcm ...................... RUNNING
+  2024-03-02 18:33:16 App\Jobs\SendRemindersFcm ................. 15.49ms DONE
+  2024-03-02 18:33:45 App\Jobs\SendRemindersFcm ...................... RUNNING
+  2024-03-02 18:33:45 App\Jobs\SendRemindersFcm ................. 51.63ms DONE
+  2024-03-02 18:33:45 App\Jobs\SendRemindersFcm ...................... RUNNING
+  2024-03-02 18:33:45 App\Jobs\SendRemindersFcm ................. 43.94ms DONE
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+  2024-03-02 18:34:16 App\Jobs\SendRemindersFcm ...................... RUNNING
+  2024-03-02 18:34:16 App\Jobs\SendRemindersFcm ................. 56.96ms DONE
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+  2024-03-02 18:34:32 App\Jobs\SendRemindersFcm ...................... RUNNING
+  2024-03-02 18:34:32 App\Jobs\SendRemindersFcm ................. 58.54ms DONE
+  2024-03-02 18:34:34 App\Jobs\SendRemindersFcm ...................... RUNNING
+  2024-03-02 18:34:35 App\Jobs\SendRemindersFcm ................. 74.57ms DONE
+  2024-03-02 18:34:47 App\Jobs\SendRemindersFcm ...................... RUNNING
+  2024-03-02 18:34:47 App\Jobs\SendRemindersFcm ................. 78.00ms DONE
+  2024-03-02 18:37:20 App\Jobs\SendRemindersFcm ...................... RUNNING
+  2024-03-02 18:37:20 App\Jobs\SendRemindersFcm ................. 24.67ms DONE
+  2024-03-02 18:37:23 App\Jobs\SendRemindersFcm ...................... RUNNING
+  2024-03-02 18:37:23 App\Jobs\SendRemindersFcm ................. 20.96ms DONE
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+  2024-03-02 18:44:06 App\Jobs\SendRemindersFcm ...................... RUNNING
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+  2024-03-02 18:44:07 App\Jobs\SendRemindersFcm ................ 814.48ms DONE
+  2024-03-02 18:44:52 App\Jobs\SendRemindersFcm ...................... RUNNING
+  2024-03-02 18:44:53 App\Jobs\SendRemindersFcm ................ 816.30ms DONE
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+  2024-03-02 18:47:04 App\Jobs\SendRemindersFcm ...................... RUNNING
+  2024-03-02 18:47:05 App\Jobs\SendRemindersFcm ................ 826.69ms DONE
+  2024-03-02 18:49:08 App\Jobs\SendRemindersFcm ...................... RUNNING
+  2024-03-02 18:49:08 App\Jobs\SendRemindersFcm ................ 487.76ms DONE
+  2024-03-02 19:46:24 App\Jobs\SendRemindersFcm ...................... RUNNING
+  2024-03-02 19:46:24 App\Jobs\SendRemindersFcm ................ 787.86ms DONE
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+  2024-03-02 19:48:47 App\Jobs\SendRemindersFcm ...................... RUNNING
+  2024-03-02 19:48:48 App\Jobs\SendRemindersFcm ................ 621.83ms DONE
+  2024-03-02 20:16:09 App\Jobs\SendRemindersFcm ...................... RUNNING
+  2024-03-02 20:16:09 App\Jobs\SendRemindersFcm ................ 649.41ms DONE
+  2024-03-02 20:18:00 App\Jobs\SendRemindersFcm ...................... RUNNING
+  2024-03-02 20:18:00 App\Jobs\SendRemindersFcm ................ 591.52ms DONE
+  2024-03-02 20:18:10 App\Jobs\SendRemindersFcm ...................... RUNNING
+  2024-03-02 20:18:10 App\Jobs\SendRemindersFcm ................ 475.47ms DONE
+  2024-03-02 20:18:21 App\Jobs\SendRemindersFcm ...................... RUNNING
+  2024-03-02 20:18:21 App\Jobs\SendRemindersFcm ................ 477.66ms DONE
+  2024-03-02 20:20:00 App\Jobs\SendRemindersFcm ...................... RUNNING
+  2024-03-02 20:20:01 App\Jobs\SendRemindersFcm ................ 563.74ms DONE
