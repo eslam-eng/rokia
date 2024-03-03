@@ -29,6 +29,7 @@ class SendRemindersCommand extends Command
      */
     public function handle()
     {
+        logger('you are in send reminder command');
         $now = Carbon::now(); // Get current date
 
         $clientsHasTherapistPlan = User::query()
@@ -50,18 +51,18 @@ class SendRemindersCommand extends Command
                         // Define the provided time
                         $otherDate = Carbon::parse("$rozama->time")->format('H:i:s');
 
-// Get the current time
+                        // Get the current time
                         $now = Carbon::now()->format('H:i:s');
 
-// Convert both times to Carbon instances with timestamps
+                        // Convert both times to Carbon instances with timestamps
                         $otherTime = Carbon::createFromFormat('H:i:s', $otherDate);
                         $currentTime = Carbon::createFromFormat('H:i:s', $now);
 
-// Calculate the difference in seconds
+                        // Calculate the difference in seconds
                         $diffInSecs = $currentTime->diffInSeconds($otherTime);
                         logger()->info('delay in seconds : ' . $diffInSecs);
                         dispatch(new SendRemindersFcm(reminder: $rozama, client: $client))
-                            ->delay($diffInSecs);
+                            ->delay($diffInSecs+60);
                     });
             }
         }
