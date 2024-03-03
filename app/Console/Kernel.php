@@ -12,12 +12,10 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule): void
     {
+        logger('schedul run sucess every minute');
         $schedule->command('queue:work --stop-when-empty')->everyMinute();
         $schedule->command('queue:restart')->everyFiveMinutes();
         $schedule->command('send-reminders')->dailyAt('9:00');
-
-        logger('schedul run sucess every minute');
-
     }
 
     /**
