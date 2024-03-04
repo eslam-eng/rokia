@@ -41,9 +41,10 @@ class TherapistScheduleController extends Controller
     public function store(TherapistSceduleRequest $request)
     {
         try {
+            $therapist = auth()->guard('api_therapist')->user();
             $therapistSceduleDTO = TherapistScheduleDTO::fromRequest($request);
-            $therapistSceduleDTO->therapist_id = auth()->guard('api_therapist')->id();
-            $this->therapistScheduleService->store(therapistScheduleDTO: $therapistSceduleDTO);
+            $therapistSceduleDTO->therapist_id = $therapist->id;
+            $this->therapistScheduleService->store(therapistScheduleDTO: $therapistSceduleDTO,therapist: $therapist);
             return apiResponse(message: __('app.general.success_operation'));
         } catch (ValidationException $exception) {
             $mappedErrors = transformValidationErrors($exception->errors());
