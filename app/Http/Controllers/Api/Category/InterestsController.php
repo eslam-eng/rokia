@@ -19,6 +19,4 @@ class InterestsController extends Controller
         $categories = $this->interestService->getAll(filters: $filters);
         return InterestsResource::collection($categories);
     }
-
-
 }
