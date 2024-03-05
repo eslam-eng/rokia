@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\Appointment\BookAppointmentController;
 use App\Http\Controllers\Api\Auth\AuthTherapistController;
+use App\Http\Controllers\Api\Category\InterestsController;
 use App\Http\Controllers\Api\Invoice\InvoicesController;
 use App\Http\Controllers\Api\Lecture\LectureController;
 use App\Http\Controllers\Api\NotificationController;
@@ -88,6 +89,7 @@ Route::group(['middleware' => 'auth:api_therapist'], function () {
         Route::apiResource('booked-appointments', BookAppointmentController::class)->only('index');
 
         Route::apiResource('invoices', InvoicesController::class);
+        Route::get('interests', InterestsController::class);
 
         Route::group(['prefix' => 'booked-appointments/{book_appointment}'],function (){
             Route::post('approve',[BookAppointmentController::class,'changeToWatingForPaid']);

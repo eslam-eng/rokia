@@ -67,6 +67,6 @@ class InterestService extends BaseService
 
     public function getAll(array $filters = []): \Illuminate\Database\Eloquent\Collection|array
     {
-        return $this->getQuery($filters)->get();
+        return $this->getQuery($filters)->withCount(['rozmanas'=>fn($query)=>$query->where('therapist_id',$filters['therapist_id'])])->get();
     }
 }

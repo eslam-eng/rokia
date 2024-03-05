@@ -1442,7 +1442,7 @@ return array(
     'Database\\Factories\\TherapistScheduleFactory' => $baseDir . '/database/factories/TherapistScheduleFactory.php',
     'Database\\Factories\\UserFactory' => $baseDir . '/database/factories/UserFactory.php',
     'Database\\Seeders\\BookAppointmentsTableSeeder' => $baseDir . '/database/seeders/BookAppointmentsTableSeeder.php',
-    'Database\\Seeders\\ClientInterestsTableSeeder' => $baseDir . '/database/seeders/ClientInterestsTableSeeder.php',
+    'Database\\Seeders\\TherapistPlansInterestsTableSeeder' => $baseDir . '/database/seeders/ClientInterestsTableSeeder.php',
     'Database\\Seeders\\ClientPlansSubscriptionTableSeeder' => $baseDir . '/database/seeders/ClientPlansSubscriptionTableSeeder.php',
     'Database\\Seeders\\DatabaseSeeder' => $baseDir . '/database/seeders/DatabaseSeeder.php',
     'Database\\Seeders\\InterestsTableSeeder' => $baseDir . '/database/seeders/InterestsTableSeeder.php',

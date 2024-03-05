@@ -9,5 +9,5 @@ class ClientPlanSubscription extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['client_id','therapist_id','therapist_plan_id','start_date','end_date','price'];
+    protected $fillable = ['client_id','therapist_id','therapist_plan_id','rozmana_number','price','status'];
 }

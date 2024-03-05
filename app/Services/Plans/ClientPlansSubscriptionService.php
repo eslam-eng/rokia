@@ -4,17 +4,20 @@ namespace App\Services\Plans;
 
 use App\DataTransferObjects\TherapistPlans\TherapistPlansDTO;
 use App\Exceptions\NotFoundException;
+use App\Filters\ClientPlansSubscriptionFilter;
 use App\Filters\TherapistPlansFilter;
+use App\Models\ClientPlanSubscription;
 use App\Models\TherapistPlan;
 use App\Services\BaseService;
+use App\Services\RozmanaService;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 
-class TherapistPlansService extends BaseService
+class ClientPlansSubscriptionService extends BaseService
 {
 
-    public function __construct(protected TherapistPlan $model)
+    public function __construct(protected ClientPlanSubscription $model,public RozmanaService $rozmanaService)
     {
 
     }
@@ -27,7 +30,7 @@ class TherapistPlansService extends BaseService
     public function getQuery(?array $filters = []): ?Builder
     {
         return parent::getQuery($filters)
-            ->when(!empty($filters), fn(Builder $builder) => $builder->filter(new TherapistPlansFilter($filters)));
+            ->when(!empty($filters), fn(Builder $builder) => $builder->filter(new ClientPlansSubscriptionFilter($filters)));
     }
 
 
@@ -82,5 +85,10 @@ class TherapistPlansService extends BaseService
     public function getAll(array $filters = []): \Illuminate\Database\Eloquent\Collection|array
     {
         return $this->getQuery($filters)->get();
+    }
+
+    public function getNotificationForClientByTherapistPlan(TherapistPlan $therapistPlan)
+    {
+
     }
 }

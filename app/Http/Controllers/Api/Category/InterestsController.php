@@ -16,7 +16,8 @@ class InterestsController extends Controller
     public function __invoke()
     {
         $filters = ['status'=>ActivationStatus::ACTIVE->value];
-        $categories = $this->interestService->getAll(filters: $filters);
-        return InterestsResource::collection($categories);
+        $filters['therapist_id'] = auth()->guard('api_therapist')->id();
+        $interests = $this->interestService->getAll(filters: $filters);
+        return InterestsResource::collection($interests);
     }
 }

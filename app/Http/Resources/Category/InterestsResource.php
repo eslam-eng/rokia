@@ -16,7 +16,8 @@ class InterestsResource extends JsonResource
     {
         return [
             'id'=>$this->id,
-            'name'=>$this->name
+            'name'=>$this->name,
+            'roznam_count'=>$this->rozmanas_count
         ];
     }
 }

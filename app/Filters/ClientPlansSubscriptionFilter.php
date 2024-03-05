@@ -4,7 +4,7 @@ namespace App\Filters;
 
 use App\Abstracts\QueryFilter;
 
-class InterestsFilter extends QueryFilter
+class ClientPlansSubscriptionFilter extends QueryFilter
 {
 
     public function __construct($params = array())
@@ -12,10 +12,14 @@ class InterestsFilter extends QueryFilter
         parent::__construct($params);
     }
 
+    public function therapist_id($term)
+    {
+        return $this->builder->where('therapist_id', $term);
+    }
+
     public function status($term)
     {
         return $this->builder->where('status', $term);
     }
-
 
 }

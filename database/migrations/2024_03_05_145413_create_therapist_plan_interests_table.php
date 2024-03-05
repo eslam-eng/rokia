@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Interest;
+use App\Models\TherapistPlan;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -11,10 +13,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('client_interests', function (Blueprint $table) {
+        Schema::create('therapist_plan_interests', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(\App\Models\User::class,'client_id')->constrained('users')->cascadeOnDelete();
-            $table->foreignIdFor(\App\Models\Interest::class)->constrained('interests');
+            $table->foreignIdFor(TherapistPlan::class)->constrained('therapist_plans')->cascadeOnDelete();
+            $table->foreignIdFor(Interest::class)->constrained('interests')->cascadeOnDelete();
             $table->timestamps();
         });
     }
@@ -24,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('client_interests');
+        Schema::dropIfExists('therapist_plan_interests');
     }
 };

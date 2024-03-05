@@ -75,7 +75,6 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     });
 
     Route::get('sliders', SliderController::class);
-    Route::get('interests', InterestsController::class);
     Route::get('plans', [TherapistPlansController::class,'getPlansForClients']);
     Route::get('therapist/{therapist}/schedule',[TherapistScheduleController::class,'getScheduleForTherapist']);
     Route::post('therapist/apointments/schedule',[TherapistScheduleController::class,'getScheduleForTherapist']);

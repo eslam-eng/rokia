@@ -14,6 +14,8 @@ use App\Services\RozmanaService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Validation\ValidationException;
+use Mockery\Exception;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class RozmanaController extends Controller
 {
@@ -30,14 +32,14 @@ class RozmanaController extends Controller
      */
     public function index(Request $request)
     {
-        $filters = array_filter($request->get('filters', []), function ($value) {
+        $filters = array_filter($request->all(), function ($value) {
             return ($value !== null && $value !== false && $value !== '');
         });
-        $auth_id = auth()->id();
+        $auth_id = auth()->guard('api_therapist')->id();
         $filters['therapist_id'] = $auth_id;
         $allRozmana = $this->rozmanaService->paginate(filters: $filters);
         $rozmanCount = $this->rozmanaService->getQuery(['therapist_id'=>$auth_id])->count();
-        return RozmanaResource::collection($allRozmana)->additional(['total_rozmana' => $rozmanCount]);;
+        return RozmanaResource::collection($allRozmana)->additional(['total_rozmana' => $rozmanCount]);
     }
 
     /**
@@ -76,6 +78,18 @@ class RozmanaController extends Controller
             return apiResponse(message: __('app.rozmana.rozmana_updated_successfully'));
         } catch (\Exception $exception) {
             return apiResponse(message: $exception, code: 500);
+        }
+    }
+
+    public function changeStatus($id)
+    {
+        try {
+            $this->rozmanaService->changeStatus(rozmana: $id);
+            return apiResponse(message: __('app.general.success_operation'));
+        } catch (NotFoundHttpException $exception) {
+            return apiResponse(message: __('app.rozmana.rozmana_not_fount'), code: 404);
+        } catch (Exception $exception) {
+            return apiResponse(message: $exception->getMessage(), code: 500);
         }
     }
 

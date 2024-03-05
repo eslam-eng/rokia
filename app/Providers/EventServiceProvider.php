@@ -2,8 +2,10 @@
 
 namespace App\Providers;
 
+use App\Events\ClientPlan\ClientPlanUpdated;
 use App\Events\PushNotificationEvent;
 use App\Events\TherapistInvoice\TherapistInvoiceHandler;
+use App\Listeners\ClientPlan\CreateClientNotification;
 use App\Listeners\HandleTherapistInvoice;
 use App\Listeners\SendPushNotification;
 use Illuminate\Auth\Events\Registered;
@@ -25,6 +27,9 @@ class EventServiceProvider extends ServiceProvider
 
         TherapistInvoiceHandler::class => [
             HandleTherapistInvoice::class,
+        ],
+        ClientPlanUpdated::class => [
+            CreateClientNotification::class,
         ],
 
     ];

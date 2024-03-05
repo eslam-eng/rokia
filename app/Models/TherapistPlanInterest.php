@@ -5,10 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class ClientInterest extends Model
+class TherapistPlanInterest extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['client_id','interest_id'];
-
+    protected $fillable = ['therapist_plan_id','interest_id'];
 }

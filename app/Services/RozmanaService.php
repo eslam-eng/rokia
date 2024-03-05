@@ -92,8 +92,11 @@ class RozmanaService extends BaseService
 
     }
 
-    public function getRozmanaForTher()
+    public function changeStatus(int|Rozmana $rozmana): bool
     {
-
+        if (is_int($rozmana))
+            $rozmana = $this->findById($rozmana);
+        $rozmana->status = !$rozmana->status;
+        return $rozmana->save();
     }
 }

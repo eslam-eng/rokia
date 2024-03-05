@@ -20,6 +20,7 @@ class TherapistPlansDTO extends BaseDTO
         public float  $price ,
         public bool  $status,
         public ?int  $therapist_id,
+        public ?array  $interests = [],
     )
     {
         $this->status = $this->status ?? ActivationStatus::ACTIVE->value;
@@ -33,6 +34,7 @@ class TherapistPlansDTO extends BaseDTO
             price: $request->price,
             status: $request->status ?? ActivationStatus::ACTIVE->value,
             therapist_id: $request->therapist_id,
+            interests: $request->interests,
         );
     }
 
@@ -48,6 +50,7 @@ class TherapistPlansDTO extends BaseDTO
             price: Arr::get($data, 'price'),
             status: Arr::get($data, 'status',ActivationStatus::ACTIVE->value),
             therapist_id: Arr::get($data, 'therapist_id'),
+            interests: Arr::get($data, 'interests'),
         );
     }
 
@@ -59,6 +62,7 @@ class TherapistPlansDTO extends BaseDTO
             'price' => 'required|numeric|min:1',
             'status' => ['required',Rule::in(ActivationStatus::values())],
             'therapist_id' => 'required|integer',
+            'interests' => 'required|array|min:1',
         ];
     }
 
@@ -73,6 +77,7 @@ class TherapistPlansDTO extends BaseDTO
             "price" => $this->price,
             "status" => $this->status,
             "therapist_id" => $this->therapist_id,
+            "interests" => $this->interests,
         ];
     }
 }

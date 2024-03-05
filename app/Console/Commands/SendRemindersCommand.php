@@ -2,9 +2,9 @@
 
 namespace App\Console\Commands;
 
+use App\Enums\ActivationStatus;
 use App\Jobs\SendRemindersFcm;
-use App\Models\Rozmana;
-use App\Models\User;
+use App\Models\ClientNotification;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
 
@@ -32,39 +32,27 @@ class SendRemindersCommand extends Command
         logger('you are in send reminder command');
         $now = Carbon::now(); // Get current date
 
-        $clientsHasTherapistPlan = User::query()
-            ->select(['id', 'name', 'device_token'])
-            ->withWhereHas('plans', fn($query) => $query->whereDate('end_date', '>=', Carbon::now()->format('Y-m-d')))
-            ->with('interests')
-            ->get();
+        ClientNotification::query()
+            ->with('client:id,name,device_token,phone')
+            ->where('status', ActivationStatus::PENDING->value)
+            ->where('date', $now->format('m-d'))
+            ->orderBy('id')
+            ->chunkById(100, function ($cliendNotifications) {
+                foreach ($cliendNotifications as $clientNotification) {
+                    $otherDate = Carbon::parse("$clientNotification->time")->format('H:i:s');
 
-        foreach ($clientsHasTherapistPlan as $client) {
-            $interests = $client->interests->pluck('id')->toArray();
-            foreach ($client->plans as $plan) {
-                $rozmanas = Rozmana::query()
-                    ->where('therapist_id', $plan->therapist_id)
-                    ->where('date', $now->format('m-d'))
-                    ->whereHas('interests', fn($query) => $query->whereIn('interest_id', $interests))
-                    ->get();
-                if ($rozmanas->isNotEmpty())
-                    $rozmanas->map(function ($rozama) use ($now, $client) {
-                        // Define the provided time
-                        $otherDate = Carbon::parse("$rozama->time")->format('H:i:s');
+                    // Get the current time
+                    $now = Carbon::now()->format('H:i:s');
 
-                        // Get the current time
-                        $now = Carbon::now()->format('H:i:s');
+                    // Convert both times to Carbon instances with timestamps
+                    $otherTime = Carbon::createFromFormat('H:i:s', $otherDate);
+                    $currentTime = Carbon::createFromFormat('H:i:s', $now);
 
-                        // Convert both times to Carbon instances with timestamps
-                        $otherTime = Carbon::createFromFormat('H:i:s', $otherDate);
-                        $currentTime = Carbon::createFromFormat('H:i:s', $now);
-
-                        // Calculate the difference in seconds
-                        $diffInSecs = $currentTime->diffInSeconds($otherTime);
-                        logger()->info('delay in seconds : ' . $diffInSecs);
-                        dispatch(new SendRemindersFcm(reminder: $rozama, client: $client))
-                            ->delay($diffInSecs+60);
-                    });
-            }
-        }
+                    // Calculate the difference in seconds
+                    $diffInSecs = $currentTime->diffInSeconds($otherTime);
+                    dispatch(new SendRemindersFcm(clientNotification: $clientNotification))
+                        ->delay($diffInSecs + 60); //where 60 second (plus) this seconds where server take to re run command in cron job
+                }
+            });
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\ClientPlanStatusEnum;
 use App\Traits\Filterable;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Casts\Attribute;
@@ -86,8 +87,8 @@ class User extends Authenticatable implements HasMedia
         return $this->hasMany(ClientPlanSubscription::class,'client_id');
     }
 
-    public function interests(): BelongsToMany
+    public function scopeActivePlans()
     {
-        return $this->belongsToMany(Interest::class,'client_interests','client_id','interest_id');
+        return $this->plans()->where('status',ClientPlanStatusEnum::RUNNING->value);
     }
 }
