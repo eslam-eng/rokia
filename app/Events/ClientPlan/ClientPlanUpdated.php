@@ -21,7 +21,7 @@ class ClientPlanUpdated
     /**
      * Create a new event instance.
      */
-    public function __construct(public TherapistPlan $model,public $client)
+    public function __construct(public ClientPlanSubscription $model,public $client)
     {
         //
     }

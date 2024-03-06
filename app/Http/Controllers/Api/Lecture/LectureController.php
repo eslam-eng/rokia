@@ -36,7 +36,7 @@ class LectureController extends Controller
     {
         try {
             $user_id = auth()->id();
-            $filters = array_filter($request->get('filters', []), function ($value) {
+            $filters = array_filter($request->all(), function ($value) {
                 return ($value !== null && $value !== false && $value !== '');
             });
 
@@ -51,7 +51,7 @@ class LectureController extends Controller
     public function getLecturesForUser(Request $request)
     {
         try {
-            $filters = array_filter($request->get('filters', []), function ($value) {
+            $filters = array_filter($request->all(), function ($value) {
                 return ($value !== null && $value !== false && $value !== '');
             });
             $filters['status'] = ActivationStatus::ACTIVE->value;

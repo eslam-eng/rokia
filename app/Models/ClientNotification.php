@@ -11,6 +11,7 @@ class ClientNotification extends Model
     use HasFactory;
 
     protected $fillable = [
+        'client_plan_subscription_id',
         'client_id',
         'title',
         'body',
@@ -22,5 +23,10 @@ class ClientNotification extends Model
     public function client(): BelongsTo
     {
         return $this->belongsTo(User::class,'client_id');
+    }
+
+    public function clientPlan(): BelongsTo
+    {
+        return $this->belongsTo(ClientPlanSubscription::class,'client_plan_subscription_id');
     }
 }

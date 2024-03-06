@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\ClientPlanSubscription;
+use App\Models\TherapistPlan;
 use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -15,15 +17,14 @@ return new class extends Migration
         Schema::create('client_notifications', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(User::class,'client_id')->constrained('users')->cascadeOnDelete();
-            $table->foreignIdFor(\App\Models\TherapistPlan::class)
+            $table->foreignIdFor(ClientPlanSubscription::class)
                 ->nullable()
-                ->constrained('therapist_plans')
+                ->constrained('client_plan_subscriptions')
                 ->nullOnDelete();
             $table->string('title');
             $table->string('body');
             $table->string('date');
             $table->time('time');
-            $table->boolean('status')->default(0)->comment('0 refer that notification not send 1 send done');
             $table->timestamps();
         });
     }

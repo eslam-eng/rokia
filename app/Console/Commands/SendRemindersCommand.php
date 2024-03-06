@@ -29,11 +29,9 @@ class SendRemindersCommand extends Command
      */
     public function handle()
     {
-        logger('you are in send reminder command');
         $now = Carbon::now(); // Get current date
-
         ClientNotification::query()
-            ->with('client:id,name,device_token,phone')
+            ->with(['client:id,name,device_token,phone','clientPlan'])
             ->where('status', ActivationStatus::PENDING->value)
             ->where('date', $now->format('m-d'))
             ->orderBy('id')

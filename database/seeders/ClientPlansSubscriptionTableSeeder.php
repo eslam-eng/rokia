@@ -20,7 +20,7 @@ class ClientPlansSubscriptionTableSeeder extends Seeder
         $clients = User::query()->where('type', UsersType::CLIENT->value)->get();
         $therapistPlan = TherapistPlan::query()->whereHas('interests')->first();
         foreach ($clients as $client) {
-            ClientPlanSubscription::query()->create([
+            $clientPlan = ClientPlanSubscription::query()->create([
                 'client_id' => $client->id,
                 'therapist_id' => $therapistPlan->id,
                 'therapist_plan_id' => $therapistPlan->id,
@@ -28,7 +28,7 @@ class ClientPlansSubscriptionTableSeeder extends Seeder
                 'price' => 100,
                 'status' => ClientPlanStatusEnum::RUNNING->value,
             ]);
-            event(new ClientPlanUpdated(model: $therapistPlan,client: $client));
+            event(new ClientPlanUpdated(model: $clientPlan,client: $client));
         }
 
     }
