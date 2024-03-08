@@ -8,6 +8,7 @@ use App\Filters\TherapistPlansFilter;
 use App\Models\TherapistPlan;
 use App\Services\BaseService;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 
@@ -79,8 +80,10 @@ class TherapistPlansService extends BaseService
         return $therapistPlan->save();
     }
 
-    public function getAll(array $filters = []): \Illuminate\Database\Eloquent\Collection|array
+    public function getAll(array $filters = []): Collection|array
     {
-        return $this->getQuery($filters)->get();
+        return $this->getQuery($filters)
+            ->with('interests')
+            ->get();
     }
 }

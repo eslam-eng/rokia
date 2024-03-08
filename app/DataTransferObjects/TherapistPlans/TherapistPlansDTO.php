@@ -16,7 +16,7 @@ class TherapistPlansDTO extends BaseDTO
 
     public function __construct(
         public string  $name ,
-        public int  $duration ,
+        public int  $roznama_number ,
         public float  $price ,
         public bool  $status,
         public ?int  $therapist_id,
@@ -30,7 +30,7 @@ class TherapistPlansDTO extends BaseDTO
     {
         return new self(
             name: $request->name,
-            duration: $request->duration,
+            roznama_number: $request->roznama_number,
             price: $request->price,
             status: $request->status ?? ActivationStatus::ACTIVE->value,
             therapist_id: $request->therapist_id,
@@ -46,7 +46,7 @@ class TherapistPlansDTO extends BaseDTO
     {
         return new self(
             name: Arr::get($data, 'name'),
-            duration: Arr::get($data, 'duration'),
+            roznama_number: Arr::get($data, 'roznama_number'),
             price: Arr::get($data, 'price'),
             status: Arr::get($data, 'status',ActivationStatus::ACTIVE->value),
             therapist_id: Arr::get($data, 'therapist_id'),
@@ -58,7 +58,7 @@ class TherapistPlansDTO extends BaseDTO
     {
         return [
             'name' => 'required|string',
-            'duration' => 'required|integer',
+            'roznama_number' => 'required|integer',
             'price' => 'required|numeric|min:1',
             'status' => ['required',Rule::in(ActivationStatus::values())],
             'therapist_id' => 'required|integer',
@@ -73,7 +73,7 @@ class TherapistPlansDTO extends BaseDTO
     {
         return [
             "name" => $this->name,
-            "duration" => $this->duration,
+            "roznama_number" => $this->roznama_number,
             "price" => $this->price,
             "status" => $this->status,
             "therapist_id" => $this->therapist_id,

@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Http\Resources\Category\InterestsResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class RozmanaResource extends JsonResource
@@ -19,7 +20,9 @@ class RozmanaResource extends JsonResource
             'title'=>$this->title,
             'description'=>$this->description,
             'date'=>$this->date,
+            'time'=>$this->time,
             'status'=>$this->status,
+            'interests'=>InterestsResource::collection($this->whenLoaded('interests'))
         ];
     }
 

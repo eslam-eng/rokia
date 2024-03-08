@@ -31,7 +31,8 @@ class RozmanaFilter extends QueryFilter
 
     public function interests($term): void
     {
-        $this->builder->whereHas('interests',fn($query)=>$query->whereIntegerInRaw('interests.id',Arr::wrap($term)));
+        $this->builder
+            ->whereHas('interests',fn($query)=>$query->whereIntegerInRaw('interests.id',Arr::wrap($term)));
     }
 
     public function therapist_id($term)
