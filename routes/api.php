@@ -4,6 +4,7 @@ use App\Enums\UsersType;
 use App\Http\Controllers\Api\Appointment\BookAppointmentController;
 use App\Http\Controllers\Api\Auth\AuthClientController;
 use App\Http\Controllers\Api\Category\InterestsController;
+use App\Http\Controllers\Api\Clients\ClientController;
 use App\Http\Controllers\Api\Lecture\LectureController;
 use App\Http\Controllers\Api\Lecture\UserLectureController;
 use App\Http\Controllers\Api\NotificationController;
@@ -32,16 +33,12 @@ Route::fallback(function () {
 });
 
 Route::group(['prefix' => 'auth/client'], function () {
-
     Route::post('register', [AuthClientController::class, 'register']);
-
     Route::post('login', [AuthClientController::class, 'signIn']);
-
     Route::post('phone/verify', [AuthClientController::class, 'phoneVerify']);
-
     Route::post('password/reset', [AuthClientController::class, 'resetPassword']);
-
 });
+
 
 
 Route::group(['middleware' => 'auth:sanctum'], function () {
@@ -51,6 +48,7 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
         Route::post('update-fcm-token', [UsersController::class, 'updateFcmToken']);
         Route::post('/change-password', [UsersController::class, 'changePassword']);
         Route::post('/change-image', [UsersController::class, 'changeImage']);
+        Route::post('/update-data', [ClientController::class, 'updateProfileData']);
     });
 
     Route::group(['middleware' => 'user.type:' . UsersType::CLIENT->value], function () {

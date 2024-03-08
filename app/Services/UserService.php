@@ -58,6 +58,29 @@ class UserService extends BaseService
         return $this->getQuery()->create($userData);
     }
 
+    public function updateClient(int $clientId, ClientDTO $clientDTO)
+    {
+        $userData = $clientDTO->toArray();
+        $clientDTO->validate();
+        $validator = Validator::make(
+            $userData,
+            [
+                'email' => 'unique:users,email,' . $clientId,
+                'phone' => 'unique:users,phone,' . $clientId
+            ]
+        );
+
+        if ($validator->fails()) {
+            throw new ValidationException($validator);
+        }
+
+        $client = $this->getQuery()->findOrFail($clientId);
+        $client->update($userData);
+
+        return $client;
+    }
+
+
     public function storeAdmin(AdminDTO $adminDTO)
     {
         $adminData = $adminDTO->toArrayExcept(['role_id']);
