@@ -2,15 +2,19 @@
 
 namespace App\Http\Controllers\Api\Therapist;
 
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+
+use App\Exceptions\NotFoundException;
+use App\DataTransferObjects\Rate\RateDTO;
+use App\Services\Therapist\TherapistService;
+use Illuminate\Validation\ValidationException;
+use App\Http\Resources\Therapist\TherapistResource;
+use App\Http\Requests\Therapist\Api\ThereapistApiUpdateRequest;
+use App\Http\Requests\Therapist\Api\TherapySessionUpdateRequest;
 use App\DataTransferObjects\Therapist\Api\UpdateMainTherapisDatatDTO;
 use App\DataTransferObjects\Therapist\Api\UpdateTherapySessionDataDTO;
-use App\Http\Controllers\Controller;
-use App\Http\Requests\Therapist\Api\TherapySessionUpdateRequest;
-use App\Http\Requests\Therapist\Api\ThereapistApiUpdateRequest;
-use App\Http\Resources\Therapist\TherapistResource;
-use App\Services\Therapist\TherapistService;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Validation\ValidationException;
 
 class TherapistController extends Controller
 {
@@ -51,6 +55,27 @@ class TherapistController extends Controller
             $therapySessionDTO = UpdateTherapySessionDataDTO::fromRequest($request);
             $therapist = $this->therapistService->updateTherapySessionData(therapySessionDataDTO: $therapySessionDTO, therapist: $therapist);
             return apiResponse(data: TherapistResource::make($therapist), message: __('app.general.success_operation'));
+        } catch (\Exception $exception) {
+            return apiResponse(message: $exception->getMessage(), code: 500);
+        }
+    }
+     public function storeRateTherapist(Request $request, int  $therapistId)
+    {
+        try {
+             $therapist = $this->therapistService->findById( $therapistId);
+            
+            if (! $therapist) {
+                return apiResponse(message: 'Therapist not found', code: 404);
+            }
+
+            $rateDTO = RateDTO::fromRequest($request);
+            $this->therapistService->storeRateForTherapist( $therapist, $rateDTO);
+            
+            return apiResponse(message: 'Rate stored successfully');
+        } catch (NotFoundException $exception) {
+            return apiResponse(message: $exception->getMessage(), code: 404);
+        } catch (ValidationException $exception) {
+            return apiResponse(message: $exception->getMessage(), code: 422);
         } catch (\Exception $exception) {
             return apiResponse(message: $exception->getMessage(), code: 500);
         }

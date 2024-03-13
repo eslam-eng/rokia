@@ -54,6 +54,23 @@ class Lecture extends Model implements HasMedia
         return $this->morphMany(Wishlist::class, 'relatable');
     }
 
+     public function rates()
+    {
+        return $this->morphMany(Rate::class, 'relatable');
+    }
+
+    public function averageRating()
+    {
+        $totalRatings = $this->rates->count();
+
+        if ($totalRatings > 0) {
+            $totalRatingSum = $this->rates->sum('rate_number');
+            return $totalRatingSum / $totalRatings;
+        }
+
+        return 0;
+    }
+
 
     public function scopeSubscribeUsers(Builder $builder)
     {

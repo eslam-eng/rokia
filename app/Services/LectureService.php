@@ -2,20 +2,23 @@
 
 namespace App\Services;
 
+use getID3;
+use getid3_lib;
+use App\Models\Rate;
+use App\Models\User;
+use App\Enums\RateType;
+use App\Models\Lecture;
+use App\Models\UserLecture;
+use App\Filters\LecturesFilter;
+use App\Exceptions\GeneralException;
+use App\Exceptions\NotFoundException;
+use Illuminate\Database\Eloquent\Model;
+use App\DataTransferObjects\Rate\RateDTO;
+use Illuminate\Database\Eloquent\Builder;
 use App\DataTransferObjects\Lecture\LectureDTO;
 use App\DataTransferObjects\Lecture\UpdateLectureDTO;
 use App\DataTransferObjects\Therapist\CreateTherapistDTO;
-use App\Exceptions\GeneralException;
-use App\Exceptions\NotFoundException;
-use App\Filters\LecturesFilter;
-use App\Models\Lecture;
-use App\Models\User;
-use App\Models\UserLecture;
-use getID3;
-use getid3_lib;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Model;
 
 class LectureService extends BaseService
 {
@@ -162,5 +165,31 @@ class LectureService extends BaseService
         $lecture->clearMediaCollection('lectures_covers'); // all media in the "profile_image" collection will be deleted
         $lecture->addMedia($image_cover)->toMediaCollection('lectures_covers');
         return $lecture;
+    }
+
+    public function storeRateForLecture(Lecture $lecture, RateDTO $rateDTO): Rate
+    {
+        $rateDTO->validate();
+
+        $existingRate = $lecture->rates()
+            ->where('user_id', $rateDTO->user_id)
+            ->where('relatable_type', RateType::LECTURE)
+            ->first();
+
+        if ($existingRate) {
+            $existingRate->update(['rate_number' => $rateDTO->rate_number]);
+            return $existingRate;
+        }
+
+        $rate = new Rate([
+            'user_id' => $rateDTO->user_id,
+            'relatable_id' => $lecture->id,
+            'relatable_type' => RateType::LECTURE,
+            'rate_number' => $rateDTO->rate_number,
+        ]);
+
+        $lecture->rates()->save($rate);
+
+        return $rate;
     }
 }

@@ -55,6 +55,7 @@ Route::group(['middleware' => 'auth:api_therapist'], function () {
         Route::get('profile', [TherapistController::class, 'getProfileDetails']);
         Route::post('update-data', [TherapistController::class, 'updateProfileData']);
         Route::post('update-therapy-data', [TherapistController::class, 'updateTherapyData']);
+       
 
         Route::group(['prefix' => 'schedule'],function (){
             Route::get('/', [TherapistScheduleController::class, 'index']);
@@ -69,6 +70,7 @@ Route::group(['middleware' => 'auth:api_therapist'], function () {
         Route::post('live-lectures', [LectureController::class, 'storeLiveLecture'])->name('live-lectures');
         Route::post('lectures/{id}/media', [LectureController::class, 'updateImageCover']);
         Route::post('send-notifications', [NotificationController::class, 'sendTherapistFcmNotification']);
+        Route::post('lectures/{lectureId}/store-rate', [LectureController::class, 'storeRateLecture']);
 
         Route::group(['prefix' => 'notifications'], function () {
             Route::post('/send', [NotificationController::class, 'sendFcmNotification']);

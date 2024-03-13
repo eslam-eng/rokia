@@ -2,19 +2,21 @@
 
 namespace App\Http\Controllers\Therapist;
 
-use App\DataTables\Therapist\TherapistsDataTable;
-use App\DataTables\TherapistSchedule\TherapistScheduleDataTable;
-use App\DataTransferObjects\Therapist\UpdateTherapistDTO;
+use Mockery\Exception;
 use App\Enums\UsersType;
+use App\Models\Therapist;
+use Illuminate\Http\Request;
+use App\Services\UserService;
 use App\Exceptions\GeneralException;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Therapist\ThereapistUpdateRequest;
-use App\Models\Therapist;
+use App\Exceptions\NotFoundException;
+use App\DataTransferObjects\Rate\RateDTO;
 use App\Services\Therapist\TherapistService;
-use App\Services\UserService;
-use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
-use Mockery\Exception;
+use App\DataTables\Therapist\TherapistsDataTable;
+use App\Http\Requests\Therapist\ThereapistUpdateRequest;
+use App\DataTransferObjects\Therapist\UpdateTherapistDTO;
+use App\DataTables\TherapistSchedule\TherapistScheduleDataTable;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class TherapistController extends Controller
@@ -119,4 +121,27 @@ class TherapistController extends Controller
         $filters['therapist_id'] = $request->therapist;
         return $therapistScheduleDataTable->with(['filters' => $filters])->render('layouts.dashboard.therapist-schedules.index');
     }
+
+    public function storeRateLecture(Request $request, int $therapistId)
+    {
+        try {
+            $therapist= $this->therapistService->findById($therapistId);
+            
+            if (!$therapist) {
+                return apiResponse(message: 'therapist not found', code: 404);
+            }
+
+            $rateDTO = RateDTO::fromRequest($request);
+            $this->therapistService->storeRateForTherapist($therapist, $rateDTO);
+            
+            return apiResponse(message: 'Rate stored successfully');
+        } catch (NotFoundException $exception) {
+            return apiResponse(message: $exception->getMessage(), code: 404);
+        } catch (ValidationException $exception) {
+            return apiResponse(message: $exception->getMessage(), code: 422);
+        } catch (\Exception $exception) {
+            return apiResponse(message: $exception->getMessage(), code: 500);
+        }
+    }
+
 }

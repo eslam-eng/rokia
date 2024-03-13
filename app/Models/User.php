@@ -56,6 +56,11 @@ class User extends Authenticatable implements HasMedia
         );
     }
 
+     public function rates()
+    {
+        return $this->hasMany(Rate::class);
+    }
+
 
     public function getToken(): string
     {

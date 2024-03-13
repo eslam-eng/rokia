@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Models\Lecture;
 use App\Models\Slider;
+use App\Models\Therapist;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Support\ServiceProvider;
@@ -31,6 +32,7 @@ class AppServiceProvider extends ServiceProvider
             'user'=>User::class,
             'slider'=>Slider::class,
             'lecture'=>Lecture::class,
+            'therapist'=>Therapist::class,
         ]);
     }
 }

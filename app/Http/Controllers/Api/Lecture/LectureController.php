@@ -2,24 +2,25 @@
 
 namespace App\Http\Controllers\Api\Lecture;
 
-use App\DataTransferObjects\Lecture\LectureDTO;
-use App\DataTransferObjects\Lecture\UpdateLectureDTO;
+use App\Traits\NotifyUsers;
+use Illuminate\Support\Arr;
+use Illuminate\Http\Request;
 use App\Enums\ActivationStatus;
+use App\Services\LectureService;
+use Illuminate\Support\Facades\DB;
 use App\Exceptions\GeneralException;
-use App\Exceptions\NotFoundException;
 use App\Http\Controllers\Controller;
+use App\Exceptions\NotFoundException;
+use App\DataTransferObjects\Rate\RateDTO;
 use App\Http\Requests\ImageUploadRequest;
 use App\Http\Requests\Lecture\LectureRequest;
-use App\Http\Requests\Lecture\LectureUpdateRequest;
-use App\Http\Requests\Lecture\LiveLectureRequest;
-use App\Http\Resources\Lecture\LecturesResource;
-use App\Http\Resources\Lecture\TherapistLecturesResource;
-use App\Services\LectureService;
-use App\Traits\NotifyUsers;
-use Illuminate\Http\Request;
-use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
+use App\DataTransferObjects\Lecture\LectureDTO;
+use App\Http\Resources\Lecture\LecturesResource;
+use App\Http\Requests\Lecture\LiveLectureRequest;
+use App\Http\Requests\Lecture\LectureUpdateRequest;
+use App\DataTransferObjects\Lecture\UpdateLectureDTO;
+use App\Http\Resources\Lecture\TherapistLecturesResource;
 
 class LectureController extends Controller
 {
@@ -166,6 +167,28 @@ class LectureController extends Controller
             return apiResponse(message: 'updated successfully');
         } catch (NotFoundException $exception) {
             return apiResponse(message: $exception->getMessage(), code: 404);
+        } catch (\Exception $exception) {
+            return apiResponse(message: $exception->getMessage(), code: 500);
+        }
+    }
+
+     public function storeRateLecture(Request $request, int $lectureId)
+    {
+        try {
+            $lecture = $this->lectureService->findById($lectureId);
+            
+            if (!$lecture) {
+                return apiResponse(message: 'Lecture not found', code: 404);
+            }
+
+            $rateDTO = RateDTO::fromRequest($request);
+            $this->lectureService->storeRateForLecture($lecture, $rateDTO);
+            
+            return apiResponse(message: 'Rate stored successfully');
+        } catch (NotFoundException $exception) {
+            return apiResponse(message: $exception->getMessage(), code: 404);
+        } catch (ValidationException $exception) {
+            return apiResponse(message: $exception->getMessage(), code: 422);
         } catch (\Exception $exception) {
             return apiResponse(message: $exception->getMessage(), code: 500);
         }

@@ -2,23 +2,26 @@
 
 namespace App\Services\Therapist;
 
-use App\DataTransferObjects\Therapist\Api\UpdateMainTherapisDatatDTO;
-use App\DataTransferObjects\Therapist\Api\UpdateTherapySessionDataDTO;
-use App\DataTransferObjects\Therapist\CreateTherapistDTO;
-use App\DataTransferObjects\Therapist\UpdateTherapistDTO;
-use App\Enums\ActivationStatus;
-use App\Exceptions\GeneralException;
-use App\Exceptions\NotFoundException;
-use App\Filters\TherapistFilters;
+use App\Models\Rate;
+use App\Enums\RateType;
 use App\Models\Therapist;
 use App\Services\BaseService;
-use Illuminate\Contracts\Pagination\LengthAwarePaginator;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Validator;
+use App\Enums\ActivationStatus;
 use Illuminate\Validation\Rule;
+use App\Filters\TherapistFilters;
+use Illuminate\Support\Facades\DB;
+use App\Exceptions\GeneralException;
+use App\Exceptions\NotFoundException;
+use Illuminate\Database\Eloquent\Model;
+use App\DataTransferObjects\Rate\RateDTO;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Database\Eloquent\Collection;
+use App\DataTransferObjects\Therapist\CreateTherapistDTO;
+use App\DataTransferObjects\Therapist\UpdateTherapistDTO;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use App\DataTransferObjects\Therapist\Api\UpdateMainTherapisDatatDTO;
+use App\DataTransferObjects\Therapist\Api\UpdateTherapySessionDataDTO;
 
 class TherapistService extends BaseService
 {
@@ -164,5 +167,31 @@ class TherapistService extends BaseService
             $therapist = $this->findById($therapist);
         }
         return $therapist->pluck('device_token')->toArray();
+    }
+
+     public function storeRateForTherapist(Therapist $therapist, RateDTO $rateDTO): Rate
+    {
+        $rateDTO->validate();
+
+        $existingRate =  $therapist->rates()
+            ->where('user_id', $rateDTO->user_id)
+            ->where('relatable_type', RateType::THERAPIST)
+            ->first();
+
+        if ($existingRate) {
+            $existingRate->update(['rate_number' => $rateDTO->rate_number]);
+            return $existingRate;
+        }
+
+        $rate = new Rate([
+            'user_id' => $rateDTO->user_id,
+            'relatable_id' =>  $therapist->id,
+            'relatable_type' => RateType::THERAPIST,
+            'rate_number' => $rateDTO->rate_number,
+        ]);
+
+         $therapist->rates()->save($rate);
+
+        return $rate;
     }
 }
