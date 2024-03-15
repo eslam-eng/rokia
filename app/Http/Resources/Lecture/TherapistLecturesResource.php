@@ -22,8 +22,8 @@ class TherapistLecturesResource extends JsonResource
             'duration'=>$this->duration,
             'price'=>$this->when($this->is_paid == PaymentStatusEnum::PAID->value,$this->price),
             'is_paid'=>$this->is_paid,
-            'image_cover' =>$this->image_cover,
-            'audio_file' =>$this->lecture_content,
+            'image_cover' =>$this->image_cover_url,
+            'audio_file' =>$this->lecture_media_content_url,
         ];
     }
 }

@@ -35,7 +35,7 @@ class Lecture extends Model implements HasMedia
     protected function lectureMediaContentUrl(): Attribute
     {
         return Attribute::make(
-            get: fn() => $this->getFirstMediaUrl('lectures_media_content') ?? null
+            get: fn() => $this->getFirstMediaUrl('lectures_media_content') ?: null
         );
     }
 

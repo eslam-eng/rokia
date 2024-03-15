@@ -35,7 +35,7 @@ class LectureController extends Controller
     public function index(Request $request)
     {
         try {
-            $user_id = auth()->id();
+            $user_id = auth()->guard('api_therapist')->id();
             $filters = array_filter($request->all(), function ($value) {
                 return ($value !== null && $value !== false && $value !== '');
             });
@@ -70,7 +70,7 @@ class LectureController extends Controller
      */
     public function store(LectureRequest $request)
     {
-       return  $this->storeLecture($request);
+        return  $this->storeLecture($request);
     }
 
     public function storeLiveLecture(LiveLectureRequest $request)

@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\DataTransferObjects\ChangePassword\PasswordChangeDTO;
 use App\DataTransferObjects\Client\ClientDTO;
+use App\DataTransferObjects\Client\UpdateClientDTO;
 use App\DataTransferObjects\User\AdminDTO;
 use App\Enums\ActivationStatus;
 use App\Enums\UsersType;
@@ -58,26 +59,11 @@ class UserService extends BaseService
         return $this->getQuery()->create($userData);
     }
 
-    public function updateClient(int $clientId, ClientDTO $clientDTO)
+    public function updateClientData(int $clientId, UpdateClientDTO $clientDTO): int
     {
-        $userData = $clientDTO->toArray();
         $clientDTO->validate();
-        $validator = Validator::make(
-            $userData,
-            [
-                'email' => 'unique:users,email,' . $clientId,
-                'phone' => 'unique:users,phone,' . $clientId
-            ]
-        );
-
-        if ($validator->fails()) {
-            throw new ValidationException($validator);
-        }
-
-        $client = $this->getQuery()->findOrFail($clientId);
-        $client->update($userData);
-
-        return $client;
+        $userData = $clientDTO->toArray();
+        return $this->getQuery()->where('id',$clientId)->update($userData);
     }
 
 
@@ -111,17 +97,16 @@ class UserService extends BaseService
      * @return true
      */
 
-    public function update(ClientDTO $userDTO, $id)
-    {
-        $user = $this->findById($id);
-        $data = $userDTO->toArray();
-        if (!isset($data['password']))
-            $user->update(Arr::except($data, ['profile_image', 'password']));
-        else
-            $user->update(Arr::except($data, 'profile_image'));
-
-        return true;
-    }
+//    public function update(ClientDTO $userDTO, $id)
+//    {
+//        $user = $this->findById($id);
+//        $data = $userDTO->toArray();
+//        if (!isset($data['password']))
+//            $data = Arr::except($data, ['profile_image', 'password']);
+//        else
+//            $data = Arr::except($data, 'profile_image');
+//        return $user->update($data);
+//    }
 
     /**
      * Remove the specified resource from storage.

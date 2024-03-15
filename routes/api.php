@@ -3,14 +3,12 @@
 use App\Enums\UsersType;
 use App\Http\Controllers\Api\Appointment\BookAppointmentController;
 use App\Http\Controllers\Api\Auth\AuthClientController;
-use App\Http\Controllers\Api\Category\InterestsController;
 use App\Http\Controllers\Api\Clients\ClientController;
 use App\Http\Controllers\Api\Lecture\LectureController;
 use App\Http\Controllers\Api\Lecture\UserLectureController;
 use App\Http\Controllers\Api\NotificationController;
 use App\Http\Controllers\Api\Plans\TherapistPlansController;
 use App\Http\Controllers\Api\Slider\SliderController;
-use App\Http\Controllers\Api\Therapist\TherapistController;
 use App\Http\Controllers\Api\TherapistSchedule\TherapistScheduleController;
 use App\Http\Controllers\Api\UsersController;
 use App\Http\Controllers\Api\Wishlist\WishlistController;
@@ -40,8 +38,7 @@ Route::group(['prefix' => 'auth/client'], function () {
 });
 
 
-
-Route::group(['middleware' => 'auth:sanctum'], function () {
+Route::group(['middleware' => ['auth:sanctum', 'user.type:' . UsersType::CLIENT->value]], function () {
 
     Route::group(['prefix' => 'client'], function () {
         Route::get('profile', [AuthClientController::class, 'getProfileDetails']);
@@ -51,15 +48,14 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
         Route::post('/update-data', [ClientController::class, 'updateProfileData']);
     });
 
-    Route::group(['middleware' => 'user.type:' . UsersType::CLIENT->value], function () {
-        Route::get('lectures', [LectureController::class, 'getLecturesForUser']);
-        Route::group(['prefix' => 'client'], function () {
-            Route::get('lectures', UserLectureController::class);
-            Route::apiResource('wishlist', WishlistController::class);
-            Route::delete('wishlist/lecture/{id}/remove', [WishlistController::class, 'removeLectureFormFavorite']);
-            Route::apiResource('book-appointment', BookAppointmentController::class);
-            Route::post('booked-appointments/{book_appointment}/cancel',[BookAppointmentController::class,'changeToCanceled']);
-        });
+    Route::get('lectures', [LectureController::class, 'getLecturesForUser']);
+
+    Route::group(['prefix' => 'client'], function () {
+        Route::get('lectures', UserLectureController::class);
+        Route::apiResource('wishlist', WishlistController::class);
+        Route::delete('wishlist/lecture/{id}/remove', [WishlistController::class, 'removeLectureFormFavorite']);
+        Route::apiResource('book-appointment', BookAppointmentController::class);
+        Route::post('booked-appointments/{book_appointment}/cancel', [BookAppointmentController::class, 'changeToCanceled']);
     });
 
 
@@ -73,8 +69,8 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     });
 
     Route::get('sliders', SliderController::class);
-    Route::get('plans', [TherapistPlansController::class,'getPlansForClients']);
-    Route::get('therapist/{therapist}/schedule',[TherapistScheduleController::class,'getScheduleForTherapist']);
-    Route::post('therapist/apointments/schedule',[TherapistScheduleController::class,'getScheduleForTherapist']);
+    Route::get('plans', [TherapistPlansController::class, 'getPlansForClients']);
+    Route::get('therapist/{therapist}/schedule', [TherapistScheduleController::class, 'getScheduleForTherapist']);
+    Route::post('therapist/apointments/schedule', [TherapistScheduleController::class, 'getScheduleForTherapist']);
 });
 

@@ -32,7 +32,7 @@ class LectureRequest extends BaseRequest
             'description' => 'nullable|string',
             'type' => ['required', Rule::in(LecturesTypeEnum::values())],
             'image_cover' => 'nullable|file|mimes:png,jpg,jpeg',
-            'audio_file' => 'required|file|mimetypes:audio/*|max:307200', // 300 MB
+            'audio_file' => 'required|audio|duration_min:60||max:25600',
         ];
     }
 
