@@ -21,6 +21,7 @@ use Spatie\Image\Enums\Fit;
 use Spatie\Image\Enums\FlipDirection;
 use Spatie\Image\Enums\Orientation;
 use Spatie\Image\Exceptions\CouldNotLoadImage;
+use Spatie\Image\Exceptions\InvalidFont;
 use Spatie\Image\Exceptions\UnsupportedImageFormat;
 use Spatie\Image\Point;
 use Spatie\Image\Size;
@@ -68,13 +69,11 @@ class GdDriver implements ImageDriver
         return $this;
     }
 
-    public function loadFile(string $path): static
+    public function loadFile(string $path, bool $autoRotate = true): static
     {
         $this->optimize = false;
         $this->quality = -1;
         $this->originalPath = $path;
-
-        $this->setExif($path);
 
         $handle = fopen($path, 'r');
 
@@ -85,13 +84,22 @@ class GdDriver implements ImageDriver
 
         fclose($handle);
 
+        $this->setExif($path);
+
         $image = imagecreatefromstring($contents);
 
         if (! $image) {
             throw CouldNotLoadImage::make($path);
         }
 
+        imagealphablending($image, false);
+        imagesavealpha($image, true);
+
         $this->image = $image;
+
+        if ($autoRotate) {
+            $this->autoRotate();
+        }
 
         return $this;
     }
@@ -152,10 +160,11 @@ class GdDriver implements ImageDriver
                 imagegif($this->image, $path);
                 break;
             case 'webp':
-                imagewebp($this->image, $path);
+                $quality = $this->quality === 100 ? IMG_WEBP_LOSSLESS : $this->quality;
+                imagewebp($this->image, $path, $quality);
                 break;
             case 'avif':
-                imageavif($this->image, $path);
+                imageavif($this->image, $path, $this->quality);
                 break;
             default:
                 throw UnsupportedImageFormat::make($extension);
@@ -527,7 +536,24 @@ class GdDriver implements ImageDriver
 
     public function setExif(string $path): void
     {
-        /*
+        if (! extension_loaded('exif')) {
+            return;
+        }
+
+        if (! extension_loaded('fileinfo')) {
+            return;
+        }
+
+        $fInfo = finfo_open(FILEINFO_RAW);
+        if ($fInfo) {
+            $info = finfo_file($fInfo, $path);
+            finfo_close($fInfo);
+        }
+
+        if (! isset($info) || ! is_string($info) || ! str_contains($info, 'Exif')) {
+            return;
+        }
+
         $result = exif_read_data($path);
 
         if (! is_array($result)) {
@@ -537,7 +563,6 @@ class GdDriver implements ImageDriver
         }
 
         $this->exif = $result;
-        */
     }
 
     /**
@@ -637,6 +662,9 @@ class GdDriver implements ImageDriver
 
     public function border(int $width, BorderType $type, string $color = '000000'): static
     {
+        imagealphablending($this->image, true);
+        imagesavealpha($this->image, true);
+
         if ($type === BorderType::Shrink) {
             $originalWidth = $this->getWidth();
             $originalHeight = $this->getHeight();
@@ -727,5 +755,88 @@ class GdDriver implements ImageDriver
         $this->format = $format;
 
         return $this;
+    }
+
+    public function autoRotate(): void
+    {
+        if (! $this->exif || empty($this->exif['Orientation'])) {
+            return;
+        }
+
+        switch ($this->exif['Orientation']) {
+            case 8:
+                $this->image = imagerotate($this->image, 90, 0);
+                break;
+            case 3:
+                $this->image = imagerotate($this->image, 180, 0);
+                break;
+            case 5:
+            case 7:
+            case 6:
+                $this->image = imagerotate($this->image, -90, 0);
+                break;
+        }
+    }
+
+    public function text(
+        string $text,
+        int $fontSize,
+        string $color = '000000',
+        int $x = 0,
+        int $y = 0,
+        int $angle = 0,
+        string $fontPath = '',
+        int $width = 0,
+    ): static {
+        $textColor = new GdColor($color);
+
+        if (! $fontPath || ! file_exists($fontPath)) {
+            throw InvalidFont::make($fontPath);
+        }
+
+        imagettftext(
+            $this->image,
+            $fontSize,
+            $angle,
+            $x,
+            $y,
+            $textColor->getInt(),
+            $fontPath,
+            $width > 0
+                ? $this->wrapText($text, $fontSize, $fontPath, $angle, $width)
+                : $text,
+        );
+
+        return $this;
+    }
+
+    public function wrapText(string $text, int $fontSize, string $fontPath = '', int $angle = 0, int $width = 0): string
+    {
+        if (! $fontPath || ! file_exists($fontPath)) {
+            throw InvalidFont::make($fontPath);
+        }
+
+        $wrapped = '';
+        $words = explode(' ', $text);
+
+        foreach ($words as $word) {
+            $teststring = "{$wrapped} {$word}";
+
+            $testbox = imagettfbbox($fontSize, $angle, $fontPath, $teststring);
+
+            if (! $testbox) {
+                $wrapped .= ' '.$word;
+
+                continue;
+            }
+
+            if ($testbox[2] > $width) {
+                $wrapped .= "\n".$word;
+            } else {
+                $wrapped .= ' '.$word;
+            }
+        }
+
+        return $wrapped;
     }
 }

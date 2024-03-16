@@ -86,7 +86,7 @@ class LectureDTO extends BaseDTO
             'image_cover' => 'nullable|file|mimes:png,jpg,jpeg',
         ];
         if (request()->url() == route('lectures.store'))
-            $rules['audio_file'] = 'required|audio|duration_min:60|max:25600';
+            $rules['audio_file'] = 'required|file|mimes:mp3,wav,ogg,m4a|max:25600';
         return $rules;
     }
 

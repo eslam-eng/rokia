@@ -2,6 +2,54 @@
 
 All notable changes to `image` will be documented in this file
 
+## 3.3.8 - 2024-03-04
+
+### What's Changed
+
+* Allow lossless saving of Webp with the GD driver by @fabio-ivona in https://github.com/spatie/image/pull/240
+
+### New Contributors
+
+* @fabio-ivona made their first contribution in https://github.com/spatie/image/pull/240
+
+**Full Changelog**: https://github.com/spatie/image/compare/3.3.7...3.3.8
+
+## 3.3.7 - 2024-03-01
+
+### What's Changed
+
+* Fix for Fit::Max not behaving as described in the documentation by @RaBic in https://github.com/spatie/image/pull/239
+
+### New Contributors
+
+* @RaBic made their first contribution in https://github.com/spatie/image/pull/239
+
+**Full Changelog**: https://github.com/spatie/image/compare/3.3.6...3.3.7
+
+## 3.3.6 - 2024-02-26
+
+### What's Changed
+
+* Bugfix for cases where setting a quality did nothing https://github.com/spatie/image/pull/237
+* Bugfix for transparent PNG's not staying transparent when working with GD.
+* Autorotate images based on their Exif data https://github.com/spatie/image/pull/238
+
+**Full Changelog**: https://github.com/spatie/image/compare/3.3.5...3.3.6
+
+## 3.3.5 - 2024-02-16
+
+### What's Changed
+
+* Update adding-a-watermark.md by @yoeriboven in https://github.com/spatie/image/pull/235
+* Manipulating animated GIF's is now supported using Imagick. by @jhorie in https://github.com/spatie/image/pull/234
+
+### New Contributors
+
+* @yoeriboven made their first contribution in https://github.com/spatie/image/pull/235
+* @jhorie made their first contribution in https://github.com/spatie/image/pull/234
+
+**Full Changelog**: https://github.com/spatie/image/compare/3.3.4...3.3.5
+
 ## 3.3.4 - 2024-01-15
 
 ### What's Changed

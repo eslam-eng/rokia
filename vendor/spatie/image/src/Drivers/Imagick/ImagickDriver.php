@@ -21,6 +21,7 @@ use Spatie\Image\Enums\CropPosition;
 use Spatie\Image\Enums\Fit;
 use Spatie\Image\Enums\FlipDirection;
 use Spatie\Image\Enums\Orientation;
+use Spatie\Image\Exceptions\InvalidFont;
 use Spatie\Image\Exceptions\UnsupportedImageFormat;
 use Spatie\Image\Point;
 use Spatie\Image\Size;
@@ -66,7 +67,7 @@ class ImagickDriver implements ImageDriver
         return $this->image;
     }
 
-    public function loadFile(string $path): static
+    public function loadFile(string $path, bool $autoRotate = true): static
     {
         $this->originalPath = $path;
 
@@ -74,6 +75,10 @@ class ImagickDriver implements ImageDriver
 
         $this->image = new Imagick($path);
         $this->exif = $this->image->getImageProperties('exif:*');
+
+        if ($autoRotate) {
+            $this->autoRotate();
+        }
 
         if ($this->isAnimated()) {
             $this->image = $this->image->coalesceImages();
@@ -572,7 +577,8 @@ class ImagickDriver implements ImageDriver
     public function quality(int $quality): static
     {
         foreach ($this->image as $image) {
-            $image->setCompressionQuality(100 - $quality);
+            $this->image->setImageCompressionQuality($quality);
+            $this->image->setCompressionQuality(100 - $quality); // For PNGs
         }
 
         return $this;
@@ -585,5 +591,107 @@ class ImagickDriver implements ImageDriver
         }
 
         return $this;
+    }
+
+    public function autoRotate(): void
+    {
+        switch ($this->image->getImageOrientation()) {
+            case Imagick::ORIENTATION_TOPLEFT:
+                break;
+            case Imagick::ORIENTATION_TOPRIGHT:
+                $this->image->flopImage();
+                break;
+            case Imagick::ORIENTATION_BOTTOMRIGHT:
+                $this->image->rotateImage('#000', 180);
+                break;
+            case Imagick::ORIENTATION_BOTTOMLEFT:
+                $this->image->flopImage();
+                $this->image->rotateImage('#000', 180);
+                break;
+            case Imagick::ORIENTATION_LEFTTOP:
+                $this->image->flopImage();
+                $this->image->rotateImage('#000', -90);
+                break;
+            case Imagick::ORIENTATION_RIGHTTOP:
+                $this->image->rotateImage('#000', 90);
+                break;
+            case Imagick::ORIENTATION_RIGHTBOTTOM:
+                $this->image->flopImage();
+                $this->image->rotateImage('#000', 90);
+                break;
+            case Imagick::ORIENTATION_LEFTBOTTOM:
+                $this->image->rotateImage('#000', -90);
+                break;
+            default: // Invalid orientation
+                break;
+        }
+
+        $this->image->setImageOrientation(Imagick::ORIENTATION_TOPLEFT);
+    }
+
+    public function text(
+        string $text,
+        int $fontSize,
+        string $color = '000000',
+        int $x = 0,
+        int $y = 0,
+        int $angle = 0,
+        string $fontPath = '',
+        int $width = 0,
+    ): static {
+        if ($fontPath && ! file_exists($fontPath)) {
+            throw InvalidFont::make($fontPath);
+        }
+
+        $textColor = new ImagickColor($color);
+
+        $draw = new ImagickDraw();
+        $draw->setFillColor($textColor->getPixel());
+        $draw->setFontSize($fontSize);
+        if ($fontPath) {
+            $draw->setFont($fontPath);
+        }
+
+        $this->image->annotateImage(
+            $draw,
+            $x,
+            $y,
+            $angle,
+            $width > 0
+                ? $this->wrapText($text, $fontSize, $fontPath, $angle, $width)
+                : $text,
+        );
+
+        return $this;
+    }
+
+    public function wrapText(string $text, int $fontSize, string $fontPath = '', int $angle = 0, int $width = 0): string
+    {
+        if ($fontPath && ! file_exists($fontPath)) {
+            throw InvalidFont::make($fontPath);
+        }
+
+        $wrapped = '';
+        $words = explode(' ', $text);
+
+        foreach ($words as $word) {
+            $teststring = "{$wrapped} {$word}";
+
+            $draw = new ImagickDraw();
+            if ($fontPath) {
+                $draw->setFont($fontPath);
+            }
+            $draw->setFontSize($fontSize);
+
+            $metrics = (new Imagick())->queryFontMetrics($draw, $teststring);
+
+            if ($metrics['textWidth'] > $width) {
+                $wrapped .= "\n".$word;
+            } else {
+                $wrapped .= ' '.$word;
+            }
+        }
+
+        return $wrapped;
     }
 }
