@@ -9,6 +9,7 @@ use App\Http\Controllers\Api\Lecture\UserLectureController;
 use App\Http\Controllers\Api\NotificationController;
 use App\Http\Controllers\Api\Plans\TherapistPlansController;
 use App\Http\Controllers\Api\Slider\SliderController;
+use App\Http\Controllers\Api\Therapist\TherapistController;
 use App\Http\Controllers\Api\TherapistSchedule\TherapistScheduleController;
 use App\Http\Controllers\Api\UsersController;
 use App\Http\Controllers\Api\Wishlist\WishlistController;
@@ -72,5 +73,6 @@ Route::group(['middleware' => ['auth:sanctum', 'user.type:' . UsersType::CLIENT-
     Route::get('plans', [TherapistPlansController::class, 'getPlansForClients']);
     Route::get('therapist/{therapist}/schedule', [TherapistScheduleController::class, 'getScheduleForTherapist']);
     Route::post('therapist/apointments/schedule', [TherapistScheduleController::class, 'getScheduleForTherapist']);
+    Route::get('therapists',[TherapistController::class,'index']);
 });
 

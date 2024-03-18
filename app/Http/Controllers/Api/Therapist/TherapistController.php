@@ -4,11 +4,13 @@ namespace App\Http\Controllers\Api\Therapist;
 
 use App\DataTransferObjects\Therapist\Api\UpdateMainTherapisDatatDTO;
 use App\DataTransferObjects\Therapist\Api\UpdateTherapySessionDataDTO;
+use App\Enums\ActivationStatus;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Therapist\Api\TherapySessionUpdateRequest;
 use App\Http\Requests\Therapist\Api\ThereapistApiUpdateRequest;
 use App\Http\Resources\Therapist\TherapistResource;
 use App\Services\Therapist\TherapistService;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 
@@ -16,6 +18,16 @@ class TherapistController extends Controller
 {
     public function __construct(protected TherapistService $therapistService)
     {
+    }
+
+    public function index(Request $request)
+    {
+        $filters = array_filter($request->all(), function ($value) {
+            return ($value !== null && $value !== false && $value !== '');
+        });
+        $filters['status'] = ActivationStatus::ACTIVE->value;
+        $therapists = $this->therapistService->paginate(filters: $filters);
+        return TherapistResource::collection($therapists);
     }
 
     public function getProfileDetails()

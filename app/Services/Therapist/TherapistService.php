@@ -44,6 +44,13 @@ class TherapistService extends BaseService
         return $this->getQuery(filters: $filters)->with($withRelations);
     }
 
+    public function paginate(array $filters = [],array $selectedColumns=['*']): \Illuminate\Contracts\Pagination\Paginator
+    {
+        return $this->getQuery(filters: $filters)
+            ->select($selectedColumns)
+            ->simplePaginate();
+    }
+
     /**
      * @param CreateTherapistDTO $therapistDTO
      * @return Builder|Model|null
