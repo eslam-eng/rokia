@@ -2,9 +2,11 @@
 
 namespace App\Services;
 
+use App\DataTransferObjects\Lecture\BuyLectureDTO;
 use App\DataTransferObjects\Lecture\LectureDTO;
 use App\DataTransferObjects\Lecture\UpdateLectureDTO;
 use App\DataTransferObjects\Therapist\CreateTherapistDTO;
+use App\Enums\PaymentStatusEnum;
 use App\Exceptions\GeneralException;
 use App\Exceptions\NotFoundException;
 use App\Filters\LecturesFilter;
@@ -16,6 +18,7 @@ use getid3_lib;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class LectureService extends BaseService
 {
@@ -142,7 +145,7 @@ class LectureService extends BaseService
 
     public function getLecturesForUser(User $user): \Illuminate\Database\Eloquent\Collection
     {
-        return $user->lecture()->get();
+        return $user->lecture()->where('payment_status',PaymentStatusEnum::PAID->value)->get();
     }
 
     public function getLectureReportForTherapist(array $filters = []): LengthAwarePaginator
@@ -162,5 +165,15 @@ class LectureService extends BaseService
         $lecture->clearMediaCollection('lectures_covers'); // all media in the "profile_image" collection will be deleted
         $lecture->addMedia($image_cover)->toMediaCollection('lectures_covers');
         return $lecture;
+    }
+
+    public function buyLecture(BuyLectureDTO $buyLectureDTO)
+    {
+        DB::beginTransaction();
+        $buyLectureDTO->validate();
+        $userLectureData = $buyLectureDTO->toArray();
+        $userLecture = UserLecture::create($userLectureData);
+        DB::commit();
+        return $userLecture;
     }
 }

@@ -82,6 +82,7 @@ return [
         'users_subscription' => 'Users Subscription',
         'status' => 'Status',
         'paid' => 'Paid',
+        'not_paid' => 'Not Paid',
         'free' => 'Free',
         'duration'=>'duration',
         'created_at'=>'Created At',
@@ -93,6 +94,7 @@ return [
         'edit_lecture' => 'Lecture Edit',
         'lecture_title' => 'Lecture Title',
         'lecture_upload_success' => 'Lecture Uploaded Successfully',
+        'buy_lecture_in_progress' => 'The lecture is being purchased',
         'recorded_lecture' => 'Recorded lecture',
         'live_lecture' => 'Live lecture',
 

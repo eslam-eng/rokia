@@ -6,6 +6,7 @@ enum PaymentStatusEnum: int
 {
     case FREE = 0;
     case PAID = 1;
+    case NOTPAID = 2;
 
     public static function values(): array
     {
@@ -17,6 +18,7 @@ enum PaymentStatusEnum: int
         return match ($this) {
             self::FREE => __('app.lectures.free'),
             self::PAID =>  __('app.lectures.paid') ,
+            self::NOTPAID =>  __('app.lectures.paid') ,
         };
     }
 }

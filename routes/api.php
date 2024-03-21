@@ -52,7 +52,9 @@ Route::group(['middleware' => ['auth:sanctum', 'user.type:' . UsersType::CLIENT-
     Route::get('lectures', [LectureController::class, 'getLecturesForUser']);
 
     Route::group(['prefix' => 'client'], function () {
-        Route::get('lectures', UserLectureController::class);
+        Route::get('lectures', [UserLectureController::class,'index']);
+        Route::post('lectures', [UserLectureController::class,'buyLecture']);
+        Route::post('lecture/confirm-payment', [UserLectureController::class,'confirmLecturePayment']);
         Route::apiResource('wishlist', WishlistController::class);
         Route::delete('wishlist/lecture/{id}/remove', [WishlistController::class, 'removeLectureFormFavorite']);
         Route::apiResource('book-appointment', BookAppointmentController::class);

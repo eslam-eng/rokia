@@ -14,6 +14,7 @@ use App\Filters\UsersFilters;
 use App\Models\PasswordResetCode;
 use App\Models\Therapist;
 use App\Models\User;
+use App\Services\Therapist\TherapistService;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
@@ -26,7 +27,7 @@ use Illuminate\Validation\ValidationException;
 class UserService extends BaseService
 {
 
-    public function __construct(private User $model, protected NotificationService $pushNotificationService)
+    public function __construct(private User $model, protected NotificationService $pushNotificationService,protected TherapistService $therapistService)
     {
 
     }
@@ -187,10 +188,10 @@ class UserService extends BaseService
         PasswordResetCode::query()->where('phone', $phone)->delete();
         $codeData = PasswordResetCode::create(['phone' => $phone, 'code' => $code]);
         if ($user_type == UsersType::CLIENT->value)
-            $token = User::query()->where('phone', $phone)
+            $token = $this->getQuery()->where('phone', $phone)
                 ->pluck('device_token')->toArray();
         elseif ($user_type == UsersType::THERAPIST->value)
-            $token = Therapist::query()->where('phone', $phone)
+            $token = $this->therapistService->getQuery(['phone'=>$phone])
                 ->pluck('device_token')->toArray();
 
         if (empty($token))
@@ -209,9 +210,9 @@ class UserService extends BaseService
             return apiResponse(message: __('lang.code_is_expire'), code: 422);
 
         if ($user_type == UsersType::CLIENT->value)
-            $user = User::where('phone', $passwordReset->phone)->first();
+            $user = $this->getQuery()->where('phone', $passwordReset->phone)->first();
         else
-            $user = Therapist::where('phone', $passwordReset->phone)->first();
+            $user = $this->therapistService->getQuery(['phone'=>$passwordReset->phone])->first();
 
         $is_updated = $user->update(['password' => $password]);
 

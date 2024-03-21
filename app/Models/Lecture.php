@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Enums\UsersType;
+use App\Enums\PaymentStatusEnum;
 use App\Traits\EscapeUnicodeJson;
 use App\Traits\Filterable;
 use Carbon\Carbon;
@@ -20,28 +20,15 @@ use Spatie\MediaLibrary\InteractsWithMedia;
 
 class Lecture extends Model implements HasMedia
 {
-    use HasFactory, Filterable, EscapeUnicodeJson, InteractsWithMedia,SoftDeletes;
+    use HasFactory, Filterable, EscapeUnicodeJson, InteractsWithMedia, SoftDeletes;
 
     protected $fillable = [
         'title', 'therapist_id', 'duration', 'description', 'price', 'status', 'is_paid', 'type', 'publish_date',
     ];
 
-    protected function imageCoverUrl(): Attribute
-    {
-        return Attribute::make(
-            get: fn() => !empty($this->getFirstMediaUrl('lectures_covers')) ? $this->getFirstMediaUrl('lectures_covers') : asset('assets/img/default_lecture'),
-        );
-    }
-    protected function lectureMediaContentUrl(): Attribute
-    {
-        return Attribute::make(
-            get: fn() => $this->getFirstMediaUrl('lectures_media_content') ?: null
-        );
-    }
-
     public function users(): BelongsToMany
     {
-        return $this->belongsToMany(User::class,'user_lectures','lecture_id');
+        return $this->belongsToMany(User::class, 'user_lectures', 'lecture_id');
     }
 
     public function therapist(): BelongsTo
@@ -54,7 +41,6 @@ class Lecture extends Model implements HasMedia
         return $this->morphMany(Wishlist::class, 'relatable');
     }
 
-
     public function scopeSubscribeUsers(Builder $builder)
     {
         if (!auth()->check())
@@ -62,7 +48,8 @@ class Lecture extends Model implements HasMedia
         $user_id = auth()->id();
         $builder->leftJoin('user_lectures', function ($join) use ($user_id) {
             $join->on('lectures.id', '=', 'user_lectures.lecture_id')
-                ->where('user_lectures.user_id', '=', $user_id);
+                ->where('user_lectures.user_id', '=', $user_id)
+                ->where('user_lectures.payment_status', PaymentStatusEnum::PAID->value);
         })->addSelect(DB::raw('IF(user_lectures.user_id IS NOT NULL, 1, 0) as is_subscribed'));
     }
 
@@ -78,11 +65,25 @@ class Lecture extends Model implements HasMedia
         })->addSelect(DB::raw('IF(wishlists.user_id IS NOT NULL, 1, 0) as is_favorite'));
     }
 
+    protected function imageCoverUrl(): Attribute
+    {
+        return Attribute::make(
+            get: fn() => !empty($this->getFirstMediaUrl('lectures_covers')) ? $this->getFirstMediaUrl('lectures_covers') : asset('assets/img/default_lecture'),
+        );
+    }
+
+    protected function lectureMediaContentUrl(): Attribute
+    {
+        return Attribute::make(
+            get: fn() => $this->getFirstMediaUrl('lectures_media_content') ?: null
+        );
+    }
+
     protected function isAvailable(): Attribute
     {
         $date = Carbon::parse($this->publish_date);
         return Attribute::make(
-            get: fn () => $date->lte(Carbon::now()),
+            get: fn() => $date->lte(Carbon::now()),
         );
     }
 }
