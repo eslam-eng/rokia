@@ -24,6 +24,8 @@ class TherapistsTableSeeder extends Seeder
                 'status' => true,
                 'avg_therapy_duration' => 15,
                 'therapy_price' => 120,
+                'create_at' => now(),
+                'updated_at' => now(),
 
             ],
             [
@@ -36,6 +38,8 @@ class TherapistsTableSeeder extends Seeder
                 'status' => true,
                 'avg_therapy_duration' => 15,
                 'therapy_price' => 120,
+                'create_at' => now(),
+                'updated_at' => now(),
 
             ],
             [
@@ -48,6 +52,8 @@ class TherapistsTableSeeder extends Seeder
                 'status' => true,
                 'avg_therapy_duration' => 15,
                 'therapy_price' => 120,
+                'create_at' => now(),
+                'updated_at' => now(),
 
             ],
             [
@@ -60,6 +66,8 @@ class TherapistsTableSeeder extends Seeder
                 'status' => true,
                 'avg_therapy_duration' => 15,
                 'therapy_price' => 120,
+                'create_at' => now(),
+                'updated_at' => now(),
 
             ]
         ];
