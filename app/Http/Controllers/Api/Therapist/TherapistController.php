@@ -59,25 +59,4 @@ class TherapistController extends Controller
             return apiResponse(message: $exception->getMessage(), code: 500);
         }
     }
-     public function storeRateTherapist(Request $request, int  $therapistId)
-    {
-        try {
-             $therapist = $this->therapistService->findById( $therapistId);
-            
-            if (! $therapist) {
-                return apiResponse(message: 'Therapist not found', code: 404);
-            }
-
-            $rateDTO = RateDTO::fromRequest($request);
-            $this->therapistService->storeRateForTherapist( $therapist, $rateDTO);
-            
-            return apiResponse(message: 'Rate stored successfully');
-        } catch (NotFoundException $exception) {
-            return apiResponse(message: $exception->getMessage(), code: 404);
-        } catch (ValidationException $exception) {
-            return apiResponse(message: $exception->getMessage(), code: 422);
-        } catch (\Exception $exception) {
-            return apiResponse(message: $exception->getMessage(), code: 500);
-        }
-    }
 }

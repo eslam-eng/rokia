@@ -168,30 +168,4 @@ class TherapistService extends BaseService
         }
         return $therapist->pluck('device_token')->toArray();
     }
-
-     public function storeRateForTherapist(Therapist $therapist, RateDTO $rateDTO): Rate
-    {
-        $rateDTO->validate();
-
-        $existingRate =  $therapist->rates()
-            ->where('user_id', $rateDTO->user_id)
-            ->where('relatable_type', RateType::THERAPIST)
-            ->first();
-
-        if ($existingRate) {
-            $existingRate->update(['rate_number' => $rateDTO->rate_number]);
-            return $existingRate;
-        }
-
-        $rate = new Rate([
-            'user_id' => $rateDTO->user_id,
-            'relatable_id' =>  $therapist->id,
-            'relatable_type' => RateType::THERAPIST,
-            'rate_number' => $rateDTO->rate_number,
-        ]);
-
-         $therapist->rates()->save($rate);
-
-        return $rate;
-    }
 }
