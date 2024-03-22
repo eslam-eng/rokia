@@ -26,7 +26,7 @@ class LectureFactory extends Factory
             'therapist_id' => Therapist::query()->inRandomOrder()->first()?->id,
             'duration' => fake()->numberBetween(10, 30),
             'description' => fake()->paragraph(1),
-            'price' => fake()->numberBetween(10, 30),
+            'price' => fake()->boolean ? fake()->numberBetween(10, 30) : 0,
             'status' => ActivationStatus::ACTIVE->value,
             'is_paid' => fake()->boolean,
             'type' => LecturesTypeEnum::RECORDED->value,
