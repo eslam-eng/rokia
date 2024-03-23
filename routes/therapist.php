@@ -8,6 +8,7 @@ use App\Http\Controllers\Api\Lecture\LectureController;
 use App\Http\Controllers\Api\NotificationController;
 use App\Http\Controllers\Api\Plans\TherapistPlansController;
 use App\Http\Controllers\Api\RozmanaController;
+use App\Http\Controllers\Api\Slider\SliderController;
 use App\Http\Controllers\Api\Specialist\SpecialistController;
 use App\Http\Controllers\Api\Therapist\TherapistController;
 use App\Http\Controllers\Api\TherapistSchedule\TherapistScheduleController;
@@ -98,6 +99,7 @@ Route::group(['middleware' => 'auth:api_therapist'], function () {
 
         });
     });
+    Route::get('sliders', SliderController::class);
 
 });
 
