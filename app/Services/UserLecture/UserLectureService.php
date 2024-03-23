@@ -43,8 +43,6 @@ class UserLectureService extends BaseService
     public function confirmPaymentStatus(array $userLectureData = []): bool
     {
         $userLecture = $this->findById(Arr::get($userLectureData, 'merchant_id'));
-        if (!$userLecture)
-            throw new NotFoundException('user lecture not found');
         $userLectureUpdatedData = ['transaction_id'=> Arr::get($userLectureData, 'transaction_id'), 'payment_status' => PaymentStatusEnum::PAID->value];
         return $userLecture->update($userLectureUpdatedData);
     }

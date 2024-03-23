@@ -22,6 +22,8 @@ return new class extends Migration
             $table->integer('rozmana_number');
             $table->integer('price');
             $table->tinyInteger('status')->default(\App\Enums\ClientPlanStatusEnum::PENDING->value);
+            $table->tinyInteger('payment_status')->default(\App\Enums\PaymentStatusEnum::NOTPAID->value);
+            $table->string('transaction_id')->nullable();
             $table->timestamps();
         });
     }

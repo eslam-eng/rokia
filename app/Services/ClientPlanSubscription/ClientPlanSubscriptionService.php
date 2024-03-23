@@ -30,22 +30,14 @@ class ClientPlanSubscriptionService extends BaseService
         return $this->getQuery()->where('id', $client_plan_subscription_id)->delete();
     }
 
-    public function getQuery(?array $filters = []): ?Builder
-    {
-        return parent::getQuery($filters)
-            ->when(!empty($filters), fn(Builder $builder) => $builder->filter(new LecturesFilter($filters)));
-    }
-
     /**
      * @throws NotFoundException
      */
     public function confirmPaymentStatus(array $clientPlanSubscriptionData = []): bool
     {
         $clientPlanSubscription = $this->findById(Arr::get($clientPlanSubscriptionData, 'merchant_id'));
-        if (!$clientPlanSubscription)
-            throw new NotFoundException('user lecture not found');
-        $userLectureUpdatedData = ['transaction_id' => Arr::get($clientPlanSubscription, 'transaction_id'), 'payment_status' => PaymentStatusEnum::PAID->value];
-        return $clientPlanSubscription->update($userLectureUpdatedData);
+        $clientPlanSubscriptionData = ['transaction_id' => Arr::get($clientPlanSubscriptionData, 'transaction_id'), 'payment_status' => PaymentStatusEnum::PAID->value];
+        return $clientPlanSubscription->update($clientPlanSubscriptionData);
     }
 
     public function subscribeToPlan(ClientPlanSubscriptionDTO $clientPlanSubscriptionDTO)

@@ -1,14 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Lecture;
+namespace App\Http\Requests\Payment;
 
-use App\Enums\ActivationStatus;
-use App\Enums\LecturesTypeEnum;
 use App\Http\Requests\BaseRequest;
-use Carbon\Carbon;
-use Illuminate\Validation\Rule;
 
-class ConfirmLecturePaymentRequest extends BaseRequest
+class ConfirmPaymentRequest extends BaseRequest
 {
     /**
      * Determine if the user is authorized to make this request.

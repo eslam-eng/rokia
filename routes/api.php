@@ -3,10 +3,10 @@
 use App\Enums\UsersType;
 use App\Http\Controllers\Api\Appointment\BookAppointmentController;
 use App\Http\Controllers\Api\Auth\AuthClientController;
-use App\Http\Controllers\Api\Clients\ClientController;
 use App\Http\Controllers\Api\Lecture\LectureController;
 use App\Http\Controllers\Api\Lecture\UserLectureController;
 use App\Http\Controllers\Api\NotificationController;
+use App\Http\Controllers\Api\Plans\ClientPlansSubscriptionController;
 use App\Http\Controllers\Api\Plans\TherapistPlansController;
 use App\Http\Controllers\Api\Slider\SliderController;
 use App\Http\Controllers\Api\Therapist\TherapistController;
@@ -41,31 +41,32 @@ Route::group(['prefix' => 'auth/client'], function () {
 
 Route::group(['middleware' => ['auth:sanctum', 'user.type:' . UsersType::CLIENT->value]], function () {
 
+    Route::get('lectures', [LectureController::class, 'getLecturesForUser']);
+
     Route::group(['prefix' => 'client'], function () {
         Route::get('profile', [AuthClientController::class, 'getProfileDetails']);
         Route::post('update-fcm-token', [UsersController::class, 'updateFcmToken']);
         Route::post('/change-password', [UsersController::class, 'changePassword']);
         Route::post('/change-image', [UsersController::class, 'changeImage']);
-        Route::post('/update-data', [ClientController::class, 'updateProfileData']);
-    });
+        Route::post('/update-data', [UsersController::class, 'updateProfileData']);
 
-    Route::get('lectures', [LectureController::class, 'getLecturesForUser']);
-
-    Route::group(['prefix' => 'client'], function () {
-        Route::get('lectures', [UserLectureController::class,'index']);
-        Route::post('lectures', [UserLectureController::class,'buyLecture']);
-        Route::post('lecture/confirm-payment', [UserLectureController::class,'confirmLecturePayment']);
+        Route::get('lectures', [UserLectureController::class, 'index']);
+        Route::post('lectures', [UserLectureController::class, 'buyLecture']);
+        Route::post('lecture/confirm-payment', [UserLectureController::class, 'confirmLecturePayment']);
         Route::apiResource('wishlist', WishlistController::class);
         Route::delete('wishlist/lecture/{id}/remove', [WishlistController::class, 'removeLectureFormFavorite']);
         Route::apiResource('book-appointment', BookAppointmentController::class);
         Route::post('booked-appointments/{book_appointment}/cancel', [BookAppointmentController::class, 'changeToCanceled']);
+
+        Route::group(['prefix' => 'notifications'], function () {
+            Route::get('/', [NotificationController::class, 'getNotifications']);
+            Route::get('/{notification_id}/mark-as-read', [NotificationController::class, 'markAsRead']);
+        });
+
+        Route::post('plan-subscribe', [ClientPlansSubscriptionController::class, 'subscribe']);
+        Route::post('plan-subscribe/confirm-payment', [ClientPlansSubscriptionController::class, 'confirmSubscribePlanPayment']);
     });
 
-
-    Route::group(['prefix' => 'notifications'], function () {
-        Route::get('/', [NotificationController::class, 'getNotifications']);
-        Route::get('/{notification_id}/mark-as-read', [NotificationController::class, 'markAsRead']);
-    });
 
     Route::group(['prefix' => 'media'], function () {
         Route::delete('{id}', [MediaController::class, 'deleteMedia']);
@@ -75,6 +76,6 @@ Route::group(['middleware' => ['auth:sanctum', 'user.type:' . UsersType::CLIENT-
     Route::get('plans', [TherapistPlansController::class, 'getPlansForClients']);
     Route::get('therapist/{therapist}/schedule', [TherapistScheduleController::class, 'getScheduleForTherapist']);
     Route::post('therapist/apointments/schedule', [TherapistScheduleController::class, 'getScheduleForTherapist']);
-    Route::get('therapists',[TherapistController::class,'index']);
+    Route::get('therapists', [TherapistController::class, 'index']);
 });
 

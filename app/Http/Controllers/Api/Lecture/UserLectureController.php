@@ -8,6 +8,7 @@ use App\Exceptions\NotPaidLectureException;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Lecture\BuyLectureRequest;
 use App\Http\Requests\Lecture\ConfirmLecturePaymentRequest;
+use App\Http\Requests\Payment\ConfirmPaymentRequest;
 use App\Http\Resources\Lecture\LecturesResource;
 use App\Services\LectureService;
 use App\Services\UserLecture\UserLectureService;
@@ -63,7 +64,7 @@ class UserLectureController extends Controller
         }
     }
 
-    public function confirmLecturePayment(ConfirmLecturePaymentRequest $request)
+    public function confirmLecturePayment(ConfirmPaymentRequest $request)
     {
         try {
             $userLectureData = $request->validated();

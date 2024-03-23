@@ -2,48 +2,53 @@
 
 namespace App\Http\Controllers\Api\Plans;
 
+use App\DataTransferObjects\ClientPlanSubscription\ClientPlanSubscriptionDTO;
 use App\DataTransferObjects\TherapistPlans\TherapistPlansDTO;
+use App\Exceptions\NotFoundException;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ClientPlanSubscription\ClientPlanSubscriptionRequest;
+use App\Http\Requests\Payment\ConfirmPaymentRequest;
 use App\Http\Requests\TherapistPlan\TherapistPlanRequest;
 use App\Http\Resources\TherapistPlans\TherapistPlansResource;
+use App\Services\ClientPlanSubscription\ClientPlanSubscriptionService;
 use App\Services\Plans\TherapistPlansService;
 use Mockery\Exception;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class ClientPlansSubscriptionController extends Controller
 {
-    public function __construct(protected TherapistPlansService $therapistPlansService)
+    public function __construct(protected ClientPlanSubscriptionService $clientPlanSubscriptionService,protected TherapistPlansService $therapistPlansService)
     {
     }
 
-    public function index()
-    {
-        $therapist_id = auth()->guard('api_therapist')->id();
-        $therapistPlans = $this->therapistPlansService->getAll(['therapist_id' => $therapist_id]);
-        return TherapistPlansResource::collection($therapistPlans);
-    }
 
-    public function store(TherapistPlanRequest $request)
+    public function subscribe(ClientPlanSubscriptionRequest $request)
     {
         try {
-            $therapistPlandDTO = TherapistPlansDTO::fromRequest($request);
-            $therapistPlandDTO->therapist_id = auth()->guard('api_therapist')->id();
-            $this->therapistPlansService->store(therapistPlansDTO: $therapistPlandDTO);
-            return apiResponse(message: __('app.general.success_operation'));
-        } catch (\Exception $exception) {
+            $therapistPlan = $this->therapistPlansService->findById($request->therapist_plan_id);
+            $clientPlanSubscriptionDTO = ClientPlanSubscriptionDTO::fromRequest($request);
+            $clientPlanSubscriptionDTO->therapist_id = $therapistPlan->therapist_id;
+            $clientPlanSubscriptionDTO->rozmana_number = $therapistPlan->roznama_number;
+            $clientPlanSubscriptionDTO->price = $therapistPlan->price;
+            $clientPlanSubscription = $this->clientPlanSubscriptionService->subscribeToPlan(clientPlanSubscriptionDTO: $clientPlanSubscriptionDTO);
+            return apiResponse(data:['merchant_id'=>$clientPlanSubscription->id],message: __('app.general.success_operation'));
+        }catch (NotFoundException $exception) {
+            return apiResponse(message: $exception->getMessage(), code: 422);
+        }
+        catch (\Exception $exception) {
             return apiResponse(message: $exception->getMessage(), code: 500);
         }
     }
 
 
-    public function changeStatus($id)
+    public function confirmSubscribePlanPayment(ConfirmPaymentRequest $request)
     {
         try {
-            $this->therapistPlansService->changeStatus(therapistPlan: $id);
+            $userLectureData = $request->validated();
+            $this->clientPlanSubscriptionService->confirmPaymentStatus($userLectureData);
             return apiResponse(message: __('app.general.success_operation'));
-        } catch (NotFoundHttpException $exception) {
-            return apiResponse(message: __('app.plans.plan_not_found'), code: 404);
-        } catch (Exception $exception) {
+        }catch (\Exception $exception)
+        {
             return apiResponse(message: $exception->getMessage(), code: 500);
         }
     }
