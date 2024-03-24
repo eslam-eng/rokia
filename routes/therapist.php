@@ -93,9 +93,9 @@ Route::group(['middleware' => 'auth:api_therapist'], function () {
         Route::get('interests', InterestsController::class);
 
         Route::group(['prefix' => 'booked-appointments/{book_appointment}'],function (){
-            Route::post('approve',[BookAppointmentController::class,'changeToWatingForPaid']);
+            Route::post('approve',[BookAppointmentController::class, 'changeToWaitingForPaid']);
             Route::post('cancel',[BookAppointmentController::class,'changeToCanceled']);
-            Route::post('compelete',[BookAppointmentController::class,'changeToComeleted']);
+            Route::post('compelete',[BookAppointmentController::class, 'changeToCompleted']);
 
         });
     });

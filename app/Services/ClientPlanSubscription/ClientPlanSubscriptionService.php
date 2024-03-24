@@ -3,6 +3,7 @@
 namespace App\Services\ClientPlanSubscription;
 
 use App\DataTransferObjects\ClientPlanSubscription\ClientPlanSubscriptionDTO;
+use App\Enums\ClientPlanStatusEnum;
 use App\Enums\PaymentStatusEnum;
 use App\Exceptions\NotFoundException;
 use App\Filters\LecturesFilter;
@@ -33,11 +34,14 @@ class ClientPlanSubscriptionService extends BaseService
     /**
      * @throws NotFoundException
      */
-    public function confirmPaymentStatus(array $clientPlanSubscriptionData = []): bool
+    public function confirmPaymentStatus(array $clientPlanSubscriptionData = []): Model|\Illuminate\Database\Eloquent\Collection|null
     {
         $clientPlanSubscription = $this->findById(Arr::get($clientPlanSubscriptionData, 'merchant_id'));
-        $clientPlanSubscriptionData = ['transaction_id' => Arr::get($clientPlanSubscriptionData, 'transaction_id'), 'payment_status' => PaymentStatusEnum::PAID->value];
-        return $clientPlanSubscription->update($clientPlanSubscriptionData);
+        $clientPlanSubscriptionData = ['transaction_id' => Arr::get($clientPlanSubscriptionData, 'transaction_id'), 'payment_status' => PaymentStatusEnum::PAID->value,'status'=>ClientPlanStatusEnum::RUNNING->value];
+        $clientPlanSubscription->update($clientPlanSubscriptionData);
+        $clientPlanSubscription->refresh();
+        return $clientPlanSubscription;
+
     }
 
     public function subscribeToPlan(ClientPlanSubscriptionDTO $clientPlanSubscriptionDTO)

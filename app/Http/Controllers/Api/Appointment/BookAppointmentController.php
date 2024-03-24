@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Api\Appointment;
 use App\DataTransferObjects\BookAppointment\BookAppointmentDTO;
 use App\Exceptions\BookAppointmentStatusException;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\BookAppointment\BookAppointmentPaymentRequest;
 use App\Http\Requests\BookAppointment\BookAppointmentRequest;
+use App\Http\Requests\Payment\ConfirmPaymentRequest;
 use App\Http\Resources\Appointments\BookAppointmentsResource;
 use App\Models\BookAppointment;
 use App\Services\Appointment\BookAppointmentService;
@@ -39,7 +41,7 @@ class BookAppointmentController extends Controller
     public function store(BookAppointmentRequest $request)
     {
         try {
-            //todo make validation that time inperiod that i store in therapist scheule
+            //todo make validation that time inperiod that i store in therapist schedule
             $bookAppointmentDTO = BookAppointmentDTO::fromRequest($request);
             $therapist = $this->therapistService->findById(id: $bookAppointmentDTO->therapist_id);
             $bookAppointmentDTO->therapy_price = $therapist->therapy_price;
@@ -52,7 +54,7 @@ class BookAppointmentController extends Controller
     }
 
     //for therapist only
-    public function changeToWatingForPaid(BookAppointment $book_appointment)
+    public function changeToWaitingForPaid(BookAppointment $book_appointment)
     {
         try {
             $this->bookAppointmentService->waitingForPaid(bookAppointment: $book_appointment);
@@ -65,7 +67,7 @@ class BookAppointmentController extends Controller
         }
     }
 
-    public function changeToComeleted(BookAppointment $book_appointment)
+    public function changeToCompleted(BookAppointment $book_appointment)
     {
         try {
             $this->bookAppointmentService->compoleted(bookAppointment: $book_appointment);
@@ -94,6 +96,19 @@ class BookAppointmentController extends Controller
         } catch (\Exception $exception) {
             return apiResponse(message: __('app.general.there_is_an_error'), code: 500);
 
+        }
+    }
+
+
+    public function confirmBookAppointmentPayment(ConfirmPaymentRequest $request)
+    {
+        try {
+            $confirmPaymentData = $request->validated();
+            $this->bookAppointmentService->confirmPaymentStatus($confirmPaymentData);
+            return apiResponse(message: __('app.general.success_operation'));
+        }catch (\Exception $exception)
+        {
+            return apiResponse(message: $exception->getMessage(), code: 500);
         }
     }
 

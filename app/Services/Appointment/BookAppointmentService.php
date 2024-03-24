@@ -6,6 +6,8 @@ use App\DataTransferObjects\BookAppointment\BookAppointmentDTO;
 use App\DataTransferObjects\Slider\SliderDTO;
 use App\DataTransferObjects\Therapist\CreateTherapistDTO;
 use App\Enums\BookAppointmentStatusEnum;
+use App\Enums\ClientPlanStatusEnum;
+use App\Enums\PaymentStatusEnum;
 use App\Events\TherapistInvoice\TherapistInvoiceHandler;
 use App\Exceptions\BookAppointmentStatusException;
 use App\Exceptions\GeneralException;
@@ -20,6 +22,7 @@ use App\Services\UserService;
 use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
 
 class BookAppointmentService extends BaseService
@@ -120,9 +123,9 @@ class BookAppointmentService extends BaseService
      */
     public function paid(BookAppointment $bookAppointment): void
     {
-        if ($bookAppointment->status == BookAppointmentStatusEnum::PAID->value)
+        if ($bookAppointment->status == BookAppointmentStatusEnum::INPROGRESS->value)
             throw new BookAppointmentStatusException(status: BookAppointmentStatusEnum::from($bookAppointment->status)->getLabel());
-        $bookAppointment->update(['status' => BookAppointmentStatusEnum::PAID->value]);
+        $bookAppointment->update(['status' => BookAppointmentStatusEnum::INPROGRESS->value]);
         $this->sendFcm(bookAppointment: $bookAppointment,send_to_client: false,send_to_therapist: true);
 
     }
@@ -132,9 +135,9 @@ class BookAppointmentService extends BaseService
      */
     public function compoleted(BookAppointment $bookAppointment): void
     {
-        if ($bookAppointment->status == BookAppointmentStatusEnum::COMPOLETED->value)
+        if ($bookAppointment->status == BookAppointmentStatusEnum::COMPLETED->value)
             throw new BookAppointmentStatusException(status: BookAppointmentStatusEnum::from($bookAppointment->status)->getLabel());
-        $bookAppointment->update(['status' => BookAppointmentStatusEnum::COMPOLETED->value]);
+        $bookAppointment->update(['status' => BookAppointmentStatusEnum::COMPLETED->value]);
         $this->sendFcm(bookAppointment: $bookAppointment);
     }
 
@@ -160,5 +163,12 @@ class BookAppointmentService extends BaseService
             $therapistToken = $this->therapistService->getToken($bookAppointment->therapist_id);
         $tokens = array_merge($clientToken, $therapistToken);
         $this->notificationService->sendToTokens(title: $title, body: $body, tokens: $tokens);
+    }
+
+    public function confirmPaymentStatus(array $bookAppointmentData = []): bool
+    {
+        $bookAppointment = $this->findById(Arr::get($bookAppointmentData, 'merchant_id'));
+        $bookAppointmentData = ['transaction_id' => Arr::get($bookAppointmentData, 'transaction_id'), 'payment_status' => PaymentStatusEnum::PAID->value,'status'=>BookAppointmentStatusEnum::INPROGRESS->value];
+        return $bookAppointment->update($bookAppointmentData);
     }
 }

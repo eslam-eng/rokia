@@ -27,7 +27,7 @@ class ClientPlanSubscriptionDTO extends BaseDTO
     )
     {
         $this->payment_status = $this->payment_status ?? PaymentStatusEnum::NOTPAID->value;
-        $this->status = $this->status ?? ClientPlanStatusEnum::RUNNING->value;
+        $this->status = $this->status ?? ClientPlanStatusEnum::PENDING->value;
     }
 
     public static function fromRequest($request): BaseDTO

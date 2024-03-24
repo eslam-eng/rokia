@@ -57,6 +57,7 @@ Route::group(['middleware' => ['auth:sanctum', 'user.type:' . UsersType::CLIENT-
         Route::delete('wishlist/lecture/{id}/remove', [WishlistController::class, 'removeLectureFormFavorite']);
         Route::apiResource('book-appointment', BookAppointmentController::class);
         Route::post('booked-appointments/{book_appointment}/cancel', [BookAppointmentController::class, 'changeToCanceled']);
+        Route::post('booked-appointments/confirm-payment', [BookAppointmentController::class, 'confirmBookAppointmentPayment']);
 
         Route::group(['prefix' => 'notifications'], function () {
             Route::get('/', [NotificationController::class, 'getNotifications']);

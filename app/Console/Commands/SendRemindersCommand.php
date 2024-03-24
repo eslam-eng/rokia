@@ -35,8 +35,8 @@ class SendRemindersCommand extends Command
             ->where('status', ActivationStatus::PENDING->value)
             ->where('date', $now->format('m-d'))
             ->orderBy('id')
-            ->chunkById(100, function ($cliendNotifications) {
-                foreach ($cliendNotifications as $clientNotification) {
+            ->chunkById(100, function ($clientNotifications) {
+                foreach ($clientNotifications as $clientNotification) {
                     $otherDate = Carbon::parse("$clientNotification->time")->format('H:i:s');
 
                     // Get the current time

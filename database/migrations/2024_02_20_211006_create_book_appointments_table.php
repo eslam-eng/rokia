@@ -22,6 +22,8 @@ return new class extends Migration
             $table->integer('day_id');
             $table->decimal('price');
             $table->tinyInteger('status')->default(BookAppointmentStatusEnum::PENDING->value);
+            $table->string('transaction_id')->nullable();
+            $table->tinyInteger('payment_status')->default(\App\Enums\PaymentStatusEnum::NOTPAID->value);
             $table->string('user_description')->nullable();
             $table->softDeletes();
             $table->timestamps();

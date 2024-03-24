@@ -3,6 +3,8 @@
 namespace App\Listeners\ClientPlan;
 
 use App\Enums\ActivationStatus as ClientNotificationStatus;
+use App\Enums\ClientPlanStatusEnum;
+use App\Enums\PaymentStatusEnum;
 use App\Events\ClientPlan\ClientPlanUpdated;
 use App\Models\ClientNotification;
 use App\Services\Plans\ClientPlansSubscriptionService;
@@ -24,10 +26,13 @@ class CreateClientNotification
     public function handle(ClientPlanUpdated $event): void
     {
         $model = $event->model; //ClientPlanSubscription
+        if ($model->payment_status !=PaymentStatusEnum::PAID && $model->status != ClientPlanStatusEnum::RUNNING->value)
+            return;
+
         $client = $event->client;
-        $planIntersts = $model->therapistPlan->interests()->pluck('interests.id')->toArray();
+        $planInterests = $model->therapistPlan->interests()->pluck('interests.id')->toArray();
         $rozmanas = $this->rozmanaService
-            ->getQuery(['interests' => $planIntersts, 'therapist_id' => $model->therapist_id])
+            ->getQuery(['interests' => $planInterests, 'therapist_id' => $model->therapist_id])
             ->inRandomOrder()
             ->limit($model->roznama_number)
             ->get();

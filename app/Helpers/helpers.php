@@ -109,7 +109,7 @@ if (!function_exists('timeTransformer')) {
 
         $bookedAppointments = $therapist->appointments->where('date', '>=', Carbon::now()->format('Y-m-d'))
             ->where('day_id', $day_id)
-            ->where('status', '!=', \App\Enums\BookAppointmentStatusEnum::COMPOLETED->value)
+            ->where('status', '!=', \App\Enums\BookAppointmentStatusEnum::COMPLETED->value)
             ->pluck('time')
             ->toArray();
         // Iterate through the period

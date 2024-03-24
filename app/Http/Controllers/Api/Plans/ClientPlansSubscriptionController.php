@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\Plans;
 
 use App\DataTransferObjects\ClientPlanSubscription\ClientPlanSubscriptionDTO;
 use App\DataTransferObjects\TherapistPlans\TherapistPlansDTO;
+use App\Events\ClientPlan\ClientPlanUpdated;
 use App\Exceptions\NotFoundException;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ClientPlanSubscription\ClientPlanSubscriptionRequest;
@@ -12,12 +13,17 @@ use App\Http\Requests\TherapistPlan\TherapistPlanRequest;
 use App\Http\Resources\TherapistPlans\TherapistPlansResource;
 use App\Services\ClientPlanSubscription\ClientPlanSubscriptionService;
 use App\Services\Plans\TherapistPlansService;
+use App\Services\UserService;
 use Mockery\Exception;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class ClientPlansSubscriptionController extends Controller
 {
-    public function __construct(protected ClientPlanSubscriptionService $clientPlanSubscriptionService,protected TherapistPlansService $therapistPlansService)
+    public function __construct(
+        protected ClientPlanSubscriptionService $clientPlanSubscriptionService,
+        protected TherapistPlansService $therapistPlansService,
+        protected UserService $clientService
+    )
     {
     }
 
@@ -44,8 +50,10 @@ class ClientPlansSubscriptionController extends Controller
     public function confirmSubscribePlanPayment(ConfirmPaymentRequest $request)
     {
         try {
-            $userLectureData = $request->validated();
-            $this->clientPlanSubscriptionService->confirmPaymentStatus($userLectureData);
+            $confirmPaymentPlanData = $request->validated();
+            $clientPlanSubscription = $this->clientPlanSubscriptionService->confirmPaymentStatus($confirmPaymentPlanData);
+            $client = $this->clientService->findById(id: $clientPlanSubscription->client_id);
+            event(new ClientPlanUpdated(model: $clientPlanSubscription,client: $client));
             return apiResponse(message: __('app.general.success_operation'));
         }catch (\Exception $exception)
         {

@@ -12,7 +12,7 @@ class BookAppointment extends Model
 {
     use HasFactory,SoftDeletes,Filterable;
 
-    protected $fillable = ['client_id', 'therapist_id', 'date', 'time', 'day_id', 'price', 'status', 'user_description', 'notify'];
+    protected $fillable = ['client_id', 'therapist_id', 'date', 'time', 'day_id', 'price', 'status', 'user_description', 'notify','transaction_id','payment_status'];
 
     public function client(): BelongsTo
     {
