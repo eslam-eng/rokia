@@ -23,7 +23,9 @@ enum BookAppointmentStatusEnum: int
         return match ($this) {
             self::PENDING => __('app.appointments.pending'),
             self::WAITING_FOR_PAID => __('app.appointments.approved'),
+            self::INPROGRESS => __('app.appointments.in_progress'),
             self::COMPLETED => __('app.appointments.compeleted'),
+            self::CANCELED => __('app.appointments.compeleted'),
         };
     }
 

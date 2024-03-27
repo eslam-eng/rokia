@@ -70,7 +70,7 @@ class BookAppointmentController extends Controller
     public function changeToCompleted(BookAppointment $book_appointment)
     {
         try {
-            $this->bookAppointmentService->compoleted(bookAppointment: $book_appointment);
+            $this->bookAppointmentService->completed(bookAppointment: $book_appointment);
             return apiResponse(message: __('app.general.success_operation'));
         } catch (BookAppointmentStatusException $exception) {
             return apiResponse(message: $exception->getMessage(), code: 422);
@@ -94,6 +94,7 @@ class BookAppointmentController extends Controller
         } catch (BookAppointmentStatusException $exception) {
             return apiResponse(message: $exception->getMessage(), code: 422);
         } catch (\Exception $exception) {
+            dd($exception);
             return apiResponse(message: __('app.general.there_is_an_error'), code: 500);
 
         }

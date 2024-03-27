@@ -133,7 +133,7 @@ class BookAppointmentService extends BaseService
     /**
      * @throws BookAppointmentStatusException
      */
-    public function compoleted(BookAppointment $bookAppointment): void
+    public function completed(BookAppointment $bookAppointment): void
     {
         if ($bookAppointment->status == BookAppointmentStatusEnum::COMPLETED->value)
             throw new BookAppointmentStatusException(status: BookAppointmentStatusEnum::from($bookAppointment->status)->getLabel());
@@ -154,7 +154,8 @@ class BookAppointmentService extends BaseService
 
     private function sendFcm(BookAppointment $bookAppointment, bool $send_to_client = true, bool $send_to_therapist = false): void
     {
-        [$clientToken,$therapistToken] = [];
+        $clientToken = [];
+        $therapistToken = [];
         $title = __('app.appointments.appointment_notification_title', ['number' => $bookAppointment->id]);
         $body = __('app.appointments.appointment_notification_body', ['status' => BookAppointmentStatusEnum::from($bookAppointment->status)->getLabel()]);
         if ($send_to_client)
