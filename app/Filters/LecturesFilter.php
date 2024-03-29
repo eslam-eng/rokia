@@ -19,6 +19,11 @@ class LecturesFilter extends QueryFilter
         return $this->builder->where('status', $term);
     }
 
+    public function keyword($term)
+    {
+        return $this->builder->where(fn($query)=>$query->where('title',"LIKE","%$term%")->orWhere('description','LIKE',"%$term%"));
+    }
+
     public function is_paid($term)
     {
         return $this->builder->where('is_paid', $term);

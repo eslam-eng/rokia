@@ -22,7 +22,7 @@ class TherapistPlanRequest extends BaseRequest
         return [
             'name' => 'required|string',
             'roznama_number' => 'required|integer',
-            'price' => 'required|integer',
+            'price' => 'required|numeric|min:0',
             'interests' => 'required|array|min:1',
         ];
     }
