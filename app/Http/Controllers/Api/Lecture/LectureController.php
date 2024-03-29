@@ -159,10 +159,9 @@ class LectureController extends Controller
     {
         try {
             $lecture = $this->lectureService->findById($id);
-            $media = $lecture->getMedia('*', ['type', 'image'])->first();
+            $media = $lecture->getMedia('lectures_covers')->first();
             $media?->delete();
-            $lecture->addMediaFromRequest('file')->withCustomProperties(['type' => 'image'])
-                ->toMediaCollection();
+            $lecture->addMediaFromRequest('image')->toMediaCollection('lectures_covers');
             return apiResponse(message: 'updated successfully');
         } catch (NotFoundException $exception) {
             return apiResponse(message: $exception->getMessage(), code: 404);

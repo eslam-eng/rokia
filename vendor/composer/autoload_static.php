@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit6832ed58e9884be689958b03c928d5d3
+class ComposerStaticInit346ae2d36fda43006817dc75bcc5901a
 {
     public static $files = array (
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
@@ -246,12 +246,12 @@ class ComposerStaticInit6832ed58e9884be689958b03c928d5d3
         ),
         'Yajra\\DataTables\\' => 
         array (
-            0 => __DIR__ . '/..' . '/yajra/laravel-datatables-editor/src',
-            1 => __DIR__ . '/..' . '/yajra/laravel-datatables-export/src',
-            2 => __DIR__ . '/..' . '/yajra/laravel-datatables-fractal/src',
-            3 => __DIR__ . '/..' . '/yajra/laravel-datatables-html/src',
-            4 => __DIR__ . '/..' . '/yajra/laravel-datatables-oracle/src',
-            5 => __DIR__ . '/..' . '/yajra/laravel-datatables-buttons/src',
+            0 => __DIR__ . '/..' . '/yajra/laravel-datatables-oracle/src',
+            1 => __DIR__ . '/..' . '/yajra/laravel-datatables-html/src',
+            2 => __DIR__ . '/..' . '/yajra/laravel-datatables-buttons/src',
+            3 => __DIR__ . '/..' . '/yajra/laravel-datatables-editor/src',
+            4 => __DIR__ . '/..' . '/yajra/laravel-datatables-fractal/src',
+            5 => __DIR__ . '/..' . '/yajra/laravel-datatables-export/src',
         ),
         'Whoops\\' => 
         array (
@@ -455,8 +455,8 @@ class ComposerStaticInit6832ed58e9884be689958b03c928d5d3
         ),
         'Psr\\Http\\Message\\' => 
         array (
-            0 => __DIR__ . '/..' . '/psr/http-factory/src',
-            1 => __DIR__ . '/..' . '/psr/http-message/src',
+            0 => __DIR__ . '/..' . '/psr/http-message/src',
+            1 => __DIR__ . '/..' . '/psr/http-factory/src',
         ),
         'Psr\\Http\\Client\\' => 
         array (
@@ -745,10 +745,12 @@ class ComposerStaticInit6832ed58e9884be689958b03c928d5d3
         'App\\DataTransferObjects\\BaseDTO' => __DIR__ . '/../..' . '/app/DataTransferObjects/BaseDTO.php',
         'App\\DataTransferObjects\\BookAppointment\\BookAppointmentDTO' => __DIR__ . '/../..' . '/app/DataTransferObjects/BookAppointment/BookAppointmentDTO.php',
         'App\\DataTransferObjects\\ChangePassword\\PasswordChangeDTO' => __DIR__ . '/../..' . '/app/DataTransferObjects/ChangePassword/PasswordChangeDTO.php',
+        'App\\DataTransferObjects\\ClientPlanSubscription\\ClientPlanSubscriptionDTO' => __DIR__ . '/../..' . '/app/DataTransferObjects/ClientPlanSubscription/ClientPlanSubscriptionDTO.php',
         'App\\DataTransferObjects\\Client\\ClientDTO' => __DIR__ . '/../..' . '/app/DataTransferObjects/Client/ClientDTO.php',
         'App\\DataTransferObjects\\Client\\UpdateClientDTO' => __DIR__ . '/../..' . '/app/DataTransferObjects/Client/UpdateClientDTO.php',
         'App\\DataTransferObjects\\DTOInterface' => __DIR__ . '/../..' . '/app/DataTransferObjects/DTOInterface.php',
         'App\\DataTransferObjects\\Interests\\InterestDTO' => __DIR__ . '/../..' . '/app/DataTransferObjects/Interests/InterestDTO.php',
+        'App\\DataTransferObjects\\Lecture\\BuyLectureDTO' => __DIR__ . '/../..' . '/app/DataTransferObjects/Lecture/BuyLectureDTO.php',
         'App\\DataTransferObjects\\Lecture\\LectureDTO' => __DIR__ . '/../..' . '/app/DataTransferObjects/Lecture/LectureDTO.php',
         'App\\DataTransferObjects\\Lecture\\UpdateLectureDTO' => __DIR__ . '/../..' . '/app/DataTransferObjects/Lecture/UpdateLectureDTO.php',
         'App\\DataTransferObjects\\Role\\RoleDTO' => __DIR__ . '/../..' . '/app/DataTransferObjects/Role/RoleDTO.php',
@@ -780,6 +782,7 @@ class ComposerStaticInit6832ed58e9884be689958b03c928d5d3
         'App\\Exceptions\\GeneralException' => __DIR__ . '/../..' . '/app/Exceptions/GeneralException.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Exceptions\\NotFoundException' => __DIR__ . '/../..' . '/app/Exceptions/NotFoundException.php',
+        'App\\Exceptions\\NotPaidLectureException' => __DIR__ . '/../..' . '/app/Exceptions/NotPaidLectureException.php',
         'App\\Exceptions\\TherapistScheduleException' => __DIR__ . '/../..' . '/app/Exceptions/TherapistScheduleException.php',
         'App\\Filters\\BookAppointmentsFilter' => __DIR__ . '/../..' . '/app/Filters/BookAppointmentsFilter.php',
         'App\\Filters\\ClientPlansSubscriptionFilter' => __DIR__ . '/../..' . '/app/Filters/ClientPlansSubscriptionFilter.php',
@@ -799,7 +802,6 @@ class ComposerStaticInit6832ed58e9884be689958b03c928d5d3
         'App\\Http\\Controllers\\Api\\Auth\\AuthClientController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/Auth/AuthClientController.php',
         'App\\Http\\Controllers\\Api\\Auth\\AuthTherapistController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/Auth/AuthTherapistController.php',
         'App\\Http\\Controllers\\Api\\Category\\InterestsController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/Category/InterestsController.php',
-        'App\\Http\\Controllers\\Api\\Clients\\ClientController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/Clients/ClientController.php',
         'App\\Http\\Controllers\\Api\\Invoice\\InvoicesController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/Invoice/InvoicesController.php',
         'App\\Http\\Controllers\\Api\\Lecture\\LectureController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/Lecture/LectureController.php',
         'App\\Http\\Controllers\\Api\\Lecture\\UserLectureController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/Lecture/UserLectureController.php',
@@ -850,19 +852,22 @@ class ComposerStaticInit6832ed58e9884be689958b03c928d5d3
         'App\\Http\\Middleware\\UserTypeCheck' => __DIR__ . '/../..' . '/app/Http/Middleware/UserTypeCheck.php',
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
         'App\\Http\\Requests\\BaseRequest' => __DIR__ . '/../..' . '/app/Http/Requests/BaseRequest.php',
+        'App\\Http\\Requests\\BookAppointment\\BookAppointmentPaymentRequest' => __DIR__ . '/../..' . '/app/Http/Requests/BookAppointment/BookAppointmentPaymentRequest.php',
         'App\\Http\\Requests\\BookAppointment\\BookAppointmentRequest' => __DIR__ . '/../..' . '/app/Http/Requests/BookAppointment/BookAppointmentRequest.php',
         'App\\Http\\Requests\\Category\\InteresetRequest' => __DIR__ . '/../..' . '/app/Http/Requests/Category/InteresetRequest.php',
         'App\\Http\\Requests\\ChangePasswordRequest' => __DIR__ . '/../..' . '/app/Http/Requests/ChangePasswordRequest.php',
-        'App\\Http\\Requests\\ClientPlanSubscription\\ClientPlanRequest' => __DIR__ . '/../..' . '/app/Http/Requests/ClientPlanSubscription/ClientPlanRequest.php',
+        'App\\Http\\Requests\\ClientPlanSubscription\\ClientPlanSubscriptionRequest' => __DIR__ . '/../..' . '/app/Http/Requests/ClientPlanSubscription/ClientPlanSubscriptionRequest.php',
         'App\\Http\\Requests\\Client\\ClientUpdateRequest' => __DIR__ . '/../..' . '/app/Http/Requests/Client/ClientUpdateRequest.php',
         'App\\Http\\Requests\\FileUploadRequest' => __DIR__ . '/../..' . '/app/Http/Requests/FileUploadRequest.php',
         'App\\Http\\Requests\\ImageUploadRequest' => __DIR__ . '/../..' . '/app/Http/Requests/ImageUploadRequest.php',
+        'App\\Http\\Requests\\Lecture\\BuyLectureRequest' => __DIR__ . '/../..' . '/app/Http/Requests/Lecture/BuyLectureRequest.php',
         'App\\Http\\Requests\\Lecture\\LectureRequest' => __DIR__ . '/../..' . '/app/Http/Requests/Lecture/LectureRequest.php',
         'App\\Http\\Requests\\Lecture\\LectureUpdateRequest' => __DIR__ . '/../..' . '/app/Http/Requests/Lecture/LectureUpdateRequest.php',
         'App\\Http\\Requests\\Lecture\\LiveLectureRequest' => __DIR__ . '/../..' . '/app/Http/Requests/Lecture/LiveLectureRequest.php',
         'App\\Http\\Requests\\LoginRequest' => __DIR__ . '/../..' . '/app/Http/Requests/LoginRequest.php',
         'App\\Http\\Requests\\Notification\\PushNotificationRequest' => __DIR__ . '/../..' . '/app/Http/Requests/Notification/PushNotificationRequest.php',
         'App\\Http\\Requests\\Notification\\StoreFcmTokenRequest' => __DIR__ . '/../..' . '/app/Http/Requests/Notification/StoreFcmTokenRequest.php',
+        'App\\Http\\Requests\\Payment\\ConfirmPaymentRequest' => __DIR__ . '/../..' . '/app/Http/Requests/Payment/ConfirmPaymentRequest.php',
         'App\\Http\\Requests\\PhoneVerifyRequest' => __DIR__ . '/../..' . '/app/Http/Requests/PhoneVerifyRequest.php',
         'App\\Http\\Requests\\ResetPasswordRequest' => __DIR__ . '/../..' . '/app/Http/Requests/ResetPasswordRequest.php',
         'App\\Http\\Requests\\Role\\RoleRequest' => __DIR__ . '/../..' . '/app/Http/Requests/Role/RoleRequest.php',
@@ -942,6 +947,7 @@ class ComposerStaticInit6832ed58e9884be689958b03c928d5d3
         'App\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/app/Providers/RouteServiceProvider.php',
         'App\\Services\\Appointment\\BookAppointmentService' => __DIR__ . '/../..' . '/app/Services/Appointment/BookAppointmentService.php',
         'App\\Services\\BaseService' => __DIR__ . '/../..' . '/app/Services/BaseService.php',
+        'App\\Services\\ClientPlanSubscription\\ClientPlanSubscriptionService' => __DIR__ . '/../..' . '/app/Services/ClientPlanSubscription/ClientPlanSubscriptionService.php',
         'App\\Services\\DashboardService' => __DIR__ . '/../..' . '/app/Services/DashboardService.php',
         'App\\Services\\Interest\\InterestService' => __DIR__ . '/../..' . '/app/Services/Interest/InterestService.php',
         'App\\Services\\Invoice\\InvoiceItemService' => __DIR__ . '/../..' . '/app/Services/Invoice/InvoiceItemService.php',
@@ -957,6 +963,7 @@ class ComposerStaticInit6832ed58e9884be689958b03c928d5d3
         'App\\Services\\Specialist\\SpecialistService' => __DIR__ . '/../..' . '/app/Services/Specialist/SpecialistService.php',
         'App\\Services\\Therapist\\TherapistScheduleService' => __DIR__ . '/../..' . '/app/Services/Therapist/TherapistScheduleService.php',
         'App\\Services\\Therapist\\TherapistService' => __DIR__ . '/../..' . '/app/Services/Therapist/TherapistService.php',
+        'App\\Services\\UserLecture\\UserLectureService' => __DIR__ . '/../..' . '/app/Services/UserLecture/UserLectureService.php',
         'App\\Services\\UserService' => __DIR__ . '/../..' . '/app/Services/UserService.php',
         'App\\Services\\WishlistService' => __DIR__ . '/../..' . '/app/Services/WishlistService.php',
         'App\\Traits\\EscapeUnicodeJson' => __DIR__ . '/../..' . '/app/Traits/EscapeUnicodeJson.php',
@@ -2153,6 +2160,7 @@ class ComposerStaticInit6832ed58e9884be689958b03c928d5d3
         'Database\\Seeders\\ClientPlansSubscriptionTableSeeder' => __DIR__ . '/../..' . '/database/seeders/ClientPlansSubscriptionTableSeeder.php',
         'Database\\Seeders\\DatabaseSeeder' => __DIR__ . '/../..' . '/database/seeders/DatabaseSeeder.php',
         'Database\\Seeders\\InterestsTableSeeder' => __DIR__ . '/../..' . '/database/seeders/InterestsTableSeeder.php',
+        'Database\\Seeders\\LecturesTableSeeder' => __DIR__ . '/../..' . '/database/seeders/LecturesTableSeeder.php',
         'Database\\Seeders\\LocationsTableSeeder' => __DIR__ . '/../..' . '/database/seeders/LocationsTableSeeder.php',
         'Database\\Seeders\\PermissionsTableSeeder' => __DIR__ . '/../..' . '/database/seeders/PermissionsTableSeeder.php',
         'Database\\Seeders\\RozmanaInterestsTableSeeder' => __DIR__ . '/../..' . '/database/seeders/RozmanaInterestsTableSeeder.php',
@@ -9986,10 +9994,10 @@ class ComposerStaticInit6832ed58e9884be689958b03c928d5d3
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit6832ed58e9884be689958b03c928d5d3::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit6832ed58e9884be689958b03c928d5d3::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInit6832ed58e9884be689958b03c928d5d3::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInit6832ed58e9884be689958b03c928d5d3::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit346ae2d36fda43006817dc75bcc5901a::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit346ae2d36fda43006817dc75bcc5901a::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit346ae2d36fda43006817dc75bcc5901a::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInit346ae2d36fda43006817dc75bcc5901a::$classMap;
 
         }, null, ClassLoader::class);
     }
