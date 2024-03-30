@@ -56,6 +56,7 @@ return [
         'status' => 'Status',
         'no_data_available' => 'No data available',
         'success_operation' => 'Success Operation',
+        'thank_u_for_your_feedback' => 'Thank You,For your feedback',
         'invaild_inputs' => 'Invaild Inputs',
         'there_is_an_error' => 'There is an Error',
     ],
@@ -69,6 +70,14 @@ return [
         'FRIDDAY' => 'Friday',
         'SATURDAY' => 'Saturday'
     ],
+
+    'rates' => [
+        'title' => 'Rates',
+        'add_rate' => 'Add Rate',
+        'edit_rate' => 'Edit Rate',
+        'cannot_delete_rate_not_belongs_to_u' => 'Cannot delete Rate , You Are Not The Owner',
+    ],
+
 
 
     'lectures' => [
