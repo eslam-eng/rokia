@@ -27,9 +27,9 @@ if (!function_exists('successCode')) {
 
 if (!function_exists('notifyUser')) {
 
-    function notifyUser(\App\Models\User $user, $data = [])
+    function notifyUser(\App\Models\User|Therapist $user, string $title,string $body)
     {
-        $user->notify(new \App\Notifications\GeneralNotification($data));
+        $user->notify(new \App\Notifications\DatabaseNotification(title: $title,body: $body));
     }
 }
 

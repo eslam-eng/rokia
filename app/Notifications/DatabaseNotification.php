@@ -5,15 +5,13 @@ namespace App\Notifications;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 
-class GeneralNotification extends Notification
+class DatabaseNotification extends Notification
 {
     use Queueable;
 
-    public $notification_data;
 
-    public function __construct($notification_data)
+    public function __construct(public string $title,public string $body)
     {
-        $this->notification_data = $notification_data;
     }
 
     /**
@@ -36,8 +34,8 @@ class GeneralNotification extends Notification
     public function toArray($notifiable)
     {
         return [
-            'title' => $this->notification_data['title'],
-            'message' => $this->notification_data['message'],
+            'title' => $this->title,
+            'message' => $this->body,
         ];
     }
 }

@@ -115,7 +115,7 @@ class BookAppointmentService extends BaseService
         if ($bookAppointment->status == BookAppointmentStatusEnum::WAITING_FOR_PAID->value)
             throw new BookAppointmentStatusException(status: BookAppointmentStatusEnum::from($bookAppointment->status)->getLabel());
         $bookAppointment->update(['status' => BookAppointmentStatusEnum::WAITING_FOR_PAID->value]);
-        $this->sendFcm(bookAppointment: $bookAppointment);
+        $this->sendFcmAndStoreNotification(bookAppointment: $bookAppointment);
     }
 
     /**
@@ -126,7 +126,7 @@ class BookAppointmentService extends BaseService
         if ($bookAppointment->status == BookAppointmentStatusEnum::INPROGRESS->value)
             throw new BookAppointmentStatusException(status: BookAppointmentStatusEnum::from($bookAppointment->status)->getLabel());
         $bookAppointment->update(['status' => BookAppointmentStatusEnum::INPROGRESS->value]);
-        $this->sendFcm(bookAppointment: $bookAppointment,send_to_client: false,send_to_therapist: true);
+        $this->sendFcmAndStoreNotification(bookAppointment: $bookAppointment,send_to_client: false,send_to_therapist: true);
 
     }
 
@@ -138,7 +138,7 @@ class BookAppointmentService extends BaseService
         if ($bookAppointment->status == BookAppointmentStatusEnum::COMPLETED->value)
             throw new BookAppointmentStatusException(status: BookAppointmentStatusEnum::from($bookAppointment->status)->getLabel());
         $bookAppointment->update(['status' => BookAppointmentStatusEnum::COMPLETED->value]);
-        $this->sendFcm(bookAppointment: $bookAppointment);
+        $this->sendFcmAndStoreNotification(bookAppointment: $bookAppointment);
     }
 
     /**
@@ -149,19 +149,27 @@ class BookAppointmentService extends BaseService
         if (!in_array($bookAppointment->status,[BookAppointmentStatusEnum::PENDING->value,BookAppointmentStatusEnum::WAITING_FOR_PAID->value]))
             throw new BookAppointmentStatusException(status: BookAppointmentStatusEnum::from($bookAppointment->status)->getLabel());
         $bookAppointment->update(['status' => BookAppointmentStatusEnum::CANCELED->value]);
-        $this->sendFcm(bookAppointment: $bookAppointment,send_to_client: ($cancel_owner == 2),send_to_therapist: ($cancel_owner == 1));
+        $this->sendFcmAndStoreNotification(bookAppointment: $bookAppointment,send_to_client: ($cancel_owner == 2),send_to_therapist: ($cancel_owner == 1));
     }
 
-    private function sendFcm(BookAppointment $bookAppointment, bool $send_to_client = true, bool $send_to_therapist = false): void
+    private function sendFcmAndStoreNotification(BookAppointment $bookAppointment, bool $send_to_client = true, bool $send_to_therapist = false): void
     {
         $clientToken = [];
         $therapistToken = [];
         $title = __('app.appointments.appointment_notification_title', ['number' => $bookAppointment->id]);
         $body = __('app.appointments.appointment_notification_body', ['status' => BookAppointmentStatusEnum::from($bookAppointment->status)->getLabel()]);
+        $client = $this->userService->findById($bookAppointment->client_id);
+        $therapist = $this->therapistService->findById($bookAppointment->therapist_id);
         if ($send_to_client)
-            $clientToken = $this->userService->getToken($bookAppointment->client_id);
+            $clientToken = $client->pluck('device_token')->toArray();
         if ($send_to_therapist)
-            $therapistToken = $this->therapistService->getToken($bookAppointment->therapist_id);
+            $therapistToken = $therapist->pluck('device_token')->toArray();
+
+        //notify client
+        notifyUser(user: $client,title: $title,body: $body);
+//        notify therapist
+        notifyUser(user: $therapist,title: $title,body: $body);
+
         $tokens = array_merge($clientToken, $therapistToken);
         $this->notificationService->sendToTokens(title: $title, body: $body, tokens: $tokens);
     }

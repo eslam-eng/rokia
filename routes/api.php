@@ -59,11 +59,6 @@ Route::group(['middleware' => ['auth:sanctum', 'user.type:' . UsersType::CLIENT-
         Route::post('booked-appointments/{book_appointment}/cancel', [BookAppointmentController::class, 'changeToCanceled']);
         Route::post('booked-appointments/confirm-payment', [BookAppointmentController::class, 'confirmBookAppointmentPayment']);
 
-        Route::group(['prefix' => 'notifications'], function () {
-            Route::get('/', [NotificationController::class, 'getNotifications']);
-            Route::get('/{notification_id}/mark-as-read', [NotificationController::class, 'markAsRead']);
-        });
-
         Route::post('plan-subscribe', [ClientPlansSubscriptionController::class, 'subscribe']);
         Route::post('plan-subscribe/confirm-payment', [ClientPlansSubscriptionController::class, 'confirmSubscribePlanPayment']);
     });
@@ -80,3 +75,11 @@ Route::group(['middleware' => ['auth:sanctum', 'user.type:' . UsersType::CLIENT-
     Route::get('therapists', [TherapistController::class, 'index']);
 });
 
+Route::group(['middleware' => 'auth:sanctum'],function (){
+    Route::group(['prefix' => 'notifications'], function () {
+        Route::get('/', [NotificationController::class, 'getNotifications']);
+        Route::get('/{notification_id}/mark-as-read', [NotificationController::class, 'markAsRead']);
+        Route::get('mark-as-read', [NotificationController::class, 'markAllAsRead']);
+        Route::get('count', [NotificationController::class, 'getNotificationsCount']);
+    });
+});

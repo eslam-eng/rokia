@@ -56,6 +56,13 @@ class User extends Authenticatable implements HasMedia
         );
     }
 
+    protected function unReadNotificationsCount(): Attribute
+    {
+        return Attribute::make(
+            get: fn() => $this->notifications()->whereNull('read_at')->count()
+        );
+    }
+
 
     public function getToken(): string
     {

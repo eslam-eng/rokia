@@ -71,11 +71,6 @@ Route::group(['middleware' => 'auth:api_therapist'], function () {
         Route::post('lectures/{id}/media', [LectureController::class, 'updateImageCover']);
         Route::post('send-notifications', [NotificationController::class, 'sendTherapistFcmNotification']);
 
-        Route::group(['prefix' => 'notifications'], function () {
-            Route::post('/send', [NotificationController::class, 'sendFcmNotification']);
-            Route::get('/', [NotificationController::class, 'getNotifications']);
-            Route::get('/{notification_id}/mark-as-read', [NotificationController::class, 'markAsRead']);
-        });
 
         Route::group(['prefix' => 'media'], function () {
             Route::delete('{id}', [MediaController::class, 'deleteMedia']);

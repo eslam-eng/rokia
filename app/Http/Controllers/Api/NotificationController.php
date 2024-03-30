@@ -20,8 +20,27 @@ class NotificationController extends Controller
     public function getNotifications()
     {
         try {
-            $notifications = $this->pushNotificationService->getUserNotifications();
+            if (auth()->guard('api_therapist')->check())
+                $user = auth()->guard('api_therapist')->user();
+            else
+                $user = auth()->user();
+
+            $notifications = $this->pushNotificationService->getUserNotifications(user: $user);
             return NotificationsResource::collection($notifications);
+        } catch (\Exception $exception) {
+            return apiResponse(message: $exception->getMessage(), code: 400);
+        }
+    }
+
+    public function getNotificationsCount()
+    {
+        try {
+            if (auth()->guard('api_therapist')->check())
+                $user = auth()->guard('api_therapist')->user();
+            else
+                $user = auth()->user();
+            $notificationsCount = $this->pushNotificationService->getUserNotificationsCount(user: $user);
+            return apiResponse(data: ['notifications_count' => $notificationsCount], message: __('app.general.success_operation'));
         } catch (\Exception $exception) {
             return apiResponse(message: $exception->getMessage(), code: 400);
         }
@@ -33,7 +52,21 @@ class NotificationController extends Controller
             $this->pushNotificationService->markAsRead($notification_id);
             return apiResponse();
         } catch (\Exception $exception) {
-            return apiResponse(message: 'there is an error', code: 400);
+            return apiResponse(message: 'there is an error', code: 500);
+        }
+    }
+
+    public function markAllAsRead()
+    {
+        try {
+            if (auth()->guard('api_therapist')->check())
+                $user = auth()->guard('api_therapist')->user();
+            else
+                $user = auth()->user();
+            $this->pushNotificationService->markAllAsRead($user);
+            return apiResponse(message: __('app.general.success_operation'));
+        } catch (\Exception $exception) {
+            return apiResponse(message: 'there is an error', code: 500);
         }
     }
 

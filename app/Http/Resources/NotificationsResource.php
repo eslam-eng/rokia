@@ -19,8 +19,8 @@ class NotificationsResource extends JsonResource
         $lang = getLocale();
         return [
             'id' => $this->id,
-            'title' => $this->data['title']["$lang"] ?? null,
-            'message' => $this->data['message']["$lang"] ?? null,
+            'title' => $this->data['title'],
+            'message' => $this->data['message'],
             'read_at' => isset($this->read_at),
             'created_at' => Carbon::parse($this->created_at)->diffForHumans()
         ];
