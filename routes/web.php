@@ -75,7 +75,7 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'locale']], func
     Route::group(['prefix' => 'invoices'], function () {
         Route::get('/', [InvoicesController::class, 'index'])->name('invoices.index');
         Route::get('/{invoice}', [InvoicesController::class, 'show'])->name('invoices.show');
-        Route::post('/{id}/status', [InvoicesController::class, 'completeInvoice'])->name('invoices.status');
+        Route::post('/{id}/complete', [InvoicesController::class, 'completeInvoice'])->name('invoices.invoice-complete');
     });
 
     Route::group(['prefix' => 'media'], function () {

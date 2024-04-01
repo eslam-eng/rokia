@@ -52,13 +52,11 @@ class InvoiceService extends BaseService
     public function findForView(int|Invoice $invoice)
     {
         if (is_int($invoice))
-            return $this->getQuery()->where('id',$invoice)
-                ->withCount('invoiceItems')
-                ->with(['invoiceItems.client:id,name', 'therapist:id,name']);
+            $invoice = $this->findById($invoice);
 
         return $invoice
             ->loadCount('invoiceItems')
-            ->load(['invoiceItems.client:id,name', 'therapist:id,name']);
+            ->load(['invoiceItems.client:id,name,phone', 'therapist:id,name']);
     }
 
     /**
@@ -72,6 +70,6 @@ class InvoiceService extends BaseService
             throw new NotFoundException('invoice not found');
         if ($invoice->status == InvoiceStatusEnum::COMPLETED->value)
             throw new GeneralException('invoice already completed');
-        return $invoice->update(['status' => InvoiceStatusEnum::COMPLETED->value]);
+        return $invoice->update(['status' => InvoiceStatusEnum::COMPLETED->value,'compeleted_date'=>now()]);
     }
 }

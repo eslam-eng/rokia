@@ -79,7 +79,6 @@ return [
     ],
 
 
-
     'lectures' => [
         'lectures' => 'Lectures',
         'all_lectures' => 'All Lectures',
@@ -93,9 +92,9 @@ return [
         'paid' => 'Paid',
         'not_paid' => 'Not Paid',
         'free' => 'Free',
-        'duration'=>'duration',
-        'created_at'=>'Created At',
-        'publish_date'=>'Publish Date',
+        'duration' => 'duration',
+        'created_at' => 'Created At',
+        'publish_date' => 'Publish Date',
         'lectures_page_title' => 'Lectures',
         'lectures_filter' => 'Lectures Filter',
         'lectures_count' => 'Lectures Count',
@@ -125,28 +124,28 @@ return [
         'therapist_commission' => 'Therapists commission',
         'add_therapist' => 'Add Therapists',
         'status' => 'Status',
-        'documets'=>'Documents',
-        'edit'=>'Edit',
-        'deactive'=>'Deactivate',
-        'activate'=>'Activate',
-        'delete'=>'Delete',
-        'schedules'=>[
-            'title'=>'Schedules',
-            'day_name'=>'Day',
-            'time_from'=>'Time Form',
-            'time_to'=>'Time To',
-            'to'=>' To ',
-            'therapist_schedule_exception_profile_data_not_completed'=>'Please make sure you set time and price for therapy session',
+        'documets' => 'Documents',
+        'edit' => 'Edit',
+        'deactive' => 'Deactivate',
+        'activate' => 'Activate',
+        'delete' => 'Delete',
+        'schedules' => [
+            'title' => 'Schedules',
+            'day_name' => 'Day',
+            'time_from' => 'Time Form',
+            'time_to' => 'Time To',
+            'to' => ' To ',
+            'therapist_schedule_exception_profile_data_not_completed' => 'Please make sure you set time and price for therapy session',
         ],
-        'avg_therapy_duration'=>'avg therapy duration(in minutes)'
+        'avg_therapy_duration' => 'avg therapy duration(in minutes)'
 
     ],
-    'therapist_plan'=>[
-      'title'=>'Therapist Plans',
-      'name'=>'Name',
-      'duration'=>'Duration (days)',
-      'price'=>'Price',
-      'status'=>'Price',
+    'therapist_plan' => [
+        'title' => 'Therapist Plans',
+        'name' => 'Name',
+        'duration' => 'Duration (days)',
+        'price' => 'Price',
+        'status' => 'Price',
     ],
 
     'clients' => [
@@ -168,6 +167,7 @@ return [
         'invoices' => 'Invoices',
         'invoice_page_title' => 'Invoices',
         'all_invoices' => 'All Invoices',
+        'invoice_details' => 'Invoice Details',
         'status' => 'status',
         'sub_total' => 'Subtotal',
         'therapist_due' => 'Therapist Due',
@@ -176,11 +176,14 @@ return [
         'PENDING' => 'Pending',
         'Completed' => 'Completed',
         'complete' => 'Complete',
+        'complete_date' => 'Completed Date',
 
-        'invoice_items'=>[
-          'buy_lecture'=>'Buy Lecture',
-          'plan_subscription'=>'Plan Subscription',
-          'book_appointment'=>'Book Appointment',
+        'invoice_items' => [
+            'buy_lecture' => 'Buy Lecture',
+            'plan_subscription' => 'Plan Subscription',
+            'book_appointment' => 'Book Appointment',
+            'type' => 'Type',
+            'item_details'=>'Item Details'
         ],
 
     ],
@@ -194,15 +197,15 @@ return [
         'status' => 'status',
         'therapist_name' => 'Therapist',
         'client_name' => 'Client',
-        'pending'=>'Pending',
-        'waiting_for_paid'=>'Waiting For Paid',
-        'approved'=>'Waiting for pay',
-        'completed'=>'Completed',
-        'in_progress'=>'In Progress',
-        'canceled'=>'Canceled',
-        'appointment_notification_title'=>'Appointment Number # :number',
-        'appointment_notification_body'=>'Appointment Status Changet To :status',
-        'appointment_status_change_exception'=>'Cannot Change Status Appointment Status already :status',
+        'pending' => 'Pending',
+        'waiting_for_paid' => 'Waiting For Paid',
+        'approved' => 'Waiting for pay',
+        'completed' => 'Completed',
+        'in_progress' => 'In Progress',
+        'canceled' => 'Canceled',
+        'appointment_notification_title' => 'Appointment Number # :number',
+        'appointment_notification_body' => 'Appointment Status Changet To :status',
+        'appointment_status_change_exception' => 'Cannot Change Status Appointment Status already :status',
 
     ],
     'sliders' => [
@@ -288,9 +291,9 @@ return [
     'settings' => [
         'title' => 'Settings',
         'general_settings' => 'General Settings',
-        'about_us'=>'About Us',
-        'privacy'=>'Privacy&Conditions',
-        'support_phone'=>'Support Phone',
+        'about_us' => 'About Us',
+        'privacy' => 'Privacy&Conditions',
+        'support_phone' => 'Support Phone',
 
     ],
     'system' => [

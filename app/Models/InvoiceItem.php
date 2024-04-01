@@ -3,10 +3,10 @@
 namespace App\Models;
 
 use App\Traits\Filterable;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 class InvoiceItem extends Model
 {
@@ -18,8 +18,9 @@ class InvoiceItem extends Model
     ];
 
     protected $casts = [
-      'details'=>'json'
+        'details' => 'json'
     ];
+
     public function invoice(): BelongsTo
     {
         return $this->belongsTo(Invoice::class, 'invoice_id');
@@ -27,6 +28,13 @@ class InvoiceItem extends Model
 
     public function client(): BelongsTo
     {
-        return $this->belongsTo(User::class,'client_id');
+        return $this->belongsTo(User::class, 'client_id');
+    }
+
+    protected function detailsObject(): Attribute
+    {
+        return Attribute::make(
+            get: fn() => json_decode($this->details)
+        );
     }
 }
