@@ -18,7 +18,7 @@ class RozmanaController extends Controller
 
     public function index(Request $request)
     {
-        $filters = array_filter($request->all(), function ($value) {
+        $filters = array_filter($request->get('filters', []), function ($value) {
             return ($value !== null && $value !== false && $value !== '');
         });
 
