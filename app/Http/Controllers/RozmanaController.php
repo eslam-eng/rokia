@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\DataTables\Rozmana\RozmanaDataTable;
 use App\Services\RozmanaService;
 use App\Services\Therapist\TherapistService;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class RozmanaController extends Controller
@@ -29,14 +28,6 @@ class RozmanaController extends Controller
 
     public function show(RozmanaDataTable $rozmanaDataTable, Request $request, int $therapist_id)
     {
-
-
-// Optionally, format the difference for human readability
-        $diffForHumans = $currentTime->diffForHumans($otherTime);
-
-        $rr =  "The difference between $otherDate and $now is: $diffInSecs seconds.";
-        $ee= "Human readable difference: $diffForHumans";
-        dd($rr,$ee);
 
         $filters = array_filter($request->get('filters', []), function ($value) {
             return ($value !== null && $value !== false && $value !== '');
