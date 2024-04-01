@@ -69,7 +69,6 @@ Route::group(['middleware' => ['auth:sanctum', 'user.type:' . UsersType::CLIENT-
         Route::delete('{id}', [MediaController::class, 'deleteMedia']);
     });
 
-    Route::get('sliders', SliderController::class);
     Route::get('plans', [TherapistPlansController::class, 'getPlansForClients']);
     Route::get('therapist/{therapist}/schedule', [TherapistScheduleController::class, 'getScheduleForTherapist']);
     Route::post('therapist/apointments/schedule', [TherapistScheduleController::class, 'getScheduleForTherapist']);
@@ -78,7 +77,10 @@ Route::group(['middleware' => ['auth:sanctum', 'user.type:' . UsersType::CLIENT-
     Route::apiResource('rates', RateController::class);
 });
 
+//shared routes between therapists and clients
 Route::group(['middleware' => 'auth:sanctum'],function (){
+    Route::get('sliders', SliderController::class);
+
     Route::group(['prefix' => 'notifications'], function () {
         Route::get('/', [NotificationController::class, 'getNotifications']);
         Route::get('/{notification_id}/mark-as-read', [NotificationController::class, 'markAsRead']);

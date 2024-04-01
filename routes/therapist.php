@@ -94,7 +94,5 @@ Route::group(['middleware' => 'auth:api_therapist'], function () {
 
         });
     });
-    Route::get('sliders', SliderController::class);
-
 });
 
