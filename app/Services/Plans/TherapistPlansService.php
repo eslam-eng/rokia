@@ -34,7 +34,7 @@ class TherapistPlansService extends BaseService
 
     public function datatable(array $filters = []): Builder
     {
-        return $this->getQuery(filters: $filters);
+        return $this->getQuery(filters: $filters)->with('therapist:id,name,phone');
     }
 
     public function store(TherapistPlansDTO $therapistPlansDTO)

@@ -23,6 +23,7 @@ class TherapistPlansDataTable extends DataTable
     {
         return (new EloquentDataTable($query))
             ->setRowId('id')
+            ->editColumn('status', fn (TherapistPlan $therapistPlan)=>$therapistPlan->therapist->name)
             ->editColumn('status', function (TherapistPlan $therapistPlan) {
                 $classes = ActivationStatus::from($therapistPlan->status)->getClasses();
                 return view('components._datatable-badge', ['class' => $classes, 'text' => ActivationStatus::from($therapistPlan->status)->getLabel()]);
@@ -67,13 +68,16 @@ class TherapistPlansDataTable extends DataTable
             Column::make('name')
                 ->title(__('app.therapist_plan.name')),
 
-            Column::make('duration')
-                ->title(__('app.therapist_plan.duration'))
-                ->searchable(false)
-                ->orderable(false),
+            Column::make('therapist_id')
+                ->title(__('app.therapists.therapist')),
 
             Column::make('price')
                 ->title(__('app.therapist_plan.price'))
+                ->searchable(false)
+                ->orderable(false),
+
+            Column::make('roznama_number')
+                ->title(__('app.rozmana.rozmana_count'))
                 ->searchable(false)
                 ->orderable(false),
 
