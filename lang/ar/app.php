@@ -264,14 +264,16 @@ return [
     'rozmana' => [
         'title' => 'الاشعارات اليوميه',
         'rozmana_title' => 'الاشعارات اليوميه',
-        'rozmana_created_successfully' => 'تم الحفظ بنجاح',
-        'rozmana_updated_successfully' => 'تم التعديل بنجاح',
-        'rozmana_not_fount' => 'الاشعار غير موجود',
-        'rozmana_deleted_successfully' => 'تم الحذف بنجاح',
         'status' => 'الحالة',
         'date' => 'التاريخ',
         'description' => 'الوصف',
         'thereapist' => 'المعالج',
+        'rozmana_count' => 'عدد الرزنامة',
+        'rozmana_details' => 'تفاصيل الرزنامة',
+        'rozmana_created_successfully' => 'تم إضافة الزنامة بنجاح',
+        'rozmana_updated_successfully' => 'تم تعديل الرزنامة بنجاح',
+        'rozmana_not_fount' => 'الرزنامة غير موجودة',
+        'rozmana_deleted_successfully' => 'تم حذف الرزنامة بنجاح',
     ],
 
     'lecture_report' => [
