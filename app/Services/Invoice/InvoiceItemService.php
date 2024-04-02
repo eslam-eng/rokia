@@ -10,6 +10,7 @@ use App\Filters\InvoiceItemsFilter;
 use App\Filters\InvoicesFilter;
 use App\Filters\TherapistPlansFilter;
 use App\Models\Invoice;
+use App\Models\InvoiceItem;
 use App\Models\TherapistPlan;
 use App\Services\BaseService;
 use Illuminate\Contracts\Pagination\Paginator;
@@ -19,7 +20,7 @@ use Illuminate\Database\Eloquent\Model;
 class InvoiceItemService extends BaseService
 {
 
-    public function __construct(protected Invoice $model)
+    public function __construct(protected InvoiceItem $model)
     {
 
     }

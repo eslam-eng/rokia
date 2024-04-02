@@ -14,11 +14,15 @@ return [
         'dashboard_title' => 'Dashboard',
         'users_count' => 'Users Count',
         'active_lectures' => 'Active Lectures',
+        'users_count_statistics' => 'Users count statistics',
+        'sales_statistics' => 'Sales statistics',
         'not_active_lectures' => 'Not Active Lectures',
         'paid_lectures' => 'Paid Lectures',
         'free_lectures' => 'Free Lectures',
         'recently_lectures' => 'Recently Lectures',
         'upcoming_lectures' => 'Upcoming Lectures',
+        'therapists_and_plans'=>"Therapists & Plans",
+        'interests_and_specialists'=>"Interests & Specialists"
 
     ],
 

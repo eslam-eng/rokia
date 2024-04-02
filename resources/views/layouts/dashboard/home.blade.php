@@ -242,8 +242,27 @@
     </div>
     <!-- /row -->
 
+    <!-- row  -->
+    <div class="row">
+        <div class="col-md-6 col-lg-6">
+            <h3>@lang('app.dashboard.users_count_statistics')</h3>
+            <div class="container">
+                {!! $usersChart->container() !!}
+                {!! $usersChart->script() !!}
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-6">
+            <h3>@lang('app.dashboard.sales_statistics')</h3>
+            <div class="container">
+                {!! $salesChart->container() !!}
+                {!! $salesChart->script() !!}
+            </div>
+        </div>
+    </div>
+    <!-- /row -->
+
 @endsection
 
 @section('scripts')
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js" charset="utf-8"></script>
 @endsection

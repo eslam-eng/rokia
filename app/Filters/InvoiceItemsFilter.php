@@ -20,4 +20,10 @@ class InvoiceItemsFilter extends QueryFilter
     {
         return $this->builder->where('relatable_type',$term);
     }
+
+    public function current_year()
+    {
+        $year = now()->format('Y');
+        return $this->builder->whereYear('created_at',$year);
+    }
 }

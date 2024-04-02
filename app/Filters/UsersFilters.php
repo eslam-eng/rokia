@@ -30,6 +30,12 @@ class UsersFilters extends QueryFilter
     {
         return $this->builder->where('status',$term);
     }
+
+    public function current_year()
+    {
+        $year = now()->format('Y');
+        return $this->builder->whereYear('created_at',$year);
+    }
     public function type($term)
     {
         return $this->builder->whereIn('type',Arr::wrap($term));

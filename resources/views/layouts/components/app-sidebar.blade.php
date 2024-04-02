@@ -19,22 +19,17 @@
                     <a class="slide-item" data-is_active="{{request()->fullUrlIs(route('home'))}}"
                        href="{{route('home')}}">@lang('app.dashboard.dashboard_title')</a>
                 </li>
-                <li class="side-item side-item-category">@lang('app.therapists.therapists')</li>
+                <li class="side-item side-item-category">@lang('app.lectures.lectures')</li>
 
                 <li class="slide">
                     <a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0);">
-                        <i class="fa fa-users ide-menu__icon pe-2"></i>
-                        <span class="side-menu__label">@lang('app.therapists.therapists')</span>
+                        <i class="fa fa-file ide-menu__icon pe-2"></i>
+                        <span class="side-menu__label">@lang('app.lectures.lectures')</span>
                         <i class="angle fe fe-chevron-right"></i>
                     </a>
                     <ul class="slide-menu">
-                        <li>
-                            <a class="slide-item" data-is_active="{{request()->fullUrlIs(route('therapists.index'))}}"
-                               href="{{route('therapists.index')}}">@lang('app.therapists.therapists')</a>
-                        </li>
 
                         <li>
-
                             <a class="slide-item"
                                data-is_active="{{request()->fullUrlIs(route('therapist-lectures.index'))}}"
                                href="{{route('therapist-lectures.index')}}">@lang('app.lectures.lectures')</a>
@@ -45,15 +40,25 @@
                                data-is_active="{{request()->fullUrlIs(route('therapist-lectures.index').'?upcoming=1')}}"
                                href="{{route('therapist-lectures.index').'?upcoming=1'}}">@lang('app.lectures.upcoming_lectures')</a>
                         </li>
-
-                        <li>
-                            <a class="slide-item"
-                               data-is_active="{{request()->fullUrlIs(route('therapist-plans'))}}"
-                               href="{{route('therapist-plans')}}">@lang('app.therapist_plan.title')</a>
-                        </li>
                     </ul>
                 </li>
 
+                <li class="side-item side-item-category">@lang('app.dashboard.therapists_and_plans')</li>
+
+                <li>
+                    <a class="slide-item" data-is_active="{{request()->fullUrlIs(route('therapists.index'))}}"
+                       href="{{route('therapists.index')}}"><i
+                            class="fa fa-users pe-2"></i>@lang('app.therapists.therapists')</a>
+                </li>
+
+                <li>
+                    <a class="slide-item"
+                       data-is_active="{{request()->fullUrlIs(route('therapist-plans'))}}"
+                       href="{{route('therapist-plans')}}"><i
+                            class="fa fa-file pe-2"></i>@lang('app.therapist_plan.title')</a>
+                </li>
+
+                <li class="side-item side-item-category">@lang('app.dashboard.interests_and_specialists')</li>
 
                 @if(authUserHasPermission('list_interest') || authUserHasPermission('create_interest'))
                     <li class="slide">
@@ -111,7 +116,6 @@
                     | @lang('app.rozmana.rozmana_title')</li>
 
 
-
                 @if(authUserHasPermission('list_slider') || authUserHasPermission('create_slider'))
                     <li class="slide">
                         <a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0);">
@@ -165,7 +169,7 @@
                         <a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0);">
                             <i class="fa fa-users pe-2"></i>
                             <span class="side-menu__label">@lang('app.clients.clients')</span><i
-                                    class="angle fe fe-chevron-right"></i></a>
+                                class="angle fe fe-chevron-right"></i></a>
                         <ul class="slide-menu">
                             <li class="side-menu__label1"><a href="javascript:void(0);">@lang('app.clients.clients')</a>
                             </li>
@@ -207,7 +211,7 @@
                     <a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0);">
                         <i class="fa fa-building pe-3"></i>
                         <span class="side-menu__label">@lang('app.invoices.invoices')</span><i
-                                class="angle fe fe-chevron-right"></i></a>
+                            class="angle fe fe-chevron-right"></i></a>
                     <ul class="slide-menu">
                         <li>
                             <a class="slide-item" data-is_active="{{request()->fullUrlIs("#")}}"
@@ -233,7 +237,7 @@
                 <li>
                     <a class="slide-item" data-is_active="{{request()->fullUrlIs(route('lecture-report'))}}"
                        href="{{route('lecture-report')}}"><i
-                                class="fa fa-archive pe-3"></i>@lang('app.lecture_report.title')</a>
+                            class="fa fa-archive pe-3"></i>@lang('app.lecture_report.title')</a>
                 </li>
 
                 <li class="side-item side-item-category">@lang('app.settings.title')</li>
