@@ -37,8 +37,9 @@ class DashboardController extends Controller
     public function __invoke()
     {
 
-        $usersChart = new UsersCountChart;
         $users = $this->getUsersCountPerMonth();
+
+        $usersChart = new UsersCountChart;
         $usersChart->labels($users->keys()->toArray());
         $usersChart->dataset(__('app.dashboard.users_count_statistics'), 'line', $users->values()->toArray())
         ->options([
@@ -47,14 +48,15 @@ class DashboardController extends Controller
                 'borderColor' => 'rgb(75, 192, 192)',
             ]);
 
+
         $sales = $this->getSalesPerDay();
         $salesChart = new SalesChart;
-
         $salesChart->labels($sales->keys()->toArray());
         $salesChart->dataset(__('app.dashboard.users_count_statistics'), 'bar', $sales->values()->toArray())
         ->options([
             'backgroundColor' => $this->generateColors(count($sales)),
         ]);
+
 
         $data = DashboardService::statistics();
         return view('layouts.dashboard.home', compact('data', 'usersChart','salesChart'));
