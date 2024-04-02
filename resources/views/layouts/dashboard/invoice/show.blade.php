@@ -36,7 +36,7 @@
                                             <tr>
                                                 @foreach($invoiceItem->details_object as $key => $value)
                                                     @if($key=='type' || $value == null) @continue @endif
-                                                    <td class="bg-info-transparent">{{ucfirst($key)}}</td>
+                                                    <td class="bg-info-transparent">@lang('app.invoices.invoice_items.'.$key)</td>
                                                     <td>{{ $value !== null ? $value : 'N/A' }}</td>
                                                 @endforeach
                                             </tr>

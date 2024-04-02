@@ -187,7 +187,12 @@ return [
             'plan_subscription' => 'Plan Subscription',
             'book_appointment' => 'Book Appointment',
             'type' => 'Type',
-            'item_details'=>'Item Details'
+            'item_details'=>'Item Details',
+            'price'=>'price',
+            'date'=>'Date',
+            'time'=>'Time',
+            'title'=>'Title',
+            'duration'=>'Duration',
         ],
 
     ],

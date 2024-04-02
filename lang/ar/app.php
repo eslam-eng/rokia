@@ -166,6 +166,20 @@ return [
         'PENDING' => 'معلقة',
         'Completed' => 'مكتملة',
         'complete' => 'تم الاكتمال',
+        'complete_date' => 'تاريخ الاكتمال',
+
+        'invoice_items' => [
+            'buy_lecture' => 'شراء محاضرة',
+            'plan_subscription' => 'اشتراك رزنامة',
+            'book_appointment' => 'حجز استشارة خاصة',
+            'type' => 'النوع',
+            'item_details'=>'تفاصيل الفاتورة',
+            'price'=>'السعر',
+            'date'=>'التاريخ',
+            'time'=>'الوقت',
+            'title'=>'العنوان',
+            'duration'=>'المده',
+        ],
     ],
 
     'appointments' => [
