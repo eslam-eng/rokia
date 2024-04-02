@@ -19,6 +19,10 @@ return [
         'free_lectures' => 'المحاضرات المجانية',
         'recently_lectures' => 'المضاف حديثا',
         'upcoming_lectures' => 'المحاضرات القادمة',
+        'users_count_statistics' => 'إحصائيات المستخدمين',
+        'sales_statistics' => 'إحصائيات البيع',
+        'therapists_and_plans'=>"المعالجين & خطط الاسعار",
+        'interests_and_specialists'=>"الاهتمامات & التخصصات"
     ],
 
     'auth'=>[
