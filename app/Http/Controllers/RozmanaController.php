@@ -14,7 +14,7 @@ class RozmanaController extends Controller
     {
         //todo make polices as best practice
         $this->middleware('auth');
-        $this->middleware(['permission:list_rozmana'], ['only' => ['index']]);
+        $this->middleware(['permission:list_rozmana'], ['only' => ['index', 'show']]);
     }
 
     public function index(Request $request)

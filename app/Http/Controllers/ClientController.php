@@ -16,7 +16,9 @@ class ClientController extends Controller
 
     public function __construct(private UserService $userService)
     {
-
+        $this->middleware('auth');
+        $this->middleware(['permission:list_clients'], ['only' => ['index']]);
+        $this->middleware(['permission:change_client_status'], ['only' => ['status']]);
     }
 
     /**

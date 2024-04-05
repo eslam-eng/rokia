@@ -303,6 +303,7 @@ return [
 
             'sliders' => [
                 'title' => 'Sliders',
+                "list_slider"=> "View Slider",
                 'create_slider' => 'Create Slider',
                 'edit_slider' => 'Edit Slider',
                 'delete_slider' => 'Delete Slider',
@@ -314,16 +315,18 @@ return [
                 'edit_interest' => 'Edit Interest',
                 'delete_interest' => 'Delete Interest',
                 'change_interest_status' => 'Change Interest Status',
+                "list_interests"=> "View interests"
             ],
 
             'rozmana' => [
                 'title' => 'Rozmana',
-                'view_rozmana' => 'View Rozmana',
+                'list_rozmana' => 'View Rozmana',
             ],
 
             'clients' => [
                 'title' => 'Clients',
-                'view_clients' => 'View Clients',
+                'list_clients' => 'View Clients',
+                "change_client_status"=> 'Change Status'
             ],
 
             'users' => [
@@ -331,6 +334,7 @@ return [
                 'create_users' => 'Create Users',
                 'edit_users' => 'Edit Users',
                 'delete_users' => 'Delete Users',
+                "list_users"=> "View Users"
             ],
 
             'roles' => [
@@ -338,6 +342,42 @@ return [
                 'create_role' => 'Create Role',
                 'edit_role' => 'Edit Role',
                 'delete_role' => 'Delete Role',
+            ],
+            'appointments' => [
+                'title' => "Appointments",
+                'list_appointment'=> 'View Appointments',
+            ],
+            'settings' => [
+                'title' => "Settings",
+                'show_setting' => 'Show Setting',
+            ],
+            'specialists' => [
+                'title' => "Specialists",
+                'list_specialists'=> "View Specialists",
+                'create_specialist'=> 'Create Specialist',
+                'edit_specialist'=> 'Edit Specialist',
+                'delete_specialist'=> 'Delete Specialist',
+                'change_specialists_status'=> 'Change Status',
+            ],
+            'lectures' => [
+                'title' => "Lectures",
+                'lecture_report'=> 'Lecture Report',
+                'list_lectures'=> 'View Lectures',
+                'edit_lectures'=> 'Edit Lectures',
+                'delete_lectures'=> 'Delete Lectures',
+                'change_image_cover'=> 'Change Image Cover',
+                'change_lectures_status'=> 'Change Status',
+            ],
+            'invoices' => [
+                'title' => "Invoices",
+                'list_invoices'=> 'List Invoices',
+                'change_invoices_status'=> 'Change Status',
+                'add_therapist_Invoice'=> 'Add Therapist Invoice'
+            ],
+
+            'plane' => [
+                'title' => "Plane",
+                'show_plane', 'View Plane'
             ],
         ],
     ],

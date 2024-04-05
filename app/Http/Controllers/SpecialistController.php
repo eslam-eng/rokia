@@ -17,11 +17,11 @@ class SpecialistController extends Controller
     {
         //todo make polices as best practice
         $this->middleware('auth');
-        $this->middleware(['permission:list_category'], ['only' => ['index', 'show']]);
-        $this->middleware(['permission:create_category'], ['only' => ['create', 'store']]);
-        $this->middleware(['permission:edit_category'], ['only' => ['edit', 'update']]);
-        $this->middleware(['permission:delete_category'], ['only' => ['destroy']]);
-        $this->middleware(['permission:change_category_status'], ['only' => ['status']]);
+        $this->middleware(['permission:list_specialists'], ['only' => ['index', 'show']]);
+        $this->middleware(['permission:create_specialist'], ['only' => ['create', 'store']]);
+        $this->middleware(['permission:edit_specialist'], ['only' => ['edit', 'update']]);
+        $this->middleware(['permission:delete_specialist'], ['only' => ['destroy']]);
+        $this->middleware(['permission:change_specialists_status'], ['only' => ['status']]);
     }
 
 

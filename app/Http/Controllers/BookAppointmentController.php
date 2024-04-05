@@ -18,11 +18,8 @@ class BookAppointmentController extends Controller
     {
         //todo make polices as best practice
         $this->middleware('auth');
-        $this->middleware(['permission:list_interest'], ['only' => ['index', 'show']]);
-        $this->middleware(['permission:create_interest'], ['only' => ['create', 'store']]);
-        $this->middleware(['permission:edit_interest'], ['only' => ['edit', 'update']]);
-        $this->middleware(['permission:delete_interest'], ['only' => ['destroy']]);
-        $this->middleware(['permission:change_interest_status'], ['only' => ['status']]);
+        $this->middleware(['permission:list_appointment'], ['only' => ['index']]);
+
     }
 
 

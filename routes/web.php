@@ -62,8 +62,8 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'locale']], func
     Route::resource('therapists', TherapistController::class)->except(['create']);
     Route::group(['prefix' => 'therapist'], function () {
         Route::post('{id}/status', [TherapistController::class, 'status'])->name('therapist.status');
-        Route::get('schedules', [TherapistController::class, 'showSchedules'])->name('therapist.schedules');
-        Route::get('plans', TherapistPlansController::class)->name('therapist-plans');
+        Route::get('schedules', [TherapistController::class, 'showSchedules'])->name('therapist.schedules')->middleware('permission:show_schedules');
+        Route::get('plans', TherapistPlansController::class)->name('therapist-plans')->middleware('permission:show_plane');
     });
 
     Route::resource('sliders', SliderController::class);
@@ -91,7 +91,7 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'locale']], func
     });
 
     Route::group(['prefix' => 'report'], function () {
-        Route::get('lecture', LectureReportController::class)->name('lecture-report');
+        Route::get('lecture', LectureReportController::class)->name('lecture-report')->middleware('permission:lecture_report');
     });
 
     Route::resource('interests', InterestsController::class);
@@ -99,7 +99,7 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'locale']], func
     Route::post('interests/{id}/status', [InterestsController::class, 'status'])->name('interests.status');
     Route::post('specialists/{id}/status', [InterestsController::class, 'status'])->name('specialists.status');
 
-    Route::get('settings', SettingsController::class)->name('settings.index');
+    Route::get('settings', SettingsController::class)->name('settings.index')->middleware('permission:show_setting');
     Route::group(['prefix' => 'admin'], function () {
         Route::resource('role', RoleController::class);
     });
