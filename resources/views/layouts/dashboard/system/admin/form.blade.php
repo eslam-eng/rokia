@@ -63,20 +63,19 @@
                             <div class="col-lg-6 col-md-6 col-sm-12 mb-3">
                                 <div class="main-content-label mg-b-5">@lang('app.users.gender') <span
                                         class="text-danger" *></span></div>
-                                <select class="form-select" name="gender" required>
-                                    <option value="">@lang('app.users.choose_gender')</option>
+
+                                <select class="form-control form-select" name="gender" required aria-label="Default select example">
                                     @foreach(\App\Enums\GenderTypeEnum::cases() as $gender)
                                         <option value="{{$gender->value}}" @selected(old('gender', isset($user)? $user->gender : '') == $gender->value)>{{$gender->getLabel()}}</option>
                                     @endforeach
                                 </select>
-
                                 @error('gender')
                                 <div class="text-danger"> {{$message}}</div>
                                 @enderror
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-12 mb-3">
                                 <div class="main-content-label">@lang('app.users.role')<span class="text-danger"*></span></div>
-                                <select class="form-select" name="role_id" required>
+                                <select class="form-control form-select" name="role_id" required>
                                     <option>@lang('app.users.choose_role')</option>
                                     @foreach($roles as $role)
                                         <option value="{{$role->id}}" @selected(old('role_id', isset($user) ? $user->roles->first()?->id : null) == $role->id)>{{$role->name}}</option>
