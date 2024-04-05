@@ -331,10 +331,12 @@ return [
                 'create_slider' => 'Create Slider',
                 'edit_slider' => 'Edit Slider',
                 'delete_slider' => 'Delete Slider',
+                'change_slider_status' => 'Change Slider Status',
             ],
 
             'interests' => [
                 'title' => 'interests',
+                'list_interests' => 'Interests List',
                 'create_interest' => 'Create Interest',
                 'edit_interest' => 'Edit Interest',
                 'delete_interest' => 'Delete Interest',
@@ -343,23 +345,28 @@ return [
 
             'rozmana' => [
                 'title' => 'Rozmana',
+                'list_rozmana' => 'List Rozmana',
                 'view_rozmana' => 'View Rozmana',
             ],
 
             'clients' => [
                 'title' => 'Clients',
+                'list_clients' => 'Clients List',
                 'view_clients' => 'View Clients',
             ],
 
             'users' => [
                 'title' => 'Users',
+                'list_users' => 'Users List',
                 'create_users' => 'Create Users',
                 'edit_users' => 'Edit Users',
                 'delete_users' => 'Delete Users',
+                'change_users_status' => 'Change User Status',
             ],
 
             'roles' => [
                 'title' => 'Roles',
+                'list_role' => 'Roles List',
                 'create_role' => 'Create Role',
                 'edit_role' => 'Edit Role',
                 'delete_role' => 'Delete Role',

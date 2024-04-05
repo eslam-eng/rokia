@@ -1,13 +1,9 @@
 @extends('layouts.app')
 @section('title', "Dashboard || Add New Admin")
-@section('styles')
-
-@endsection
-
 @section('content')
 
     {{--    breadcrumb --}}
-    @include('layouts.components.breadcrumb',['title' => __('app.app.system.title'),'first_list_item' => __('app.app.system.roles_and_permissions'),'last_list_item' => ''])
+    @include('layouts.components.breadcrumb',['title' => __('app.system.title'),'first_list_item' => __('app.system.roles_and_permissions'),'last_list_item' => ''])
     {{--    end breadcrumb --}}
 
     <!-- Row -->

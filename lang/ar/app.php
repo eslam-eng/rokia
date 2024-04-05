@@ -319,10 +319,21 @@ return [
             ],
 
             'sliders' => [
-                'title' => 'Sliders',
-                'create_slider' => 'Create Slider',
-                'edit_slider' => 'Edit Slider',
-                'delete_slider' => 'Delete Slider',
+                'title' => 'شريط السحب',
+                'list_slider' => 'قائمة شريط السحب',
+                'create_slider' => 'إضافة',
+                'edit_slider' => 'تعديل',
+                'delete_slider' => 'حذف ',
+                'change_slider_status' => 'تغير حالة شريط السحب',
+            ],
+
+            'interests' => [
+                'title' => 'الاهتمامات',
+                'list_interests' => 'قائمة الاهتمامات',
+                'create_interest' => 'إضافة إهتمام',
+                'edit_interest' => 'تعديل إهتمام',
+                'delete_interest' => 'حذف إهتمام',
+                'change_interest_status' => 'تغير حالة إهتمام',
             ],
 
             'categories' => [
@@ -333,24 +344,30 @@ return [
             ],
 
             'rozmana' => [
-                'title' => 'Rozmana',
-                'view_rozmana' => 'View Rozmana',
+                'title' => 'رزنامة',
+                'list_rozmana' => 'قائمة الرزنامة',
+                'view_rozmana' => 'عرض الرزنامة',
             ],
 
             'clients' => [
                 'title' => 'العملاء',
+                'list_clients' => 'قائمة العملاء',
                 'view_clients' => 'عرض العملاء',
             ],
 
             'users' => [
                 'title' => 'المستخدمين',
+                'list_users' => 'قائمة المستخدمين',
                 'create_users' => 'إضافة مستخدم',
                 'edit_users' => 'تعديل مستخدم',
                 'delete_users' => 'حذف مستخدم',
+                'change_users_status' => 'تغير حالة المستخدم',
+
             ],
 
             'roles' => [
                 'title' => 'الادوار',
+                'list_role' => 'قائمة الادوار',
                 'create_role' => 'إضافة دور',
                 'edit_role' => 'تعديل الدور',
                 'delete_role' => 'حذف الدور',
