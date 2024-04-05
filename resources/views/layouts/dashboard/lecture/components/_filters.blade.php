@@ -27,11 +27,7 @@
                                         </div>
                                         <div class="col-lg">
                                             <div class="main-content-label mg-b-5">@lang('app.therapists.therapists')</div>
-                                            <select class="form-control" name="type">
-                                                @foreach (App\Enums\UsersType::cases() as $name=>$value)
-                                                <option value="{{ $value }}">{{ $name }}</option>
-                                                @endforeach
-                                            </select>
+                                            <livewire:therapists-search name="therapist_id"/>
                                         </div>
                                     </div>
 
