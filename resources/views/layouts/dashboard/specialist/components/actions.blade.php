@@ -1,6 +1,6 @@
 <td class="text-end">
     <div class="row">
-        <div>
+        <div class="pe-1">
             <button
                 class="btn btn-sm change_status
             @if($model->status == \App\Enums\ActivationStatus::ACTIVE->value)
@@ -22,10 +22,10 @@
                 @lang('app.specialist.change_status')
             </button>
         </div>
-        <div>
+        <div class="pe-1">
             <a href="{{route('specialists.edit',$model->id)}}" class="btn btn-sm btn-warning"><i class="fa fa-edit p-1"></i>@lang('app.specialist.edit_specialist')</a>
         </div>
-        <div>
+        <div class="pe-1">
             <button role="button" onclick="destroy('{{$url}}')" class="btn btn-sm btn-danger"><i class="fa fa-trash p-1"></i>@lang('app.specialist.delete_specialist')</button>
         </div>
     </div>

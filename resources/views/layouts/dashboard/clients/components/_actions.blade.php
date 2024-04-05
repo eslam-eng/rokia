@@ -1,6 +1,6 @@
 <td class="text-end">
     <div class="row">
-        <div>
+        <div class="pe-1">
             <button
                 class="btn btn-sm change_status
             @if($model->status == \App\Enums\ActivationStatus::ACTIVE->value)

@@ -1,6 +1,6 @@
 <td class="text-end">
     <div class="row">
-        <div>
+        <div class="pe-1">
             <button
                 class="btn btn-sm change_status
             @if($model->status == \App\Enums\ActivationStatus::ACTIVE->value)
@@ -21,10 +21,10 @@
                 @endif
             </button>
         </div>
-        <div>
+        <div class="pe-1">
             <a href="{{route('sliders.edit',$model->id)}}" class="btn btn-sm btn-warning"><i class="fa fa-edit"></i></a>
         </div>
-        <div>
+        <div class="pe-1">
             <button role="button" onclick="destroy('{{$url}}')" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button>
         </div>
     </div>
