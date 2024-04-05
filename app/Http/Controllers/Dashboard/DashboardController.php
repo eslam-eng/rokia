@@ -52,7 +52,7 @@ class DashboardController extends Controller
         $sales = $this->getSalesPerDay();
         $salesChart = new SalesChart;
         $salesChart->labels($sales->keys()->toArray());
-        $salesChart->dataset(__('app.dashboard.users_count_statistics'), 'bar', $sales->values()->toArray())
+        $salesChart->dataset(__('app.dashboard.sales_statistics'), 'bar', $sales->values()->toArray())
         ->options([
             'backgroundColor' => $this->generateColors(count($sales)),
         ]);
