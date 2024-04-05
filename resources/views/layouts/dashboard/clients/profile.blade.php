@@ -184,7 +184,7 @@
                                         <div class="form-group ">
                                             <div>
                                                 <button type="submit" class="btn btn-primary"><i
-                                                        class="fa fa-save pe-2"></i>@lang('app.save')</button>
+                                                        class="fa fa-save pe-2"></i>@lang('app.general.save')</button>
                                             </div>
                                         </div>
                                     </form>
