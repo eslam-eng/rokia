@@ -4,7 +4,6 @@ namespace App\Filters;
 
 use App\Abstracts\QueryFilter;
 use App\Enums\LecturesTypeEnum;
-use Carbon\Carbon;
 
 class LecturesFilter extends QueryFilter
 {
@@ -21,7 +20,7 @@ class LecturesFilter extends QueryFilter
 
     public function keyword($term)
     {
-        return $this->builder->where(fn($query)=>$query->where('title',"LIKE","%$term%")->orWhere('description','LIKE',"%$term%"));
+        return $this->builder->where(fn($query) => $query->where('title', "LIKE", "%$term%")->orWhere('description', 'LIKE', "%$term%"));
     }
 
     public function is_paid($term)
@@ -44,7 +43,7 @@ class LecturesFilter extends QueryFilter
     public function upcoming($term)
     {
         if ($term)
-            return $this->builder->where('type', LecturesTypeEnum::LIVE->value)->where('publish_date', '>=', Carbon::now()->format('Y-m-d H:i:s'));
-        return $this->builder->where('type',LecturesTypeEnum::RECORDED->value);
+            return $this->builder->where('type', LecturesTypeEnum::LIVE->value);
+        return $this->builder->where('type', LecturesTypeEnum::RECORDED->value);
     }
 }
