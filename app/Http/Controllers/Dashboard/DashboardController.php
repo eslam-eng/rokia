@@ -4,16 +4,16 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\Charts\SalesChart;
 use App\Charts\UsersCountChart;
+use App\Enums\UsersType;
 use App\Http\Controllers\Controller;
 use App\Services\DashboardService;
 use App\Services\Invoice\InvoiceItemService;
 use App\Services\UserService;
-use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller
 {
-    public $colors =  [
+    public $colors = [
         'rgba(255, 99, 132, 0.2)',
         'rgba(255, 159, 64, 0.2)',
         'rgba(255, 205, 86, 0.2)',
@@ -22,6 +22,7 @@ class DashboardController extends Controller
         'rgba(153, 102, 255, 0.2)',
         'rgba(201, 203, 207, 0.2)'
     ];
+
     public function __construct(
         protected readonly UserService        $userService,
         protected readonly InvoiceItemService $invoiceItemService
@@ -42,7 +43,7 @@ class DashboardController extends Controller
         $usersChart = new UsersCountChart;
         $usersChart->labels($users->keys()->toArray());
         $usersChart->dataset(__('app.dashboard.users_count_statistics'), 'line', $users->values()->toArray())
-        ->options([
+            ->options([
                 'color' => '#429ef5',
                 'fill' => false,
                 'borderColor' => 'rgb(75, 192, 192)',
@@ -53,13 +54,26 @@ class DashboardController extends Controller
         $salesChart = new SalesChart;
         $salesChart->labels($sales->keys()->toArray());
         $salesChart->dataset(__('app.dashboard.sales_statistics'), 'bar', $sales->values()->toArray())
-        ->options([
-            'backgroundColor' => $this->generateColors(count($sales)),
-        ]);
+            ->options([
+                'backgroundColor' => $this->generateColors(count($sales)),
+            ]);
 
 
         $data = DashboardService::statistics();
-        return view('layouts.dashboard.home', compact('data', 'usersChart','salesChart'));
+        return view('layouts.dashboard.home', compact('data', 'usersChart', 'salesChart'));
+    }
+
+    private function getUsersCountPerMonth()
+    {
+        return $this->userService->getQuery(['current_year' => true])
+            ->select(
+            DB::raw('DATE_FORMAT(created_at, "%m-%d") as month_day'),
+            DB::raw('COUNT(*) as users_count')
+            )
+            ->where('type', UsersType::CLIENT->value)
+            ->groupBy(DB::raw('DATE_FORMAT(created_at, "%m-%d")'))
+            ->get()->pluck('users_count', 'month_day');
+
     }
 
     private function getSalesPerDay()
@@ -70,17 +84,6 @@ class DashboardController extends Controller
         )
             ->groupBy(DB::raw('DATE_FORMAT(created_at, "%m-%d")'))
             ->get()->pluck('total_price', 'month_day');
-    }
-
-    private function getUsersCountPerMonth()
-    {
-        return $this->userService->getQuery(['current_year' => true])->select(
-            DB::raw('DATE_FORMAT(created_at, "%m-%d") as month_day'),
-            DB::raw('COUNT(*) as users_count')
-        )
-            ->groupBy(DB::raw('DATE_FORMAT(created_at, "%m-%d")'))
-            ->get()->pluck('users_count', 'month_day');
-
     }
 
     public function generateColors(int $length)
