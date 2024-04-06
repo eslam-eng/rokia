@@ -17,11 +17,11 @@ class InterestsController extends Controller
     {
         //todo make polices as best practice
         $this->middleware('auth');
-        $this->middleware(['permission:list_category'], ['only' => ['index', 'show']]);
-        $this->middleware(['permission:create_category'], ['only' => ['create', 'store']]);
-        $this->middleware(['permission:edit_category'], ['only' => ['edit', 'update']]);
-        $this->middleware(['permission:delete_category'], ['only' => ['destroy']]);
-        $this->middleware(['permission:change_category_status'], ['only' => ['status']]);
+        $this->middleware(['permission:list_interests'], ['only' => ['index', 'show']]);
+        $this->middleware(['permission:create_interest'], ['only' => ['create', 'store']]);
+        $this->middleware(['permission:edit_interest'], ['only' => ['edit', 'update']]);
+        $this->middleware(['permission:delete_interest'], ['only' => ['destroy']]);
+        $this->middleware(['permission:change_interest_status'], ['only' => ['status']]);
     }
 
 
