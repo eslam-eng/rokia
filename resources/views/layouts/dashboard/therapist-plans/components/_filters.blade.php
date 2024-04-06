@@ -25,15 +25,6 @@
                                                 @endforeach
                                             </select>
                                         </div>
-                                        <div class="col-lg">
-                                            <div class="main-content-label mg-b-5">@lang('app.general.gender')</div>
-                                            <select class="form-control" name="type">
-                                                <option>@lang('app.general.select_gender')</option>
-                                                @foreach (App\Enums\GenderTypeEnum::cases() as $gender)
-                                                <option value="{{ $gender->value }}">@lang('app.general.'.$gender->name)</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
                                     </div>
 
                                 </div>
