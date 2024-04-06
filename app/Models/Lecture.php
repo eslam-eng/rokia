@@ -87,7 +87,7 @@ class Lecture extends Model implements HasMedia
 //// Parse the date strings into Carbon instances
 //        $publishDate = Carbon::parse($date);
 //        $currentDate = Carbon::parse($now);
-        dd($date,$now,$date->lte($date));
+        dd($date,$now,$date->lte($now));
         return Attribute::make(
             get: fn() => $date <= $now,
         );
