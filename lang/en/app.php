@@ -83,9 +83,9 @@ return [
         'status' => 'Status',
         'paid' => 'Paid',
         'free' => 'Free',
-        'duration'=>'duration',
-        'created_at'=>'Created At',
-        'publish_date'=>'Publish Date',
+        'duration' => 'duration',
+        'created_at' => 'Created At',
+        'publish_date' => 'Publish Date',
         'lectures_page_title' => 'Lectures',
         'lectures_filter' => 'Lectures Filter',
         'lectures_count' => 'Lectures Count',
@@ -114,28 +114,28 @@ return [
         'therapist_commission' => 'Therapists commission',
         'add_therapist' => 'Add Therapists',
         'status' => 'Status',
-        'documets'=>'Documents',
-        'edit'=>'Edit',
-        'deactive'=>'Deactivate',
-        'activate'=>'Activate',
-        'delete'=>'Delete',
-        'schedules'=>[
-            'title'=>'Schedules',
-            'day_name'=>'Day',
-            'time_from'=>'Time Form',
-            'time_to'=>'Time To',
-            'to'=>' To ',
-            'therapist_schedule_exception_profile_data_not_completed'=>'Please make sure you set time and price for therapy session',
+        'documets' => 'Documents',
+        'edit' => 'Edit',
+        'deactive' => 'Deactivate',
+        'activate' => 'Activate',
+        'delete' => 'Delete',
+        'schedules' => [
+            'title' => 'Schedules',
+            'day_name' => 'Day',
+            'time_from' => 'Time Form',
+            'time_to' => 'Time To',
+            'to' => ' To ',
+            'therapist_schedule_exception_profile_data_not_completed' => 'Please make sure you set time and price for therapy session',
         ],
-        'avg_therapy_duration'=>'avg therapy duration(in minutes)'
+        'avg_therapy_duration' => 'avg therapy duration(in minutes)'
 
     ],
-    'therapist_plan'=>[
-      'title'=>'Therapist Plans',
-      'name'=>'Name',
-      'duration'=>'Duration (days)',
-      'price'=>'Price',
-      'status'=>'Price',
+    'therapist_plan' => [
+        'title' => 'Therapist Plans',
+        'name' => 'Name',
+        'duration' => 'Duration (days)',
+        'price' => 'Price',
+        'status' => 'Price',
     ],
 
     'clients' => [
@@ -166,10 +166,10 @@ return [
         'Completed' => 'Completed',
         'complete' => 'Complete',
 
-        'invoice_items'=>[
-          'buy_lecture'=>'Buy Lecture',
-          'plan_subscription'=>'Plan Subscription',
-          'book_appointment'=>'Book Appointment',
+        'invoice_items' => [
+            'buy_lecture' => 'Buy Lecture',
+            'plan_subscription' => 'Plan Subscription',
+            'book_appointment' => 'Book Appointment',
         ],
 
     ],
@@ -183,13 +183,13 @@ return [
         'status' => 'status',
         'therapist_name' => 'Therapist',
         'client_name' => 'Client',
-        'pending'=>'Pending',
-        'waiting_for_paid'=>'Waiting For Paid',
-        'approved'=>'Approved(waiting for pay)',
-        'compeleted'=>'Compeleted',
-        'appointment_notification_title'=>'Appointment Number # :number',
-        'appointment_notification_body'=>'Appointment Status Changet To :status',
-        'appointment_status_change_exception'=>'Cannot Change Status Appointment Status already :status',
+        'pending' => 'Pending',
+        'waiting_for_paid' => 'Waiting For Paid',
+        'approved' => 'Approved(waiting for pay)',
+        'compeleted' => 'Compeleted',
+        'appointment_notification_title' => 'Appointment Number # :number',
+        'appointment_notification_body' => 'Appointment Status Changet To :status',
+        'appointment_status_change_exception' => 'Cannot Change Status Appointment Status already :status',
 
     ],
     'sliders' => [
@@ -275,9 +275,9 @@ return [
     'settings' => [
         'title' => 'Settings',
         'general_settings' => 'General Settings',
-        'about_us'=>'About Us',
-        'privacy'=>'Privacy&Conditions',
-        'support_phone'=>'Support Phone',
+        'about_us' => 'About Us',
+        'privacy' => 'Privacy&Conditions',
+        'support_phone' => 'Support Phone',
 
     ],
     'system' => [
@@ -303,6 +303,7 @@ return [
 
             'sliders' => [
                 'title' => 'Sliders',
+                "list_slider" => "View Slider",
                 'create_slider' => 'Create Slider',
                 'edit_slider' => 'Edit Slider',
                 'delete_slider' => 'Delete Slider',
@@ -314,16 +315,18 @@ return [
                 'edit_interest' => 'Edit Interest',
                 'delete_interest' => 'Delete Interest',
                 'change_interest_status' => 'Change Interest Status',
+                "list_interests" => "View interests"
             ],
 
             'rozmana' => [
                 'title' => 'Rozmana',
-                'view_rozmana' => 'View Rozmana',
+                'list_rozmana' => 'View Rozmana',
             ],
 
             'clients' => [
                 'title' => 'Clients',
-                'view_clients' => 'View Clients',
+                'list_clients' => 'View Clients',
+                "change_client_status" => 'Change Status'
             ],
 
             'users' => [
@@ -331,6 +334,7 @@ return [
                 'create_users' => 'Create Users',
                 'edit_users' => 'Edit Users',
                 'delete_users' => 'Delete Users',
+                "list_users" => "View Users"
             ],
 
             'roles' => [
@@ -338,6 +342,42 @@ return [
                 'create_role' => 'Create Role',
                 'edit_role' => 'Edit Role',
                 'delete_role' => 'Delete Role',
+            ],
+            'appointments' => [
+                'title' => "Appointments",
+                'list_appointment' => 'View Appointments',
+            ],
+            'settings' => [
+                'title' => "Settings",
+                'show_setting' => 'Show Setting',
+            ],
+            'specialists' => [
+                'title' => "Specialists",
+                'list_specialists' => "View Specialists",
+                'create_specialist' => 'Create Specialist',
+                'edit_specialist' => 'Edit Specialist',
+                'delete_specialist' => 'Delete Specialist',
+                'change_specialists_status' => 'Change Status',
+            ],
+            'lectures' => [
+                'title' => "Lectures",
+                'lecture_report' => 'Lecture Report',
+                'list_lectures' => 'View Lectures',
+                'edit_lectures' => 'Edit Lectures',
+                'delete_lectures' => 'Delete Lectures',
+                'change_image_cover' => 'Change Image Cover',
+                'change_lectures_status' => 'Change Status',
+            ],
+            'invoices' => [
+                'title' => "Invoices",
+                'list_invoices' => 'List Invoices',
+                'change_invoices_status' => 'Change Status',
+                'add_therapist_Invoice' => 'Add Therapist Invoice'
+            ],
+
+            'plane' => [
+                'title' => "Plane",
+                'show_plane', 'View Plane'
             ],
         ],
     ],
