@@ -21,6 +21,11 @@ class TherapistController extends Controller
 {
     public function __construct(protected TherapistService $therapistService, public UserService $service)
     {
+        $this->middleware('auth');
+        $this->middleware(['permission:list_therapists'], ['only' => ['index', 'show']]);
+        $this->middleware(['permission:edit_therapist'], ['only' => ['edit', 'update']]);
+        $this->middleware(['permission:change_therapist_status'], ['only' => ['status']]);
+        $this->middleware(['permission:change_therapist_status'], ['only' => ['showSchedules']]);
     }
 
     public function index(TherapistsDataTable $dataTable, Request $request)
