@@ -24,6 +24,12 @@ class LectureController extends Controller
 
     public function __construct(public LectureService $lectureService)
     {
+        $this->middleware('auth');
+        $this->middleware(['permission:list_lectures'], ['only' => ['index']]);
+        $this->middleware(['permission:edit_lectures'], ['only' => ['edit', 'update']]);
+        $this->middleware(['permission:delete_lectures'], ['only' => ['destroy']]);
+        $this->middleware(['permission:change_image_cover'], ['only' => ['updateImageCover']]);
+        $this->middleware(['permission:change_lectures_status'], ['only' => ['status']]);
     }
 
     /**

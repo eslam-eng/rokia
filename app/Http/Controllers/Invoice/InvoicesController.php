@@ -16,6 +16,10 @@ class InvoicesController extends Controller
 
     public function __construct(public InvoiceService $invoiceService)
     {
+        $this->middleware('auth');
+        $this->middleware(['permission:list_invoices'], ['only' => ['index','show']]);
+        $this->middleware(['permission:add_therapist_Invoice'], ['only' => ['therapistInvoice']]);
+        $this->middleware(['permission:change_invoices_status'], ['only' => ['status']]);
     }
 
     public function index(InvoicesDataTable $invoicesDataTable, Request $request)
