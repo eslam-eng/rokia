@@ -15,7 +15,7 @@ class PermissionsTableSeeder extends Seeder
      */
     public function run()
     {
-        $permissionsList = config('permissions');
+        $permissionsList = config('permissionsList');
         $data = [];
         foreach ($permissionsList as $groupName => $permissions) {
             foreach ($permissions as $permission) {
