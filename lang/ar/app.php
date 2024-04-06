@@ -367,7 +367,7 @@ return [
             ],
 
             'plan' => [
-                'title' => "Plan",
+                'title' => "الخطة",
                 "show_plan"=>"عرض الخطة"
             ],
         ],
