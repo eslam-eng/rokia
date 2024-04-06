@@ -83,7 +83,7 @@ class Lecture extends Model implements HasMedia
     {
         $date = Carbon::parse($this->publish_date);
         $now = Carbon::now()->timezone('Asia/Riyadh');
-        $data2 = $date;
+        $data2 = clone($date);
         dd($date,$now,$data2->timezone('Asia/Riyadh'));
         return Attribute::make(
             get: fn() => $date <= $now,
