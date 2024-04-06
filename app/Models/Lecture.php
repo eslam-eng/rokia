@@ -82,9 +82,9 @@ class Lecture extends Model implements HasMedia
     protected function isAvailable(): Attribute
     {
         $date = Carbon::parse($this->publish_date)->timestamp;
-        dd($date,Carbon::now()->timezone('Asia/Riyadh')->timestamp);
+        $now = Carbon::now()->timezone('Asia/Riyadh')->timestamp;
         return Attribute::make(
-            get: fn() => $date->lte(Carbon::now()->timezone('Asia/Riyadh')),
+            get: fn() => $date <= $now,
         );
     }
 }
