@@ -334,6 +334,42 @@ return [
                 'edit_role' => 'تعديل الدور',
                 'delete_role' => 'حذف الدور',
             ],
+            'appointments' => [
+                'title' => "المواعيد",
+                'list_appointment' => 'عرض المواعيد',
+            ],
+            'settings' => [
+                'title' => "الإعدادات",
+                'show_setting' => 'إظهار الإعدادت',
+            ],
+            'specialists' => [
+                'title' => "المتخصصون",
+                'list_specialists' => "عرض المتخصصين",
+                'create_specialist' => 'إنشاء متخصص',
+                'edit_specialist' => 'تعديل متخصص',
+                'delete_specialist' => 'حذف متخصص',
+                'change_specialists_status' => 'تغيير الحالة',
+            ],
+            'lectures' => [
+                'title' => "المحاضرات",
+                'lecture_report' => 'تقرير المحاضرة',
+                'list_lectures' => 'عرض المحاضرات',
+                'edit_lectures' => 'تحرير المحاضرات',
+                'delete_lectures' => 'حذف المحاضرات',
+                'change_image_cover' => 'تغيير صورة الغلاف',
+                'change_lectures_status' => 'تغيير الحالة',
+            ],
+            'invoices' => [
+                'title' => "الفواتير",
+                'list_invoices' => 'قائمة الفواتير',
+                'change_invoices_status' => 'تغيير الحالة',
+                'add_therapy_Invoice' => 'أضف فاتورة المعالج'
+            ],
+
+            'plan' => [
+                'title' => "Plan",
+                "show_plan"=>"عرض الخطة"
+            ],
         ],
     ],
 

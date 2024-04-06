@@ -85,8 +85,8 @@ return [
         'add_therapist_Invoice'
     ],
 
-    'plane' => [
-        'show_plane',
+    'plan' => [
+        'show_plan',
     ],
 
 ];

@@ -13,7 +13,7 @@ class TherapistPlansController extends Controller
     public function __construct(protected TherapistPlansService $therapistPlansService)
     {
         $this->middleware('auth');
-        $this->middleware(['permission:show_plane']);
+        $this->middleware(['permission:show_plan']);
         
     }
 

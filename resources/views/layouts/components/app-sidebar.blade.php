@@ -22,7 +22,7 @@
                 </li>
                 @if (authUserHasPermission('list_therapists') ||
                         authUserHasPermission('list_lectures') ||
-                        authUserHasPermission('show_plane'))
+                        authUserHasPermission('show_plan'))
                     <li class="side-item side-item-category">@lang('app.therapists.therapists')</li>
 
                     <li class="slide">
@@ -54,7 +54,7 @@
                                         href="{{ route('therapist-lectures.index') . '?upcoming=1' }}">@lang('app.lectures.upcoming_lectures')</a>
                                 </li>
                             @endif
-                            @if (authUserHasPermission('show_plane'))
+                            @if (authUserHasPermission('show_plan'))
                                 <li>
                                     <a class="slide-item"
                                         data-is_active="{{ request()->fullUrlIs(route('therapist-plans')) }}"

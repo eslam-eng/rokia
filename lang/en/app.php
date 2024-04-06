@@ -375,9 +375,9 @@ return [
                 'add_therapist_Invoice' => 'Add Therapist Invoice'
             ],
 
-            'plane' => [
-                'title' => "Plane",
-                'show_plane', 'View Plane'
+            'plan' => [
+                'title' => "Plan",
+                'show_plan'=>'View Plan'
             ],
         ],
     ],
