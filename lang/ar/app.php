@@ -316,6 +316,8 @@ return [
                 'edit_therapist' => 'تعديل المعالج',
                 'delete_therapist' => 'حذف المعالج',
                 'change_therapist_status' => 'تغير حالة المعالج',
+                'delete_therapy' => 'حذف المعالج',
+                'show_schedules' => 'عرض الجداول'
             ],
 
             'sliders' => [
@@ -351,8 +353,8 @@ return [
 
             'clients' => [
                 'title' => 'العملاء',
-                'list_clients' => 'قائمة العملاء',
-                'view_clients' => 'عرض العملاء',
+                'list_clients' => 'عرض العملاء',
+                "change_client_status" => 'تغيير الحالة',
             ],
 
             'users' => [
@@ -371,6 +373,50 @@ return [
                 'create_role' => 'إضافة دور',
                 'edit_role' => 'تعديل الدور',
                 'delete_role' => 'حذف الدور',
+            ],
+            'appointments' => [
+                'title' => "المواعيد",
+                'list_appointment' => 'عرض المواعيد',
+            ],
+            'settings' => [
+                'title' => "الإعدادات",
+                'show_setting' => 'إظهار الإعدادت',
+            ],
+            'specialists' => [
+                'title' => "المتخصصون",
+                'list_specialists' => "عرض المتخصصين",
+                'create_specialist' => 'إنشاء متخصص',
+                'edit_specialist' => 'تعديل متخصص',
+                'delete_specialist' => 'حذف متخصص',
+                'change_specialists_status' => 'تغيير الحالة',
+            ],
+            'lectures' => [
+                'title' => "المحاضرات",
+                'lecture_report' => 'تقرير المحاضرة',
+                'list_lectures' => 'عرض المحاضرات',
+                'edit_lectures' => 'تحرير المحاضرات',
+                'delete_lectures' => 'حذف المحاضرات',
+                'change_image_cover' => 'تغيير صورة الغلاف',
+                'change_lectures_status' => 'تغيير الحالة',
+            ],
+            'invoices' => [
+                'title' => "الفواتير",
+                'list_invoices' => 'قائمة الفواتير',
+                'change_invoices_status' => 'تغيير الحالة',
+                'add_therapist_Invoice' => 'أضف فاتورة المعالج'
+            ],
+
+            'plan' => [
+                'title' => "الخطة",
+                "show_plan"=>"عرض الخطة"
+            ],
+            'interests' => [
+                'title' => 'الاهتمامات',
+                'create_interest' => 'إنشاء اهتمام',
+                'edit_interest' => 'تحرير الاهتمام',
+                'delete_interest' => 'حذف الاهتمام',
+                'change_interest_status' => 'تغيير حالة الاهتمام',
+                "list_interests" => "عرض الاهتمامات"
             ],
         ],
     ],
