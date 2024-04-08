@@ -324,6 +324,7 @@ return [
                 'edit_therapist' => 'Edit Therapist',
                 'delete_therapist' => 'Delete Therapist',
                 'change_therapist_status' => 'Change Therapist Status',
+                'show_schedules'=> 'View Schedules'
             ],
 
             'sliders' => [

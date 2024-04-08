@@ -21,7 +21,7 @@ return [
         'upcoming_lectures' => 'المحاضرات القادمة',
         'users_count_statistics' => 'إحصائيات المستخدمين',
         'sales_statistics' => 'إحصائيات البيع',
-        'therapists_and_plans'=>"المعالجين & خطط الاسعار",
+        'therapists_and_plans'=>"المقدمين & خطط الاسعار",
         'interests_and_specialists'=>"الاهتمامات & التخصصات"
     ],
 
@@ -96,18 +96,18 @@ return [
     ],
 
     'therapists' => [
-        'therapists' => 'المعالجين',
-        'therapist' => 'المعالج',
-        'all_therapists' => 'كل المعالجين',
-        'therapist_page_title' => 'المعالجين',
-        'therapist_filter' => 'تصفية المعالجين',
+        'therapists' => 'المقدمين',
+        'therapist' => 'المقدم',
+        'all_therapists' => 'كل المقدمين',
+        'therapist_page_title' => 'المقدمين',
+        'therapist_filter' => 'تصفية المقدمين',
         'name' => 'الاسم',
         'phone' => 'رقم التليفون',
         'address' => 'العنوان',
         'email' => 'البريد الالكترروني',
         'gender' => 'الجنس',
-        'therapist_commission' => 'عمولة المعالجين',
-        'add_therapist' => 'اضافة معالج',
+        'therapist_commission' => 'عمولة المقدم',
+        'add_therapist' => 'اضافة مقدم',
         'status' => 'الحالة',
 
         'search_therapists' => 'بحث في المعالجين...',
@@ -159,7 +159,7 @@ return [
         'all_invoices' => 'كل الفواتير',
         'status' => 'الحالة',
         'sub_total'=>'الاجمالي',
-        'therapist_due'=>'مستحقات المعالج',
+        'therapist_due'=>'مستحقات المقدم',
         'grand_total'=>'الصافي',
         'items_count'=>'Items Count',
 
@@ -190,7 +190,7 @@ return [
         'day' => 'اليوم',
         'date' => 'تاريخ',
         'status' => 'الحالة',
-        'therapist_name' => 'المعالج',
+        'therapist_name' => 'المقدم',
         'client_name' => 'العميل',
         'pending'=>'معلقه',
         'waiting_for_paid'=>'تم الموافقة(منتظر الدفع)',
@@ -267,7 +267,7 @@ return [
         'status' => 'الحالة',
         'date' => 'التاريخ',
         'description' => 'الوصف',
-        'thereapist' => 'المعالج',
+        'thereapist' => 'المقدم',
         'rozmana_count' => 'عدد الرزنامة',
         'rozmana_details' => 'تفاصيل الرزنامة',
         'rozmana_created_successfully' => 'تم إضافة الزنامة بنجاح',
@@ -311,11 +311,13 @@ return [
 
         'permissions' => [
             'therapists' => [
-                'title' => 'المعالجين',
-                'create_therapist' => 'إضافة معالج',
-                'edit_therapist' => 'تعديل المعالج',
-                'delete_therapist' => 'حذف المعالج',
-                'change_therapist_status' => 'تغير حالة المعالج',
+                'title' => 'المقدمين',
+                'create_therapist' => 'إضافة مقدم',
+                'edit_therapist' => 'تعديل مقدم',
+                'delete_therapist' => 'حذف المقدم',
+                'change_therapist_status' => 'تغير حالة مقدم',
+                'delete_therapy' => 'حذف المقدم',
+                'show_schedules' => 'عرض مواقيت المقدم'
             ],
 
             'sliders' => [
@@ -351,8 +353,8 @@ return [
 
             'clients' => [
                 'title' => 'العملاء',
-                'list_clients' => 'قائمة العملاء',
-                'view_clients' => 'عرض العملاء',
+                'list_clients' => 'عرض العملاء',
+                "change_client_status" => 'تغيير الحالة',
             ],
 
             'users' => [
@@ -371,6 +373,50 @@ return [
                 'create_role' => 'إضافة دور',
                 'edit_role' => 'تعديل الدور',
                 'delete_role' => 'حذف الدور',
+            ],
+            'appointments' => [
+                'title' => "المواعيد",
+                'list_appointment' => 'عرض المواعيد',
+            ],
+            'settings' => [
+                'title' => "الإعدادات",
+                'show_setting' => 'إظهار الإعدادت',
+            ],
+            'specialists' => [
+                'title' => "المتخصصون",
+                'list_specialists' => "عرض المتخصصين",
+                'create_specialist' => 'إنشاء متخصص',
+                'edit_specialist' => 'تعديل متخصص',
+                'delete_specialist' => 'حذف متخصص',
+                'change_specialists_status' => 'تغيير الحالة',
+            ],
+            'lectures' => [
+                'title' => "المحاضرات",
+                'lecture_report' => 'تقرير المحاضرة',
+                'list_lectures' => 'عرض المحاضرات',
+                'edit_lectures' => 'تحرير المحاضرات',
+                'delete_lectures' => 'حذف المحاضرات',
+                'change_image_cover' => 'تغيير صورة الغلاف',
+                'change_lectures_status' => 'تغيير الحالة',
+            ],
+            'invoices' => [
+                'title' => "الفواتير",
+                'list_invoices' => 'قائمة الفواتير',
+                'change_invoices_status' => 'تغيير الحالة',
+                'add_therapist_Invoice' => 'أضف فاتورة المعالج'
+            ],
+
+            'plan' => [
+                'title' => "الخطة",
+                "show_plan"=>"عرض الخطة"
+            ],
+            'interests' => [
+                'title' => 'الاهتمامات',
+                'create_interest' => 'إنشاء اهتمام',
+                'edit_interest' => 'تحرير الاهتمام',
+                'delete_interest' => 'حذف الاهتمام',
+                'change_interest_status' => 'تغيير حالة الاهتمام',
+                "list_interests" => "عرض الاهتمامات"
             ],
         ],
     ],
