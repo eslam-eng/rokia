@@ -2,7 +2,11 @@
 
 namespace App\Models;
 
+use App\Enums\BookAppointmentStatusEnum;
+use App\Enums\PaymentStatusEnum;
 use App\Traits\Filterable;
+use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -24,5 +28,14 @@ class BookAppointment extends Model
         return $this->belongsTo(Therapist::class,'therapist_id');
     }
 
+    protected function isAvailable(): Attribute
+    {
+        $appointment_date = Carbon::create("$this->date $this->time");
+        $now = Carbon::now()->timezone('Asia/Riyadh')->format('Y-m-d H:i:s');
+        $currentDate = Carbon::parse($now);
+        return Attribute::make(
+            get: fn() => $appointment_date->lte($currentDate) && $this->status == BookAppointmentStatusEnum::INPROGRESS->value && $this->payment_status == PaymentStatusEnum::PAID->value,
+        );
+    }
 
 }
