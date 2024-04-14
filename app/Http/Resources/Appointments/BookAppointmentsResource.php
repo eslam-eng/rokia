@@ -29,7 +29,8 @@ class BookAppointmentsResource extends JsonResource
             'status'=>$this->status,
             'status_text'=>BookAppointmentStatusEnum::from($this->status)->getLabel(),
             'user_description'=>$this->user_description,
-            'is_available'=>$this->is_available
+            'is_available'=>$this->is_available,
+            'price'=>$this->price
         ];
     }
 }
