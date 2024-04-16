@@ -19,7 +19,7 @@ return new class extends Migration
             $table->foreignIdFor(TherapistPlan::class)->constrained('therapist_plans');
             $table->foreignIdFor(Therapist::class)->constrained('therapists');
             $table->foreignIdFor(User::class,'client_id')->constrained('users');
-            $table->integer('rozmana_number');
+            $table->integer('rozmana_number')->comment('the main number of rozmana from therapist plan when user subscribe');
             $table->integer('price');
             $table->tinyInteger('status')->default(\App\Enums\ClientPlanStatusEnum::PENDING->value);
             $table->tinyInteger('payment_status')->default(\App\Enums\PaymentStatusEnum::NOTPAID->value);

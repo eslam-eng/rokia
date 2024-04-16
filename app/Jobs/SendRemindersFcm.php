@@ -33,9 +33,6 @@ class SendRemindersFcm implements ShouldQueue
             tokens: [$this->clientNotification->client->device_token]
         );
         if ($downstreamResponse->numberSuccess()) {
-            //update number of roznama number of push notification done
-            $currentRoznamaNumber = $this->clientNotification->clientPlan->rozmana_number;
-            $this->clientNotification->clientPlan->update(['rozmana_number' => $currentRoznamaNumber - 1]);
             $this->clientNotification->delete();
         }
     }

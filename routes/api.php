@@ -62,6 +62,7 @@ Route::group(['middleware' => ['auth:sanctum', 'user.type:' . UsersType::CLIENT-
 
         Route::post('plan-subscribe', [ClientPlansSubscriptionController::class, 'subscribe']);
         Route::post('plan-subscribe/confirm-payment', [ClientPlansSubscriptionController::class, 'confirmSubscribePlanPayment']);
+        Route::get('plans', [ClientPlansSubscriptionController::class, 'getPlansForUser']);
     });
 
 
