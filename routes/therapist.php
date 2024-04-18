@@ -52,6 +52,8 @@ Route::group(['middleware' => 'locale'],function (){
             Route::post('update-fcm-token', [UsersController::class, 'updateFcmToken']);
             Route::post('/change-password', [UsersController::class, 'changePassword']);
             Route::post('/change-image', [UsersController::class, 'changeImage']);
+            Route::post('change-language', [UsersController::class, 'changeLanguage']);
+
 
             Route::get('profile', [TherapistController::class, 'getProfileDetails']);
             Route::post('update-data', [TherapistController::class, 'updateProfileData']);

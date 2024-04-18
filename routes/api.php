@@ -49,6 +49,7 @@ Route::group(['middleware' => 'locale'],function (){
             Route::post('/change-password', [UsersController::class, 'changePassword']);
             Route::post('/change-image', [UsersController::class, 'changeImage']);
             Route::post('/update-data', [UsersController::class, 'updateProfileData']);
+            Route::post('change-language', [UsersController::class, 'changeLanguage']);
 
             Route::get('lectures', [UserLectureController::class, 'index']);
             Route::post('lectures', [UserLectureController::class, 'buyLecture']);
