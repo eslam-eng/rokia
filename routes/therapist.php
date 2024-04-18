@@ -31,68 +31,69 @@ Route::fallback(function () {
     return apiResponse(message: 'Invalid Route', code: 404);
 });
 
+Route::group(['middleware' => 'locale'],function (){
+    Route::group(['prefix' => 'auth/therapist'], function () {
 
-Route::group(['prefix' => 'auth/therapist'], function () {
+        Route::post('register', [AuthTherapistController::class, 'register']);
 
-    Route::post('register', [AuthTherapistController::class, 'register']);
+        Route::post('login', [AuthTherapistController::class, 'signIn']);
 
-    Route::post('login', [AuthTherapistController::class, 'signIn']);
+        Route::post('phone/verify', [AuthTherapistController::class, 'phoneVerify']);
+        Route::post('password/reset', [AuthTherapistController::class, 'resetPassword']);
 
-    Route::post('phone/verify', [AuthTherapistController::class, 'phoneVerify']);
-    Route::post('password/reset', [AuthTherapistController::class, 'resetPassword']);
-
-});
-
-
-Route::group(['middleware' => 'auth:api_therapist'], function () {
-
-    Route::group(['prefix' => 'therapist'], function () {
+    });
 
 
-        Route::post('update-fcm-token', [UsersController::class, 'updateFcmToken']);
-        Route::post('/change-password', [UsersController::class, 'changePassword']);
-        Route::post('/change-image', [UsersController::class, 'changeImage']);
+    Route::group(['middleware' => 'auth:api_therapist'], function () {
 
-        Route::get('profile', [TherapistController::class, 'getProfileDetails']);
-        Route::post('update-data', [TherapistController::class, 'updateProfileData']);
-        Route::post('update-therapy-data', [TherapistController::class, 'updateTherapyData']);
-
-        Route::group(['prefix' => 'schedule'],function (){
-            Route::get('/', [TherapistScheduleController::class, 'index']);
-            Route::get('days', [TherapistScheduleController::class, 'getDays']);
-            Route::post('/', [TherapistScheduleController::class, 'store']);
-            Route::delete('{therapist_schedule}', [TherapistScheduleController::class, 'destroy']);
-
-        });
+        Route::group(['prefix' => 'therapist'], function () {
 
 
-        Route::apiResource('lectures', LectureController::class);
-        Route::post('live-lectures', [LectureController::class, 'storeLiveLecture'])->name('live-lectures');
-        Route::post('lectures/{id}/media', [LectureController::class, 'updateImageCover']);
-        Route::post('send-notifications', [NotificationController::class, 'sendTherapistFcmNotification']);
+            Route::post('update-fcm-token', [UsersController::class, 'updateFcmToken']);
+            Route::post('/change-password', [UsersController::class, 'changePassword']);
+            Route::post('/change-image', [UsersController::class, 'changeImage']);
+
+            Route::get('profile', [TherapistController::class, 'getProfileDetails']);
+            Route::post('update-data', [TherapistController::class, 'updateProfileData']);
+            Route::post('update-therapy-data', [TherapistController::class, 'updateTherapyData']);
+
+            Route::group(['prefix' => 'schedule'],function (){
+                Route::get('/', [TherapistScheduleController::class, 'index']);
+                Route::get('days', [TherapistScheduleController::class, 'getDays']);
+                Route::post('/', [TherapistScheduleController::class, 'store']);
+                Route::delete('{therapist_schedule}', [TherapistScheduleController::class, 'destroy']);
+
+            });
 
 
-        Route::group(['prefix' => 'media'], function () {
-            Route::delete('{id}', [MediaController::class, 'deleteMedia']);
-        });
+            Route::apiResource('lectures', LectureController::class);
+            Route::post('live-lectures', [LectureController::class, 'storeLiveLecture'])->name('live-lectures');
+            Route::post('lectures/{id}/media', [LectureController::class, 'updateImageCover']);
+            Route::post('send-notifications', [NotificationController::class, 'sendTherapistFcmNotification']);
 
-        Route::apiResource('rozmana', RozmanaController::class);
-        Route::get('specialists', SpecialistController::class);
 
-        Route::apiResource('plans', TherapistPlansController::class);
-        Route::post('plans/{id}/status', [TherapistPlansController::class, 'changeStatus']);
+            Route::group(['prefix' => 'media'], function () {
+                Route::delete('{id}', [MediaController::class, 'deleteMedia']);
+            });
 
-        Route::apiResource('booked-appointments', BookAppointmentController::class)->only('index');
+            Route::apiResource('rozmana', RozmanaController::class);
+            Route::get('specialists', SpecialistController::class);
 
-        Route::apiResource('invoices', InvoicesController::class);
-        Route::get('interests', InterestsController::class);
+            Route::apiResource('plans', TherapistPlansController::class);
+            Route::post('plans/{id}/status', [TherapistPlansController::class, 'changeStatus']);
 
-        Route::group(['prefix' => 'booked-appointments/{book_appointment}'],function (){
-            Route::post('approve',[BookAppointmentController::class, 'changeToWaitingForPaid']);
-            Route::post('cancel',[BookAppointmentController::class,'changeToCanceled']);
-            Route::post('compelete',[BookAppointmentController::class, 'changeToCompleted']);
+            Route::apiResource('booked-appointments', BookAppointmentController::class)->only('index');
 
+            Route::apiResource('invoices', InvoicesController::class);
+            Route::get('interests', InterestsController::class);
+
+            Route::group(['prefix' => 'booked-appointments/{book_appointment}'],function (){
+                Route::post('approve',[BookAppointmentController::class, 'changeToWaitingForPaid']);
+                Route::post('cancel',[BookAppointmentController::class,'changeToCanceled']);
+                Route::post('compelete',[BookAppointmentController::class, 'changeToCompleted']);
+
+            });
         });
     });
-});
 
+});

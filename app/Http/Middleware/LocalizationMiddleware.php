@@ -17,11 +17,11 @@ class LocalizationMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
+
         $user = auth()->user();
         $locale = $user?->locale ?? config('app.locale');
         App::setLocale($locale);
         session()->put('locale', $locale);
-
         return $next($request);
     }
 }

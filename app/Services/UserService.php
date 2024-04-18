@@ -67,6 +67,11 @@ class UserService extends BaseService
         return $this->getQuery()->where('id',$clientId)->update($userData);
     }
 
+    public function updateLanguage(User|Therapist $user , string $language)
+    {
+        return $user->update(['locale'=> $language]);
+    }
+
 
     public function storeAdmin(AdminDTO $adminDTO)
     {
