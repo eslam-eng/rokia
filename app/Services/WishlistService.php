@@ -10,11 +10,13 @@ use App\Enums\AttachmentsType;
 use App\Exceptions\GeneralException;
 use App\Exceptions\NotFoundException;
 use App\Filters\LecturesFilter;
+use App\Filters\WishlistFilter;
 use App\Models\Lecture;
 use App\Models\UserLecture;
 use App\Models\Wishlist;
 use getID3;
 use getid3_lib;
+use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
@@ -35,10 +37,10 @@ class WishlistService extends BaseService
     public function getQuery(?array $filters = []): ?Builder
     {
         return parent::getQuery($filters)
-            ->when(!empty($filters), fn(Builder $builder) => $builder->filter(new LecturesFilter($filters)));
+            ->when(!empty($filters), fn(Builder $builder) => $builder->filter(new WishlistFilter($filters)));
     }
 
-    public function paginateLectures(array $filters = [], array $withRelations = []): \Illuminate\Contracts\Pagination\Paginator
+    public function paginateLectures(array $filters = [], array $withRelations = []): Paginator
     {
         return $this->getQuery(filters: $filters)->with($withRelations)->simplePaginate();
     }
