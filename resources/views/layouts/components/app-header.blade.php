@@ -50,10 +50,10 @@
 														</div>
 													</div>
 												</div>
-												<a class="dropdown-item" href="#"><i class="far fa-user-circle"></i>Profile</a>
+												<a class="dropdown-item" href="#"><i class="far fa-user-circle"></i>{{ __('app.therapists.profile') }}</a>
 												<a class="dropdown-item" href="{{route('language.change',auth()->user()->locale == 'en' ? 'ar':'en')}}"><i class="fa fa-globe"></i>
                                                     {{auth()->user()->locale == 'en' ? 'العربية' : 'English'}}</a>
-												<a class="dropdown-item" href="{{route('logout')}}"><i class="far fa-arrow-alt-circle-left"></i> Sign Out</a>
+												<a class="dropdown-item" href="{{route('logout')}}"><i class="far fa-arrow-alt-circle-left"></i>{{ __('auth.Sign Out') }}</a>
 											</div>
 										</li>
 									</ul>

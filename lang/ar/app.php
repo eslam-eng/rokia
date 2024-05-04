@@ -96,6 +96,8 @@ return [
     ],
 
     'therapists' => [
+        'profile' => "الملف الشخصي",
+        'therapist_accounting' => "حسابات الشيخ",
         'therapists' => 'المعالجين',
         'therapist' => 'المعالج',
         'all_therapists' => 'كل المعالجين',
@@ -317,6 +319,29 @@ return [
                 'delete_therapist' => 'حذف المعالج',
                 'change_therapist_status' => 'تغير حالة المعالج',
             ],
+            'specialists' => [
+                'title' => "التخصصات",
+                   'list_specialists' => 'عرض التخصصات',
+                   'create_specialist' => 'إنشاء تخصص',
+                   'edit_specialist' => 'تعديل التخصص',
+                   'delete_specialist' => 'حذف التخصص',
+                   'change_specialists_status' => 'تغيير الحالة',
+            ],
+            'lectures' => [
+                'title' => "المحاضرات",
+                'lecture_report' => 'تقرير المحاضرة',
+                'list_lectures' => 'عرض المحاضرات',
+                'edit_lectures' => 'تعديل المحاضرات',
+                'delete_lectures' => 'حذف المحاضرات',
+                'change_image_cover' => 'تغيير صورة الغلاف',
+                'change_lectures_status' => 'تغيير الحالة',
+            ],
+            'invoices' => [
+                'title' => "الفواتير",
+                 'list_invoices' => 'قائمة الفواتير',
+                 'change_invoices_status' => 'تغيير الحالة',
+                'add_therapist_Invoice' => 'أضف فاتورة المعالج'
+            ],
 
             'sliders' => [
                 'title' => 'شريط السحب',
@@ -336,8 +361,14 @@ return [
                 'change_interest_status' => 'تغير حالة إهتمام',
             ],
 
+            'plan' => [
+                'title' => "الخطة",
+                'show_plan', 'عرض الخطة'
+            ],
+
             'categories' => [
                 'title' => 'الاقسام',
+                'name'=>'اسم التخصص',
                 'create_category' => 'إضافة قسم',
                 'edit_category' => 'تعديل قسم',
                 'delete_category' => 'حذف القسم',
@@ -371,6 +402,14 @@ return [
                 'create_role' => 'إضافة دور',
                 'edit_role' => 'تعديل الدور',
                 'delete_role' => 'حذف الدور',
+            ],
+            'appointments' => [
+                'title' => "المواعيد",
+                'list_appointment' => 'عرض المواعيد',
+            ],
+            'settings' => [
+                'title' => "الإعدادات",
+                'show_setting' => 'إظهار الإعداد',
             ],
         ],
     ],
