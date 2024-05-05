@@ -9,7 +9,10 @@ return [
     |
     | The following language lines are used during
     */
-
+    'blocked' => 'محظور',
+    'submit'=>'حفظ',
+    'edit' => 'نعديل',
+    'not_found'=>"لا يوجد",
     'dashboard' => [
         'dashboard_title' => 'الرئيسية',
         'users_count' => 'عدد المستخدمين',
@@ -33,6 +36,8 @@ return [
         'sign_in'=>'تسجيل الدخول',
         'welcome_back'=>'مرحبًا بعودتك',
         'auth_in_review' => 'سوف يتم مراجعة البيانات,والرد في اقرب وقت',
+        "login_successfully" => "تم تسجيل الدخول بنجاح."
+
 
     ],
     'general' => [
@@ -97,7 +102,7 @@ return [
 
     'therapists' => [
         'profile' => "الملف الشخصي",
-        'therapist_accounting' => "حسابات الشيخ",
+        'therapist_accounting' => "حسابات المعالج",
         'therapists' => 'المعالجين',
         'therapist' => 'المعالج',
         'all_therapists' => 'كل المعالجين',
@@ -110,6 +115,7 @@ return [
         'gender' => 'الجنس',
         'therapist_commission' => 'عمولة المعالجين',
         'add_therapist' => 'اضافة معالج',
+        'therapist_status_changed_successfully' => "تم تغيير حالة المعالج بنجاح",
         'status' => 'الحالة',
 
         'search_therapists' => 'بحث في المعالجين...',
@@ -159,6 +165,7 @@ return [
         'invoices' => 'الفواتير',
         'invoice_page_title' => 'الفواتير',
         'all_invoices' => 'كل الفواتير',
+        'invoice_details' => 'تفاصيل الفاتورة',
         'status' => 'الحالة',
         'sub_total'=>'الاجمالي',
         'therapist_due'=>'مستحقات المعالج',

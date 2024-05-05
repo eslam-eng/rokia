@@ -60,7 +60,7 @@
                                 <div class="col-lg mt-2 mb-4">
                                     <label class="custom-control custom-checkbox custom-control-lg">
                                         <input type="checkbox" class="custom-control-input" name="status" value="1" checked="">
-                                        <span class="custom-control-label custom-control-label-md  tx-17">Status</span>
+                                        <span class="custom-control-label custom-control-label-md  tx-17">{{ __("app.general.status") }}</span>
                                     </label>
                                 </div>
                         </div>

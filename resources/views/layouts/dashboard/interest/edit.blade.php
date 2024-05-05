@@ -4,7 +4,7 @@
 
 @section('content')
     {{--    breadcrumb --}}
-    @include('layouts.components.breadcrumb',['title' => __('app.interests.title'),'first_list_item' => __('app.interests.title'),'last_list_item' => __('app.interests.edit_category')])
+    @include('layouts.components.breadcrumb',['title' => __('app.interests.title'),'first_list_item' => __('app.interests.title'),'last_list_item' => __('app.interests.edit_interest')])
     {{--    end breadcrumb --}}
     <!-- Row -->
     <div class="row">

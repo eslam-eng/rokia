@@ -9,7 +9,10 @@ return [
     |
     | The following language lines are used during
     */
-
+    'blocked'=> 'blocked',
+    'edit'=>'edit',
+    'submit' => 'submit',
+    'not_found'=> "not found",
     'dashboard' => [
         'dashboard_title' => 'Dashboard',
         'users_count' => 'Users Count',
@@ -34,6 +37,8 @@ return [
         'please_login_to_continue' => 'Please sign in to continue.',
         'sign_in' => 'Sign in',
         'welcome_back' => 'Welcome Back',
+        "login_successfully" => "Logged in successfully",
+
     ],
     'general' => [
         'PENDING' => 'Pending',
@@ -129,6 +134,7 @@ return [
         'gender' => 'Gender',
         'therapist_commission' => 'Therapists commission',
         'add_therapist' => 'Add Therapists',
+        'therapist_status_changed_successfully'=> "therapist status changed successfully",
         'status' => 'Status',
         'documets' => 'Documents',
         'edit' => 'Edit',
@@ -419,7 +425,7 @@ return [
             ],
             'plan' => [
                 'title' => "Plan",
-                'show_plan', 'View Plane'
+                'show_planpppp', 'View Plane'
             ],
         ],
     ],
