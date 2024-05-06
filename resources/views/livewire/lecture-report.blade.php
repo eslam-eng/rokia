@@ -19,7 +19,7 @@
                         </div>
                     </div>
                     <div class="col-md-4 col-lg-4 mt-3">
-                        <button type="submit" class="btn btn-primary">Search</button>
+                        <button type="submit" class="btn btn-primary">{{ __('app.general.search') }}</button>
                     </div>
                 </div>
             </form>
@@ -64,7 +64,7 @@
         </div>
     @else
         <div class="card">
-            <div class="card-header alert alert-info text-center fw-bold"><h4>there is no data to view</h4></div>
+            <div class="card-header alert alert-info text-center fw-bold"><h4>{{ __('app.general.no_data_available') }}</h4></div>
         </div>
     @endif
 

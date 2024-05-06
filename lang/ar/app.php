@@ -9,7 +9,10 @@ return [
     |
     | The following language lines are used during
     */
-
+    'blocked' => 'محظور',
+    'submit'=>'حفظ',
+    'edit' => 'نعديل',
+    'not_found'=>"لا يوجد",
     'dashboard' => [
         'dashboard_title' => 'الرئيسية',
         'users_count' => 'عدد المستخدمين',
@@ -33,6 +36,8 @@ return [
         'sign_in'=>'تسجيل الدخول',
         'welcome_back'=>'مرحبًا بعودتك',
         'auth_in_review' => 'سوف يتم مراجعة البيانات,والرد في اقرب وقت',
+        "login_successfully" => "تم تسجيل الدخول بنجاح."
+
 
     ],
     'general' => [
@@ -96,6 +101,8 @@ return [
     ],
 
     'therapists' => [
+        'profile' => "الملف الشخصي",
+        'therapist_accounting' => "حسابات المعالج",
         'therapists' => 'المقدمين',
         'therapist' => 'المقدم',
         'all_therapists' => 'كل المقدمين',
@@ -108,6 +115,7 @@ return [
         'gender' => 'الجنس',
         'therapist_commission' => 'عمولة المقدم',
         'add_therapist' => 'اضافة مقدم',
+        'therapist_status_changed_successfully' => "تم تغيير حالة المعالج بنجاح",
         'status' => 'الحالة',
 
         'search_therapists' => 'بحث في المعالجين...',
@@ -157,6 +165,7 @@ return [
         'invoices' => 'الفواتير',
         'invoice_page_title' => 'الفواتير',
         'all_invoices' => 'كل الفواتير',
+        'invoice_details' => 'تفاصيل الفاتورة',
         'status' => 'الحالة',
         'sub_total'=>'الاجمالي',
         'therapist_due'=>'مستحقات المقدم',
@@ -319,6 +328,29 @@ return [
                 'delete_therapy' => 'حذف المقدم',
                 'show_schedules' => 'عرض مواقيت المقدم'
             ],
+            'specialists' => [
+                'title' => "التخصصات",
+                   'list_specialists' => 'عرض التخصصات',
+                   'create_specialist' => 'إنشاء تخصص',
+                   'edit_specialist' => 'تعديل التخصص',
+                   'delete_specialist' => 'حذف التخصص',
+                   'change_specialists_status' => 'تغيير الحالة',
+            ],
+            'lectures' => [
+                'title' => "المحاضرات",
+                'lecture_report' => 'تقرير المحاضرة',
+                'list_lectures' => 'عرض المحاضرات',
+                'edit_lectures' => 'تعديل المحاضرات',
+                'delete_lectures' => 'حذف المحاضرات',
+                'change_image_cover' => 'تغيير صورة الغلاف',
+                'change_lectures_status' => 'تغيير الحالة',
+            ],
+            'invoices' => [
+                'title' => "الفواتير",
+                 'list_invoices' => 'قائمة الفواتير',
+                 'change_invoices_status' => 'تغيير الحالة',
+                'add_therapist_Invoice' => 'أضف فاتورة المعالج'
+            ],
 
             'sliders' => [
                 'title' => 'شريط السحب',
@@ -338,8 +370,14 @@ return [
                 'change_interest_status' => 'تغير حالة إهتمام',
             ],
 
+            'plan' => [
+                'title' => "الخطة",
+                'show_plan', 'عرض الخطة'
+            ],
+
             'categories' => [
                 'title' => 'الاقسام',
+                'name'=>'اسم التخصص',
                 'create_category' => 'إضافة قسم',
                 'edit_category' => 'تعديل قسم',
                 'delete_category' => 'حذف القسم',

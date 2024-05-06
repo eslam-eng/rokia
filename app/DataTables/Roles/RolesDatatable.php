@@ -71,7 +71,7 @@ class RolesDatatable extends DataTable
     {
         return [
             Column::make('name')
-                ->title(__('pages.name'))
+                ->title(__('app.therapists.name'))
                 ->orderable(false),
             Column::make('users_count')
                 ->title(__('app.system.users_count'))

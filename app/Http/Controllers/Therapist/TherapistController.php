@@ -97,7 +97,7 @@ class TherapistController extends Controller
     {
         try {
             $this->therapistService->changeStatus(id: $id, status: $request->get('status'));
-            return apiResponse(message: __('app.therapist_status_changed_successfully'));
+            return apiResponse(message: __('app.therapists.therapist_status_changed_successfully'));
         } catch (NotFoundHttpException $exception) {
             return apiResponse(message: __('app.therapist_not_found'), code: 404);
         } catch (Exception $exception) {

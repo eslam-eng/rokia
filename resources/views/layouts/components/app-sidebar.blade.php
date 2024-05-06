@@ -205,7 +205,7 @@
                 @endif
 
 
-                <li class="side-item side-item-category">@lang('app.therapist_accounting')</li>
+                <li class="side-item side-item-category">@lang('app.therapists.therapist_accounting')</li>
 
                 <li class="slide">
                     <a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0);">
