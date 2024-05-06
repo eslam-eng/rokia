@@ -25,7 +25,6 @@ return new class extends Migration
             $table->tinyInteger('is_paid')->default(0);
             $table->tinyInteger('type');
             $table->timestamp('publish_date')->nullable();
-            $table->boolean('is_closed')->default(false)->comment('this flag for live lecture after therapist closed it should updated');
             $table->softDeletes();
             $table->timestamps();
         });

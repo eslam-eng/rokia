@@ -6,6 +6,7 @@ use App\DataTransferObjects\Lecture\BuyLectureDTO;
 use App\DataTransferObjects\Lecture\LectureDTO;
 use App\DataTransferObjects\Lecture\UpdateLectureDTO;
 use App\DataTransferObjects\Therapist\CreateTherapistDTO;
+use App\Enums\ActivationStatus;
 use App\Enums\PaymentStatusEnum;
 use App\Exceptions\GeneralException;
 use App\Exceptions\NotFoundException;
@@ -180,6 +181,6 @@ class LectureService extends BaseService
     public function closeLecture($lecture_id)
     {
         $lecture = $this->findById($lecture_id);
-       return $lecture->update(['is_closed'=>true]);
+       return $lecture->update(['status'=>ActivationStatus::INACTIVE->value]);
     }
 }
