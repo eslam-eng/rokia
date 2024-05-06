@@ -24,6 +24,7 @@ class TherapistLecturesResource extends JsonResource
             'is_paid'=>$this->is_paid,
             'image_cover' =>$this->image_cover_url,
             'audio_file' =>$this->lecture_media_content_url,
+            'is_closed' => $this->is_closed ?? false
         ];
     }
 }

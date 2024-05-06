@@ -176,4 +176,10 @@ class LectureService extends BaseService
         DB::commit();
         return $userLecture;
     }
+
+    public function closeLecture($lecture_id)
+    {
+        $lecture = $this->findById($lecture_id);
+       return $lecture->update(['is_closed'=>true]);
+    }
 }

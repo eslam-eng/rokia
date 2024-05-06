@@ -23,7 +23,7 @@ class Lecture extends Model implements HasMedia
     use HasFactory, Filterable, EscapeUnicodeJson, InteractsWithMedia, SoftDeletes;
 
     protected $fillable = [
-        'title', 'therapist_id', 'duration', 'description', 'price', 'status', 'is_paid', 'type', 'publish_date',
+        'title', 'therapist_id', 'duration', 'description', 'price', 'status', 'is_paid', 'type', 'publish_date','is_closed'
     ];
 
     public function users(): BelongsToMany

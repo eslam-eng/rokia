@@ -72,6 +72,7 @@ Route::group(['middleware' => 'locale'],function (){
             Route::post('live-lectures', [LectureController::class, 'storeLiveLecture'])->name('live-lectures');
             Route::post('lectures/{id}/media', [LectureController::class, 'updateImageCover']);
             Route::post('send-notifications', [NotificationController::class, 'sendTherapistFcmNotification']);
+            Route::post('live-lecture/{lecture}/close',[LectureController::class,'closeLecture']);
 
 
             Route::group(['prefix' => 'media'], function () {

@@ -162,8 +162,20 @@ class LectureController extends Controller
             $media = $lecture->getMedia('lectures_covers')->first();
             $media?->delete();
             $lecture->addMediaFromRequest('image')->toMediaCollection('lectures_covers');
-            return apiResponse(message: 'updated successfully');
+            return apiResponse(message: __('app.general.success_operation'));
         } catch (NotFoundException $exception) {
+            return apiResponse(message: $exception->getMessage(), code: 404);
+        } catch (\Exception $exception) {
+            return apiResponse(message: $exception->getMessage(), code: 500);
+        }
+    }
+
+    public function closeLecture(int $lecture)
+    {
+        try {
+           $this->lectureService->closeLecture($lecture);
+            return apiResponse(message: __('app.general.success_operation'));
+        }catch (NotFoundException $exception) {
             return apiResponse(message: $exception->getMessage(), code: 404);
         } catch (\Exception $exception) {
             return apiResponse(message: $exception->getMessage(), code: 500);
