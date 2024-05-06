@@ -4,10 +4,10 @@
     <link href="{{asset('assets/plugins/datatable/css/dataTables.bootstrap5.css')}}" rel="stylesheet"/>
 @endsection
 
-@section('title',__('app.categories.title'))
+@section('title', __('app.interests.title'))
 @section('content')
     {{--    breadcrumb --}}
-    @include('layouts.components.breadcrumb',['title' => trans('app.categories.title'),'first_list_item' => '','last_list_item' => ''])
+    @include('layouts.components.breadcrumb',['title' => trans('app.interests.title'),'first_list_item' => '','last_list_item' => ''])
     {{--    end breadcrumb --}}
 
     <!--start filters section -->

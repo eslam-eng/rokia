@@ -33,7 +33,7 @@ class AuthController extends Controller
             $toast = [
                 'type' => 'success',
                 'title' => 'success',
-                'message' => trans('app.login_successfully')
+                'message' => trans('app.auth.login_successfully')
             ];
             return to_route('home')->with('toast', $toast);
         } catch (NotFoundException $e) {

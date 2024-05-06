@@ -49,7 +49,7 @@
             </div>
             <div class="col-12 mt-2">
                 <button type="submit"
-                        class="btn btn-primary me-1 waves-effect waves-float waves-light">{{ __('pages.submit') }}</button>
+                        class="btn btn-primary me-1 waves-effect waves-float waves-light">{{ __('app.submit') }}</button>
             </div>
         </div>
     </form>

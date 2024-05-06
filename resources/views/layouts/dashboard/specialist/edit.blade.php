@@ -5,7 +5,7 @@
 @section('content')
 
     {{--    breadcrumb --}}
-    @include('layouts.components.breadcrumb',['title' => __('app.specialist.title'),'first_list_item' => __('app.specialist.title'),'last_list_item' => __('app.app.specialist.edit_specialist')])
+    @include('layouts.components.breadcrumb',['title' => __('app.specialist.title'),'first_list_item' => __('app.specialist.title'),'last_list_item' => __('app.specialist.edit_specialist')])
     {{--    end breadcrumb --}}
 
     <!-- Row -->
@@ -20,7 +20,7 @@
                         <div class="row row-sm mb-4">
 
                             <div class="col-lg-6 col-md-6 col-sm-12 mb-2">
-                                <div class="main-content-label mg-b-5">@lang('app.categories.name') <span class="text-danger"*></span></div>
+                                <div class="main-content-label mg-b-5">@lang('app.specialist.name') <span class="text-danger"*></span></div>
                                 <input class="form-control" value="{{old('name',$specialist->name)}}" name="name"
                                        type="text" required>
                                 @error('name')

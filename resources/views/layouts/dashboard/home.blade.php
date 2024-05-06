@@ -230,7 +230,7 @@
                                 </tr>
                             @empty
                                 <tr class="text-center">
-                                    <td colspan="5">no data available</td>
+                                    <td colspan="5">{{ __('app.general.no_data_available') }}</td>
                                 </tr>
                             @endforelse
                             </tbody>

@@ -2,7 +2,7 @@
     @if(!$model->isSuperAdminRole())
         <div class="row text-center">
             <a href="{{route('role.edit',$model->id)}}"
-               data-toggle="tooltip" title="{{__('role.edit')}}"
+               data-toggle="tooltip" title="{{__('app.edit')}}"
                class="btn btn-sm btn-icon btn-warning btn-active-light-primary me-2">
                 <i class="fa fa-edit"></i>
             </a>
