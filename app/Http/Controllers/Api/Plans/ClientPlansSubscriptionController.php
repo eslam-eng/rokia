@@ -8,6 +8,7 @@ use App\Exceptions\NotFoundException;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ClientPlanSubscription\ClientPlanSubscriptionRequest;
 use App\Http\Requests\Payment\ConfirmPaymentRequest;
+use App\Http\Resources\ClientPlan\ClientPlanResource;
 use App\Services\ClientPlanSubscription\ClientPlanSubscriptionService;
 use App\Services\Plans\TherapistPlansService;
 use App\Services\UserService;
@@ -52,6 +53,14 @@ class ClientPlansSubscriptionController extends Controller
         } catch (\Exception $exception) {
             return apiResponse(message: $exception->getMessage(), code: 500);
         }
+    }
+
+    public function getPlansForUser()
+    {
+        $user = auth()->user();
+        $clientPlans = $this->clientPlanSubscriptionService->getPlansForUser($user);
+        return ClientPlanResource::collection($clientPlans);
+
     }
 
 }

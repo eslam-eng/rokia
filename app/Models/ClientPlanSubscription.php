@@ -17,4 +17,9 @@ class ClientPlanSubscription extends Model
         return $this->belongsTo(TherapistPlan::class,'therapist_plan_id');
     }
 
+    public function clientPlanNotification(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(ClientNotification::class,'client_plan_subscription_id');
+    }
+
 }

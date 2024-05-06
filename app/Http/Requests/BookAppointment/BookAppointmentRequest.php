@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests\BookAppointment;
 
+use App\Enums\WeekDaysEnum;
 use App\Http\Requests\BaseRequest;
+use Illuminate\Validation\Rule;
 
 class BookAppointmentRequest extends BaseRequest
 {
@@ -22,7 +24,7 @@ class BookAppointmentRequest extends BaseRequest
         return [
             'therapist_id' => 'required|integer|exists:therapists,id',
             'time' => 'required|date_format:h:i A',
-            'day_id' => 'required|bool',
+            'day_id' => ['required','integer',Rule::in(WeekDaysEnum::values())],
             'user_description' => 'nullable|string',
         ];
     }

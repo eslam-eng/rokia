@@ -8,6 +8,7 @@ use App\Enums\PaymentStatusEnum;
 use App\Exceptions\NotFoundException;
 use App\Filters\LecturesFilter;
 use App\Models\ClientPlanSubscription;
+use App\Models\User;
 use App\Services\BaseService;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
@@ -49,5 +50,14 @@ class ClientPlanSubscriptionService extends BaseService
         $clientPlanSubscriptionDTO->validate();
         $clientPlanSubscriptionData = $clientPlanSubscriptionDTO->toArray();
         return $this->getQuery()->create($clientPlanSubscriptionData);
+    }
+
+    public function getPlansForUser(User|int $user)
+    {
+        if (is_int($user)) {
+            $user = parent::findById($user);
+        }
+        return $user->plans()->with('therapistPlan')->withCount('clientPlanNotification')->where('status',ClientPlanStatusEnum::RUNNING->value)->get();
+
     }
 }

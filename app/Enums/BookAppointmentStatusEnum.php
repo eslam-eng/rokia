@@ -6,9 +6,8 @@ enum BookAppointmentStatusEnum: int
 {
 
     case PENDING = 1;
-    case WAITING_FOR_PAID = 2; //mean that therapist accept the apointment and wait client paid
+    case WAITING_FOR_PAID = 2; //mean that therapist accepts the appointment and wait client paid
     case INPROGRESS = 3;
-
     case COMPLETED = 4;
     case CANCELED = 5;
 

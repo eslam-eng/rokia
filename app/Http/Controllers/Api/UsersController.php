@@ -6,6 +6,7 @@ use App\DataTransferObjects\ChangePassword\PasswordChangeDTO;
 use App\DataTransferObjects\Client\UpdateClientDTO;
 use App\Exceptions\NotFoundException;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ChangeLanguage\ChangeLanguageRequest;
 use App\Http\Requests\ChangePasswordRequest;
 use App\Http\Requests\Client\ClientUpdateRequest;
 use App\Http\Requests\ImageUploadRequest;
@@ -78,5 +79,18 @@ class UsersController extends Controller
         } catch (\Exception $exception) {
             return apiResponse(message: $exception->getMessage(), code: 500);
         }
+    }
+
+    public function changeLanguage(ChangeLanguageRequest $request)
+    {
+        if (auth()->guard('api_therapist')->check())
+            $user = auth()->guard('api_therapist')->user();
+        else
+        $user = auth()->user();
+        $lang = $request->lang;
+        $this->userService->updateLanguage(user: $user,language: $lang);
+        return apiResponse(message: __('app.general.success_operation'));
+
+
     }
 }
