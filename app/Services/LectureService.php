@@ -149,7 +149,7 @@ class LectureService extends BaseService
     public function getLecturesForUser(User $user): CursorPaginator
     {
         return $user->lecture()->withAvg('rates','rate_number')
-            ->with(['rates.user:id,name'])->where('payment_status',PaymentStatusEnum::PAID->value)->cursorPaginate();
+            ->with(['rates.user:id,name'])->where('payment_status',PaymentStatusEnum::PAID->value)->cursorPaginate(10);
     }
 
     public function getLectureReportForTherapist(array $filters = []): LengthAwarePaginator
