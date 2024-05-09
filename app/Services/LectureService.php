@@ -16,6 +16,7 @@ use App\Models\User;
 use App\Models\UserLecture;
 use getID3;
 use getid3_lib;
+use Illuminate\Contracts\Pagination\CursorPaginator;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
@@ -145,9 +146,10 @@ class LectureService extends BaseService
         return $lecture->update(['status' => $status]);
     }
 
-    public function getLecturesForUser(User $user): \Illuminate\Database\Eloquent\Collection
+    public function getLecturesForUser(User $user): CursorPaginator
     {
-        return $user->lecture()->where('payment_status',PaymentStatusEnum::PAID->value)->get();
+        return $user->lecture()->withAvg('rates','rate_number')
+            ->with(['rates.user:id,name'])->where('payment_status',PaymentStatusEnum::PAID->value)->cursorPaginate();
     }
 
     public function getLectureReportForTherapist(array $filters = []): LengthAwarePaginator
