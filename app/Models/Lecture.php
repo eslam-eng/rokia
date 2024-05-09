@@ -41,6 +41,11 @@ class Lecture extends Model implements HasMedia
         return $this->morphMany(Wishlist::class, 'relatable');
     }
 
+    public function rates()
+    {
+        return $this->morphMany(Rate::class,'relatable')->where('relatable_type',$this->getMorphClass());
+    }
+
     public function scopeSubscribeUsers(Builder $builder)
     {
         if (!auth()->check())

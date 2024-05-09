@@ -53,7 +53,8 @@ class LectureService extends BaseService
         return $this->getQuery(filters: $filters)
             ->select('lectures.*')
             ->orderByDesc('id')
-            ->with('therapist:id,name')
+            ->with(['therapist:id,name','rates.user:id,name'])
+            ->withAvg('rates','rate_number')
             ->subscribeUsers()
             ->favorites()
             ->simplePaginate();
