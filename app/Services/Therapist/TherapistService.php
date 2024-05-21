@@ -147,7 +147,11 @@ class TherapistService extends BaseService
     {
         return $therapist->load($loadRelations = [
             'specialists',
-            'lectures' => fn($query) => $query->with('rates.user')->withAvg('rates','rate_number'),
+            'lectures' => fn($query) => $query
+                ->with('rates.user')
+                ->withAvg('rates','rate_number')
+                ->subscribeUsers()
+                ->favorites(),
             'schedules'
         ]);
     }
