@@ -23,7 +23,7 @@ use Illuminate\Validation\Rule;
 class TherapistService extends BaseService
 {
 
-    public function __construct(private readonly Therapist $model,protected readonly TherapistScheduleService $therapistScheduleService)
+    public function __construct(private readonly Therapist $model, protected readonly TherapistScheduleService $therapistScheduleService)
     {
 
     }
@@ -44,7 +44,7 @@ class TherapistService extends BaseService
         return $this->getQuery(filters: $filters)->with($withRelations);
     }
 
-    public function paginate(array $filters = [],array $selectedColumns=['*']): \Illuminate\Contracts\Pagination\Paginator
+    public function paginate(array $filters = [], array $selectedColumns = ['*']): \Illuminate\Contracts\Pagination\Paginator
     {
         return $this->getQuery(filters: $filters)
             ->select($selectedColumns)
@@ -77,9 +77,9 @@ class TherapistService extends BaseService
     {
         $therapistDTO->validate();
         Validator::validate($therapistDTO->toArray(), [
-            'phone' => Rule::unique('therapists','phone')->ignore($therapist->id)
+            'phone' => Rule::unique('therapists', 'phone')->ignore($therapist->id)
         ]);
-        if (is_int($therapist)){
+        if (is_int($therapist)) {
             $therapist = $this->findById($therapist);
         }
         $data = $therapistDTO->toFilteredArray();
@@ -91,9 +91,9 @@ class TherapistService extends BaseService
     {
         $therapistDTO->validate();
         Validator::validate($therapistDTO->toArray(), [
-            'phone' => Rule::unique('therapists','phone')->ignore($therapist->id)
+            'phone' => Rule::unique('therapists', 'phone')->ignore($therapist->id)
         ]);
-        if (is_int($therapist)){
+        if (is_int($therapist)) {
             $therapist = $this->findById($therapist);
         }
         $data = $therapistDTO->toFilteredArray();
@@ -143,6 +143,15 @@ class TherapistService extends BaseService
         return $therapist->load('specialists');
     }
 
+    public function getTherapistDetailsForClient(Therapist $therapist): Therapist
+    {
+        return $therapist->load($loadRelations = [
+            'specialists',
+            'lectures' => fn($query) => $query->with('rates.user')->withAvg('rates','rate_number'),
+            'schedules'
+        ]);
+    }
+
     public function getSchedules($therapist_id): Collection|array
     {
         return $this->therapistScheduleService->getSchedulesByTherapist(therapist_id: $therapist_id);
@@ -153,7 +162,7 @@ class TherapistService extends BaseService
         return $this->getQuery($filters)->select(['id', 'name'])->paginate();
     }
 
-    public function updateTherapySessionData(UpdateTherapySessionDataDTO $therapySessionDataDTO , Therapist $therapist): Therapist
+    public function updateTherapySessionData(UpdateTherapySessionDataDTO $therapySessionDataDTO, Therapist $therapist): Therapist
     {
         //first update specialists
         DB::beginTransaction();

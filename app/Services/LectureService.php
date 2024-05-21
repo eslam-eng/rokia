@@ -58,7 +58,7 @@ class LectureService extends BaseService
             ->withAvg('rates','rate_number')
             ->subscribeUsers()
             ->favorites()
-            ->simplePaginate();
+            ->cursorPaginate();
     }
 
     public function datatable(array $filters = [], array $withRelations = []): Builder

@@ -74,6 +74,7 @@ Route::group(['middleware' => 'locale'],function (){
         Route::get('therapist/{therapist}/schedule', [TherapistScheduleController::class, 'getScheduleForTherapist']);
         Route::post('therapist/apointments/schedule', [TherapistScheduleController::class, 'getScheduleForTherapist']);
         Route::get('therapists', [TherapistController::class, 'index']);
+        Route::get('therapists/{therapist}/profile', [TherapistController::class, 'getTherapistDetailsForClient']);
 
         Route::apiResource('rates', RateController::class);
     });

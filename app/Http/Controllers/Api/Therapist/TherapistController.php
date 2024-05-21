@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Therapist\Api\TherapySessionUpdateRequest;
 use App\Http\Requests\Therapist\Api\ThereapistApiUpdateRequest;
 use App\Http\Resources\Therapist\TherapistResource;
+use App\Models\Therapist;
 use App\Services\Therapist\TherapistService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -34,8 +35,18 @@ class TherapistController extends Controller
     {
         try {
             $therapist = Auth::guard('api_therapist')->user();
-            $therpaistDetails = $this->therapistService->getTherapistDetails(therapist: $therapist);
-            return apiResponse(data: TherapistResource::make($therpaistDetails), message: trans('app.success_operation'));
+            $therapistDetails = $this->therapistService->getTherapistDetails(therapist: $therapist);
+            return apiResponse(data: TherapistResource::make($therapistDetails), message: trans('app.general.success_operation'));
+        } catch (\Exception $e) {
+            return apiResponse(message: $e->getMessage(), code: 500);
+        }
+    }
+
+    public function getTherapistDetailsForClient(Therapist $therapist)
+    {
+        try {
+            $therapist = $this->therapistService->getTherapistDetailsForClient(therapist: $therapist);
+            return apiResponse(data: TherapistResource::make($therapist), message: trans('app.general.success_operation'));
         } catch (\Exception $e) {
             return apiResponse(message: $e->getMessage(), code: 500);
         }

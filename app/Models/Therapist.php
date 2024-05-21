@@ -5,6 +5,8 @@ namespace App\Models;
 use App\Traits\Filterable;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -42,7 +44,7 @@ class Therapist extends Authenticatable implements HasMedia
         return $this->belongsTo(Location::class, 'area_id');
     }
 
-    public function specialists(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    public function specialists(): BelongsToMany
     {
         return $this->belongsToMany(Specialist::class, 'therapist_specialists');
     }
@@ -54,19 +56,24 @@ class Therapist extends Authenticatable implements HasMedia
         );
     }
 
-    public function schedules()
+    public function schedules(): HasMany
     {
         return $this->hasMany(TherapistSchedule::class, 'therapist_id');
     }
 
-    public function appointments(): \Illuminate\Database\Eloquent\Relations\HasMany
+    public function appointments(): HasMany
     {
         return $this->hasMany(BookAppointment::class,'therapist_id');
     }
 
-    public function rozmans()
+    public function rozmans(): HasMany
     {
         return $this->hasMany(Rozmana::class, 'therapist_id');
+    }
+
+    public function lectures(): HasMany
+    {
+        return $this->hasMany(Lecture::class, 'therapist_id');
     }
 
 
