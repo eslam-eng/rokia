@@ -42,7 +42,8 @@ Route::group(['prefix' => 'authentication', 'middleware' => 'guest'], function (
     Route::get('login', [AuthController::class, 'loginForm'])->name('login');
     Route::post('login', [AuthController::class, 'login'])->name('signin');
 });
-Route::get('/', DashboardController::class)->name('/')->middleware(['auth', 'locale']);
+Route::get('/', [\App\Http\Controllers\Website\websiteController::class,'index'])->name('/')->middleware(['locale']);
+Route::post('/contact-us', [\App\Http\Controllers\Website\websiteController::class,'contactUs'])->name('contact-us')->middleware(['locale']);
 //auth routes
 Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'locale']], function () {
 
